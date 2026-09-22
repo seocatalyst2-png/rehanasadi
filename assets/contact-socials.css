@@ -1,0 +1,47 @@
+.contact-socials {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.contact-socials.center {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-social-link {
+  border: 1px solid var(--rule);
+  background: rgba(13, 13, 12, 0.03);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.75rem 0.9rem;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.contact-social-link:hover {
+  background: rgba(13, 13, 12, 0.06);
+  border-color: rgba(13, 13, 12, 0.25);
+}
+
+.contact-socials.dark .contact-social-link {
+  border-color: rgba(245, 242, 235, 0.25);
+  background: rgba(245, 242, 235, 0.04);
+  color: var(--paper);
+}
+
+.contact-socials.dark .contact-social-link:hover {
+  background: rgba(245, 242, 235, 0.1);
+  border-color: rgba(245, 242, 235, 0.4);
+}
+
+@media (max-width: 720px) {
+  .contact-socials {
+    grid-template-columns: 1fr;
+  }
+}
