@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopify GA4 Purchase Tracking Not Working — Fix It | Rehan Munawar</title>
+  <meta name="description" content="Shopify purchase events not showing in GA4? Checkout extensibility, missing dataLayer, duplicate tags — here's every reason it breaks and how to fix it." />
+  <link rel="canonical" href="https://rehanasadi.com/shopify-ga4-tracking" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/contact-socials.css" />
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--ink:#0d0d0c;--paper:#f5f2eb;--accent:#c8441a;--accent2:#1a5c8f;--muted:#6b6760;--rule:rgba(13,13,12,0.12);--mono:'DM Mono',monospace;--serif:'Fraunces',serif}
+    html{scroll-behavior:smooth}body{background:var(--paper);color:var(--ink);font-family:var(--mono);overflow-x:hidden}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;border-bottom:1px solid var(--rule);background:var(--paper);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:13px;letter-spacing:0.08em;color:var(--ink);text-decoration:none}.nav-logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}.nav-links a{font-size:12px;letter-spacing:0.06em;color:var(--muted);text-decoration:none;text-transform:uppercase}.nav-links a:hover{color:var(--ink)}
+    .nav-cta{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:9px 20px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;transition:background 0.15s,color 0.15s}.nav-cta:hover{background:var(--ink);color:var(--paper)}
+    .breadcrumb{max-width:1100px;margin:0 auto;padding:1rem 3rem;font-size:11px;color:var(--muted)}.breadcrumb a{color:var(--muted);text-decoration:none}.breadcrumb a:hover{color:var(--ink)}.breadcrumb span{margin:0 0.5rem}
+    .lp-hero{max-width:1100px;margin:0 auto;padding:5rem 3rem 4rem;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:1fr 340px;gap:5rem;align-items:start}
+    .lp-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+    .lp-h1{font-family:var(--serif);font-size:52px;font-weight:700;line-height:1.04;letter-spacing:-0.02em;margin-bottom:1.5rem}.lp-h1 em{font-style:italic;font-weight:300;color:var(--accent)}
+    .lp-intro{font-size:13px;line-height:1.9;color:var(--muted);max-width:540px}.lp-intro strong{color:var(--ink);font-weight:500}
+    .audit-card{border:1px solid var(--rule);position:sticky;top:90px}.audit-card-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+    .audit-card-title{font-family:var(--serif);font-size:17px;font-weight:700}.free-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--accent);color:var(--accent)}
+    .audit-card-body{padding:1.5rem;display:flex;flex-direction:column;gap:1rem}.audit-card-body p{font-size:12px;line-height:1.75;color:var(--muted)}
+    .audit-btn{display:block;font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:13px;background:var(--ink);color:var(--paper);text-decoration:none;text-align:center;border:1px solid var(--ink);transition:background 0.15s,border-color 0.15s}.audit-btn:hover{background:var(--accent);border-color:var(--accent)}
+    .audit-card-note{font-size:11px;color:var(--muted);text-align:center}
+    .sec-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}.sec-label::after{content:'';flex:1;height:1px;background:var(--rule)}
+    .lp-body{max-width:1100px;margin:0 auto;padding:4rem 3rem}
+    .signal-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:3rem}
+    .signal-cell{background:var(--paper);padding:1.5rem}.signal-num{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--accent);line-height:1}.signal-desc{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-top:5px;line-height:1.5}
+    .issue-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--rule);background:var(--rule);margin-bottom:3rem}
+    .issue-item{background:var(--paper);padding:2rem;display:grid;grid-template-columns:52px 1fr;gap:1.5rem}
+    .issue-num{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--muted);line-height:1;padding-top:4px}
+    .issue-title{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:0.6rem}
+    .issue-body{font-size:13px;line-height:1.85;color:var(--muted)}.issue-body strong{color:var(--ink);font-weight:500}
+    .issue-fix{margin-top:1rem;padding:1rem;border:1px solid var(--accent2);background:rgba(26,92,143,0.04);font-size:12px;line-height:1.75;color:var(--ink)}
+    .fix-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:5px}
+    .dark-cta{background:var(--ink);color:var(--paper);padding:4rem 3rem;text-align:center}
+    .dark-cta h2{font-family:var(--serif);font-size:38px;font-weight:700;line-height:1.08;margin-bottom:1rem}.dark-cta h2 em{font-style:italic;font-weight:300;color:rgba(245,242,235,0.4)}
+    .dark-cta p{font-size:13px;color:rgba(245,242,235,0.45);max-width:380px;margin:0 auto 2rem;line-height:1.85}
+    .dark-cta-btn{font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:13px 30px;border:1px solid rgba(245,242,235,0.25);color:var(--paper);text-decoration:none;display:inline-block;transition:background 0.15s,border-color 0.15s}.dark-cta-btn:hover{background:var(--accent);border-color:var(--accent)}
+    .related{max-width:1100px;margin:0 auto;padding:3rem;border-top:1px solid var(--rule)}
+    .related-title{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+    .related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+    .related-item{background:var(--paper);padding:1.25rem;text-decoration:none;color:var(--ink)}.related-item:hover{background:rgba(13,13,12,0.03)}
+    .related-tag{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}.related-label{font-size:13px;line-height:1.4}
+    footer{padding:1.5rem 3rem;display:flex;justify-content:center;align-items:center;background:var(--ink);border-top:1px solid rgba(245,242,235,0.07)}
+    footer p{font-size:11px;color:rgba(245,242,235,0.28);letter-spacing:0.06em;text-align:center}
+    .footer-links{display:flex;gap:1.5rem}.footer-links a{font-size:11px;color:rgba(245,242,235,0.28);text-decoration:none;letter-spacing:0.06em}.footer-links a:hover{color:var(--paper)}
+    @media(max-width:860px){nav{padding:1.25rem 1.5rem}.nav-links{display:none}.lp-hero{grid-template-columns:1fr;padding:3rem 1.5rem;gap:2.5rem}.audit-card{position:static}.lp-h1{font-size:36px}.lp-body{padding:3rem 1.5rem}.signal-strip{grid-template-columns:1fr 1fr}.related-grid{grid-template-columns:1fr 1fr}.dark-cta{padding:3rem 1.5rem}.dark-cta h2{font-size:28px}footer{flex-direction:column;gap:0.75rem;padding:1.25rem 1.5rem}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
+  <ul class="nav-links"><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li></ul>
+  <a href="audit.html" class="nav-cta">Contact Us</a>
+</nav>
+
+<div style="border-bottom:1px solid var(--rule)">
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="services.html">Services</a><span>/</span>Shopify GA4 Tracking</div>
+</div>
+
+<div class="lp-hero">
+  <div>
+    <p class="lp-eyebrow">Shopify · GA4 · purchase tracking</p>
+    <h1 class="lp-h1">Shopify GA4 purchase<br>tracking is <em>broken.</em><br>Here's why.</h1>
+    <p class="lp-intro">Shopify's relationship with GA4 tracking has been unstable since the checkout extensibility migration. <strong>If your purchase events stopped working in 2024 or your numbers don't match your Shopify orders — you're not alone.</strong> Here are the specific causes and what fixing each one actually involves.</p>
+  </div>
+  <div class="audit-card">
+    <div class="audit-card-head"><span class="audit-card-title">Shopify GA4 audit</span><span class="free-tag">Free</span></div>
+    <div class="audit-card-body">
+      <p>Tell me your Shopify plan, GA4 setup, and what you're seeing. I'll diagnose whether it's a dataLayer issue, a GTM trigger problem, or a checkout extensibility break — and tell you the fix.</p>
+      <a href="audit.html" class="audit-btn">Get a free Shopify audit →</a>
+      <p class="audit-card-note">Shopify specialist · 4+ years · 50+ clients</p>
+    </div>
+  </div>
+</div>
+
+<div class="lp-body">
+  <div class="signal-strip">
+    <div class="signal-cell"><div class="signal-num">2024</div><div class="signal-desc">When Shopify checkout extensibility broke most custom setups</div></div>
+    <div class="signal-cell"><div class="signal-num">60%</div><div class="signal-desc">Conversion undercount in worst-case broken setups</div></div>
+    <div class="signal-cell"><div class="signal-num">3–5d</div><div class="signal-desc">Typical full rebuild and validation time</div></div>
+    <div class="signal-cell"><div class="signal-num">100%</div><div class="signal-desc">Shopify orders ↔ GA4 reconciliation — target</div></div>
+  </div>
+
+  <div class="sec-label">6 reasons Shopify GA4 tracking breaks</div>
+
+  <div class="issue-list">
+    <div class="issue-item">
+      <div class="issue-num">01</div>
+      <div>
+        <div class="issue-title">Checkout extensibility removed access to the thank-you page</div>
+        <p class="issue-body">Before 2024, most Shopify GA4 setups fired purchase events on the <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">/thank_you</code> page trigger in GTM. Shopify's checkout extensibility migration restricted access to the checkout and order confirmation pages for non-Plus merchants. <strong>If your tracking broke sometime in 2024, this is almost certainly why.</strong></p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Migrate to Shopify's Web Pixels API or implement purchase tracking using Shopify's Customer Events API, which provides checkout and purchase events in a compliant way without requiring thank-you page access.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">02</div>
+      <div>
+        <div class="issue-title">DataLayer not firing on Shopify checkout</div>
+        <p class="issue-body">GTM depends on Shopify pushing order data (revenue, product IDs, quantity) into the <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">dataLayer</code> on the confirmation page. Many Shopify implementations — especially those migrated from a plugin or built manually — have gaps in the dataLayer push. <strong>GTM receives the page view but no purchase data, so the purchase event fires with zero revenue.</strong></p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Audit the dataLayer in browser DevTools on a test order confirmation. Verify purchase, revenue, tax, shipping, and item-level parameters are present. Rebuild the dataLayer push in Shopify's Additional Scripts or via Web Pixels if missing.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">03</div>
+      <div>
+        <div class="issue-title">GA4 e-commerce events missing item-scoped parameters</div>
+        <p class="issue-body">GA4's e-commerce reporting requires item-scoped parameters: <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">item_id</code>, <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">item_name</code>, <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">price</code>, <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">quantity</code>, <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">item_category</code>. Without these, your GA4 purchase events register revenue correctly but your product performance reports are completely empty. <strong>You can't see which products drive revenue or where the funnel drops off.</strong></p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Update the dataLayer push to include the full items array with all required item-scoped parameters. Map Shopify's product data (handle, title, variant, price) to GA4's expected schema.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">04</div>
+      <div>
+        <div class="issue-title">Theme update removed GTM script from the layout</div>
+        <p class="issue-body">Shopify theme updates frequently overwrite customisations to <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">theme.liquid</code> — including the GTM container snippet. If tracking suddenly stopped after a theme update, your GTM snippet was likely removed from the site header. GA4 receives no events at all from that point forward.</p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Verify GTM is loading on all pages using Google Tag Assistant. If missing, re-add the GTM snippet to theme.liquid head and body sections. Use Shopify's native GTM integration to make it update-resistant.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">05</div>
+      <div>
+        <div class="issue-title">Shopify's native GA4 integration creating duplicate events</div>
+        <p class="issue-body">Shopify's built-in GA4 integration (via Google &amp; YouTube channel) fires purchase events automatically. If you also have a GTM-based purchase tag, both fire — and GA4 deduplicates using transaction_id. <strong>The result looks like missing conversions, but it's actually GA4 correctly discarding what it sees as duplicate orders.</strong></p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Choose one implementation and disable the other. If using GTM for custom dataLayer, disable the native Shopify GA4 purchase event. If using the native channel, remove the GTM purchase tag entirely.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">06</div>
+      <div>
+        <div class="issue-title">Currency not set — revenue showing as $0</div>
+        <p class="issue-body">GA4 e-commerce requires the currency parameter on every purchase event. Unlike Universal Analytics, it's mandatory. <strong>If your currency is missing or mismatched with your GA4 property settings, revenue shows as $0</strong> in all e-commerce reports — even when events fire correctly.</p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Verify the currency parameter is included in your purchase dataLayer push and matches your GA4 property's default currency setting (Admin → Property Settings → Currency).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="related">
+  <div class="related-title">Related problems</div>
+  <div class="related-grid">
+    <a href="ga4-not-tracking-conversions.html" class="related-item"><div class="related-tag">GA4</div><div class="related-label">GA4 shows fewer conversions than Shopify</div></a>
+    <a href="meta-capi-setup.html" class="related-item"><div class="related-tag">Meta CAPI</div><div class="related-label">Meta ROAS doesn't match actual revenue</div></a>
+    <a href="server-side-tracking-setup.html" class="related-item"><div class="related-tag">sGTM</div><div class="related-label">Set up server-side tracking with Stape</div></a>
+    <a href="services.html" class="related-item"><div class="related-tag">Services</div><div class="related-label">GTM container audit and rebuild</div></a>
+  </div>
+</div>
+
+<div class="dark-cta">
+  <h2>Which one is breaking<br><em>your Shopify tracking?</em></h2>
+  <p>Most Shopify GA4 setups have more than one issue. Tell me what you're seeing and I'll diagnose it — free, in writing, within 24 hours.</p>
+  <a href="audit.html" class="dark-cta-btn">Get a free Shopify audit</a>
+  <div class="contact-socials center dark">
+    <a class="contact-social-link" href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
+    <a class="contact-social-link" href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a>
+    <a class="contact-social-link" href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
+    <a class="contact-social-link" href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>
+
+<footer>
+  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
+</footer>
+
+<a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
+  <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
+  <span>Free Tracking Audit</span>
+</a>
+<script src="assets/whatsapp-float.js"></script>
+
+</body>
+</html>

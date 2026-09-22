@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Tracking Audit - Rehan Munawar | GA4 and Server-Side Tracking</title>
+  <meta name="description" content="Get a free tracking audit. Tell me what you're seeing - numbers that don't add up, ROAS you can't trust - and I'll tell you exactly what's broken." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #0d0d0c;
+      --paper: #f5f2eb;
+      --accent: #c8441a;
+      --accent2: #1a5c8f;
+      --muted: #6b6760;
+      --rule: rgba(13,13,12,0.12);
+      --mono: "DM Mono", monospace;
+      --serif: "Fraunces", serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      overflow-x: hidden;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      position: sticky;
+      top: 0;
+      background: var(--paper);
+      z-index: 100;
+    }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.active { color: var(--ink); }
+    .nav-cta { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 20px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-family: var(--mono); transition: background 0.15s, color 0.15s; }
+    .nav-cta:hover { background: var(--ink); color: var(--paper); }
+
+    .main-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .intro-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+    .intro-h1 { font-family: var(--serif); font-size: 52px; font-weight: 700; line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    .intro-h1 em { font-style: italic; font-weight: 300; color: var(--muted); }
+    .intro-sub { font-size: 13px; line-height: 1.9; color: var(--muted); margin-bottom: 2.5rem; max-width: 400px; }
+
+    .steps-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1rem; }
+    .next-steps { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--rule); background: var(--rule); margin-bottom: 2.5rem; }
+    .next-step { background: var(--paper); padding: 1.1rem 1.25rem; display: flex; gap: 1.25rem; align-items: flex-start; }
+    .step-dot { width: 22px; height: 22px; border: 1px solid var(--accent2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: 0.06em; color: var(--accent2); margin-top: 1px; }
+    .step-copy { font-size: 12px; line-height: 1.75; color: var(--muted); }
+    .step-copy strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 2px; font-size: 12px; }
+
+    .trust-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border: 1px solid var(--rule); background: var(--rule); }
+    .trust-cell { background: var(--paper); padding: 1.25rem; }
+    .trust-num { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--ink); }
+    .trust-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+
+    .form-wrap { position: sticky; top: 100px; }
+    .form-card { border: 1px solid var(--rule); background: var(--paper); }
+    .form-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .form-title { font-family: var(--serif); font-size: 20px; font-weight: 700; }
+    .form-free-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border: 1px solid var(--accent); color: var(--accent); }
+    .form-body { padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 10px 12px;
+      outline: none;
+      appearance: none;
+      transition: border-color 0.15s;
+      border-radius: 0;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent2); }
+    input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.6; }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b6760'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+      cursor: pointer;
+    }
+    textarea { resize: vertical; min-height: 90px; line-height: 1.7; }
+    .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+    .checkbox-item { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+    .checkbox-item input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      appearance: none;
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+      position: relative;
+      padding: 0;
+    }
+    .checkbox-item input[type="checkbox"]:checked {
+      background: var(--accent2);
+      border-color: var(--accent2);
+    }
+    .checkbox-item input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      left: 3px; top: 1px;
+      width: 5px; height: 8px;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(35deg);
+    }
+    .checkbox-label { font-size: 12px; line-height: 1.5; color: var(--ink); }
+    .divider { height: 1px; background: var(--rule); margin: 0.25rem 0; }
+    .submit-btn {
+      width: 100%;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px;
+      background: var(--ink);
+      color: var(--paper);
+      border: 1px solid var(--ink);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      margin-top: 0.25rem;
+    }
+    .submit-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .form-note { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.6; padding: 0 2rem 1.5rem; }
+
+    .thankyou {
+      display: none;
+      padding: 3rem 2rem;
+      text-align: center;
+      border: 1px solid var(--rule);
+    }
+    .ty-icon { font-size: 32px; margin-bottom: 1.25rem; color: var(--accent2); font-family: var(--serif); font-weight: 700; }
+    .ty-title { font-family: var(--serif); font-size: 26px; font-weight: 700; margin-bottom: 0.75rem; }
+    .ty-sub { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+    .or-strip {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .or-line { flex: 1; height: 1px; background: var(--rule); }
+    .or-text { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+
+    .calendly-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 3rem 5rem;
+    }
+    .cal-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2rem; }
+    .cal-title { font-family: var(--serif); font-size: 32px; font-weight: 700; }
+    .cal-title em { font-style: italic; font-weight: 300; color: var(--muted); }
+    .cal-sub { font-size: 12px; color: var(--muted); line-height: 1.7; max-width: 380px; margin-top: 6px; }
+    .calendly-placeholder {
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      min-height: 620px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 3rem;
+      text-align: center;
+    }
+    .cal-placeholder-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .cal-placeholder-title { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--ink); max-width: 360px; line-height: 1.3; }
+    .cal-placeholder-note { font-size: 12px; color: var(--muted); max-width: 380px; line-height: 1.75; }
+    .cal-placeholder-link {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      text-decoration: none;
+      background: transparent;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    .cal-placeholder-link:hover { border-color: var(--ink); color: var(--ink); }
+    .calendly-embed {
+      border: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .calendly-inline-widget {
+      min-width: 320px;
+      height: 700px;
+    }
+
+    .mini-guides {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3rem 4rem;
+    }
+    .mini-guides-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .mini-guide {
+      background: var(--paper);
+      padding: 1.15rem;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.12s;
+    }
+    .mini-guide:hover { background: rgba(13,13,12,0.03); }
+    .mini-guide small {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    .mini-guide span {
+      font-family: var(--serif);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .alt-section {
+      border-top: 1px solid var(--rule);
+      padding: 4rem 3rem;
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .alt-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(245,242,235,0.08); }
+    .alt-cell { background: var(--ink); padding: 2rem 2rem; }
+    .alt-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(245,242,235,0.35); margin-bottom: 0.75rem; }
+    .alt-val { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--paper); margin-bottom: 0.4rem; word-break: break-all; }
+    .alt-desc { font-size: 12px; color: rgba(245,242,235,0.4); line-height: 1.65; }
+    .alt-link { color: var(--paper); text-decoration: none; }
+    .alt-link:hover { color: rgba(200,68,26,0.9); }
+
+    footer { padding: 1.5rem 3rem; display: flex; justify-content: center; align-items: center; background: var(--ink); border-top: 1px solid rgba(245,242,235,0.07); }
+    footer p { font-size: 11px; color: rgba(245,242,235,0.28); letter-spacing: 0.06em; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 11px; color: rgba(245,242,235,0.28); text-decoration: none; letter-spacing: 0.06em; transition: color 0.12s; }
+    .footer-links a:hover { color: var(--paper); }
+
+    @media (max-width: 860px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .main-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .form-wrap { position: static; }
+      .intro-h1 { font-size: 36px; }
+      .field-row { grid-template-columns: 1fr; }
+      .or-strip { padding: 0 1.5rem; }
+      .calendly-section { padding: 2.5rem 1.5rem 4rem; }
+      .mini-guides { padding: 0 1.5rem 3rem; }
+      .mini-guides-grid { grid-template-columns: 1fr; }
+      .cal-header { flex-direction: column; gap: 0.5rem; }
+      .alt-inner { grid-template-columns: 1fr; }
+      .alt-section { padding: 3rem 1.5rem; }
+      footer { flex-direction: column; gap: 0.75rem; padding: 1.25rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="case-studies.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
+  </ul>
+  <a href="audit.html" class="nav-cta">Contact Us</a>
+</nav>
+
+<div class="main-grid">
+  <div>
+    <p class="intro-eyebrow">Free tracking audit</p>
+    <h1 class="intro-h1">Tell me what's<br /><em>not adding up.</em></h1>
+    <p class="intro-sub">Fill in the form - takes 3 minutes. I will review your setup and come back with a plain-English breakdown of what is broken and what it is costing you. No pitch, no obligation.</p>
+
+    <p class="steps-label">What happens next</p>
+    <div class="next-steps">
+      <div class="next-step">
+        <div class="step-dot">01</div>
+        <div class="step-copy">
+          <strong>You submit the form</strong>
+          Describe your current setup and the problem you are seeing. The more specific, the better.
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="step-dot">02</div>
+        <div class="step-copy">
+          <strong>I review within 24 hours</strong>
+          I check what I can from your URL, GTM setup, and the context you provide before we speak.
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="step-dot">03</div>
+        <div class="step-copy">
+          <strong>You get a written summary</strong>
+          A short email: what is likely broken, why it matters, and what fixing it would involve.
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="step-dot">04</div>
+        <div class="step-copy">
+          <strong>We talk if it makes sense</strong>
+          If the problem is worth solving together, we scope it. If not, you still get the summary for free.
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-cell"><div class="trust-num">50+</div><div class="trust-label">Setups audited</div></div>
+      <div class="trust-cell"><div class="trust-num">&lt;24h</div><div class="trust-label">Response time</div></div>
+      <div class="trust-cell"><div class="trust-num">EUR0</div><div class="trust-label">Cost to start</div></div>
+      <div class="trust-cell"><div class="trust-num">4 yr</div><div class="trust-label">Tracking experience</div></div>
+    </div>
+  </div>
+
+  <div class="form-wrap">
+    <div class="form-card" id="form-card">
+      <div class="form-header">
+        <span class="form-title">Request your free audit</span>
+        <span class="form-free-badge">Free</span>
+      </div>
+
+      <form class="form-body" id="audit-form" novalidate>
+        <div class="field-row">
+          <div class="field-group">
+            <label for="name">Your name *</label>
+            <input type="text" id="name" name="name" placeholder="Jan de Vries" required />
+          </div>
+          <div class="field-group">
+            <label for="email">Email address *</label>
+            <input type="email" id="email" name="email" placeholder="jan@company.com" required />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="website">Website URL *</label>
+          <input type="url" id="website" name="website" placeholder="https://yourstore.com" required />
+        </div>
+
+        <div class="field-group">
+          <label for="platform">Platform / CMS</label>
+          <select id="platform" name="platform">
+            <option value="" disabled selected>Select your platform</option>
+            <option value="shopify">Shopify</option>
+            <option value="woocommerce">WooCommerce</option>
+            <option value="magento">Magento / Adobe Commerce</option>
+            <option value="custom">Custom-built store</option>
+            <option value="squarespace">Squarespace</option>
+            <option value="webflow">Webflow</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="monthly-spend">Monthly ad spend (approx.)</label>
+          <select id="monthly-spend" name="monthly_spend">
+            <option value="" disabled selected>Select range</option>
+            <option value="under-500">Under EUR500/mo</option>
+            <option value="500-2000">EUR500 - EUR2,000/mo</option>
+            <option value="2000-5000">EUR2,000 - EUR5,000/mo</option>
+            <option value="5000-plus">EUR5,000+/mo</option>
+            <option value="none">Not running paid ads</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Current tracking setup (check all that apply)</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox" name="setup" value="ga4" /><span class="checkbox-label">GA4 installed</span></label>
+            <label class="checkbox-item"><input type="checkbox" name="setup" value="gtm" /><span class="checkbox-label">Google Tag Manager</span></label>
+            <label class="checkbox-item"><input type="checkbox" name="setup" value="meta-pixel" /><span class="checkbox-label">Meta Pixel (browser)</span></label>
+            <label class="checkbox-item"><input type="checkbox" name="setup" value="capi" /><span class="checkbox-label">Meta Conversions API (CAPI)</span></label>
+            <label class="checkbox-item"><input type="checkbox" name="setup" value="sgtm" /><span class="checkbox-label">Server-side GTM</span></label>
+            <label class="checkbox-item"><input type="checkbox" name="setup" value="not-sure" /><span class="checkbox-label">Not sure what's installed</span></label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="problem">Biggest tracking problem you're seeing *</label>
+          <textarea id="problem" name="problem" placeholder="e.g. GA4 shows 60% fewer purchases than Shopify. Meta ROAS looks good but sales are flat. Not sure if CAPI is working..." required></textarea>
+        </div>
+
+        <div class="divider"></div>
+        <button type="submit" class="submit-btn" id="submit-btn">Send - get my free audit -&gt;</button>
+      </form>
+
+      <p class="form-note">No spam. No sales pitch. Just a straight answer about your tracking.</p>
+    </div>
+
+    <div class="thankyou" id="thankyou">
+      <div class="ty-icon">✓</div>
+      <h2 class="ty-title">Got it - I will be in touch.</h2>
+      <p class="ty-sub">I will review your setup and send you a written summary within 24 hours. Check your inbox, including spam just in case.<br /><br />If you would also like to book a call, scroll down to pick a time directly in my calendar.</p>
+    </div>
+  </div>
+</div>
+
+<div class="or-strip" style="padding-bottom: 3rem; border-bottom: 1px solid var(--rule);">
+  <div class="or-line"></div>
+  <span class="or-text">Or skip the form - book a call directly</span>
+  <div class="or-line"></div>
+</div>
+
+<div class="calendly-section" id="book-call">
+  <div class="cal-header">
+    <div>
+      <h2 class="cal-title">Book a <em>30-minute call</em></h2>
+      <p class="cal-sub">Prefer to talk first? Pick a time and we will go through your tracking setup together on a quick call.</p>
+    </div>
+  </div>
+
+  <div class="calendly-placeholder" id="cal-placeholder">
+    <div class="cal-placeholder-label">Calendar embed</div>
+    <div class="cal-placeholder-title">Connect your Calendly to enable booking here</div>
+    <p class="cal-placeholder-note">
+      Create a free Calendly account, set up a 30-minute event type, then replace
+      <code style="font-family: var(--mono); font-size: 11px; background: rgba(13,13,12,0.06); padding: 2px 6px;">YOUR_CALENDLY_URL</code>
+      in the HTML with your link to activate the calendar embed.
+    </p>
+    <a href="https://calendly.com" target="_blank" rel="noopener" class="cal-placeholder-link">Set up Calendly -&gt;</a>
+  </div>
+</div>
+
+<section class="mini-guides">
+  <div class="mini-guides-grid">
+    <a class="mini-guide" href="shopify-ga4-tracking.html"><small>Shopify + GA4</small><span>Shopify GA4 tracking fix</span></a>
+    <a class="mini-guide" href="server-side-tracking-setup.html"><small>sGTM</small><span>Server-side tracking setup</span></a>
+    <a class="mini-guide" href="ga4-not-tracking-conversions.html"><small>GA4</small><span>GA4 conversion tracking issues</span></a>
+    <a class="mini-guide" href="meta-capi-setup.html"><small>Meta CAPI</small><span>Meta CAPI setup guide</span></a>
+    <a class="mini-guide" href="google-ads-for-doctors-guide.html"><small>Healthcare Ads</small><span>Google Ads for doctors complete guide</span></a>
+  </div>
+</section>
+
+<div class="alt-section">
+  <div class="alt-inner">
+    <div class="alt-cell">
+      <div class="alt-label">Email</div>
+      <div class="alt-val"><a href="mailto:rehancopywriting@gmail.com" class="alt-link">Contact Us</a></div>
+      <div class="alt-desc">For longer questions or if you would rather skip the form entirely. I reply within 24h on business days.</div>
+    </div>
+    <div class="alt-cell">
+      <div class="alt-label">Instagram</div>
+      <div class="alt-val"><a href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener" class="alt-link">instagram.com/measurewithrehan</a></div>
+      <div class="alt-desc">See tracking insights and updates, or send a direct message for a quick reply.</div>
+    </div>
+    <div class="alt-cell">
+      <div class="alt-label">Facebook</div>
+      <div class="alt-val"><a href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener" class="alt-link">facebook.com/share/173K18iNuX</a></div>
+      <div class="alt-desc">Reach out on Facebook if that is your preferred platform.</div>
+    </div>
+    <div class="alt-cell">
+      <div class="alt-label">X</div>
+      <div class="alt-val"><a href="https://x.com/Iamrehan__" target="_blank" rel="noopener" class="alt-link">x.com/Iamrehan__</a></div>
+      <div class="alt-desc">Follow or message on X for analytics and performance marketing updates.</div>
+    </div>
+    <div class="alt-cell">
+      <div class="alt-label">LinkedIn</div>
+      <div class="alt-val"><a href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener" class="alt-link">linkedin.com/in/rehanasadi</a></div>
+      <div class="alt-desc">DM me on LinkedIn if that is where you found me. Same response time, same outcome.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
+</footer>
+
+<script>
+  const form = document.getElementById("audit-form");
+  const formCard = document.getElementById("form-card");
+  const thankyou = document.getElementById("thankyou");
+  const submitBtn = document.getElementById("submit-btn");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const website = document.getElementById("website").value.trim();
+    const problem = document.getElementById("problem").value.trim();
+
+    if (!name || !email || !website || !problem) {
+      [["name", name], ["email", email], ["website", website], ["problem", problem]].forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (!val) {
+          el.style.borderColor = "#c8441a";
+          el.addEventListener("input", () => el.style.borderColor = "", { once: true });
+        }
+      });
+      return;
+    }
+
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+      formCard.querySelector(".form-header").style.display = "none";
+      formCard.querySelector(".form-body").style.display = "none";
+      formCard.querySelector(".form-note").style.display = "none";
+      thankyou.style.display = "block";
+      thankyou.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 900);
+  });
+</script>
+
+<a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
+  <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
+  <span>Free Tracking Audit</span>
+</a>
+<script src="assets/whatsapp-float.js"></script>
+
+</body>
+</html>

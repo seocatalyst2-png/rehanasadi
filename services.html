@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services - Rehan Munawar | GA4, GTM and Server-Side Tracking</title>
+  <meta name="description" content="GA4 setup, GTM architecture, server-side tracking, Meta CAPI, and tracking audits. Detailed breakdown of every service, what's included, who it's for, and pricing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/contact-socials.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --ink: #0d0d0c;
+      --paper: #f5f2eb;
+      --accent: #c8441a;
+      --accent2: #1a5c8f;
+      --muted: #6b6760;
+      --rule: rgba(13,13,12,0.12);
+      --rule-strong: rgba(13,13,12,0.22);
+      --mono: "DM Mono", monospace;
+      --serif: "Fraunces", serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      overflow-x: hidden;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      position: sticky;
+      top: 0;
+      background: var(--paper);
+      z-index: 100;
+    }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.active { color: var(--ink); }
+    .nav-cta { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 20px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-family: var(--mono); transition: background 0.15s, color 0.15s; }
+    .nav-cta:hover { background: var(--ink); color: var(--paper); }
+    .page-hero {
+      padding: 5rem 3rem 4.5rem;
+      border-bottom: 1px solid var(--rule);
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: end;
+    }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+    .hero-h1 { font-family: var(--serif); font-size: 54px; font-weight: 700; line-height: 1.04; letter-spacing: -0.02em; }
+    .hero-h1 em { font-style: italic; font-weight: 300; color: var(--muted); }
+    .hero-sub { font-size: 13px; line-height: 1.85; color: var(--muted); margin-top: 1.25rem; max-width: 380px; }
+    .hero-nav { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--rule); background: var(--rule); }
+    .hero-nav-item {
+      background: var(--paper);
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.12s;
+    }
+    .hero-nav-item:hover { background: rgba(13,13,12,0.03); }
+    .hero-nav-label { font-size: 13px; letter-spacing: 0.02em; }
+    .hero-nav-num { font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+    .hero-nav-arrow { font-size: 12px; color: var(--muted); }
+    .service-block {
+      border-bottom: 1px solid var(--rule);
+      scroll-margin-top: 80px;
+    }
+    .service-header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4.5rem 3rem 0;
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+    .svc-num { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); padding-top: 6px; }
+    .svc-title { font-family: var(--serif); font-size: 38px; font-weight: 700; line-height: 1.1; }
+    .svc-title em { font-style: italic; font-weight: 300; color: var(--muted); }
+    .svc-price-badge { text-align: right; padding-top: 4px; }
+    .price-from { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .price-val { font-family: var(--serif); font-size: 32px; font-weight: 700; color: var(--ink); }
+    .price-note { font-size: 10px; letter-spacing: 0.06em; color: var(--muted); margin-top: 3px; }
+    .service-intro {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 3rem 0 calc(3rem + 56px + 2rem);
+    }
+    .service-intro p { font-size: 13px; line-height: 1.9; color: var(--muted); max-width: 640px; }
+    .service-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 3rem 4.5rem calc(3rem + 56px + 2rem);
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 3rem;
+      align-items: start;
+    }
+    .inclusions-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1rem; }
+    .inclusions { border: 1px solid var(--rule); }
+    .inc-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.85rem 1.1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .inc-row:last-child { border-bottom: none; }
+    .inc-check {
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--accent2);
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .inc-check::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--accent2);
+      display: block;
+    }
+    .inc-text { font-size: 12px; line-height: 1.7; color: var(--ink); }
+    .right-col { display: flex; flex-direction: column; gap: 1.5rem; }
+    .ideal-card { border: 1px solid var(--rule); padding: 1.5rem; }
+    .card-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .ideal-item { font-size: 12px; line-height: 1.75; color: var(--muted); padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+    .ideal-item:last-child { border-bottom: none; }
+    .timeline-card { border: 1px solid var(--rule); padding: 1.5rem; }
+    .timeline-val { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); }
+    .timeline-desc { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+    .deliverables-card { border: 1px solid var(--rule); padding: 1.5rem; }
+    .del-tag { display: inline-block; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border: 1px solid var(--rule); color: var(--muted); margin: 0 4px 6px 0; }
+    .stack-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.5rem; }
+    .stk { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border: 1px solid var(--rule); color: var(--muted); }
+    .comparison-section {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 5rem 3rem;
+    }
+    .comparison-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label-light { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(200,68,26,0.9); margin-bottom: 3rem; display: flex; align-items: center; gap: 1.2rem; }
+    .section-label-light::after { content: ""; flex: 1; height: 1px; background: rgba(245,242,235,0.1); }
+    .comparison-intro { font-family: var(--serif); font-size: 36px; font-weight: 700; line-height: 1.1; margin-bottom: 0.75rem; max-width: 500px; }
+    .comparison-intro em { font-style: italic; font-weight: 300; color: rgba(245,242,235,0.4); }
+    .comparison-sub { font-size: 13px; color: rgba(245,242,235,0.45); margin-bottom: 3rem; max-width: 460px; line-height: 1.8; }
+    .comp-table { width: 100%; border-collapse: collapse; }
+    .comp-table th {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,242,235,0.4);
+      padding: 0.75rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(245,242,235,0.08);
+    }
+    .comp-table th:not(:first-child) { text-align: center; }
+    .comp-table td {
+      padding: 1rem 1.25rem;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(245,242,235,0.06);
+      color: rgba(245,242,235,0.65);
+    }
+    .comp-table td:not(:first-child) { text-align: center; }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table tr:hover td { background: rgba(245,242,235,0.03); }
+    .comp-yes { color: #5dcaa5; font-size: 14px; }
+    .comp-no { color: rgba(245,242,235,0.2); font-size: 14px; }
+    .comp-partial { color: #ef9f27; font-size: 11px; letter-spacing: 0.06em; }
+    .comp-service-name { color: var(--paper); font-size: 13px; }
+    .faq-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 3rem; display: flex; align-items: center; gap: 1.2rem; }
+    .section-label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); background: var(--rule); }
+    .faq-item { background: var(--paper); padding: 2rem; }
+    .faq-q { font-family: var(--serif); font-size: 17px; font-weight: 700; margin-bottom: 0.85rem; line-height: 1.3; }
+    .faq-a { font-size: 12px; line-height: 1.8; color: var(--muted); }
+    .cta-strip {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 5rem 3rem;
+      text-align: center;
+    }
+    .cta-strip h2 { font-family: var(--serif); font-size: 44px; font-weight: 700; line-height: 1.08; margin-bottom: 1.25rem; }
+    .cta-strip h2 em { font-style: italic; font-weight: 300; color: rgba(245,242,235,0.4); }
+    .cta-strip p { font-size: 13px; color: rgba(245,242,235,0.45); max-width: 400px; margin: 0 auto 2.5rem; line-height: 1.85; }
+    .cta-btn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 14px 32px; border: 1px solid rgba(245,242,235,0.25); color: var(--paper); text-decoration: none; display: inline-block; transition: background 0.15s, border-color 0.15s; }
+    .cta-btn:hover { background: var(--accent); border-color: var(--accent); }
+    footer { padding: 1.5rem 3rem; display: flex; justify-content: center; align-items: center; background: var(--ink); border-top: 1px solid rgba(245,242,235,0.07); }
+    footer p { font-size: 11px; color: rgba(245,242,235,0.28); letter-spacing: 0.06em; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 11px; color: rgba(245,242,235,0.28); text-decoration: none; letter-spacing: 0.06em; transition: color 0.12s; }
+    .footer-links a:hover { color: var(--paper); }
+    @media (max-width: 860px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .page-hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2.5rem; }
+      .hero-h1 { font-size: 38px; }
+      .service-header { grid-template-columns: 36px 1fr; padding: 3rem 1.5rem 0; }
+      .svc-price-badge { display: none; }
+      .service-intro { padding: 1.5rem 1.5rem 0 calc(1.5rem + 36px + 1.5rem); }
+      .service-body { grid-template-columns: 1fr; padding: 2rem 1.5rem 3.5rem calc(1.5rem + 36px + 1.5rem); }
+      .comparison-section { padding: 3.5rem 1.5rem; }
+      .comp-table th:nth-child(n+3), .comp-table td:nth-child(n+3) { display: none; }
+      .faq-section { padding: 3.5rem 1.5rem; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .cta-strip { padding: 3.5rem 1.5rem; }
+      .cta-strip h2 { font-size: 30px; }
+      footer { flex-direction: column; gap: 0.75rem; padding: 1.25rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="case-studies.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
+  </ul>
+  <a href="audit.html" class="nav-cta">Contact Us</a>
+</nav>
+<div style="border-bottom: 1px solid var(--rule);">
+  <div class="page-hero">
+    <div>
+      <p class="hero-eyebrow">Services</p>
+      <h1 class="hero-h1">Five ways I stop<br />your data <em>lying to you.</em></h1>
+      <p class="hero-sub">Each service is scoped to solve a specific tracking problem. Pick the one that matches where your data is breaking down, or start with an audit if you are not sure.</p>
+    </div>
+    <nav class="hero-nav" aria-label="Jump to service">
+      <a href="#ga4" class="hero-nav-item"><span class="hero-nav-label">GA4 Setup and Architecture</span><span class="hero-nav-num">01 <span class="hero-nav-arrow">↓</span></span></a>
+      <a href="#sgtm" class="hero-nav-item"><span class="hero-nav-label">Server-Side Tracking (sGTM)</span><span class="hero-nav-num">02 <span class="hero-nav-arrow">↓</span></span></a>
+      <a href="#capi" class="hero-nav-item"><span class="hero-nav-label">Meta CAPI and Attribution</span><span class="hero-nav-num">03 <span class="hero-nav-arrow">↓</span></span></a>
+      <a href="#audit" class="hero-nav-item"><span class="hero-nav-label">Tracking Audit</span><span class="hero-nav-num">04 <span class="hero-nav-arrow">↓</span></span></a>
+      <a href="#retainer" class="hero-nav-item"><span class="hero-nav-label">Ongoing Retainer</span><span class="hero-nav-num">05 <span class="hero-nav-arrow">↓</span></span></a>
+    </nav>
+  </div>
+</div>
+<section class="service-block" id="ga4">
+  <div class="service-header">
+    <div class="svc-num">01</div>
+    <h2 class="svc-title">GA4 Setup and <em>Architecture</em></h2>
+    <div class="svc-price-badge"><div class="price-from">From</div><div class="price-val">EUR350</div><div class="price-note">one-time, scoped per project</div></div>
+  </div>
+  <div class="service-intro">
+    <p>Most GA4 installs are rushed. This service rebuilds your setup with clean event architecture, clear naming, and validated conversion logic so reporting is reliable.</p>
+  </div>
+  <div class="service-body">
+    <div>
+      <p class="inclusions-label">What's included</p>
+      <div class="inclusions">
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Full GA4 property configuration with proper filters and retention settings</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Custom event schema for e-commerce, lead gen, or SaaS models</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">GTM web container setup with clean tags, triggers, and variables</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">E-commerce event setup from view_item to purchase</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">DebugView and Preview QA before go-live</span></div>
+      </div>
+      <div class="stack-row"><span class="stk">GA4</span><span class="stk">GTM Web</span><span class="stk">DataLayer</span><span class="stk">DebugView</span></div>
+    </div>
+    <div class="right-col">
+      <div class="ideal-card">
+        <p class="card-label">Best fit for</p>
+        <div class="ideal-item">Brands launching GA4 the right way</div>
+        <div class="ideal-item">Teams with inaccurate event data</div>
+        <div class="ideal-item">Agencies needing clean handover-ready setups</div>
+      </div>
+      <div class="timeline-card"><p class="card-label">Delivery</p><div class="timeline-val">3-5</div><div class="timeline-desc">Business days from access</div></div>
+      <div class="deliverables-card"><p class="card-label">Deliverables</p><span class="del-tag">GTM Container</span><span class="del-tag">GA4 Property</span><span class="del-tag">QA Report</span><span class="del-tag">Documentation</span></div>
+    </div>
+  </div>
+</section>
+<section class="service-block" id="sgtm">
+  <div class="service-header">
+    <div class="svc-num">02</div>
+    <h2 class="svc-title">Server-Side Tracking <em>(sGTM)</em></h2>
+    <div class="svc-price-badge"><div class="price-from">From</div><div class="price-val">EUR550</div><div class="price-note">one-time, excludes hosting subscription</div></div>
+  </div>
+  <div class="service-intro">
+    <p>Browser tracking loses data due to blockers and privacy limits. sGTM routes events through first-party server infrastructure to improve conversion reliability.</p>
+  </div>
+  <div class="service-body">
+    <div>
+      <p class="inclusions-label">What's included</p>
+      <div class="inclusions">
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Server container setup via Stape.io or Google Cloud</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Custom subdomain for first-party collection</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Server-side GA4 routing and validation</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Cookie persistence strategy and deduplication</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Data parity QA and implementation guide</span></div>
+      </div>
+      <div class="stack-row"><span class="stk">sGTM</span><span class="stk">Stape.io</span><span class="stk">Google Cloud</span><span class="stk">1st-party cookies</span></div>
+    </div>
+    <div class="right-col">
+      <div class="ideal-card"><p class="card-label">Best fit for</p><div class="ideal-item">Brands with attribution gaps</div><div class="ideal-item">Stores with heavy iOS traffic</div><div class="ideal-item">Teams needing future-proof tracking</div></div>
+      <div class="timeline-card"><p class="card-label">Delivery</p><div class="timeline-val">5-7</div><div class="timeline-desc">Business days from access</div></div>
+      <div class="deliverables-card"><p class="card-label">Deliverables</p><span class="del-tag">sGTM Container</span><span class="del-tag">Custom Subdomain</span><span class="del-tag">QA Report</span></div>
+    </div>
+  </div>
+</section>
+<section class="service-block" id="capi">
+  <div class="service-header">
+    <div class="svc-num">03</div>
+    <h2 class="svc-title">Meta CAPI and <em>Attribution</em></h2>
+    <div class="svc-price-badge"><div class="price-from">From</div><div class="price-val">EUR400</div><div class="price-note">one-time, standalone or bundled</div></div>
+  </div>
+  <div class="service-intro">
+    <p>Meta campaigns fail when only browser pixels are used. This service adds Conversions API with deduplication and event quality optimization so ad decisions use complete data.</p>
+  </div>
+  <div class="service-body">
+    <div>
+      <p class="inclusions-label">What's included</p>
+      <div class="inclusions">
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Meta Pixel and event quality audit</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">CAPI setup via server-side GTM or native integration</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Deduplication and customer parameter mapping</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">AEM and EMQ optimization in Events Manager</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Pre and post implementation comparison notes</span></div>
+      </div>
+      <div class="stack-row"><span class="stk">Meta CAPI</span><span class="stk">Meta Pixel</span><span class="stk">AEM</span><span class="stk">Events Manager</span></div>
+    </div>
+    <div class="right-col">
+      <div class="ideal-card"><p class="card-label">Best fit for</p><div class="ideal-item">Meta advertisers with low visible conversions</div><div class="ideal-item">Shopify brands with attribution mismatch</div><div class="ideal-item">Regulated categories requiring robust setup</div></div>
+      <div class="timeline-card"><p class="card-label">Delivery</p><div class="timeline-val">3-4</div><div class="timeline-desc">Business days from access</div></div>
+      <div class="deliverables-card"><p class="card-label">Deliverables</p><span class="del-tag">CAPI Config</span><span class="del-tag">AEM Setup</span><span class="del-tag">EMQ Report</span></div>
+    </div>
+  </div>
+</section>
+<section class="service-block" id="audit">
+  <div class="service-header">
+    <div class="svc-num">04</div>
+    <h2 class="svc-title">Tracking <em>Audit</em></h2>
+    <div class="svc-price-badge"><div class="price-from">From</div><div class="price-val">EUR199</div><div class="price-note">one-time, credited toward implementation</div></div>
+  </div>
+  <div class="service-intro">
+    <p>If you are unsure what is broken, this is the right starting point. You get a full diagnostic report with issue priority and a clear fix roadmap.</p>
+  </div>
+  <div class="service-body">
+    <div>
+      <p class="inclusions-label">What's included</p>
+      <div class="inclusions">
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">GTM audit across tags, triggers, and variables</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">GA4 property and conversion integrity checks</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Platform reconciliation against order or CRM data</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Meta Pixel and CAPI review where relevant</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Written remediation plan with priorities</span></div>
+      </div>
+      <div class="stack-row"><span class="stk">GA4</span><span class="stk">GTM</span><span class="stk">Meta Pixel</span><span class="stk">CAPI</span><span class="stk">DebugView</span></div>
+    </div>
+    <div class="right-col">
+      <div class="ideal-card"><p class="card-label">Best fit for</p><div class="ideal-item">Inherited or messy tracking setups</div><div class="ideal-item">Campaign relaunch preparation</div><div class="ideal-item">Independent second opinion needs</div></div>
+      <div class="timeline-card"><p class="card-label">Delivery</p><div class="timeline-val">2-3</div><div class="timeline-desc">Business days from access</div></div>
+      <div class="deliverables-card"><p class="card-label">Deliverables</p><span class="del-tag">Written Report</span><span class="del-tag">Issue Priority List</span><span class="del-tag">Fix Roadmap</span></div>
+    </div>
+  </div>
+</section>
+<section class="service-block" id="retainer">
+  <div class="service-header">
+    <div class="svc-num">05</div>
+    <h2 class="svc-title">Ongoing <em>Retainer</em></h2>
+    <div class="svc-price-badge"><div class="price-from">From</div><div class="price-val">EUR300</div><div class="price-note">per month, minimum 3 months</div></div>
+  </div>
+  <div class="service-intro">
+    <p>Tracking breaks over time as platforms and websites change. Retainer support keeps data healthy and solves issues before they impact campaign performance.</p>
+  </div>
+  <div class="service-body">
+    <div>
+      <p class="inclusions-label">What's included</p>
+      <div class="inclusions">
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Monthly health checks across GA4, GTM, Meta, and server-side setup</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Monitoring after deploys and site changes</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Up to 5 hours implementation updates each month</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Priority response window on business days</span></div>
+        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Monthly summary and quarterly deep review</span></div>
+      </div>
+      <div class="stack-row"><span class="stk">GA4</span><span class="stk">GTM</span><span class="stk">sGTM</span><span class="stk">Meta CAPI</span><span class="stk">Stape.io</span></div>
+    </div>
+    <div class="right-col">
+      <div class="ideal-card"><p class="card-label">Best fit for</p><div class="ideal-item">Active e-commerce advertisers</div><div class="ideal-item">Agencies needing white-label tracking support</div><div class="ideal-item">Teams with frequent development updates</div></div>
+      <div class="timeline-card"><p class="card-label">Response time</p><div class="timeline-val">&lt;24h</div><div class="timeline-desc">On business days via WhatsApp or email</div></div>
+      <div class="deliverables-card"><p class="card-label">Monthly includes</p><span class="del-tag">Health Check</span><span class="del-tag">5hr Implementation</span><span class="del-tag">Priority Support</span></div>
+    </div>
+  </div>
+</section>
+<section class="comparison-section">
+  <div class="comparison-inner">
+    <div class="section-label-light">At a glance</div>
+    <h2 class="comparison-intro">Which service<br /><em>do you actually need?</em></h2>
+    <p class="comparison-sub">Quick reference across all five services, covering timeline and core scope.</p>
+    <table class="comp-table">
+      <thead>
+        <tr><th style="width:220px">Service</th><th>GA4</th><th>sGTM</th><th>CAPI</th><th>Server cookies</th><th>From</th><th>Timeline</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="comp-service-name">GA4 Setup and Architecture</td><td><span class="comp-yes">✓</span></td><td><span class="comp-no">—</span></td><td><span class="comp-no">—</span></td><td><span class="comp-no">—</span></td><td>EUR350</td><td>3-5 days</td></tr>
+        <tr><td class="comp-service-name">Server-Side Tracking (sGTM)</td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-partial">optional</span></td><td><span class="comp-yes">✓</span></td><td>EUR550</td><td>5-7 days</td></tr>
+        <tr><td class="comp-service-name">Meta CAPI and Attribution</td><td><span class="comp-no">—</span></td><td><span class="comp-partial">optional</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-no">—</span></td><td>EUR400</td><td>3-4 days</td></tr>
+        <tr><td class="comp-service-name">Tracking Audit</td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td>EUR199</td><td>2-3 days</td></tr>
+        <tr><td class="comp-service-name">Ongoing Retainer</td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td>EUR300/mo</td><td>Ongoing</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="faq-section">
+  <div class="section-label">Common questions</div>
+  <div class="faq-grid">
+    <div class="faq-item"><p class="faq-q">Do I need server-side tracking if I already have GA4?</p><p class="faq-a">Not always. If paid ads, iOS traffic, or ad-blocked audiences are important, server-side tracking often recovers meaningful conversion data.</p></div>
+    <div class="faq-item"><p class="faq-q">What access do you need to get started?</p><p class="faq-a">Usually GTM editor, GA4 editor, ad platform access where relevant, and platform admin access (Shopify, WooCommerce, or custom CMS).</p></div>
+    <div class="faq-item"><p class="faq-q">Can you work with my existing agency or developer?</p><p class="faq-a">Yes. I provide practical technical specs and coordinate implementation while keeping your team aligned.</p></div>
+    <div class="faq-item"><p class="faq-q">Do you support platforms beyond Shopify?</p><p class="faq-a">Yes, including WooCommerce, Magento, custom stores, SaaS apps, and lead-generation sites.</p></div>
+    <div class="faq-item"><p class="faq-q">What happens after project delivery?</p><p class="faq-a">One-time projects include a short support window. Ongoing retainer is available for continuous monitoring and updates.</p></div>
+    <div class="faq-item"><p class="faq-q">Are prices fixed?</p><p class="faq-a">Listed prices are starting points for standard scope. Final pricing depends on platform complexity and integration depth.</p></div>
+  </div>
+</section>
+<section class="faq-section">
+  <div class="section-label">Deep dive guides</div>
+  <div class="faq-grid">
+    <div class="faq-item"><p class="faq-q"><a href="shopify-ga4-tracking.html" style="color:inherit;text-decoration:none;">Shopify GA4 tracking fix</a></p><p class="faq-a">Step-by-step causes and fixes for missing purchase events in Shopify GA4 setups.</p></div>
+    <div class="faq-item"><p class="faq-q"><a href="server-side-tracking-setup.html" style="color:inherit;text-decoration:none;">Server-side tracking setup</a></p><p class="faq-a">What sGTM with Stape changes, what it recovers, and when it is worth implementing.</p></div>
+    <div class="faq-item"><p class="faq-q"><a href="ga4-not-tracking-conversions.html" style="color:inherit;text-decoration:none;">GA4 conversion tracking issues</a></p><p class="faq-a">The most common reasons GA4 underreports conversions and how to diagnose each one.</p></div>
+    <div class="faq-item"><p class="faq-q"><a href="meta-capi-setup.html" style="color:inherit;text-decoration:none;">Meta CAPI setup guide</a></p><p class="faq-a">Fix event deduplication, EMQ quality, and ROAS mismatch between Meta and store revenue.</p></div>
+    <div class="faq-item"><p class="faq-q"><a href="google-ads-for-doctors-guide.html" style="color:inherit;text-decoration:none;">Google Ads for doctors complete guide</a></p><p class="faq-a">Beginner-to-advanced setup framework for medical practices using paid search, local targeting, and conversion tracking.</p></div>
+  </div>
+</section>
+<div class="cta-strip">
+  <h2>Not sure which service<br /><em>you need?</em></h2>
+  <p>Send your current issue and I will tell you what is likely broken and which service is the fastest fix.</p>
+  <a href="mailto:rehancopywriting@gmail.com" class="cta-btn">Get in touch</a>
+  <div class="contact-socials center dark">
+    <a class="contact-social-link" href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
+    <a class="contact-social-link" href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a>
+    <a class="contact-social-link" href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
+    <a class="contact-social-link" href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>
+<footer>
+  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
+</footer>
+<a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
+  <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
+  <span>Free Tracking Audit</span>
+</a>
+<script src="assets/whatsapp-float.js"></script>
+</body>
+</html>

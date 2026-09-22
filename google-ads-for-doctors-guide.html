@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Ads for Doctors 2026: From Zero to Full Campaign — Complete Guide</title>
+  <meta name="description" content="A plain-English, step-by-step guide for medical professionals who want more patients. Covers keyword research, campaign setup, tracking, ROI, schema markup — all without a marketing degree." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/contact-socials.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink:     #0d0d0c;
+      --paper:   #f5f2eb;
+      --accent:  #c8441a;
+      --accent2: #1a5c8f;
+      --muted:   #6b6760;
+      --rule:    rgba(13,13,12,0.12);
+      --mono:    'DM Mono', monospace;
+      --serif:   'Fraunces', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      position: sticky;
+      top: 0;
+      background: var(--paper);
+      z-index: 100;
+    }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 20px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-family: var(--mono); transition: background 0.15s, color 0.15s; }
+    .nav-cta:hover { background: var(--ink); color: var(--paper); }
+
+    /* ─── BREADCRUMB ─── */
+    .breadcrumb {
+      padding: 0.9rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--ink); }
+    .breadcrumb span { margin: 0 0.5rem; opacity: 0.4; }
+
+    /* ─── HERO ─── */
+    .hero {
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 3rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: end;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: 54px;
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+    }
+    .hero-h1 em { font-style: italic; font-weight: 300; color: var(--muted); }
+    .hero-sub {
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--muted);
+      margin-top: 1.25rem;
+      max-width: 400px;
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.75rem; }
+    .pill {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+    }
+
+    /* hero right — stat grid */
+    .hero-meta { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--rule); background: var(--rule); }
+    .meta-row { display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 1.5rem; background: var(--paper); }
+    .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .meta-val { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); }
+    .meta-val.accent { color: var(--accent); }
+
+    /* ─── TOC ─── */
+    .toc-wrap {
+      border-bottom: 1px solid var(--rule);
+    }
+    .toc-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 4px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .toc-item {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      transition: color 0.12s;
+    }
+    .toc-item:hover { color: var(--accent); }
+    .toc-n { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; min-width: 18px; }
+    .toc-text { font-size: 12px; line-height: 1.4; }
+
+    /* ─── AI SUMMARY ─── */
+    .ai-wrap { border-bottom: 1px solid var(--rule); }
+    .ai-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .ai-label-col { display: flex; flex-direction: column; gap: 6px; }
+    .ai-tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border: 1px solid var(--accent2);
+      padding: 3px 8px;
+      width: fit-content;
+      margin-top: 8px;
+    }
+    .ai-body p {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .ai-body p:last-child { margin-bottom: 0; }
+    .ai-body strong { color: var(--ink); font-weight: 500; }
+
+    /* ─── CONTENT SECTION ─── */
+    .content-section {
+      border-bottom: 1px solid var(--rule);
+    }
+    .content-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .cs-num {
+      font-family: var(--serif);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--rule);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .cs-sec-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* body typography */
+    .sec-h2 {
+      font-family: var(--serif);
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .sec-h2 em { font-style: italic; font-weight: 300; color: var(--muted); }
+
+    .sec-h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 2rem 0 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .body-p {
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 1rem;
+    }
+    .body-p strong { color: var(--ink); font-weight: 500; }
+    .body-p:last-child { margin-bottom: 0; }
+
+    /* callout */
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 1.25rem 1.5rem;
+      background: rgba(200,68,26,0.04);
+      margin: 1.75rem 0;
+      max-width: 640px;
+    }
+    .callout-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .callout p { font-size: 12px; line-height: 1.75; color: var(--ink); }
+
+    .callout-blue {
+      border-left-color: var(--accent2);
+      background: rgba(26,92,143,0.04);
+    }
+    .callout-blue .callout-label { color: var(--accent2); }
+
+    /* steps list */
+    .steps-list { display: flex; flex-direction: column; border: 1px solid var(--rule); max-width: 640px; margin: 1.5rem 0; }
+    .step-row { display: flex; gap: 1rem; padding: 1rem 1.1rem; border-bottom: 1px solid var(--rule); align-items: flex-start; }
+    .step-row:last-child { border-bottom: none; }
+    .step-n { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; min-width: 22px; padding-top: 2px; flex-shrink: 0; }
+    .step-title { font-size: 12px; font-weight: 500; color: var(--ink); display: block; margin-bottom: 4px; }
+    .step-txt { font-size: 12px; line-height: 1.75; color: var(--muted); }
+
+    /* stat grid */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin: 1.75rem 0;
+      max-width: 640px;
+    }
+    .stat-cell { background: var(--paper); padding: 1.25rem 1rem; }
+    .stat-icon { font-size: 18px; margin-bottom: 6px; }
+    .stat-num-lg {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-desc-sm { font-size: 10px; color: var(--muted); letter-spacing: 0.05em; margin-top: 4px; line-height: 1.4; }
+
+    /* result cells (reused from case studies) */
+    .results-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      align-self: start;
+    }
+    .result-cell { background: var(--paper); padding: 1.25rem 1.5rem; }
+    .result-num { font-family: var(--serif); font-size: 36px; font-weight: 700; color: var(--ink); line-height: 1; }
+    .result-num.a1 { color: var(--accent); }
+    .result-num.a2 { color: var(--accent2); }
+    .result-desc { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 5px; line-height: 1.5; }
+
+    /* two-column body layout (text + sidebar) */
+    .two-col { display: grid; grid-template-columns: 1fr 240px; gap: 3rem; align-items: start; max-width: 880px; }
+
+    /* keyword type cards */
+    .kw-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      max-width: 640px;
+      margin: 1.5rem 0;
+    }
+    .kw-card { background: var(--paper); padding: 1.25rem; }
+    .kw-card-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .kw-card-label.blue { color: var(--accent2); }
+    .kw-card-label.muted { color: var(--muted); }
+    .kw-item { font-size: 11px; color: var(--ink); padding: 5px 0; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; }
+    .kw-item:last-child { border-bottom: none; }
+    .kw-vol { font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+    /* comparison table */
+    .comp-table {
+      width: 100%;
+      max-width: 640px;
+      border-collapse: collapse;
+      border: 1px solid var(--rule);
+      margin: 1.5rem 0;
+    }
+    .comp-table th {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      background: rgba(13,13,12,0.02);
+      font-weight: 400;
+    }
+    .comp-table td {
+      padding: 0.85rem 1rem;
+      font-size: 12px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table td:first-child { color: var(--ink); font-weight: 500; }
+    .comp-yes { color: var(--accent2) !important; font-weight: 500 !important; }
+    .comp-bold { color: var(--ink) !important; font-weight: 500 !important; }
+
+    /* campaign level cards */
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      max-width: 640px;
+      margin: 1.5rem 0;
+    }
+    .level-card { background: var(--paper); padding: 1.5rem; }
+    .level-badge {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+    .level-name {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .level-budget { font-size: 11px; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 0.75rem; }
+    .level-desc { font-size: 12px; line-height: 1.7; color: var(--muted); }
+
+    /* geo table */
+    .geo-table {
+      width: 100%;
+      max-width: 640px;
+      border-collapse: collapse;
+      border: 1px solid var(--rule);
+      margin: 1.5rem 0;
+    }
+    .geo-table th {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      font-weight: 400;
+      background: rgba(13,13,12,0.02);
+    }
+    .geo-table td {
+      padding: 0.85rem 1rem;
+      font-size: 12px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--muted);
+    }
+    .geo-table tr:last-child td { border-bottom: none; }
+    .geo-table td:first-child { color: var(--ink); font-weight: 500; }
+
+    /* metrics table */
+    .metrics-table {
+      width: 100%;
+      max-width: 640px;
+      border-collapse: collapse;
+      border: 1px solid var(--rule);
+      margin: 1.5rem 0;
+    }
+    .metrics-table th {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      font-weight: 400;
+      background: rgba(13,13,12,0.02);
+    }
+    .metrics-table td {
+      padding: 0.85rem 1rem;
+      font-size: 12px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--muted);
+      vertical-align: top;
+    }
+    .metrics-table tr:last-child td { border-bottom: none; }
+    .metrics-table td:first-child { color: var(--ink); font-weight: 500; font-size: 11px; letter-spacing: 0.04em; }
+    .range-good { color: var(--accent2); font-weight: 500; }
+
+    /* EEAT grid */
+    .eeat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      max-width: 640px;
+      margin: 1.5rem 0;
+    }
+    .eeat-card { background: var(--paper); padding: 1.25rem; }
+    .eeat-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 6px;
+    }
+    .eeat-desc { font-size: 12px; line-height: 1.7; color: var(--muted); }
+
+    /* schema types */
+    .schema-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      max-width: 640px;
+      margin: 1.5rem 0;
+    }
+    .schema-card { background: var(--paper); padding: 1.25rem; }
+    .schema-label {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .schema-item { font-size: 12px; color: var(--muted); padding: 3px 0; border-bottom: 1px solid var(--rule); }
+    .schema-item:last-child { border-bottom: none; }
+
+    /* badges */
+    .badge { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--rule); color: var(--muted); white-space: nowrap; display: inline-block; }
+    .badge-accent { border-color: var(--accent); color: var(--accent); }
+    .badge-blue { border-color: var(--accent2); color: var(--accent2); }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+
+    /* tags */
+    .stk { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border: 1px solid var(--rule); color: var(--muted); display: inline-block; }
+    .stack-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; max-width: 640px; }
+    .faq-item { border-bottom: 1px solid var(--rule); }
+    .faq-item:first-child { border-top: 1px solid var(--rule); }
+    .faq-q {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      padding: 1.25rem 0 0.75rem;
+      line-height: 1.3;
+      cursor: default;
+    }
+    .faq-a {
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--muted);
+      padding-bottom: 1.25rem;
+    }
+    .faq-a strong { color: var(--ink); font-weight: 500; }
+
+    /* checklist */
+    .checklist { max-width: 640px; margin: 1.5rem 0; display: flex; flex-direction: column; }
+    .check-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .check-item:first-child { border-top: 1px solid var(--rule); }
+    .check-box {
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--rule);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ad example box */
+    .ad-example {
+      border: 1px solid var(--rule);
+      max-width: 480px;
+      margin: 1.5rem 0;
+    }
+    .ad-example-head {
+      padding: 0.75rem 1rem;
+      background: rgba(13,13,12,0.03);
+      border-bottom: 1px solid var(--rule);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .ad-example-body { padding: 1.25rem; }
+    .ad-url { font-size: 11px; color: var(--accent2); margin-bottom: 4px; }
+    .ad-headline { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--accent2); line-height: 1.3; margin-bottom: 6px; }
+    .ad-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+
+    /* journey strip */
+    .journey {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid var(--rule);
+      max-width: 640px;
+      margin: 1.5rem 0;
+    }
+    .journey-step {
+      flex: 1;
+      padding: 1rem 0.75rem;
+      border-right: 1px solid var(--rule);
+      text-align: center;
+    }
+    .journey-step:last-child { border-right: none; }
+    .journey-icon { font-size: 16px; margin-bottom: 6px; }
+    .journey-label { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); line-height: 1.4; }
+    .journey-step.convert .journey-label { color: var(--accent); font-weight: 500; }
+
+    /* ─── DARK CTA ─── */
+    .cta-strip {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 5rem 3rem;
+      text-align: center;
+    }
+    .cta-strip h2 {
+      font-family: var(--serif);
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 1.08;
+      margin-bottom: 1.25rem;
+    }
+    .cta-strip h2 em { font-style: italic; font-weight: 300; color: rgba(245,242,235,0.4); }
+    .cta-strip p { font-size: 13px; color: rgba(245,242,235,0.45); max-width: 400px; margin: 0 auto 2.5rem; line-height: 1.85; }
+    .cta-btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: 1px solid rgba(245,242,235,0.25);
+      color: var(--paper);
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .cta-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--ink);
+      border-top: 1px solid rgba(245,242,235,0.07);
+    }
+    footer p { font-size: 11px; color: rgba(245,242,235,0.28); letter-spacing: 0.06em; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 860px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2.5rem; }
+      .hero-h1 { font-size: 38px; }
+      .toc-inner, .ai-inner, .content-inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem 1.5rem; }
+      .sec-h2 { font-size: 28px; }
+      .two-col { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .level-grid { grid-template-columns: 1fr; }
+      .kw-grid, .eeat-grid, .schema-grid { grid-template-columns: 1fr; }
+      .journey { flex-wrap: wrap; }
+      .journey-step { min-width: 33%; }
+      .cta-strip { padding: 3.5rem 1.5rem; }
+      .cta-strip h2 { font-size: 30px; }
+      footer { flex-direction: column; gap: 0.75rem; padding: 1.25rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="case-studies.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="audit.html" class="nav-cta">Free audit</a>
+</nav>
+
+<!-- ─── BREADCRUMB ─── -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a><span>/</span>
+  <a href="#">Resources</a><span>/</span>
+  Google Ads for Doctors 2026
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Complete Guide · 2026</p>
+      <h1 class="hero-h1">Google Ads<br>for Doctors:<br><em>From Zero to<br>Full Campaign</em></h1>
+      <p class="hero-sub">A plain-English, step-by-step guide for medical professionals who want more patients — without a marketing degree.</p>
+      <div class="pill-row">
+        <span class="pill">No technical jargon</span>
+        <span class="pill">Beginner-friendly</span>
+        <span class="pill">Tracking & ROI included</span>
+        <span class="pill">SEO + AEO optimized</span>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-row">
+        <span class="meta-label">Patients use Google before booking</span>
+        <span class="meta-val accent">77%</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Searches on mobile</span>
+        <span class="meta-val">68%</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Click top 3 results only</span>
+        <span class="meta-val accent">92%</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Call directly from ad</span>
+        <span class="meta-val">63%</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Sections in this guide</span>
+        <span class="meta-val">13</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TABLE OF CONTENTS ─── -->
+<div class="toc-wrap">
+  <div class="toc-inner">
+    <div class="section-label">Contents</div>
+    <div class="toc-grid">
+      <a href="#s01" class="toc-item"><span class="toc-n">01</span><span class="toc-text">What Are Google Ads?</span></a>
+      <a href="#s02" class="toc-item"><span class="toc-n">02</span><span class="toc-text">Why Doctors Need Google Ads</span></a>
+      <a href="#s03" class="toc-item"><span class="toc-n">03</span><span class="toc-text">Keyword Research for Doctors</span></a>
+      <a href="#s04" class="toc-item"><span class="toc-n">04</span><span class="toc-text">SEO vs. Google Ads</span></a>
+      <a href="#s05" class="toc-item"><span class="toc-n">05</span><span class="toc-text">Campaign Setup: Step by Step</span></a>
+      <a href="#s06" class="toc-item"><span class="toc-n">06</span><span class="toc-text">Campaign Levels: Basic → Best</span></a>
+      <a href="#s09" class="toc-item"><span class="toc-n">09</span><span class="toc-text">Local & GEO Targeting</span></a>
+      <a href="#s10" class="toc-item"><span class="toc-n">10</span><span class="toc-text">Tracking & Measurement</span></a>
+      <a href="#s11" class="toc-item"><span class="toc-n">11</span><span class="toc-text">NLP & Content Optimization</span></a>
+      <a href="#s12" class="toc-item"><span class="toc-n">12</span><span class="toc-text">Schema Markup Guide</span></a>
+      <a href="#s13" class="toc-item"><span class="toc-n">13</span><span class="toc-text">Frequently Asked Questions</span></a>
+      <a href="#checklist" class="toc-item"><span class="toc-n">✓</span><span class="toc-text">Launch Checklist</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── AI SUMMARY ─── -->
+<div class="ai-wrap">
+  <div class="ai-inner">
+    <div class="ai-label-col">
+      <div class="section-label">AI Overview</div>
+      <span class="ai-tag">AEO Optimized</span>
+    </div>
+    <div class="ai-body">
+      <p>Google Ads for doctors are paid search advertisements that appear at the top of Google when patients search for a doctor near them. <strong>You pay only when someone clicks your ad.</strong> This guide covers everything: keyword research, campaign setup, budget planning, ad writing, tracking phone calls and appointments, and how to measure your return on investment — all written for doctors who are not technical.</p>
+      <p>Whether you are a general practitioner, specialist, or run a multi-doctor clinic, this guide starts from the very basics and builds up to advanced campaign strategies used by top-performing medical practices.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 01 ─── -->
+<section class="content-section" id="s01">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">01</div>
+      <div class="cs-sec-label">What Are Google Ads?</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">What Are Google Ads? <em>In simple terms.</em></h2>
+      <p class="body-p">Imagine a patient wakes up with back pain. They pick up their phone and type: "back pain doctor near me." Google shows a list of results. The first 2–4 results at the very top — marked with a small "Sponsored" label — are Google Ads.</p>
+      <p class="body-p">As a doctor, you can pay to have your practice appear in those top spots. You only pay when someone actually clicks on your ad. If 100 people see your ad but nobody clicks, you pay nothing. This is called <strong>Pay-Per-Click (PPC) advertising.</strong></p>
+
+      <div class="callout">
+        <div class="callout-label">Doctor's Analogy</div>
+        <p>Think of Google Ads like a billboard — but smarter. Instead of showing your ad to everyone driving past, it shows your ad only to patients who are actively looking for a doctor like you, at the exact moment they are searching.</p>
+      </div>
+
+      <h3 class="sec-h3">How Google Decides Who to Show</h3>
+      <p class="body-p">Google runs an instant auction every time someone searches. Three things decide if your ad shows up:</p>
+
+      <div class="steps-list">
+        <div class="step-row">
+          <span class="step-n">01</span>
+          <span>
+            <span class="step-title">Your Bid — how much you're willing to pay per click</span>
+            <span class="step-txt">You set a maximum. Google tries to stay below it. If you say "I'll pay up to $5 per click," Google shows your ad when it can win the auction for less.</span>
+          </span>
+        </div>
+        <div class="step-row">
+          <span class="step-n">02</span>
+          <span>
+            <span class="step-title">Quality Score — how relevant your ad is</span>
+            <span class="step-txt">Google rates your ad from 1–10. A better-written ad that matches what the patient is looking for gets a higher score — and pays less per click. Good ads win over big budgets.</span>
+          </span>
+        </div>
+        <div class="step-row">
+          <span class="step-n">03</span>
+          <span>
+            <span class="step-title">Ad Relevance — does your ad match the search?</span>
+            <span class="step-txt">If someone searches "diabetes specialist Lahore" and your ad mentions diabetes specialists in Lahore, your relevance is high. Relevance beats big spending.</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 02 ─── -->
+<section class="content-section" id="s02">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">02</div>
+      <div class="cs-sec-label">Why Doctors Need Google Ads</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">Why Doctors Need <em>Google Ads</em></h2>
+      <p class="body-p">Most patients today find their doctor online — not through word of mouth or the yellow pages. <strong>77% of patients use Google before booking an appointment.</strong> If you are not showing up on page one, you are invisible to most new patients.</p>
+
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-num-lg">77%</div>
+          <div class="stat-desc-sm">Patients use Google before booking</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num-lg">68%</div>
+          <div class="stat-desc-sm">Searches happen on mobile</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num-lg">92%</div>
+          <div class="stat-desc-sm">Click only top 3 results</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num-lg">63%</div>
+          <div class="stat-desc-sm">Call directly from the ad</div>
+        </div>
+      </div>
+
+      <h3 class="sec-h3">Real Benefits for Your Practice</h3>
+      <div class="steps-list">
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">New patients find you the same day your ad goes live — unlike SEO which takes months</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">You only pay when someone clicks — not for people who just see your ad</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Target patients by city, distance from your clinic, even by time of day</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Set your own budget — spend $10/day or $100/day, your choice</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Pause or stop anytime — no long-term contracts with Google</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">See exactly which searches brought you patients — and which wasted money</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 03 ─── -->
+<section class="content-section" id="s03">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">03</div>
+      <div class="cs-sec-label">Keyword Research</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">Keyword Research <em>for Doctors</em></h2>
+      <p class="body-p">A keyword is simply the words a patient types into Google. Keyword research means finding exactly what words your potential patients are using to search for doctors like you.</p>
+
+      <div class="callout">
+        <div class="callout-label">Simple Example</div>
+        <p>You are a cardiologist in Karachi. Your patients might search: "heart doctor Karachi," "cardiologist near me," "chest pain specialist," or "best heart specialist Karachi." These are all keywords you want your ad to appear for.</p>
+      </div>
+
+      <h3 class="sec-h3">How to Find Your Keywords — Free Tool</h3>
+      <div class="steps-list">
+        <div class="step-row">
+          <span class="step-n">01</span>
+          <span>
+            <span class="step-title">Go to Google Keyword Planner</span>
+            <span class="step-txt">Visit ads.google.com → Tools → Keyword Planner. It's free inside your Google Ads account.</span>
+          </span>
+        </div>
+        <div class="step-row">
+          <span class="step-n">02</span>
+          <span>
+            <span class="step-title">Type your specialty + your city</span>
+            <span class="step-txt">Example: "dermatologist Lahore" or "skin doctor near me." Google will show you hundreds of related keywords patients actually search.</span>
+          </span>
+        </div>
+        <div class="step-row">
+          <span class="step-n">03</span>
+          <span>
+            <span class="step-title">Look at three numbers: Volume, Competition, CPC</span>
+            <span class="step-txt">Volume = how many people search per month. Competition = how many doctors compete for it. CPC = how much you pay per click.</span>
+          </span>
+        </div>
+      </div>
+
+      <h3 class="sec-h3">Types of Keywords — Priority Order for Doctors</h3>
+      <div class="kw-grid">
+        <div class="kw-card">
+          <div class="kw-card-label">High-Intent — Start here</div>
+          <div class="kw-item">"doctor near me" <span class="kw-vol">High Vol</span></div>
+          <div class="kw-item">"book doctor appointment" <span class="kw-vol">Med Vol</span></div>
+          <div class="kw-item">"specialist consultation" <span class="kw-vol">Med Vol</span></div>
+          <div class="kw-item">"emergency doctor" <span class="kw-vol">High Vol</span></div>
+        </div>
+        <div class="kw-card">
+          <div class="kw-card-label blue">Location Keywords — Must-have</div>
+          <div class="kw-item">"[specialty] [city]" <span class="kw-vol">Easy</span></div>
+          <div class="kw-item">"[specialty] near me" <span class="kw-vol">Medium</span></div>
+          <div class="kw-item">"best [specialty] in [area]" <span class="kw-vol">Medium</span></div>
+          <div class="kw-item">"[specialty] [neighbourhood]" <span class="kw-vol">Easy</span></div>
+        </div>
+        <div class="kw-card">
+          <div class="kw-card-label blue">Condition Keywords</div>
+          <div class="kw-item">"diabetes treatment" <span class="kw-vol">High Vol</span></div>
+          <div class="kw-item">"back pain doctor" <span class="kw-vol">High Vol</span></div>
+          <div class="kw-item">"skin allergy specialist" <span class="kw-vol">Med Vol</span></div>
+          <div class="kw-item">"thyroid doctor" <span class="kw-vol">Med Vol</span></div>
+        </div>
+        <div class="kw-card">
+          <div class="kw-card-label muted">Negative Keywords — Exclude these</div>
+          <div class="kw-item">"free doctor" <span class="kw-vol">Exclude</span></div>
+          <div class="kw-item">"doctor salary" <span class="kw-vol">Exclude</span></div>
+          <div class="kw-item">"how to become doctor" <span class="kw-vol">Exclude</span></div>
+          <div class="kw-item">"doctor games" <span class="kw-vol">Exclude</span></div>
+        </div>
+      </div>
+
+      <div class="callout callout-blue">
+        <div class="callout-label">Pro Tip: Negative Keywords Save Money</div>
+        <p>Negative keywords tell Google NOT to show your ad for certain searches. If you add "free" as a negative keyword, your ad won't show when someone searches "free doctor near me" — saving you from clicks that will never become paying patients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 04 ─── -->
+<section class="content-section" id="s04">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">04</div>
+      <div class="cs-sec-label">SEO vs. Google Ads</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">SEO vs. Google Ads: <em>What's the difference?</em></h2>
+      <p class="body-p">Doctors often ask: "Should I do SEO or Google Ads?" Here is the honest answer — both serve different purposes and the best practices use both together.</p>
+
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>SEO (Organic)</th>
+            <th>Google Ads (Paid)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Speed to results</td><td>3–12 months</td><td class="comp-yes">24–72 hours</td></tr>
+          <tr><td>Cost</td><td>Free (time/effort)</td><td>Pay per click ($2–$15 medical avg)</td></tr>
+          <tr><td>Control</td><td>Low — Google decides</td><td class="comp-yes">High — you control everything</td></tr>
+          <tr><td>Where you appear</td><td>Below ads, organic</td><td class="comp-yes">Top of page — above everything</td></tr>
+          <tr><td>Works when you stop?</td><td class="comp-yes">Yes — lasts years</td><td>No — stops when budget runs out</td></tr>
+          <tr><td>Best for</td><td>Long-term brand building</td><td class="comp-yes">Immediate patient acquisition</td></tr>
+          <tr><td>Trust factor</td><td class="comp-yes">Higher</td><td>Slightly lower</td></tr>
+          <tr><td>Recommended?</td><td class="comp-bold">Yes — long term</td><td class="comp-bold">Yes — start now</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-blue">
+        <div class="callout-label">The Smart Doctor Strategy</div>
+        <p>Run Google Ads immediately to get patients now. Build your SEO at the same time so that in 6–12 months, your organic rankings reduce your dependence on paid ads. Many successful practices reduce their ad spend by 40–60% once their SEO kicks in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 05 ─── -->
+<section class="content-section" id="s05">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">05</div>
+      <div class="cs-sec-label">Campaign Setup</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">Campaign Setup: <em>Step by step</em></h2>
+      <p class="body-p">Here is exactly how to create your first Google Ads campaign. Take it one step at a time — there is no rush.</p>
+
+      <div class="steps-list">
+        <div class="step-row"><span class="step-n">01</span><span><span class="step-title">Create Your Google Ads Account</span><span class="step-txt">Go to ads.google.com and sign in with your Gmail. Click "Start now." Use your clinic's name as the account name.</span></span></div>
+        <div class="step-row"><span class="step-n">02</span><span><span class="step-title">Choose Your Campaign Goal</span><span class="step-txt">Select "Get more phone calls." For most doctors, phone calls is the better choice since patients prefer calling to book appointments.</span></span></div>
+        <div class="step-row"><span class="step-n">03</span><span><span class="step-title">Choose Campaign Type: Search</span><span class="step-txt">Select "Search" — not Display, not YouTube. Search ads appear when people are actively searching — the most powerful type for medical practices.</span></span></div>
+        <div class="step-row"><span class="step-n">04</span><span><span class="step-title">Set Your Location Targeting</span><span class="step-txt">Target patients within 5–15 km of your clinic. Don't target the whole country — you only want patients who can actually visit you.</span></span></div>
+        <div class="step-row"><span class="step-n">05</span><span><span class="step-title">Add Your Keywords</span><span class="step-txt">Add 10–20 keywords from your research. Use phrase match (put keywords in quotes, like "cardiologist Lahore") to control who sees your ad.</span></span></div>
+        <div class="step-row"><span class="step-n">06</span><span><span class="step-title">Write Your Ad</span><span class="step-txt">You need: 3 headlines (30 chars each) and 2 descriptions (90 chars each). Include your specialty, location, and a reason to choose you.</span></span></div>
+        <div class="step-row"><span class="step-n">07</span><span><span class="step-title">Set Your Budget and Bidding</span><span class="step-txt">Start with $10–$20/day. Select "Maximize Clicks" for your first 2 weeks. Once you have data, switch to "Target CPA."</span></span></div>
+        <div class="step-row"><span class="step-n">08</span><span><span class="step-title">Add Ad Extensions</span><span class="step-txt">Add: Phone Number (call extension), Address (location extension), Clinic Hours (callout extension). These are free extras that make your ad bigger.</span></span></div>
+        <div class="step-row"><span class="step-n">09</span><span><span class="step-title">Review and Launch</span><span class="step-txt">Check everything one more time. Click publish. Google reviews medical ads within 1–2 business days. Once approved, your ad goes live immediately.</span></span></div>
+      </div>
+
+      <h3 class="sec-h3">Writing Your First Ad — Example</h3>
+      <div class="ad-example">
+        <div class="ad-example-head">Example: Cardiologist Ad</div>
+        <div class="ad-example-body">
+          <div class="ad-url">ads.google.com · yourwebsite.com</div>
+          <div class="ad-headline">Top Cardiologist in Lahore · Book Appointment Today · 15+ Years Heart Specialist</div>
+          <div class="ad-desc">Expert heart care for arrhythmia, hypertension &amp; heart failure. Walk-ins welcome. Call now.<br>Experienced cardiologist in DHA Lahore. Same-day appointments available. 0300-1234567</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 06 ─── -->
+<section class="content-section" id="s06">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">06–08</div>
+      <div class="cs-sec-label">Campaign Levels</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">Basic → Intermediate → <em>Best</em></h2>
+      <p class="body-p">Think of Google Ads campaigns like clinic expansion. You start small, test what works, then scale up. Here are the three levels:</p>
+
+      <div class="level-grid">
+        <div class="level-card">
+          <span class="level-badge">Level 1</span>
+          <div class="level-name">Basic Campaign</div>
+          <div class="level-budget">$10–$30/day</div>
+          <p class="level-desc">Perfect to start. 1 campaign, 1–2 ad groups, 10–15 keywords, basic location targeting.</p>
+        </div>
+        <div class="level-card">
+          <span class="level-badge">Level 2</span>
+          <div class="level-name">Intermediate</div>
+          <div class="level-budget">$30–$100/day</div>
+          <p class="level-desc">Multiple ad groups by service, call tracking, remarketing, expanded keywords.</p>
+        </div>
+        <div class="level-card">
+          <span class="level-badge badge-accent">Level 3</span>
+          <div class="level-name">Best Campaign</div>
+          <div class="level-budget">$100+/day</div>
+          <p class="level-desc">Full funnel, Performance Max, Smart Bidding, CRM integration, A/B testing.</p>
+        </div>
+      </div>
+
+      <h3 class="sec-h3">Level 2: Intermediate Campaign Setup</h3>
+      <div class="steps-list">
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Create separate ad groups for each service (e.g., "Diabetes Care," "Heart Checkup," "General Consultation")</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Add call tracking to know exactly which ads bring phone calls</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Enable remarketing — show ads to patients who visited your website but didn't book</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Pause keywords that spent money but brought zero clicks or calls</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Use ad scheduling — run ads only during your clinic hours</span></div>
+      </div>
+
+      <h3 class="sec-h3">Level 3: Best Campaign — Advanced</h3>
+      <div class="steps-list">
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Use Google's Performance Max — it automatically places ads across Search, YouTube, Gmail, and Maps</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Switch to Target CPA bidding — tell Google "I want to spend no more than $X to get one new patient"</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Integrate with your clinic management system to track actual appointments, not just clicks</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Run A/B tests — 2 versions of every ad to find which brings more patients</span></div>
+        <div class="step-row"><span class="step-n">→</span><span class="step-txt">Use Customer Match — upload existing patient emails to find similar new patients</span></div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">Important: HIPAA &amp; Medical Ad Rules</div>
+        <p>Google has strict policies for healthcare ads. You cannot make misleading health claims. You may need to apply for Google's healthcare certification if you advertise prescription drugs. Always ensure your ads are factual and include proper disclaimers where required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 09 ─── -->
+<section class="content-section" id="s09">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">09</div>
+      <div class="cs-sec-label">Local &amp; GEO Targeting</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">Local &amp; GEO Targeting: <em>Get patients near you</em></h2>
+      <p class="body-p">GEO targeting means showing your ads only to people in specific geographic areas. For a doctor, this is one of the most important settings — you only want patients who can physically come to your clinic.</p>
+
+      <div class="callout callout-blue">
+        <div class="callout-label">Local Services Ads vs. Search Ads</div>
+        <p>Local Services Ads (LSA) show your clinic with a "Google Guaranteed" badge at the very top — even above regular ads. For doctors, LSAs can get you 30–50% cheaper leads than standard search ads. Set these up alongside your regular campaign.</p>
+      </div>
+
+      <h3 class="sec-h3">GEO Targeting by Practice Type</h3>
+      <table class="geo-table">
+        <thead>
+          <tr>
+            <th>Practice Type</th>
+            <th>Recommended Radius</th>
+            <th>Targeting Strategy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>General Practitioner / Family Doctor</td><td>3–8 km</td><td>Tight radius, very local keywords</td></tr>
+          <tr><td>Specialist (Cardiologist, Neurologist)</td><td>15–30 km</td><td>Patients travel further for specialists</td></tr>
+          <tr><td>Dental Clinic</td><td>5–10 km</td><td>Focus on neighbourhood + adjacent</td></tr>
+          <tr><td>Fertility / IVF Clinic</td><td>50–100 km</td><td>Patients travel nationally for this</td></tr>
+          <tr><td>Multi-Branch Clinic</td><td>Each branch separately</td><td>Create one campaign per location</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <div class="callout-label">GEO Pro Tip: Bid More in High-Value Areas</div>
+        <p>If your clinic is near an upscale area, set a higher bid for that neighbourhood. In Google Ads, you can increase bids by 10–30% for specific zip codes — so you win more auctions for the patients you most want.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 10 ─── -->
+<section class="content-section" id="s10">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">10</div>
+      <div class="cs-sec-label">Tracking &amp; Measurement</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">Tracking &amp; Measurement: <em>Know what's working</em></h2>
+      <p class="body-p">This is the section most doctors skip — and why most doctors waste money. Tracking tells you exactly which ad brought you a patient and which wasted your budget. Without tracking, you are flying blind.</p>
+
+      <div class="callout">
+        <div class="callout-label">The Doctor's Question to Always Ask</div>
+        <p>"For every $100 I spend on Google Ads, how many new patients am I getting?" — if you cannot answer this, you need tracking. Once you have tracking, the answer is clear.</p>
+      </div>
+
+      <h3 class="sec-h3">The Patient Journey — What You're Tracking</h3>
+      <div class="journey">
+        <div class="journey-step">
+          <div class="journey-icon">🔍</div>
+          <div class="journey-label">Patient Searches<br>"back pain specialist"</div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-icon">👁️</div>
+          <div class="journey-label">Sees Your Ad<br>Top of Google</div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-icon">🖱️</div>
+          <div class="journey-label">Clicks Ad<br>You pay here</div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-icon">🌐</div>
+          <div class="journey-label">Visits Website<br>Lands on page</div>
+        </div>
+        <div class="journey-step convert">
+          <div class="journey-icon">📞</div>
+          <div class="journey-label">Books / Calls<br>Conversion!</div>
+        </div>
+      </div>
+
+      <h3 class="sec-h3">The 4 Things You Must Track</h3>
+      <div class="steps-list">
+        <div class="step-row"><span class="step-n">01</span><span><span class="step-title">Phone Call Tracking</span><span class="step-txt">Google gives your clinic a unique tracking number. When a patient calls, Google knows which ad drove the call. Set up in Google Ads → Conversions → Phone Calls. This is the #1 most important tracking for doctors.</span></span></div>
+        <div class="step-row"><span class="step-n">02</span><span><span class="step-title">Online Appointment Bookings</span><span class="step-txt">If your website has a "Book Appointment" form, set up a Thank You page and track everyone who reaches it. Every visit to the thank-you page = one booked appointment.</span></span></div>
+        <div class="step-row"><span class="step-n">03</span><span><span class="step-title">Google Analytics 4 (GA4)</span><span class="step-txt">Connect GA4 to your website and Google Ads. It shows you how long visitors stay, which pages they view, and which ads lead to actual engagement. Your web developer can install the GA4 code in 10 minutes.</span></span></div>
+        <div class="step-row"><span class="step-n">04</span><span><span class="step-title">Cost Per New Patient Calculation</span><span class="step-txt">Monthly spend ÷ Number of new patients from ads = Cost per patient. If you spend $500 and get 10 new patients, your cost is $50 per patient.</span></span></div>
+      </div>
+
+      <h3 class="sec-h3">Key Metrics Dashboard — Check Weekly</h3>
+      <table class="metrics-table">
+        <thead>
+          <tr><th>Metric</th><th>What It Means</th><th>Healthy Range</th><th>Action If Bad</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CTR</td><td>% who saw your ad and clicked</td><td class="range-good">5–15%</td><td>Rewrite your ad headline</td></tr>
+          <tr><td>CPC</td><td>Average cost each click</td><td class="range-good">$2–$12</td><td>Improve Quality Score</td></tr>
+          <tr><td>Conversion Rate</td><td>% of clicks → calls or bookings</td><td class="range-good">8–20%</td><td>Improve your landing page</td></tr>
+          <tr><td>Quality Score</td><td>Google's rating of your ad (1–10)</td><td class="range-good">7–10</td><td>Improve ad relevance</td></tr>
+          <tr><td>Impression Share</td><td>% of searches your ad showed</td><td class="range-good">&gt;60%</td><td>Increase budget or bids</td></tr>
+          <tr><td>Cost Per Conversion</td><td>How much you pay per inquiry</td><td class="range-good">&lt;30% of patient value</td><td>Pause bad keywords</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 11 ─── -->
+<section class="content-section" id="s11">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">11</div>
+      <div class="cs-sec-label">NLP &amp; Content</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">NLP &amp; Content <em>Optimization</em></h2>
+      <p class="body-p">NLP (Natural Language Processing) is how Google understands the meaning of your web page — not just individual words. Google no longer just counts keywords; it understands context, intent, and entities.</p>
+      <p class="body-p">Your website content should read naturally, like how a real doctor explains things to a patient. Google rewards content that answers real patient questions directly, uses related medical terms naturally, and covers a topic completely.</p>
+
+      <h3 class="sec-h3">E-E-A-T: Google's Trust Formula for Medical Sites</h3>
+      <p class="body-p">For health websites, Google applies extra scrutiny using E-E-A-T: Experience, Expertise, Authoritativeness, Trustworthiness. Your website must demonstrate all four:</p>
+
+      <div class="eeat-grid">
+        <div class="eeat-card">
+          <div class="eeat-label">Experience</div>
+          <p class="eeat-desc">Add real patient case studies (anonymised), before/after outcomes, years of experience as a practising doctor.</p>
+        </div>
+        <div class="eeat-card">
+          <div class="eeat-label">Expertise</div>
+          <p class="eeat-desc">Show your medical degree, certifications, specialty training, and publications prominently on every page.</p>
+        </div>
+        <div class="eeat-card">
+          <div class="eeat-label">Authoritativeness</div>
+          <p class="eeat-desc">Get mentioned by medical journals, health websites, and local news — earn backlinks from trusted health sources.</p>
+        </div>
+        <div class="eeat-card">
+          <div class="eeat-label">Trustworthiness</div>
+          <p class="eeat-desc">HTTPS website, clear contact info, privacy policy, real patient reviews with your responses visible.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-blue">
+        <div class="callout-label">AEO: Answer Engine Optimization</div>
+        <p>AEO means optimising your content to appear in AI-powered answer boxes (Google's AI Overview, ChatGPT, Perplexity). Write dedicated FAQ sections with direct, concise answers under 50 words each. Use clear question-format headings. Add FAQ Schema markup. AI systems prefer clear, structured, factual text.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 12 ─── -->
+<section class="content-section" id="s12">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">12</div>
+      <div class="cs-sec-label">Schema Markup</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">Schema Markup: <em>Tell Google who you are</em></h2>
+      <p class="body-p">Schema markup is invisible code you add to your website that tells Google exactly what type of content you have. Think of it as a label on a medicine bottle — it tells Google "this is a doctor, this is their specialty, this is their location, these are their hours."</p>
+
+      <h3 class="sec-h3">Essential Schema Types for Doctors</h3>
+      <div class="schema-grid">
+        <div class="schema-card">
+          <div class="schema-label">Physician Schema</div>
+          <div class="schema-item">Doctor name</div>
+          <div class="schema-item">Medical specialty</div>
+          <div class="schema-item">Education / degrees</div>
+          <div class="schema-item">Languages spoken</div>
+        </div>
+        <div class="schema-card">
+          <div class="schema-label">LocalBusiness Schema</div>
+          <div class="schema-item">Clinic name &amp; address</div>
+          <div class="schema-item">Phone number</div>
+          <div class="schema-item">Opening hours</div>
+          <div class="schema-item">GPS coordinates</div>
+        </div>
+        <div class="schema-card">
+          <div class="schema-label">FAQPage Schema</div>
+          <div class="schema-item">Common patient questions</div>
+          <div class="schema-item">Direct answers</div>
+          <div class="schema-item">Appears in Google FAQ box</div>
+          <div class="schema-item">Increases search real estate</div>
+        </div>
+        <div class="schema-card">
+          <div class="schema-label">Review Schema</div>
+          <div class="schema-item">Star ratings in results</div>
+          <div class="schema-item">Number of reviews</div>
+          <div class="schema-item">Average rating</div>
+          <div class="schema-item">Dramatically increases clicks</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">Easiest Way to Add Schema</div>
+        <p>If your website runs on WordPress, install "Rank Math SEO" or "Yoast SEO" — they add schema markup automatically. If you have a custom website, ask your developer to add "Physician and LocalBusiness structured data" from schema.org.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 13 — FAQ ─── -->
+<section class="content-section" id="s13">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">13</div>
+      <div class="cs-sec-label">Frequently Asked Questions</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">Frequently <em>Asked Questions</em></h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">How much do Google Ads cost for doctors?</div>
+          <p class="faq-a">Most medical practices spend between $500–$5,000 per month. The cost per click (CPC) for medical keywords ranges from $2–$15 depending on your specialty, city, and competition. You can start with as little as $10/day and scale once you see results. <strong>General practitioners in smaller cities often start at $300–$500/month.</strong> Specialists in major cities typically need $1,000–$3,000/month to see meaningful patient volume.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do Google Ads actually work for medical practices?</div>
+          <p class="faq-a">Yes, absolutely. Google Ads are one of the most effective patient acquisition channels for doctors because they capture patients at the moment of intent — when they are actively searching for a doctor. <strong>Studies show an average of 3–15 new patient inquiries per month on budgets of $500–$2,000/month.</strong> The key is proper setup: right keywords, right location targeting, and a website that converts visitors into callers.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How long before I see results from Google Ads?</div>
+          <p class="faq-a">Google Ads are fast. Once approved (usually 24–48 hours), your ad goes live immediately. Most practices see their first clicks and calls <strong>within 48–72 hours of launch.</strong> Meaningful trends — enough data to know what's working — typically appear within 2–4 weeks. Wait at least 30 days before making major changes to your campaign.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I run Google Ads without a website?</div>
+          <p class="faq-a">You need a destination for your ad. Options include: a simple one-page website; your Google Business Profile page (free, works for phone-call campaigns); a booking platform page (Zocdoc, Practo). <strong>A proper website always performs best</strong> and gives you full control over conversion tracking and landing page optimisation.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What is the biggest mistake doctors make with Google Ads?</div>
+          <p class="faq-a"><strong>Not adding negative keywords.</strong> Without them, your ad shows for searches like "free doctor," "doctor games," or "how to become a doctor" — wasting your entire budget on irrelevant clicks. The second biggest mistake is not tracking conversions, so you never know which ads are actually bringing patients.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Should I hire a marketing agency or manage ads myself?</div>
+          <p class="faq-a">For a busy doctor, hiring a healthcare-specialised marketing agency almost always gives better results and saves significant time. Agencies typically charge $500–$2,000/month in management fees. <strong>If your budget is under $500/month ad spend, you may be better off learning and managing yourself</strong> using guides like this one.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Are Google Ads better than Facebook Ads for doctors?</div>
+          <p class="faq-a">For most medical specialties, yes. Google Ads outperform Facebook Ads because Google captures active patient intent — <strong>someone is already looking for a doctor.</strong> On Facebook, you are interrupting someone scrolling through their feed. Facebook Ads work better for brand awareness or specialties with longer consideration periods like cosmetic surgery or fertility treatments.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I measure the ROI of my Google Ads?</div>
+          <p class="faq-a">ROI formula: (Revenue from new ad patients − Ad spend) ÷ Ad spend × 100 = ROI %. Example: You spend $1,000/month. You get 8 new patients who each pay $200 = $1,600 revenue. <strong>ROI = 60%.</strong> Don't forget lifetime value — those 8 patients may return many times. Track your numbers monthly and Google Ads becomes one of your most predictable growth tools.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LAUNCH CHECKLIST ─── -->
+<section class="content-section" id="checklist">
+  <div class="content-inner">
+    <div>
+      <div class="cs-num">✓</div>
+      <div class="cs-sec-label">Launch Checklist</div>
+    </div>
+    <div>
+      <h2 class="sec-h2">Your Launch <em>Checklist</em></h2>
+      <p class="body-p">Before you hit publish on your first campaign, confirm all of these are done:</p>
+      <div class="checklist">
+        <div class="check-item"><div class="check-box"></div>Google Ads account created at ads.google.com</div>
+        <div class="check-item"><div class="check-box"></div>Google Business Profile set up and verified</div>
+        <div class="check-item"><div class="check-box"></div>Keyword research done — at least 15–20 keywords found</div>
+        <div class="check-item"><div class="check-box"></div>Negative keywords list created — at least 20 terms to exclude</div>
+        <div class="check-item"><div class="check-box"></div>Ad written with 3 headlines and 2 descriptions</div>
+        <div class="check-item"><div class="check-box"></div>Location targeting set to your city / radius around clinic</div>
+        <div class="check-item"><div class="check-box"></div>Daily budget set ($10–$30 to start)</div>
+        <div class="check-item"><div class="check-box"></div>Call extension added with your clinic phone number</div>
+        <div class="check-item"><div class="check-box"></div>Location extension added with your clinic address</div>
+        <div class="check-item"><div class="check-box"></div>Conversion tracking enabled — phone calls + form submissions</div>
+        <div class="check-item"><div class="check-box"></div>Google Analytics 4 connected to your website</div>
+        <div class="check-item"><div class="check-box"></div>Landing page checked on mobile — most patients use phones</div>
+        <div class="check-item"><div class="check-box"></div>Calendar reminder set for weekly ad review</div>
+      </div>
+      <div class="callout callout-blue" style="margin-top:2rem">
+        <div class="callout-label">Disclaimer</div>
+        <p>This guide is for educational purposes. Medical advertising regulations vary by country and specialty. Always consult Google's Healthcare Advertising Policies before launching campaigns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<div class="cta-strip">
+  <h2>Need help tracking<br><em>your ad results correctly?</em></h2>
+  <p>Most doctors run Google Ads but track them incorrectly — so they never know what's actually working. I set up proper conversion tracking, call tracking, and GA4 for medical practices.</p>
+  <a href="audit.html" class="cta-btn">Get a free tracking audit</a>
+  <div class="contact-socials center dark" style="margin-top:1rem;">
+    <a class="contact-social-link" href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
+    <a class="contact-social-link" href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a>
+    <a class="contact-social-link" href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
+    <a class="contact-social-link" href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
+</footer>
+
+</body>
+</html>

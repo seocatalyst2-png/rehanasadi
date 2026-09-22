@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Server-Side Tracking Setup with Stape — Recover Lost Conversions | Rehan Munawar</title>
+  <meta name="description" content="Ad blockers and iOS privacy killing your conversion data? Server-side GTM via Stape.io recovers 20–40% of lost events. Here's what's involved and what it costs." />
+  <link rel="canonical" href="https://rehanasadi.com/server-side-tracking-setup" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/contact-socials.css" />
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--ink:#0d0d0c;--paper:#f5f2eb;--accent:#c8441a;--accent2:#1a5c8f;--muted:#6b6760;--rule:rgba(13,13,12,0.12);--mono:'DM Mono',monospace;--serif:'Fraunces',serif}
+    html{scroll-behavior:smooth}body{background:var(--paper);color:var(--ink);font-family:var(--mono);overflow-x:hidden}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;border-bottom:1px solid var(--rule);background:var(--paper);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:13px;letter-spacing:0.08em;color:var(--ink);text-decoration:none}.nav-logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}.nav-links a{font-size:12px;letter-spacing:0.06em;color:var(--muted);text-decoration:none;text-transform:uppercase}.nav-links a:hover{color:var(--ink)}
+    .nav-cta{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:9px 20px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;transition:background 0.15s,color 0.15s}.nav-cta:hover{background:var(--ink);color:var(--paper)}
+    .breadcrumb{max-width:1100px;margin:0 auto;padding:1rem 3rem;font-size:11px;color:var(--muted)}.breadcrumb a{color:var(--muted);text-decoration:none}.breadcrumb a:hover{color:var(--ink)}.breadcrumb span{margin:0 0.5rem}
+    .lp-hero{max-width:1100px;margin:0 auto;padding:5rem 3rem 4rem;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:1fr 340px;gap:5rem;align-items:start}
+    .lp-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+    .lp-h1{font-family:var(--serif);font-size:52px;font-weight:700;line-height:1.04;letter-spacing:-0.02em;margin-bottom:1.5rem}.lp-h1 em{font-style:italic;font-weight:300;color:var(--accent)}
+    .lp-intro{font-size:13px;line-height:1.9;color:var(--muted);max-width:540px}.lp-intro strong{color:var(--ink);font-weight:500}
+    .audit-card{border:1px solid var(--rule);position:sticky;top:90px}.audit-card-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+    .audit-card-title{font-family:var(--serif);font-size:17px;font-weight:700}.free-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--accent);color:var(--accent)}
+    .audit-card-body{padding:1.5rem;display:flex;flex-direction:column;gap:1rem}.audit-card-body p{font-size:12px;line-height:1.75;color:var(--muted)}
+    .audit-btn{display:block;font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:13px;background:var(--ink);color:var(--paper);text-decoration:none;text-align:center;border:1px solid var(--ink);transition:background 0.15s,border-color 0.15s}.audit-btn:hover{background:var(--accent);border-color:var(--accent)}
+    .audit-card-note{font-size:11px;color:var(--muted);text-align:center}
+    .sec-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}.sec-label::after{content:'';flex:1;height:1px;background:var(--rule)}
+    .lp-body{max-width:1100px;margin:0 auto;padding:4rem 3rem}
+    .signal-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:3rem}
+    .signal-cell{background:var(--paper);padding:1.5rem}.signal-num{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--accent);line-height:1}.signal-desc{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-top:5px;line-height:1.5}
+    .steps-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--rule);background:var(--rule);margin-bottom:3rem}
+    .step-item{background:var(--paper);padding:2rem;display:grid;grid-template-columns:52px 1fr;gap:1.5rem}
+    .step-n{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--muted);line-height:1;padding-top:4px}
+    .step-title{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:0.6rem}
+    .step-body{font-size:13px;line-height:1.85;color:var(--muted)}.step-body strong{color:var(--ink);font-weight:500}
+    .step-note{margin-top:1rem;padding:1rem;border:1px solid var(--accent2);background:rgba(26,92,143,0.04);font-size:12px;line-height:1.75;color:var(--ink)}
+    .note-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:5px}
+    .dark-cta{background:var(--ink);color:var(--paper);padding:4rem 3rem;text-align:center}
+    .dark-cta h2{font-family:var(--serif);font-size:38px;font-weight:700;line-height:1.08;margin-bottom:1rem}.dark-cta h2 em{font-style:italic;font-weight:300;color:rgba(245,242,235,0.4)}
+    .dark-cta p{font-size:13px;color:rgba(245,242,235,0.45);max-width:380px;margin:0 auto 2rem;line-height:1.85}
+    .dark-cta-btn{font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:13px 30px;border:1px solid rgba(245,242,235,0.25);color:var(--paper);text-decoration:none;display:inline-block;transition:background 0.15s,border-color 0.15s}.dark-cta-btn:hover{background:var(--accent);border-color:var(--accent)}
+    .related{max-width:1100px;margin:0 auto;padding:3rem;border-top:1px solid var(--rule)}
+    .related-title{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+    .related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+    .related-item{background:var(--paper);padding:1.25rem;text-decoration:none;color:var(--ink)}.related-item:hover{background:rgba(13,13,12,0.03)}
+    .related-tag{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}.related-label{font-size:13px;line-height:1.4}
+    footer{padding:1.5rem 3rem;display:flex;justify-content:center;align-items:center;background:var(--ink);border-top:1px solid rgba(245,242,235,0.07)}
+    footer p{font-size:11px;color:rgba(245,242,235,0.28);letter-spacing:0.06em;text-align:center}
+    .footer-links{display:flex;gap:1.5rem}.footer-links a{font-size:11px;color:rgba(245,242,235,0.28);text-decoration:none;letter-spacing:0.06em}.footer-links a:hover{color:var(--paper)}
+    @media(max-width:860px){nav{padding:1.25rem 1.5rem}.nav-links{display:none}.lp-hero{grid-template-columns:1fr;padding:3rem 1.5rem;gap:2.5rem}.audit-card{position:static}.lp-h1{font-size:36px}.lp-body{padding:3rem 1.5rem}.signal-strip{grid-template-columns:1fr 1fr}.related-grid{grid-template-columns:1fr 1fr}.dark-cta{padding:3rem 1.5rem}.dark-cta h2{font-size:28px}footer{flex-direction:column;gap:0.75rem;padding:1.25rem 1.5rem}}
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════ PAGE 3: SERVER-SIDE TRACKING ══════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
+  <ul class="nav-links"><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li></ul>
+  <a href="audit.html" class="nav-cta">Contact Us</a>
+</nav>
+
+<div style="border-bottom:1px solid var(--rule)">
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="services.html">Services</a><span>/</span>Server-Side Tracking Setup</div>
+</div>
+
+<div class="lp-hero">
+  <div>
+    <p class="lp-eyebrow">Server-side GTM · Stape.io</p>
+    <h1 class="lp-h1">Ad blockers are eating<br>your conversion data.<br><em>Here's the fix.</em></h1>
+    <p class="lp-intro">Browser-based tracking is losing 20–40% of conversion events to iOS privacy, ad blockers, and cookie restrictions. <strong>Server-side GTM via Stape.io routes your data through your own server — bypassing browser blocks entirely.</strong> Here's exactly what's involved.</p>
+  </div>
+  <div class="audit-card">
+    <div class="audit-card-head"><span class="audit-card-title">Is sGTM right for you?</span><span class="free-tag">Free</span></div>
+    <div class="audit-card-body">
+      <p>Tell me your platform, monthly ad spend, and audience. I'll tell you how much you're likely losing and whether server-side tracking is the right investment.</p>
+      <a href="audit.html" class="audit-btn">Get a free assessment →</a>
+      <p class="audit-card-note">Typical setup: 5–7 business days · from €550</p>
+    </div>
+  </div>
+</div>
+
+<div class="lp-body">
+  <div class="signal-strip">
+    <div class="signal-cell"><div class="signal-num">40%</div><div class="signal-desc">Conversion events recovered from blocking</div></div>
+    <div class="signal-cell"><div class="signal-num">400d</div><div class="signal-desc">Cookie lifetime vs 7-day Safari cap</div></div>
+    <div class="signal-cell"><div class="signal-num">€20/mo</div><div class="signal-desc">Stape.io hosting — most cost-efficient option</div></div>
+    <div class="signal-cell"><div class="signal-num">5–7d</div><div class="signal-desc">Full setup from access to go-live</div></div>
+  </div>
+
+  <div class="sec-label">What server-side tracking actually does</div>
+  <div class="steps-list">
+    <div class="step-item">
+      <div class="step-n">01</div>
+      <div>
+        <div class="step-title">A dedicated server container on your subdomain</div>
+        <p class="step-body">Instead of loading tracking scripts from <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">googletagmanager.com</code> — a domain every ad blocker recognises — your GTM server runs on <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">data.yourdomain.com</code>. <strong>Ad blockers can't block a domain that looks like your own site.</strong> Stape.io handles the server infrastructure — no Google Cloud account needed.</p>
+        <div class="step-note"><div class="note-label">Why Stape.io</div>Stape hosts GTM server containers on Google Cloud infrastructure at ~€20/month — significantly cheaper than managing GCP yourself. Setup takes minutes. No DevOps required.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-n">02</div>
+      <div>
+        <div class="step-title">First-party cookies that survive Safari ITP</div>
+        <p class="step-body">Safari's Intelligent Tracking Prevention caps JavaScript-set cookies at 7 days — sometimes 24 hours. For returning customers who bought 2 weeks ago, they're completely invisible to attribution. <strong>Server-set cookies bypass this restriction entirely</strong> — extending cookie lifetime to 400 days and restoring returning customer attribution across your entire audience.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-n">03</div>
+      <div>
+        <div class="step-title">GA4 and Meta events routed through the server</div>
+        <p class="step-body">Your web container still collects events from the browser. It forwards them to your server container, which then sends them to GA4 and Meta — through a first-party endpoint that blockers can't intercept. <strong>Every platform receives the same clean, enriched event data</strong> regardless of what the visitor's browser is doing.</p>
+        <div class="step-note"><div class="note-label">Meta CAPI benefit</div>When Meta events go server-side, you can enrich them with hashed customer data (email, phone). This pushes your Event Match Quality from 4–5 to 7–9+, dramatically improving audience targeting.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-n">04</div>
+      <div>
+        <div class="step-title">Full QA — data parity between browser and server</div>
+        <p class="step-body">Before go-live, I run a complete validation: browser events vs server events, purchase counts vs Shopify orders, EMQ scores in Meta Events Manager. <strong>You see the before and after comparison in writing.</strong> If the numbers don't match, we don't go live.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Who needs server-side tracking</div>
+  <p style="font-size:13px;line-height:1.9;color:var(--muted);max-width:620px;margin-bottom:1.5rem;">Server-side tracking is the right investment if you match at least one of these:</p>
+  <ul style="list-style:none;border:1px solid var(--rule);margin-bottom:3rem;">
+    <li style="padding:1rem 1.5rem;border-bottom:1px solid var(--rule);font-size:13px;color:var(--ink);">You're spending €1,000+/month on Meta or Google Ads and attribution gaps are costing you optimisation accuracy</li>
+    <li style="padding:1rem 1.5rem;border-bottom:1px solid var(--rule);font-size:13px;color:var(--ink);">Your audience is in Europe — Netherlands, Germany, UK — where ad-blocker rates are 30–45%</li>
+    <li style="padding:1rem 1.5rem;border-bottom:1px solid var(--rule);font-size:13px;color:var(--ink);">More than 40% of your traffic is on iOS (check GA4 → Tech → Platform/Device)</li>
+    <li style="padding:1rem 1.5rem;border-bottom:1px solid var(--rule);font-size:13px;color:var(--ink);">Your GA4 purchase count is more than 15% lower than your Shopify/CRM order count</li>
+    <li style="padding:1rem 1.5rem;font-size:13px;color:var(--ink);">Your Meta ROAS looks good but actual revenue doesn't reflect it</li>
+  </ul>
+</div>
+
+<div class="related">
+  <div class="related-title">Related problems</div>
+  <div class="related-grid">
+    <a href="ga4-not-tracking-conversions.html" class="related-item"><div class="related-tag">GA4</div><div class="related-label">GA4 shows fewer conversions than Shopify</div></a>
+    <a href="meta-capi-setup.html" class="related-item"><div class="related-tag">Meta CAPI</div><div class="related-label">Meta ROAS doesn't match actual revenue</div></a>
+    <a href="services.html" class="related-item"><div class="related-tag">Services</div><div class="related-label">GTM container audit and rebuild</div></a>
+    <a href="shopify-ga4-tracking.html" class="related-item"><div class="related-tag">Shopify</div><div class="related-label">Shopify GA4 purchase tracking broken</div></a>
+  </div>
+</div>
+
+<div class="dark-cta">
+  <h2>Find out how much<br><em>you're actually losing.</em></h2>
+  <p>Share your website and ad setup. I'll estimate the data loss and tell you whether server-side tracking makes financial sense for your situation — before you spend anything.</p>
+  <a href="audit.html" class="dark-cta-btn">Get a free assessment</a>
+  <div class="contact-socials center dark">
+    <a class="contact-social-link" href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
+    <a class="contact-social-link" href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a>
+    <a class="contact-social-link" href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
+    <a class="contact-social-link" href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>
+
+<footer>
+  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
+</footer>
+
+<a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
+  <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
+  <span>Free Tracking Audit</span>
+</a>
+<script src="assets/whatsapp-float.js"></script>
+
+</body>
+</html>

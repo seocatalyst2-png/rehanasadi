@@ -1,0 +1,26 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/google-ads-for-doctors-complete-guide",
+      "destination": "/google-ads-for-doctors-guide",
+      "permanent": true
+    },
+    {
+      "source": "/google-ads-for-doctors-complete-guide.html",
+      "destination": "/google-ads-for-doctors-guide",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)\\.html",
+      "destination": "/$1",
+      "permanent": true
+    }
+  ]
+}

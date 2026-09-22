@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - Rehan Munawar | GA4 and Server-Side Tracking Specialist</title>
+  <meta name="description" content="4+ years fixing broken tracking setups for e-commerce brands across Europe and the US. Here's who I am, what I believe about data, and how I work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/contact-socials.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #0d0d0c;
+      --paper: #f5f2eb;
+      --accent: #c8441a;
+      --accent2: #1a5c8f;
+      --muted: #6b6760;
+      --rule: rgba(13,13,12,0.12);
+      --mono: "DM Mono", monospace;
+      --serif: "Fraunces", serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      overflow-x: hidden;
+    }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      position: sticky; top: 0;
+      background: var(--paper); z-index: 100;
+    }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+    .nav-cta { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 20px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-family: var(--mono); transition: background 0.15s, color 0.15s; }
+    .nav-cta:hover { background: var(--ink); color: var(--paper); }
+
+    .hero-strip {
+      border-bottom: 1px solid var(--rule);
+      padding: 5rem 3rem 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+    .hero-h1 { font-family: var(--serif); font-size: 62px; font-weight: 700; line-height: 1.02; letter-spacing: -0.025em; max-width: 700px; margin-bottom: 3rem; }
+    .hero-h1 em { font-style: italic; font-weight: 300; color: var(--muted); }
+
+    .intro-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 5rem;
+      align-items: start;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .photo-col { display: flex; flex-direction: column; gap: 0; }
+    .photo-frame {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: rgba(13,13,12,0.04);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .photo-placeholder-icon {
+      width: 64px; height: 64px;
+      border: 1px solid var(--rule);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 24px; font-weight: 700; color: var(--muted);
+    }
+    .photo-placeholder-text { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-align: center; max-width: 160px; line-height: 1.6; }
+    .photo-caption {
+      padding: 1.25rem;
+      border: 1px solid var(--rule);
+      border-top: none;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .caption-name { font-family: var(--serif); font-size: 18px; font-weight: 700; }
+    .caption-role { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .caption-loc { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .fact-strip { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-top: none; }
+    .fact-row { background: var(--paper); padding: 0.85rem 1.25rem; display: flex; justify-content: space-between; align-items: baseline; }
+    .fact-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .fact-val { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--ink); }
+    .text-col { padding-top: 0.5rem; }
+    .section-kicker {
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-kicker::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+    .body-graf {
+      font-size: 14px;
+      line-height: 2;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .body-graf em { font-style: italic; color: var(--muted); }
+    .body-graf strong { font-weight: 500; }
+    .pull-quote {
+      border-left: 3px solid var(--accent);
+      padding: 1.25rem 1.75rem;
+      margin: 2rem 0;
+      background: rgba(200,68,26,0.04);
+    }
+    .pull-quote p {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .beliefs-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .beliefs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 2.5rem;
+    }
+    .belief-card { background: var(--paper); padding: 2rem 1.75rem; }
+    .belief-num { font-size: 10px; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.25rem; }
+    .belief-title { font-family: var(--serif); font-size: 20px; font-weight: 700; line-height: 1.2; margin-bottom: 0.9rem; }
+    .belief-body { font-size: 12px; line-height: 1.8; color: var(--muted); }
+
+    .creds-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .cred-col-title { font-family: var(--serif); font-size: 28px; font-weight: 700; margin-bottom: 1.75rem; line-height: 1.2; }
+    .cred-col-title em { font-style: italic; font-weight: 300; color: var(--muted); }
+    .cert-list { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+    .cert-item { background: var(--paper); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1.25rem; transition: background 0.12s; }
+    .cert-item:hover { background: rgba(13,13,12,0.02); }
+    .cert-dot { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: #fff; font-family: var(--mono); }
+    .cert-text-wrap { flex: 1; }
+    .cert-name { font-size: 12px; color: var(--ink); line-height: 1.4; }
+    .cert-issuer { font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+    .cert-year { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
+    .industry-list { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+    .industry-item { background: var(--paper); padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; }
+    .industry-name { font-size: 12px; color: var(--ink); }
+    .industry-tag { font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 9px; border: 1px solid var(--rule); color: var(--muted); }
+    .industry-tag.active { border-color: var(--accent2); color: var(--accent2); }
+
+    .guide-rack {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .guide-rack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 2rem;
+    }
+    .guide-rack-item {
+      background: var(--paper);
+      padding: 1.2rem;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .guide-rack-item:hover { background: rgba(13,13,12,0.03); }
+    .guide-rack-item small {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    .guide-rack-item span {
+      font-family: var(--serif);
+      font-size: 24px;
+      line-height: 1.08;
+    }
+
+    .approach-section {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 5rem 3rem;
+    }
+    .approach-inner { max-width: 1100px; margin: 0 auto; }
+    .approach-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(200,68,26,0.9); margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
+    .approach-label::after { content: ""; flex: 1; height: 1px; background: rgba(245,242,235,0.08); }
+    .approach-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(245,242,235,0.08); border: 1px solid rgba(245,242,235,0.08); }
+    .approach-card { background: var(--ink); padding: 2rem 1.5rem; }
+    .approach-card:hover { background: rgba(245,242,235,0.03); }
+    .approach-n { font-size: 10px; letter-spacing: 0.1em; color: rgba(245,242,235,0.3); margin-bottom: 1.25rem; }
+    .approach-title { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--paper); margin-bottom: 0.75rem; line-height: 1.2; }
+    .approach-body { font-size: 12px; line-height: 1.8; color: rgba(245,242,235,0.45); }
+
+    .cta-strip {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 5rem 3rem;
+      text-align: center;
+      border-top: 1px solid rgba(245,242,235,0.08);
+    }
+    .cta-strip h2 { font-family: var(--serif); font-size: 44px; font-weight: 700; line-height: 1.08; margin-bottom: 1.25rem; }
+    .cta-strip h2 em { font-style: italic; font-weight: 300; color: rgba(245,242,235,0.35); }
+    .cta-strip p { font-size: 13px; color: rgba(245,242,235,0.45); max-width: 400px; margin: 0 auto 2.5rem; line-height: 1.85; }
+    .cta-row { display: flex; gap: 1rem; align-items: center; justify-content: center; }
+    .cta-btn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 14px 32px; border: 1px solid rgba(245,242,235,0.25); color: var(--paper); text-decoration: none; display: inline-block; transition: background 0.15s, border-color 0.15s; }
+    .cta-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .cta-ghost { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(245,242,235,0.35); text-decoration: none; }
+    .cta-ghost:hover { color: var(--paper); }
+
+    footer { padding: 1.5rem 3rem; display: flex; justify-content: center; align-items: center; background: var(--ink); border-top: 1px solid rgba(245,242,235,0.07); }
+    footer p { font-size: 11px; color: rgba(245,242,235,0.28); letter-spacing: 0.06em; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 11px; color: rgba(245,242,235,0.28); text-decoration: none; letter-spacing: 0.06em; transition: color 0.12s; }
+    .footer-links a:hover { color: var(--paper); }
+
+    @media (max-width: 860px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-strip { padding: 3rem 1.5rem 0; }
+      .hero-h1 { font-size: 38px; }
+      .intro-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2.5rem; }
+      .photo-col { max-width: 280px; }
+      .beliefs-section { padding: 3rem 1.5rem; }
+      .beliefs-grid { grid-template-columns: 1fr; }
+      .creds-section { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2.5rem; }
+      .guide-rack { padding: 3rem 1.5rem; }
+      .guide-rack-grid { grid-template-columns: 1fr; }
+      .approach-section { padding: 3.5rem 1.5rem; }
+      .approach-grid { grid-template-columns: 1fr 1fr; }
+      .cta-strip { padding: 3.5rem 1.5rem; }
+      .cta-strip h2 { font-size: 30px; }
+      .cta-row { flex-direction: column; }
+      footer { flex-direction: column; gap: 0.75rem; padding: 1.25rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="case-studies.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
+  </ul>
+  <a href="audit.html" class="nav-cta">Contact Us</a>
+</nav>
+
+<div style="border-bottom: 1px solid var(--rule);">
+  <div class="hero-strip">
+    <p class="hero-eyebrow">About</p>
+    <h1 class="hero-h1">The specialist<br />behind the <em>tracking.</em></h1>
+  </div>
+</div>
+
+<div class="intro-grid">
+  <div class="photo-col">
+    <div class="photo-frame">
+      <div class="photo-placeholder-icon">RM</div>
+      <p class="photo-placeholder-text">Add your photo here - see comment in HTML</p>
+    </div>
+    <div class="photo-caption">
+      <div class="caption-name">Rehan Munawar</div>
+      <div class="caption-role">GA4 and Tracking Specialist</div>
+      <div class="caption-loc">Pakistan - Remote worldwide</div>
+    </div>
+    <div class="fact-strip">
+      <div class="fact-row"><span class="fact-label">Experience</span><span class="fact-val">4+ yr</span></div>
+      <div class="fact-row"><span class="fact-label">Clients served</span><span class="fact-val">50+</span></div>
+      <div class="fact-row"><span class="fact-label">Industries</span><span class="fact-val">8+</span></div>
+      <div class="fact-row"><span class="fact-label">Time zone coverage</span><span class="fact-val">EU - US - PK</span></div>
+    </div>
+  </div>
+
+  <div class="text-col">
+    <div class="section-kicker">The story</div>
+    <p class="body-graf">I got into tracking because I kept seeing the same problem: brands spending serious ad budgets and making decisions on data that was quietly wrong. A purchase event firing twice. A funnel report missing half the drop-offs. A ROAS view that looked reasonable but did not match orders.</p>
+    <div class="pull-quote">
+      <p>The scariest tracking setups are not the ones that show nothing - they are the ones that show something plausible but wrong.</p>
+    </div>
+    <p class="body-graf">I started on Upwork and gradually specialized in the hard part: <strong>server-side tracking</strong>. As browser restrictions tightened, I focused on Stape.io, GTM server containers, and Meta CAPI to build systems that stay reliable over time.</p>
+    <p class="body-graf">One long-term engagement in a regulated niche taught me how to build compliant measurement architecture under strict platform constraints. I apply that same approach for e-commerce and lead generation brands in Europe, the US, and beyond.</p>
+    <p class="body-graf">I work remotely across time zones and deliver clear QA documentation with every project so teams know what was implemented, why it matters, and how to maintain it.</p>
+  </div>
+</div>
+
+<section class="beliefs-section">
+  <div class="section-kicker">What I believe about data</div>
+  <div class="beliefs-grid">
+    <div class="belief-card">
+      <div class="belief-num">01</div>
+      <div class="belief-title">Bad data is worse than no data</div>
+      <p class="belief-body">A broken setup with believable numbers can mislead decisions for months. Accuracy comes first.</p>
+    </div>
+    <div class="belief-card">
+      <div class="belief-num">02</div>
+      <div class="belief-title">Server-side is now baseline</div>
+      <p class="belief-body">In modern privacy conditions, browser-only measurement loses too many conversion signals to stay dependable at scale.</p>
+    </div>
+    <div class="belief-card">
+      <div class="belief-num">03</div>
+      <div class="belief-title">Documentation is part of delivery</div>
+      <p class="belief-body">A setup you cannot explain is a liability. Every project should include clear implementation and QA notes.</p>
+    </div>
+  </div>
+</section>
+
+<section class="creds-section">
+  <div>
+    <h2 class="cred-col-title">Certifications and <em>qualifications</em></h2>
+    <div class="cert-list">
+      <div class="cert-item"><div class="cert-dot" style="background: #c8441a;">St</div><div class="cert-text-wrap"><div class="cert-name">Server-Side Tagging with Stape</div><div class="cert-issuer">Stape.io</div></div><div class="cert-year">2025</div></div>
+      <div class="cert-item"><div class="cert-dot" style="background: #1a5c8f;">G</div><div class="cert-text-wrap"><div class="cert-name">Google Analytics Individual Qualification</div><div class="cert-issuer">Google</div></div><div class="cert-year">Current</div></div>
+      <div class="cert-item"><div class="cert-dot" style="background: #1a5c8f;">G</div><div class="cert-text-wrap"><div class="cert-name">Advanced Google Ads Certification</div><div class="cert-issuer">Google</div></div><div class="cert-year">Current</div></div>
+      <div class="cert-item"><div class="cert-dot" style="background: #1a1a1a;">Up</div><div class="cert-text-wrap"><div class="cert-name">Top Rated Freelancer - Analytics and Tracking</div><div class="cert-issuer">Upwork - 50+ clients served</div></div><div class="cert-year">2021-</div></div>
+    </div>
+  </div>
+  <div>
+    <h2 class="cred-col-title">Industries I have <em>worked in</em></h2>
+    <div class="industry-list">
+      <div class="industry-item"><span class="industry-name">E-commerce (fashion, home, food, packaging)</span><span class="industry-tag active">Active</span></div>
+      <div class="industry-item"><span class="industry-name">Cannabis and hemp (US regulated market)</span><span class="industry-tag active">Active</span></div>
+      <div class="industry-item"><span class="industry-name">Real estate and lead generation</span><span class="industry-tag active">Active</span></div>
+      <div class="industry-item"><span class="industry-name">Pet health and supplements</span><span class="industry-tag active">Active</span></div>
+      <div class="industry-item"><span class="industry-name">Photography and creative services</span><span class="industry-tag">Past</span></div>
+      <div class="industry-item"><span class="industry-name">SaaS and digital products</span><span class="industry-tag">Past</span></div>
+      <div class="industry-item"><span class="industry-name">Agencies (white-label tracking work)</span><span class="industry-tag active">Active</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-rack">
+  <div class="section-kicker">Popular fixes</div>
+  <div class="guide-rack-grid">
+    <a class="guide-rack-item" href="shopify-ga4-tracking.html"><small>Shopify + GA4</small><span>Shopify GA4 tracking fix</span></a>
+    <a class="guide-rack-item" href="server-side-tracking-setup.html"><small>sGTM</small><span>Server-side tracking setup</span></a>
+    <a class="guide-rack-item" href="ga4-not-tracking-conversions.html"><small>GA4</small><span>GA4 conversion tracking issues</span></a>
+    <a class="guide-rack-item" href="meta-capi-setup.html"><small>Meta CAPI</small><span>Meta CAPI setup guide</span></a>
+    <a class="guide-rack-item" href="google-ads-for-doctors-guide.html"><small>Healthcare Ads</small><span>Google Ads for doctors complete guide</span></a>
+  </div>
+</section>
+
+<section class="approach-section">
+  <div class="approach-inner">
+    <div class="approach-label">How I work</div>
+    <div class="approach-grid">
+      <div class="approach-card"><div class="approach-n">01</div><div class="approach-title">Audit first, build second</div><p class="approach-body">I identify what is broken first, then fix with clear priority and scope.</p></div>
+      <div class="approach-card"><div class="approach-n">02</div><div class="approach-title">Plain-English communication</div><p class="approach-body">I explain technical findings by business impact, not only implementation jargon.</p></div>
+      <div class="approach-card"><div class="approach-n">03</div><div class="approach-title">QA is non-negotiable</div><p class="approach-body">No go-live without validated tags, event checks, and reconciliation.</p></div>
+      <div class="approach-card"><div class="approach-n">04</div><div class="approach-title">Async by default</div><p class="approach-body">I support clients across time zones with clear documentation and updates.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <h2>Enough about me -<br /><em>let's talk about your data.</em></h2>
+  <p>If you are not fully confident in your tracking setup, start with a free audit and get a clear diagnosis.</p>
+  <div class="cta-row">
+    <a href="audit.html" class="cta-btn">Get a free audit</a>
+    <a href="case-studies.html" class="cta-ghost">See the work -&gt;</a>
+  </div>
+  <div class="contact-socials center dark">
+    <a class="contact-social-link" href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
+    <a class="contact-social-link" href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a>
+    <a class="contact-social-link" href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
+    <a class="contact-social-link" href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>
+
+<footer>
+  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
+</footer>
+
+<a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
+  <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
+  <span>Free Tracking Audit</span>
+</a>
+<script src="assets/whatsapp-float.js"></script>
+
+</body>
+</html>

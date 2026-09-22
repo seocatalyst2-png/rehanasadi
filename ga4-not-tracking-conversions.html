@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GA4 Not Tracking Conversions? Here's What's Actually Wrong — Rehan Munawar</title>
+  <meta name="description" content="GA4 showing fewer conversions than Shopify or your CRM? 7 specific reasons why — and what fixing each one actually involves. Free audit available." />
+  <link rel="canonical" href="https://rehanasadi.com/ga4-not-tracking-conversions" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/contact-socials.css" />
+
+  <!-- ══════════════════════════════════════════
+       SHARED STYLES — used across all 5 pages
+  ══════════════════════════════════════════ -->
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --ink: #0d0d0c; --paper: #f5f2eb; --accent: #c8441a; --accent2: #1a5c8f;
+      --muted: #6b6760; --rule: rgba(13,13,12,0.12);
+      --mono: 'DM Mono', monospace; --serif: 'Fraunces', serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--mono); overflow-x: hidden; }
+
+    nav { display:flex; align-items:center; justify-content:space-between; padding:1.5rem 3rem; border-bottom:1px solid var(--rule); background:var(--paper); position:sticky; top:0; z-index:100; }
+    .nav-logo { font-size:13px; letter-spacing:0.08em; color:var(--ink); text-decoration:none; }
+    .nav-logo span { color:var(--accent); }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; }
+    .nav-links a { font-size:12px; letter-spacing:0.06em; color:var(--muted); text-decoration:none; text-transform:uppercase; }
+    .nav-links a:hover { color:var(--ink); }
+    .nav-cta { font-size:12px; letter-spacing:0.06em; text-transform:uppercase; padding:9px 20px; border:1px solid var(--ink); color:var(--ink); text-decoration:none; transition:background 0.15s,color 0.15s; }
+    .nav-cta:hover { background:var(--ink); color:var(--paper); }
+
+    /* HERO */
+    .lp-hero { max-width:1100px; margin:0 auto; padding:5rem 3rem 4rem; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:1fr 340px; gap:5rem; align-items:start; }
+    .lp-eyebrow { font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:1.25rem; }
+    .lp-h1 { font-family:var(--serif); font-size:52px; font-weight:700; line-height:1.04; letter-spacing:-0.02em; margin-bottom:1.5rem; }
+    .lp-h1 em { font-style:italic; font-weight:300; color:var(--accent); }
+    .lp-intro { font-size:13px; line-height:1.9; color:var(--muted); max-width:540px; }
+    .lp-intro strong { color:var(--ink); font-weight:500; }
+
+    /* STICKY AUDIT CARD */
+    .audit-card { border:1px solid var(--rule); position:sticky; top:90px; }
+    .audit-card-head { padding:1.25rem 1.5rem; border-bottom:1px solid var(--rule); display:flex; justify-content:space-between; align-items:center; }
+    .audit-card-title { font-family:var(--serif); font-size:17px; font-weight:700; }
+    .free-tag { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border:1px solid var(--accent); color:var(--accent); }
+    .audit-card-body { padding:1.5rem; display:flex; flex-direction:column; gap:1rem; }
+    .audit-card-body p { font-size:12px; line-height:1.75; color:var(--muted); }
+    .audit-btn { display:block; font-family:var(--mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase; padding:13px; background:var(--ink); color:var(--paper); text-decoration:none; text-align:center; border:1px solid var(--ink); transition:background 0.15s,border-color 0.15s; }
+    .audit-btn:hover { background:var(--accent); border-color:var(--accent); }
+    .audit-card-note { font-size:11px; color:var(--muted); text-align:center; }
+
+    /* SECTION LABEL */
+    .sec-label { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:2.5rem; display:flex; align-items:center; gap:1rem; }
+    .sec-label::after { content:''; flex:1; height:1px; background:var(--rule); }
+
+    /* CONTENT BODY */
+    .lp-body { max-width:1100px; margin:0 auto; padding:4rem 3rem; }
+
+    /* numbered issue / reason cards */
+    .issue-list { display:flex; flex-direction:column; gap:1px; border:1px solid var(--rule); background:var(--rule); margin-bottom:3rem; }
+    .issue-item { background:var(--paper); padding:2rem 2rem 2rem 2rem; display:grid; grid-template-columns:52px 1fr; gap:1.5rem; }
+    .issue-num { font-family:var(--serif); font-size:28px; font-weight:700; color:var(--muted); line-height:1; padding-top:4px; }
+    .issue-title { font-family:var(--serif); font-size:20px; font-weight:700; margin-bottom:0.6rem; }
+    .issue-body { font-size:13px; line-height:1.85; color:var(--muted); }
+    .issue-body strong { color:var(--ink); font-weight:500; }
+    .issue-fix { margin-top:1rem; padding:1rem; border:1px solid var(--accent2); background:rgba(26,92,143,0.04); font-size:12px; line-height:1.75; color:var(--ink); }
+    .fix-label { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent2); margin-bottom:5px; }
+
+    /* signal strip */
+    .signal-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); margin-bottom:4rem; }
+    .signal-cell { background:var(--paper); padding:1.5rem; }
+    .signal-num { font-family:var(--serif); font-size:36px; font-weight:700; color:var(--accent); line-height:1; }
+    .signal-desc { font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin-top:5px; line-height:1.5; }
+
+    /* dark CTA */
+    .dark-cta { background:var(--ink); color:var(--paper); padding:4rem 3rem; text-align:center; }
+    .dark-cta h2 { font-family:var(--serif); font-size:38px; font-weight:700; line-height:1.08; margin-bottom:1rem; }
+    .dark-cta h2 em { font-style:italic; font-weight:300; color:rgba(245,242,235,0.4); }
+    .dark-cta p { font-size:13px; color:rgba(245,242,235,0.45); max-width:380px; margin:0 auto 2rem; line-height:1.85; }
+    .dark-cta-btn { font-family:var(--mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase; padding:13px 30px; border:1px solid rgba(245,242,235,0.25); color:var(--paper); text-decoration:none; display:inline-block; transition:background 0.15s,border-color 0.15s; }
+    .dark-cta-btn:hover { background:var(--accent); border-color:var(--accent); }
+
+    /* breadcrumb */
+    .breadcrumb { max-width:1100px; margin:0 auto; padding:1rem 3rem; font-size:11px; color:var(--muted); }
+    .breadcrumb a { color:var(--muted); text-decoration:none; }
+    .breadcrumb a:hover { color:var(--ink); }
+    .breadcrumb span { margin:0 0.5rem; }
+
+    /* related pages strip */
+    .related { max-width:1100px; margin:0 auto; padding:3rem; border-top:1px solid var(--rule); }
+    .related-title { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:1.5rem; }
+    .related-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); }
+    .related-item { background:var(--paper); padding:1.25rem; text-decoration:none; color:var(--ink); transition:background 0.12s; }
+    .related-item:hover { background:rgba(13,13,12,0.03); }
+    .related-tag { font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
+    .related-label { font-size:13px; line-height:1.4; }
+
+    footer { padding:1.5rem 3rem; display:flex; justify-content:center; align-items:center; background:var(--ink); border-top:1px solid rgba(245,242,235,0.07); }
+    footer p { font-size:11px; color:rgba(245,242,235,0.28); letter-spacing:0.06em; text-align:center; }
+    .footer-links { display:flex; gap:1.5rem; }
+    .footer-links a { font-size:11px; color:rgba(245,242,235,0.28); text-decoration:none; letter-spacing:0.06em; }
+    .footer-links a:hover { color:var(--paper); }
+
+    @media(max-width:860px){
+      nav { padding:1.25rem 1.5rem; }
+      .nav-links { display:none; }
+      .lp-hero { grid-template-columns:1fr; padding:3rem 1.5rem; gap:2.5rem; }
+      .audit-card { position:static; }
+      .lp-h1 { font-size:36px; }
+      .lp-body { padding:3rem 1.5rem; }
+      .signal-strip { grid-template-columns:1fr 1fr; }
+      .related-grid { grid-template-columns:1fr 1fr; }
+      .dark-cta { padding:3rem 1.5rem; }
+      .dark-cta h2 { font-size:28px; }
+      footer { flex-direction:column; gap:0.75rem; padding:1.25rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="case-studies.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
+  </ul>
+  <a href="audit.html" class="nav-cta">Contact Us</a>
+</nav>
+
+<div style="border-bottom:1px solid var(--rule)">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span>/</span>
+    <a href="services.html">Services</a><span>/</span>
+    GA4 Not Tracking Conversions
+  </div>
+</div>
+
+<!-- PAGE 1: GA4 NOT TRACKING CONVERSIONS -->
+<div class="lp-hero">
+  <div>
+    <p class="lp-eyebrow">Problem diagnosis · GA4</p>
+    <h1 class="lp-h1">GA4 isn't tracking<br>your conversions.<br><em>Here's why.</em></h1>
+    <p class="lp-intro">Your Shopify dashboard shows 200 orders this month. GA4 shows 120 purchases. You're not imagining it — <strong>the gap is real, it's common, and it has specific causes.</strong> Here are the seven most likely reasons, in order of how often I see them.</p>
+  </div>
+  <div class="audit-card">
+    <div class="audit-card-head">
+      <span class="audit-card-title">Not sure which one applies?</span>
+      <span class="free-tag">Free</span>
+    </div>
+    <div class="audit-card-body">
+      <p>Tell me your website and what you're seeing. I'll check your setup and come back with a plain-English breakdown of what's broken — within 24 hours, no charge.</p>
+      <a href="audit.html" class="audit-btn">Get a free audit →</a>
+      <p class="audit-card-note">50+ setups audited · &lt;24h response</p>
+    </div>
+  </div>
+</div>
+
+<div class="lp-body">
+  <div class="signal-strip">
+    <div class="signal-cell"><div class="signal-num">20–40%</div><div class="signal-desc">Conversions lost in typical browser-only setup</div></div>
+    <div class="signal-cell"><div class="signal-num">7</div><div class="signal-desc">Most common root causes — all fixable</div></div>
+    <div class="signal-cell"><div class="signal-num">3–5d</div><div class="signal-desc">Typical fix time once diagnosed</div></div>
+    <div class="signal-cell"><div class="signal-num">100%</div><div class="signal-desc">GA4 ↔ Shopify reconciliation — achievable</div></div>
+  </div>
+
+  <div class="sec-label">7 reasons GA4 isn't tracking your conversions</div>
+
+  <div class="issue-list">
+    <div class="issue-item">
+      <div class="issue-num">01</div>
+      <div>
+        <div class="issue-title">Events aren't marked as conversions (key events)</div>
+        <p class="issue-body">GA4 tracks events but doesn't automatically treat them as conversions. If you haven't gone into <strong>Admin → Events</strong> and toggled "Mark as key event" for your purchase or form submission events, GA4's conversion count will show zero — even though the events are firing correctly.</p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Navigate to GA4 Admin → Events. Find your purchase event. Toggle "Mark as key event." Data will start appearing within 24–48 hours. Previous conversions won't be backfilled.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">02</div>
+      <div>
+        <div class="issue-title">Duplicate purchase tags causing inflated then suppressed counts</div>
+        <p class="issue-body">The most destructive scenario: a previous developer left an old purchase tag in GTM alongside your new one. Both fire on checkout — GA4 deduplicates by transaction_id, so it looks like half your orders vanished. In reality they're there, just cancelled out. <strong>I've seen this in 30%+ of audits I run.</strong></p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Open GTM Preview mode and complete a test purchase. If you see two GA4 purchase events firing, you have duplicate tags. Remove the older one and verify only one fires per transaction.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">03</div>
+      <div>
+        <div class="issue-title">The GTM container was saved but never published</div>
+        <p class="issue-body">GTM changes only go live when you click Submit and publish a new version. A saved draft does nothing. If your tracking broke after someone "updated" GTM, check the Versions tab — there's almost certainly a draft sitting there with changes that never went live.</p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Go to GTM → Versions. If there are unpublished changes, review them in Preview mode first, then click Submit to publish.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">04</div>
+      <div>
+        <div class="issue-title">Ad blockers and iOS stripping browser events</div>
+        <p class="issue-body">This isn't a configuration error — it's structural. Browser-based GA4 tracking gets blocked by uBlock Origin, Brave, Firefox ETP, and Safari's ITP before the event ever reaches Google's servers. In markets like the Netherlands, Germany, or with a tech-savvy audience, <strong>ad blocker rates can exceed 40%</strong>. These visitors are invisible to client-side GA4.</p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>This requires server-side GTM (sGTM) via Stape.io with a custom first-party subdomain. Events are sent from your server, bypassing browser-level blocking entirely. This typically recovers 20–40% of lost conversions.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">05</div>
+      <div>
+        <div class="issue-title">Wrong Measurement ID on the production environment</div>
+        <p class="issue-body">It's common to have separate GA4 properties for dev/staging and production. If the GTM container on your live site is pointing to the staging Measurement ID, all production purchase data is being sent to a property nobody is looking at.</p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Check your GA4 Configuration tag in GTM. Verify the Measurement ID (G-XXXXXXXX) matches your production GA4 property. Use GA4 DebugView to confirm events are landing in the right property.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">06</div>
+      <div>
+        <div class="issue-title">Shopify checkout extensibility broke your dataLayer</div>
+        <p class="issue-body">Shopify's 2024 checkout extensibility migration removed access to the order confirmation page for many themes, breaking custom purchase event implementations that relied on the <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">thank_you</code> page trigger. If your GA4 purchase tracking stopped working around mid-2024, this is almost certainly why.</p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>Migrate to Shopify's Web Pixels API or implement purchase tracking via the Shopify checkout.liquid extension points. Requires rebuilding the dataLayer push for the purchase event.</div>
+      </div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-num">07</div>
+      <div>
+        <div class="issue-title">Internal traffic inflating session counts and diluting conversion rate</div>
+        <p class="issue-body">Your team visits your own site constantly — product checks, QA, link testing. Without an internal traffic filter, every visit from your office IP or VPN is counted in GA4. This doesn't reduce conversion <em>count</em> but inflates session numbers, making conversion <em>rate</em> look worse than it is and skewing funnel data.</p>
+        <div class="issue-fix"><div class="fix-label">The fix</div>GA4 Admin → Data Streams → Configure Tag → Define Internal Traffic. Add your office IP ranges. Then activate the filter under Admin → Data Filters.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Still not sure which one you have?</div>
+  <p style="font-size:13px;line-height:1.9;color:var(--muted);max-width:600px;margin-bottom:2rem;">Most setups have more than one issue running simultaneously — which is why diagnosing from the outside is hard. A proper audit goes through your actual GTM container, GA4 property, and dataLayer to identify every problem, not just the obvious one.</p>
+</div>
+
+<div class="related">
+  <div class="related-title">Related problems</div>
+  <div class="related-grid">
+    <a href="meta-capi-setup.html" class="related-item"><div class="related-tag">Meta CAPI</div><div class="related-label">Meta ROAS doesn't match Shopify orders</div></a>
+    <a href="server-side-tracking-setup.html" class="related-item"><div class="related-tag">sGTM</div><div class="related-label">Set up server-side tracking with Stape</div></a>
+    <a href="services.html" class="related-item"><div class="related-tag">Services</div><div class="related-label">GTM container is a mess — fix it</div></a>
+    <a href="shopify-ga4-tracking.html" class="related-item"><div class="related-tag">Shopify</div><div class="related-label">Shopify GA4 purchase tracking broken</div></a>
+  </div>
+</div>
+
+<div class="dark-cta">
+  <h2>I'll tell you exactly<br><em>what's broken in yours.</em></h2>
+  <p>Send me your website URL and what you're seeing. Free written summary within 24 hours.</p>
+  <a href="audit.html" class="dark-cta-btn">Request free audit</a>
+  <div class="contact-socials center dark">
+    <a class="contact-social-link" href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
+    <a class="contact-social-link" href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a>
+    <a class="contact-social-link" href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
+    <a class="contact-social-link" href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>
+
+<footer>
+  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
+</footer>
+
+<a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
+  <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
+  <span>Free Tracking Audit</span>
+</a>
+<script src="assets/whatsapp-float.js"></script>
+
+</body>
+</html>
