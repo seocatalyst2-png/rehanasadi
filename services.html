@@ -3,467 +3,1657 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services - Rehan Munawar | GA4, GTM and Server-Side Tracking</title>
-  <meta name="description" content="GA4 setup, GTM architecture, server-side tracking, Meta CAPI, and tracking audits. Detailed breakdown of every service, what's included, who it's for, and pricing." />
+  <title>Conversion Tracking &amp; Analytics Services - Rehan Asadi | GA4, GTM &amp; Server-Side</title>
+  <meta name="description" content="Specialist GA4 setup, GTM architecture, server-side tracking (sGTM), Meta CAPI, Google Ads conversion tracking, and tracking audits. Clean data for confident decisions." />
+  <meta name="author" content="Rehan Munawar" />
+  <link rel="canonical" href="https://rehanasadi.com/services" />
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rehanasadi.com/services" />
+  <meta property="og:title" content="Conversion Tracking &amp; Analytics Services - Rehan Asadi" />
+  <meta property="og:description" content="Specialist GA4, GTM, Meta CAPI, server-side tracking, and tracking audits for eCommerce and lead-gen brands." />
+
+  <!-- Fonts & Stylesheets -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/design-system.css" />
+  <link rel="stylesheet" href="assets/inner-pages.css" />
   <link rel="stylesheet" href="assets/contact-socials.css" />
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --ink: #0d0d0c;
-      --paper: #f5f2eb;
-      --accent: #c8441a;
-      --accent2: #1a5c8f;
-      --muted: #6b6760;
-      --rule: rgba(13,13,12,0.12);
-      --rule-strong: rgba(13,13,12,0.22);
-      --mono: "DM Mono", monospace;
-      --serif: "Fraunces", serif;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--mono);
-      overflow-x: hidden;
-    }
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.5rem 3rem;
-      border-bottom: 1px solid var(--rule);
-      position: sticky;
-      top: 0;
-      background: var(--paper);
-      z-index: 100;
-    }
-    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-size: 12px; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.15s; }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-links a.active { color: var(--ink); }
-    .nav-cta { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 20px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-family: var(--mono); transition: background 0.15s, color 0.15s; }
-    .nav-cta:hover { background: var(--ink); color: var(--paper); }
-    .page-hero {
-      padding: 5rem 3rem 4.5rem;
-      border-bottom: 1px solid var(--rule);
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: end;
-    }
-    .hero-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
-    .hero-h1 { font-family: var(--serif); font-size: 54px; font-weight: 700; line-height: 1.04; letter-spacing: -0.02em; }
-    .hero-h1 em { font-style: italic; font-weight: 300; color: var(--muted); }
-    .hero-sub { font-size: 13px; line-height: 1.85; color: var(--muted); margin-top: 1.25rem; max-width: 380px; }
-    .hero-nav { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--rule); background: var(--rule); }
-    .hero-nav-item {
-      background: var(--paper);
-      padding: 1.1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-decoration: none;
-      color: var(--ink);
-      transition: background 0.12s;
-    }
-    .hero-nav-item:hover { background: rgba(13,13,12,0.03); }
-    .hero-nav-label { font-size: 13px; letter-spacing: 0.02em; }
-    .hero-nav-num { font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
-    .hero-nav-arrow { font-size: 12px; color: var(--muted); }
-    .service-block {
-      border-bottom: 1px solid var(--rule);
-      scroll-margin-top: 80px;
-    }
-    .service-header {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 4.5rem 3rem 0;
-      display: grid;
-      grid-template-columns: 56px 1fr auto;
-      gap: 2rem;
-      align-items: start;
-    }
-    .svc-num { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); padding-top: 6px; }
-    .svc-title { font-family: var(--serif); font-size: 38px; font-weight: 700; line-height: 1.1; }
-    .svc-title em { font-style: italic; font-weight: 300; color: var(--muted); }
-    .svc-price-badge { text-align: right; padding-top: 4px; }
-    .price-from { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .price-val { font-family: var(--serif); font-size: 32px; font-weight: 700; color: var(--ink); }
-    .price-note { font-size: 10px; letter-spacing: 0.06em; color: var(--muted); margin-top: 3px; }
-    .service-intro {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 3rem 0 calc(3rem + 56px + 2rem);
-    }
-    .service-intro p { font-size: 13px; line-height: 1.9; color: var(--muted); max-width: 640px; }
-    .service-body {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2.5rem 3rem 4.5rem calc(3rem + 56px + 2rem);
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 3rem;
-      align-items: start;
-    }
-    .inclusions-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1rem; }
-    .inclusions { border: 1px solid var(--rule); }
-    .inc-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 0.85rem 1.1rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .inc-row:last-child { border-bottom: none; }
-    .inc-check {
-      width: 16px;
-      height: 16px;
-      border: 1px solid var(--accent2);
-      flex-shrink: 0;
-      margin-top: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .inc-check::after {
-      content: "";
-      width: 8px;
-      height: 8px;
-      background: var(--accent2);
-      display: block;
-    }
-    .inc-text { font-size: 12px; line-height: 1.7; color: var(--ink); }
-    .right-col { display: flex; flex-direction: column; gap: 1.5rem; }
-    .ideal-card { border: 1px solid var(--rule); padding: 1.5rem; }
-    .card-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-    .ideal-item { font-size: 12px; line-height: 1.75; color: var(--muted); padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
-    .ideal-item:last-child { border-bottom: none; }
-    .timeline-card { border: 1px solid var(--rule); padding: 1.5rem; }
-    .timeline-val { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); }
-    .timeline-desc { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
-    .deliverables-card { border: 1px solid var(--rule); padding: 1.5rem; }
-    .del-tag { display: inline-block; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border: 1px solid var(--rule); color: var(--muted); margin: 0 4px 6px 0; }
-    .stack-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.5rem; }
-    .stk { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border: 1px solid var(--rule); color: var(--muted); }
-    .comparison-section {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 5rem 3rem;
-    }
-    .comparison-inner { max-width: 1100px; margin: 0 auto; }
-    .section-label-light { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(200,68,26,0.9); margin-bottom: 3rem; display: flex; align-items: center; gap: 1.2rem; }
-    .section-label-light::after { content: ""; flex: 1; height: 1px; background: rgba(245,242,235,0.1); }
-    .comparison-intro { font-family: var(--serif); font-size: 36px; font-weight: 700; line-height: 1.1; margin-bottom: 0.75rem; max-width: 500px; }
-    .comparison-intro em { font-style: italic; font-weight: 300; color: rgba(245,242,235,0.4); }
-    .comparison-sub { font-size: 13px; color: rgba(245,242,235,0.45); margin-bottom: 3rem; max-width: 460px; line-height: 1.8; }
-    .comp-table { width: 100%; border-collapse: collapse; }
-    .comp-table th {
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(245,242,235,0.4);
-      padding: 0.75rem 1.25rem;
-      text-align: left;
-      border-bottom: 1px solid rgba(245,242,235,0.08);
-    }
-    .comp-table th:not(:first-child) { text-align: center; }
-    .comp-table td {
-      padding: 1rem 1.25rem;
-      font-size: 12px;
-      border-bottom: 1px solid rgba(245,242,235,0.06);
-      color: rgba(245,242,235,0.65);
-    }
-    .comp-table td:not(:first-child) { text-align: center; }
-    .comp-table tr:last-child td { border-bottom: none; }
-    .comp-table tr:hover td { background: rgba(245,242,235,0.03); }
-    .comp-yes { color: #5dcaa5; font-size: 14px; }
-    .comp-no { color: rgba(245,242,235,0.2); font-size: 14px; }
-    .comp-partial { color: #ef9f27; font-size: 11px; letter-spacing: 0.06em; }
-    .comp-service-name { color: var(--paper); font-size: 13px; }
-    .faq-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 5rem 3rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .section-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 3rem; display: flex; align-items: center; gap: 1.2rem; }
-    .section-label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
-    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); background: var(--rule); }
-    .faq-item { background: var(--paper); padding: 2rem; }
-    .faq-q { font-family: var(--serif); font-size: 17px; font-weight: 700; margin-bottom: 0.85rem; line-height: 1.3; }
-    .faq-a { font-size: 12px; line-height: 1.8; color: var(--muted); }
-    .cta-strip {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 5rem 3rem;
-      text-align: center;
-    }
-    .cta-strip h2 { font-family: var(--serif); font-size: 44px; font-weight: 700; line-height: 1.08; margin-bottom: 1.25rem; }
-    .cta-strip h2 em { font-style: italic; font-weight: 300; color: rgba(245,242,235,0.4); }
-    .cta-strip p { font-size: 13px; color: rgba(245,242,235,0.45); max-width: 400px; margin: 0 auto 2.5rem; line-height: 1.85; }
-    .cta-btn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 14px 32px; border: 1px solid rgba(245,242,235,0.25); color: var(--paper); text-decoration: none; display: inline-block; transition: background 0.15s, border-color 0.15s; }
-    .cta-btn:hover { background: var(--accent); border-color: var(--accent); }
-    footer { padding: 1.5rem 3rem; display: flex; justify-content: center; align-items: center; background: var(--ink); border-top: 1px solid rgba(245,242,235,0.07); }
-    footer p { font-size: 11px; color: rgba(245,242,235,0.28); letter-spacing: 0.06em; text-align: center; }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-size: 11px; color: rgba(245,242,235,0.28); text-decoration: none; letter-spacing: 0.06em; transition: color 0.12s; }
-    .footer-links a:hover { color: var(--paper); }
-    @media (max-width: 860px) {
-      nav { padding: 1.25rem 1.5rem; }
-      .nav-links { display: none; }
-      .page-hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2.5rem; }
-      .hero-h1 { font-size: 38px; }
-      .service-header { grid-template-columns: 36px 1fr; padding: 3rem 1.5rem 0; }
-      .svc-price-badge { display: none; }
-      .service-intro { padding: 1.5rem 1.5rem 0 calc(1.5rem + 36px + 1.5rem); }
-      .service-body { grid-template-columns: 1fr; padding: 2rem 1.5rem 3.5rem calc(1.5rem + 36px + 1.5rem); }
-      .comparison-section { padding: 3.5rem 1.5rem; }
-      .comp-table th:nth-child(n+3), .comp-table td:nth-child(n+3) { display: none; }
-      .faq-section { padding: 3.5rem 1.5rem; }
-      .faq-grid { grid-template-columns: 1fr; }
-      .cta-strip { padding: 3.5rem 1.5rem; }
-      .cta-strip h2 { font-size: 30px; }
-      footer { flex-direction: column; gap: 0.75rem; padding: 1.25rem 1.5rem; }
-    }
-  </style>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rehanasadi.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://rehanasadi.com/services"
+          }
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "name": "Rehan Asadi - Tracking & Analytics Specialist",
+        "url": "https://rehanasadi.com/services",
+        "description": "Specialist GA4 setup, GTM architecture, server-side tracking (sGTM), Meta CAPI, and conversion measurement services.",
+        "founder": {
+          "@type": "Person",
+          "name": "Rehan Munawar",
+          "jobTitle": "Tracking & Measurement Specialist"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Tracking & Measurement Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "GA4 Setup and Architecture",
+                "description": "Full GA4 configuration, e-commerce dataLayer, custom event schemas, and DebugView QA."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Server-Side Tracking (sGTM)",
+                "description": "First-party sGTM deployment via Stape.io or GCP, bypassing ad-blockers and Safari ITP."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Meta CAPI and Attribution",
+                "description": "Conversions API implementation with deduplication and Event Match Quality optimization."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Google Ads Conversion Tracking",
+                "description": "Enhanced conversions, primary/secondary conversion actions, and lead/purchase measurement."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Tracking Audit",
+                "description": "Full diagnostic tracking audit across GTM, GA4, Meta, and store platforms with written remediation roadmap."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What tracking platforms do you work with?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "I specialize in Google Analytics 4 (GA4), Google Tag Manager (Web & Server-Side), Meta Conversions API (CAPI), Google Ads, Stape.io, Shopify, and WooCommerce."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you fix an existing GA4 or GTM setup?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Most projects involve auditing and rebuilding inherited setups: removing conflicting tags, fixing duplicate purchases, correcting measurement IDs, and restoring accurate attribution."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you implement server-side tracking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. I set up Server-Side GTM (sGTM) using Stape.io or Google Cloud Platform with custom first-party subdomains, extending cookie lifetime up to 400 days and recovering ad-blocked conversion data."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a tracking audit first?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If you are unsure where your tracking is leaking, an audit is the recommended starting point. The audit fee is credited toward implementation if you choose to proceed."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-<nav>
-  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
-  <ul class="nav-links">
-    <li><a href="services.html">Services</a></li>
-    <li><a href="case-studies.html">Work</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
-  </ul>
-  <a href="audit.html" class="nav-cta">Contact Us</a>
-</nav>
-<div style="border-bottom: 1px solid var(--rule);">
-  <div class="page-hero">
-    <div>
-      <p class="hero-eyebrow">Services</p>
-      <h1 class="hero-h1">Five ways I stop<br />your data <em>lying to you.</em></h1>
-      <p class="hero-sub">Each service is scoped to solve a specific tracking problem. Pick the one that matches where your data is breaking down, or start with an audit if you are not sure.</p>
-    </div>
-    <nav class="hero-nav" aria-label="Jump to service">
-      <a href="#ga4" class="hero-nav-item"><span class="hero-nav-label">GA4 Setup and Architecture</span><span class="hero-nav-num">01 <span class="hero-nav-arrow">↓</span></span></a>
-      <a href="#sgtm" class="hero-nav-item"><span class="hero-nav-label">Server-Side Tracking (sGTM)</span><span class="hero-nav-num">02 <span class="hero-nav-arrow">↓</span></span></a>
-      <a href="#capi" class="hero-nav-item"><span class="hero-nav-label">Meta CAPI and Attribution</span><span class="hero-nav-num">03 <span class="hero-nav-arrow">↓</span></span></a>
-      <a href="#audit" class="hero-nav-item"><span class="hero-nav-label">Tracking Audit</span><span class="hero-nav-num">04 <span class="hero-nav-arrow">↓</span></span></a>
-      <a href="#retainer" class="hero-nav-item"><span class="hero-nav-label">Ongoing Retainer</span><span class="hero-nav-num">05 <span class="hero-nav-arrow">↓</span></span></a>
-    </nav>
-  </div>
-</div>
-<section class="service-block" id="ga4">
-  <div class="service-header">
-    <div class="svc-num">01</div>
-    <h2 class="svc-title">GA4 Setup and <em>Architecture</em></h2>
-    <div class="svc-price-badge"><div class="price-from">From</div><div class="price-val">EUR350</div><div class="price-note">one-time, scoped per project</div></div>
-  </div>
-  <div class="service-intro">
-    <p>Most GA4 installs are rushed. This service rebuilds your setup with clean event architecture, clear naming, and validated conversion logic so reporting is reliable.</p>
-  </div>
-  <div class="service-body">
-    <div>
-      <p class="inclusions-label">What's included</p>
-      <div class="inclusions">
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Full GA4 property configuration with proper filters and retention settings</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Custom event schema for e-commerce, lead gen, or SaaS models</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">GTM web container setup with clean tags, triggers, and variables</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">E-commerce event setup from view_item to purchase</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">DebugView and Preview QA before go-live</span></div>
+
+  <!-- =========================================================================
+       1. SHARED HEADER
+       ========================================================================= -->
+  <header class="site-header">
+    <div class="ds-container">
+      <div class="site-header-inner">
+        <a href="/" class="site-logo" aria-label="Rehan Asadi Home">
+          rehan<span>.</span>asadi
+        </a>
+
+        <nav class="site-nav" aria-label="Main Navigation">
+          <a href="services.html" class="active">Services</a>
+          <a href="case-studies.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="google-ads-for-doctors-guide.html">Doctors Guide</a>
+          <a href="audit.html">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="audit.html" class="btn btn-primary">
+            Book an Audit <span class="btn-icon-arrow" aria-hidden="true">→</span>
+          </a>
+          <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
       </div>
-      <div class="stack-row"><span class="stk">GA4</span><span class="stk">GTM Web</span><span class="stk">DataLayer</span><span class="stk">DebugView</span></div>
     </div>
-    <div class="right-col">
-      <div class="ideal-card">
-        <p class="card-label">Best fit for</p>
-        <div class="ideal-item">Brands launching GA4 the right way</div>
-        <div class="ideal-item">Teams with inaccurate event data</div>
-        <div class="ideal-item">Agencies needing clean handover-ready setups</div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer" hidden>
+      <ul class="mobile-nav-list">
+        <li><a href="services.html" style="font-weight: 700; color: var(--ds-accent);">Services</a></li>
+        <li><a href="case-studies.html">Work / Case Studies</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
+        <li><a href="audit.html">Contact</a></li>
+      </ul>
+      <a href="audit.html" class="btn btn-primary" style="width: 100%; text-align: center;">
+        Book an Audit →
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================================
+         2. SERVICES HERO
+         ========================================================================= -->
+    <section class="inner-hero">
+      <div class="ds-container">
+        <div class="inner-hero-content">
+          <p class="ds-eyebrow">
+            <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+            Tracking &amp; Measurement Services
+          </p>
+          <h1 class="inner-hero-h1">
+            Accurate tracking for better marketing decisions.
+          </h1>
+          <p class="inner-hero-lead">
+            I help eCommerce brands, lead-generation businesses, and marketing teams diagnose data leaks, architect clean GA4 &amp; GTM setups, deploy server-side tracking, and fix Meta &amp; Google Ads attribution &mdash; so your budget decisions are based on real numbers.
+          </p>
+          <div class="inner-hero-actions">
+            <a href="audit.html" class="btn btn-primary">
+              Book a Tracking Audit <span class="btn-icon-arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="case-studies.html" class="btn btn-secondary">
+              View Case Studies
+            </a>
+          </div>
+
+          <!-- Quick Jump Navigation -->
+          <nav class="inner-jump-nav" aria-label="Jump to specific service">
+            <span class="inner-jump-label">Jump to:</span>
+            <a href="#ga4" class="inner-jump-link">GA4 Setup</a>
+            <a href="#sgtm" class="inner-jump-link">Server-Side (sGTM)</a>
+            <a href="#capi" class="inner-jump-link">Meta CAPI</a>
+            <a href="#gads" class="inner-jump-link">Google Ads Tracking</a>
+            <a href="#shopify" class="inner-jump-link">Shopify Tracking</a>
+            <a href="#audit" class="inner-jump-link">Tracking Audit</a>
+            <a href="#retainer" class="inner-jump-link">Retainer</a>
+          </nav>
+        </div>
       </div>
-      <div class="timeline-card"><p class="card-label">Delivery</p><div class="timeline-val">3-5</div><div class="timeline-desc">Business days from access</div></div>
-      <div class="deliverables-card"><p class="card-label">Deliverables</p><span class="del-tag">GTM Container</span><span class="del-tag">GA4 Property</span><span class="del-tag">QA Report</span><span class="del-tag">Documentation</span></div>
-    </div>
-  </div>
-</section>
-<section class="service-block" id="sgtm">
-  <div class="service-header">
-    <div class="svc-num">02</div>
-    <h2 class="svc-title">Server-Side Tracking <em>(sGTM)</em></h2>
-    <div class="svc-price-badge"><div class="price-from">From</div><div class="price-val">EUR550</div><div class="price-note">one-time, excludes hosting subscription</div></div>
-  </div>
-  <div class="service-intro">
-    <p>Browser tracking loses data due to blockers and privacy limits. sGTM routes events through first-party server infrastructure to improve conversion reliability.</p>
-  </div>
-  <div class="service-body">
-    <div>
-      <p class="inclusions-label">What's included</p>
-      <div class="inclusions">
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Server container setup via Stape.io or Google Cloud</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Custom subdomain for first-party collection</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Server-side GA4 routing and validation</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Cookie persistence strategy and deduplication</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Data parity QA and implementation guide</span></div>
+    </section>
+
+    <!-- =========================================================================
+         3. SERVICES OVERVIEW (6 CORE CARDS)
+         ========================================================================= -->
+    <section class="ds-section ds-section-subtle">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <p class="ds-eyebrow">
+            <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+            Service Catalog
+          </p>
+          <h2 class="ds-title">Scoped tracking solutions for every stage.</h2>
+          <p class="ds-desc" style="margin-top: 0.85rem;">
+            Whether you are launching a clean setup from scratch, fixing broken purchase events, or scaling first-party server infrastructure, each service is scoped to deliver dependable data.
+          </p>
+        </div>
+
+        <div class="services-grid-4" style="grid-template-columns: repeat(3, 1fr);">
+          <!-- Card 1 -->
+          <article class="service-card">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <svg class="service-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"></path></svg>
+            </div>
+            <h3 class="service-card-title">GA4 Setup &amp; Architecture</h3>
+            <p class="service-card-desc">
+              Custom event schemas, e-commerce dataLayer integration, cross-domain configuration, and clean reporting properties built without clutter.
+            </p>
+            <a href="#ga4" class="service-card-link">
+              Explore service details <span aria-hidden="true">↓</span>
+            </a>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="service-card">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <svg class="service-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            </div>
+            <h3 class="service-card-title">Server-Side Tracking (sGTM)</h3>
+            <p class="service-card-desc">
+              First-party server tagging via Stape.io or GCP. Bypass browser ad-blockers, extend Safari ITP cookie lifetimes up to 400 days, and secure attribution data.
+            </p>
+            <a href="#sgtm" class="service-card-link">
+              Explore service details <span aria-hidden="true">↓</span>
+            </a>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="service-card">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <svg class="service-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </div>
+            <h3 class="service-card-title">Meta CAPI &amp; Attribution</h3>
+            <p class="service-card-desc">
+              Direct server Conversions API integration with browser deduplication, advanced matching parameter hashing, and Event Match Quality (EMQ) optimization.
+            </p>
+            <a href="#capi" class="service-card-link">
+              Explore service details <span aria-hidden="true">↓</span>
+            </a>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="service-card">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <svg class="service-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <h3 class="service-card-title">Google Ads Conversion Tracking</h3>
+            <p class="service-card-desc">
+              Enhanced Conversions for leads and eCommerce, primary vs. secondary action structuring, and accurate conversion import to feed Smart Bidding algorithms.
+            </p>
+            <a href="#gads" class="service-card-link">
+              Explore service details <span aria-hidden="true">↓</span>
+            </a>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="service-card">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <svg class="service-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </div>
+            <h3 class="service-card-title">Shopify &amp; E-commerce Tracking</h3>
+            <p class="service-card-desc">
+              Customer Events Web Pixel and dataLayer architecture. Track checkouts, upsells, and purchases with 100% order reconciliation against Shopify admin.
+            </p>
+            <a href="#shopify" class="service-card-link">
+              Explore service details <span aria-hidden="true">↓</span>
+            </a>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="service-card">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <svg class="service-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </div>
+            <h3 class="service-card-title">Diagnostic Tracking Audit</h3>
+            <p class="service-card-desc">
+              Full forensic review of your GTM container, GA4 properties, ad pixels, and data accuracy. Delivered with prioritized issues and an actionable fix plan.
+            </p>
+            <a href="#audit" class="service-card-link">
+              Explore service details <span aria-hidden="true">↓</span>
+            </a>
+          </article>
+        </div>
       </div>
-      <div class="stack-row"><span class="stk">sGTM</span><span class="stk">Stape.io</span><span class="stk">Google Cloud</span><span class="stk">1st-party cookies</span></div>
-    </div>
-    <div class="right-col">
-      <div class="ideal-card"><p class="card-label">Best fit for</p><div class="ideal-item">Brands with attribution gaps</div><div class="ideal-item">Stores with heavy iOS traffic</div><div class="ideal-item">Teams needing future-proof tracking</div></div>
-      <div class="timeline-card"><p class="card-label">Delivery</p><div class="timeline-val">5-7</div><div class="timeline-desc">Business days from access</div></div>
-      <div class="deliverables-card"><p class="card-label">Deliverables</p><span class="del-tag">sGTM Container</span><span class="del-tag">Custom Subdomain</span><span class="del-tag">QA Report</span></div>
-    </div>
-  </div>
-</section>
-<section class="service-block" id="capi">
-  <div class="service-header">
-    <div class="svc-num">03</div>
-    <h2 class="svc-title">Meta CAPI and <em>Attribution</em></h2>
-    <div class="svc-price-badge"><div class="price-from">From</div><div class="price-val">EUR400</div><div class="price-note">one-time, standalone or bundled</div></div>
-  </div>
-  <div class="service-intro">
-    <p>Meta campaigns fail when only browser pixels are used. This service adds Conversions API with deduplication and event quality optimization so ad decisions use complete data.</p>
-  </div>
-  <div class="service-body">
-    <div>
-      <p class="inclusions-label">What's included</p>
-      <div class="inclusions">
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Meta Pixel and event quality audit</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">CAPI setup via server-side GTM or native integration</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Deduplication and customer parameter mapping</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">AEM and EMQ optimization in Events Manager</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Pre and post implementation comparison notes</span></div>
+    </section>
+
+    <!-- =========================================================================
+         4. DETAILED SERVICE BLOCKS
+         ========================================================================= -->
+
+    <!-- SERVICE 01: GA4 Setup & Architecture -->
+    <section class="service-detail-section" id="ga4">
+      <div class="ds-container">
+        <div class="service-detail-grid">
+          <div>
+            <div class="service-detail-header">
+              <div class="service-detail-num">Service 01</div>
+              <h2 class="service-detail-title">GA4 Setup and Architecture</h2>
+            </div>
+            <p class="service-detail-intro">
+              Most GA4 installations are rushed default implementations. This service builds or re-architects your property with clean event schemas, custom parameters, and validated conversion logic &mdash; ensuring your analytics data reflects actual user journeys.
+            </p>
+
+            <div class="inclusions-card">
+              <div class="inclusions-header">What's Included in This Service</div>
+              <ul class="inclusions-list">
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Full GA4 property configuration (data retention to 14 months, internal traffic filters, referral exclusions)
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Custom event schema design for e-commerce funnels, B2B lead generation, or SaaS metrics
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  GTM web container setup with standardized tag naming, clean triggers, and reusable variables
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Full funnel e-commerce tracking: view_item, add_to_cart, begin_checkout, and purchase events
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Comprehensive QA using GTM Preview mode and GA4 DebugView to verify data parity before go-live
+                </li>
+              </ul>
+            </div>
+
+            <p style="font-size: var(--ds-text-sm); color: var(--ds-text-secondary); margin-bottom: 1.5rem;">
+              Seeing fewer conversions in GA4 than your store backend? Read the diagnostic guide on <a href="ga4-not-tracking-conversions.html" style="color: var(--ds-accent); font-weight: 600; text-decoration: underline;">GA4 Not Tracking Conversions</a>.
+            </p>
+
+            <div class="service-tags-row">
+              <span class="ds-badge ds-badge-neutral">GA4</span>
+              <span class="ds-badge ds-badge-neutral">GTM Web</span>
+              <span class="ds-badge ds-badge-neutral">DataLayer</span>
+              <span class="ds-badge ds-badge-neutral">DebugView</span>
+              <span class="ds-badge ds-badge-neutral">E-commerce Schema</span>
+            </div>
+          </div>
+
+          <!-- Sidebar Card -->
+          <div>
+            <div class="service-sidebar-card">
+              <div class="sidebar-price-wrap">
+                <div>
+                  <span class="sidebar-price-label">Pricing</span>
+                  <div class="sidebar-price-val">EUR 350</div>
+                </div>
+                <span class="ds-badge ds-badge-green">One-time</span>
+              </div>
+
+              <div>
+                <h3 class="sidebar-section-title">Best Fit For</h3>
+                <ul class="fit-list">
+                  <li class="fit-item">Brands migrating or setting up GA4 the right way</li>
+                  <li class="fit-item">Teams dealing with unmapped or inaccurate event parameters</li>
+                  <li class="fit-item">Agencies needing clean, handover-ready client containers</li>
+                </ul>
+              </div>
+
+              <div class="delivery-meta-grid">
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Turnaround</div>
+                  <div class="delivery-cell-val">3&ndash;5</div>
+                  <div class="delivery-cell-note">Business days from access</div>
+                </div>
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Scope</div>
+                  <div class="delivery-cell-val">Full Setup</div>
+                  <div class="delivery-cell-note">Includes QA &amp; Handover</div>
+                </div>
+              </div>
+
+              <a href="audit.html" class="btn btn-primary" style="width: 100%;">
+                Book GA4 Setup <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="stack-row"><span class="stk">Meta CAPI</span><span class="stk">Meta Pixel</span><span class="stk">AEM</span><span class="stk">Events Manager</span></div>
-    </div>
-    <div class="right-col">
-      <div class="ideal-card"><p class="card-label">Best fit for</p><div class="ideal-item">Meta advertisers with low visible conversions</div><div class="ideal-item">Shopify brands with attribution mismatch</div><div class="ideal-item">Regulated categories requiring robust setup</div></div>
-      <div class="timeline-card"><p class="card-label">Delivery</p><div class="timeline-val">3-4</div><div class="timeline-desc">Business days from access</div></div>
-      <div class="deliverables-card"><p class="card-label">Deliverables</p><span class="del-tag">CAPI Config</span><span class="del-tag">AEM Setup</span><span class="del-tag">EMQ Report</span></div>
-    </div>
-  </div>
-</section>
-<section class="service-block" id="audit">
-  <div class="service-header">
-    <div class="svc-num">04</div>
-    <h2 class="svc-title">Tracking <em>Audit</em></h2>
-    <div class="svc-price-badge"><div class="price-from">From</div><div class="price-val">EUR199</div><div class="price-note">one-time, credited toward implementation</div></div>
-  </div>
-  <div class="service-intro">
-    <p>If you are unsure what is broken, this is the right starting point. You get a full diagnostic report with issue priority and a clear fix roadmap.</p>
-  </div>
-  <div class="service-body">
-    <div>
-      <p class="inclusions-label">What's included</p>
-      <div class="inclusions">
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">GTM audit across tags, triggers, and variables</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">GA4 property and conversion integrity checks</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Platform reconciliation against order or CRM data</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Meta Pixel and CAPI review where relevant</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Written remediation plan with priorities</span></div>
+    </section>
+
+    <!-- SERVICE 02: Server-Side Tracking (sGTM) -->
+    <section class="service-detail-section" id="sgtm">
+      <div class="ds-container">
+        <div class="service-detail-grid">
+          <div>
+            <div class="service-detail-header">
+              <div class="service-detail-num">Service 02</div>
+              <h2 class="service-detail-title">Server-Side Tracking (sGTM)</h2>
+            </div>
+            <p class="service-detail-intro">
+              Browser-based tracking is increasingly degraded by ad-blockers, Safari ITP 7-day cookie caps, and iOS privacy features. Server-side GTM routes conversion events through your own first-party server endpoint, creating resilient first-party data that protects marketing ROI.
+            </p>
+
+            <div class="inclusions-card">
+              <div class="inclusions-header">What's Included in This Service</div>
+              <ul class="inclusions-list">
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Dedicated Server GTM container provisioning via Stape.io or Google Cloud Platform (GCP)
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Custom subdomain configuration (e.g., ssgtm.yourdomain.com) for true first-party cookie context
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Server-side GA4 client &amp; tag routing to bypass ad-blocking network filters
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  First-party cookie persistence strategy (extending attribution longevity vs 7-day Safari caps)
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Event deduplication logic and comprehensive data parity testing before deployment
+                </li>
+              </ul>
+            </div>
+
+            <p style="font-size: var(--ds-text-sm); color: var(--ds-text-secondary); margin-bottom: 1.5rem;">
+              Want to understand the technical architecture? Read the full <a href="server-side-tracking-setup.html" style="color: var(--ds-accent); font-weight: 600; text-decoration: underline;">Server-Side Tracking Setup Guide</a>.
+              <br />
+              <span style="font-size: 11px; color: var(--ds-text-muted); display: block; margin-top: 4px;">
+                *Verified outcome: Up to 400-day cookie persistence achieved in the NordSleeps case study.
+              </span>
+            </p>
+
+            <div class="service-tags-row">
+              <span class="ds-badge ds-badge-neutral">sGTM</span>
+              <span class="ds-badge ds-badge-neutral">Stape.io Certified</span>
+              <span class="ds-badge ds-badge-neutral">Google Cloud</span>
+              <span class="ds-badge ds-badge-neutral">1st-Party Cookies</span>
+              <span class="ds-badge ds-badge-neutral">ITP Resilience</span>
+            </div>
+          </div>
+
+          <!-- Sidebar Card -->
+          <div>
+            <div class="service-sidebar-card">
+              <div class="sidebar-price-wrap">
+                <div>
+                  <span class="sidebar-price-label">Pricing</span>
+                  <div class="sidebar-price-val">EUR 550</div>
+                </div>
+                <span class="ds-badge ds-badge-green">One-time</span>
+              </div>
+
+              <div>
+                <h3 class="sidebar-section-title">Best Fit For</h3>
+                <ul class="fit-list">
+                  <li class="fit-item">High-growth brands with noticeable ad attribution gaps</li>
+                  <li class="fit-item">Stores with significant iOS/Safari customer traffic</li>
+                  <li class="fit-item">Teams preparing for strict privacy &amp; cookie regulations</li>
+                </ul>
+              </div>
+
+              <div class="delivery-meta-grid">
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Turnaround</div>
+                  <div class="delivery-cell-val">5&ndash;7</div>
+                  <div class="delivery-cell-note">Business days from access</div>
+                </div>
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Host</div>
+                  <div class="delivery-cell-val">Stape / GCP</div>
+                  <div class="delivery-cell-note">Custom Subdomain</div>
+                </div>
+              </div>
+
+              <a href="audit.html" class="btn btn-primary" style="width: 100%;">
+                Book Server-Side Tracking <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="stack-row"><span class="stk">GA4</span><span class="stk">GTM</span><span class="stk">Meta Pixel</span><span class="stk">CAPI</span><span class="stk">DebugView</span></div>
-    </div>
-    <div class="right-col">
-      <div class="ideal-card"><p class="card-label">Best fit for</p><div class="ideal-item">Inherited or messy tracking setups</div><div class="ideal-item">Campaign relaunch preparation</div><div class="ideal-item">Independent second opinion needs</div></div>
-      <div class="timeline-card"><p class="card-label">Delivery</p><div class="timeline-val">2-3</div><div class="timeline-desc">Business days from access</div></div>
-      <div class="deliverables-card"><p class="card-label">Deliverables</p><span class="del-tag">Written Report</span><span class="del-tag">Issue Priority List</span><span class="del-tag">Fix Roadmap</span></div>
-    </div>
-  </div>
-</section>
-<section class="service-block" id="retainer">
-  <div class="service-header">
-    <div class="svc-num">05</div>
-    <h2 class="svc-title">Ongoing <em>Retainer</em></h2>
-    <div class="svc-price-badge"><div class="price-from">From</div><div class="price-val">EUR300</div><div class="price-note">per month, minimum 3 months</div></div>
-  </div>
-  <div class="service-intro">
-    <p>Tracking breaks over time as platforms and websites change. Retainer support keeps data healthy and solves issues before they impact campaign performance.</p>
-  </div>
-  <div class="service-body">
-    <div>
-      <p class="inclusions-label">What's included</p>
-      <div class="inclusions">
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Monthly health checks across GA4, GTM, Meta, and server-side setup</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Monitoring after deploys and site changes</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Up to 5 hours implementation updates each month</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Priority response window on business days</span></div>
-        <div class="inc-row"><div class="inc-check"></div><span class="inc-text">Monthly summary and quarterly deep review</span></div>
+    </section>
+
+    <!-- SERVICE 03: Meta CAPI and Attribution -->
+    <section class="service-detail-section" id="capi">
+      <div class="ds-container">
+        <div class="service-detail-grid">
+          <div>
+            <div class="service-detail-header">
+              <div class="service-detail-num">Service 03</div>
+              <h2 class="service-detail-title">Meta CAPI and Attribution</h2>
+            </div>
+            <p class="service-detail-intro">
+              Running Meta Ads solely through a browser pixel leaves your campaigns vulnerable to iOS data loss and low Event Match Quality (EMQ). This service adds server-side Meta Conversions API (CAPI) with rigorous event deduplication so Meta's bidding algorithms receive complete, reliable signals.
+            </p>
+
+            <div class="inclusions-card">
+              <div class="inclusions-header">What's Included in This Service</div>
+              <ul class="inclusions-list">
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Full Meta Pixel and Event Manager diagnostics to identify drop-offs and low EMQ scores
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  CAPI setup via server-side GTM or direct platform integration
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Server-side event deduplication with matching event_id parameters to prevent double-counting
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Customer Information Parameter mapping (hashed email, phone, external ID, IP, user agent)
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Aggregated Event Measurement (AEM) priority configuration in Events Manager
+                </li>
+              </ul>
+            </div>
+
+            <p style="font-size: var(--ds-text-sm); color: var(--ds-text-secondary); margin-bottom: 1.5rem;">
+              Learn how deduplication and match quality work together in the <a href="meta-capi-setup.html" style="color: var(--ds-accent); font-weight: 600; text-decoration: underline;">Meta CAPI Setup Guide</a>.
+              <br />
+              <span style="font-size: 11px; color: var(--ds-text-muted); display: block; margin-top: 4px;">
+                *Verified outcome: +22% Event Match Quality lift documented in the Slageronline.nl case study.
+              </span>
+            </p>
+
+            <div class="service-tags-row">
+              <span class="ds-badge ds-badge-neutral">Meta CAPI</span>
+              <span class="ds-badge ds-badge-neutral">Meta Pixel</span>
+              <span class="ds-badge ds-badge-neutral">EMQ Lift</span>
+              <span class="ds-badge ds-badge-neutral">Event Deduplication</span>
+              <span class="ds-badge ds-badge-neutral">AEM</span>
+            </div>
+          </div>
+
+          <!-- Sidebar Card -->
+          <div>
+            <div class="service-sidebar-card">
+              <div class="sidebar-price-wrap">
+                <div>
+                  <span class="sidebar-price-label">Pricing</span>
+                  <div class="sidebar-price-val">EUR 400</div>
+                </div>
+                <span class="ds-badge ds-badge-green">One-time</span>
+              </div>
+
+              <div>
+                <h3 class="sidebar-section-title">Best Fit For</h3>
+                <ul class="fit-list">
+                  <li class="fit-item">Advertisers with low EMQ scores (under 6.0/10) in Events Manager</li>
+                  <li class="fit-item">Shopify and DTC brands seeing Meta under-reporting purchases</li>
+                  <li class="fit-item">Regulated niches needing compliant server-side data routing</li>
+                </ul>
+              </div>
+
+              <div class="delivery-meta-grid">
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Turnaround</div>
+                  <div class="delivery-cell-val">3&ndash;4</div>
+                  <div class="delivery-cell-note">Business days from access</div>
+                </div>
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Type</div>
+                  <div class="delivery-cell-val">Full CAPI</div>
+                  <div class="delivery-cell-note">Server Deduplication</div>
+                </div>
+              </div>
+
+              <a href="audit.html" class="btn btn-primary" style="width: 100%;">
+                Book Meta CAPI Setup <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="stack-row"><span class="stk">GA4</span><span class="stk">GTM</span><span class="stk">sGTM</span><span class="stk">Meta CAPI</span><span class="stk">Stape.io</span></div>
+    </section>
+
+    <!-- SERVICE 04: Google Ads Conversion Tracking -->
+    <section class="service-detail-section" id="gads">
+      <div class="ds-container">
+        <div class="service-detail-grid">
+          <div>
+            <div class="service-detail-header">
+              <div class="service-detail-num">Service 04</div>
+              <h2 class="service-detail-title">Google Ads Conversion Measurement</h2>
+            </div>
+            <p class="service-detail-intro">
+              Google Ads Smart Bidding (Target CPA and Target ROAS) requires accurate, timely conversion data to perform. Relying on delayed GA4 goal imports or misfiring tags weakens bidding signals. I implement native Google Ads conversion tracking and Enhanced Conversions for reliable attribution.
+            </p>
+
+            <div class="inclusions-card">
+              <div class="inclusions-header">What's Included in This Service</div>
+              <ul class="inclusions-list">
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Google Ads conversion tag architecture via GTM with clean firing triggers
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Enhanced Conversions setup for web (hashed user-provided customer data) to recover unassigned conversions
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Conversion action audit: structuring primary (bidding) vs. secondary (observation) actions
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Full transaction value and currency parameter pass-through for exact ROAS calculations
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Lead generation verification: form submissions, appointment bookings, and click-to-call conversions
+                </li>
+              </ul>
+            </div>
+
+            <p style="font-size: var(--ds-text-sm); color: var(--ds-text-secondary); margin-bottom: 1.5rem;">
+              Running medical or specialized service campaigns? Check out the <a href="google-ads-for-doctors-guide.html" style="color: var(--ds-accent); font-weight: 600; text-decoration: underline;">Google Ads Complete Guide</a>.
+            </p>
+
+            <div class="service-tags-row">
+              <span class="ds-badge ds-badge-neutral">Google Ads Certified</span>
+              <span class="ds-badge ds-badge-neutral">Enhanced Conversions</span>
+              <span class="ds-badge ds-badge-neutral">Smart Bidding</span>
+              <span class="ds-badge ds-badge-neutral">Lead Tracking</span>
+              <span class="ds-badge ds-badge-neutral">ROAS Accuracy</span>
+            </div>
+          </div>
+
+          <!-- Sidebar Card -->
+          <div>
+            <div class="service-sidebar-card">
+              <div class="sidebar-price-wrap">
+                <div>
+                  <span class="sidebar-price-label">Pricing</span>
+                  <div class="sidebar-price-val">EUR 350</div>
+                </div>
+                <span class="ds-badge ds-badge-green">One-time</span>
+              </div>
+
+              <div>
+                <h3 class="sidebar-section-title">Best Fit For</h3>
+                <ul class="fit-list">
+                  <li class="fit-item">Advertisers running Search, Performance Max, or YouTube ads</li>
+                  <li class="fit-item">Accounts experiencing high CPCs with uncertain lead attribution</li>
+                  <li class="fit-item">Brands seeking to activate Google Ads Enhanced Conversions</li>
+                </ul>
+              </div>
+
+              <div class="delivery-meta-grid">
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Turnaround</div>
+                  <div class="delivery-cell-val">3&ndash;5</div>
+                  <div class="delivery-cell-note">Business days from access</div>
+                </div>
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Coverage</div>
+                  <div class="delivery-cell-val">PMax / Search</div>
+                  <div class="delivery-cell-note">Enhanced Conversions</div>
+                </div>
+              </div>
+
+              <a href="audit.html" class="btn btn-primary" style="width: 100%;">
+                Book Google Ads Tracking <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE 05: Shopify & E-commerce Tracking -->
+    <section class="service-detail-section" id="shopify">
+      <div class="ds-container">
+        <div class="service-detail-grid">
+          <div>
+            <div class="service-detail-header">
+              <div class="service-detail-num">Service 05</div>
+              <h2 class="service-detail-title">Shopify &amp; E-commerce Tracking</h2>
+            </div>
+            <p class="service-detail-intro">
+              Shopify checkout updates, post-purchase upsell apps, and checkout domain redirects frequently break standard tracking pixels. This service rebuilds your entire e-commerce measurement pipeline across Shopify, Customer Events Web Pixels, GA4, Meta, and Google Ads.
+            </p>
+
+            <div class="inclusions-card">
+              <div class="inclusions-header">What's Included in This Service</div>
+              <ul class="inclusions-list">
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Shopify Customer Events Web Pixel API or custom dataLayer implementation
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Full item-scoped event mapping: view_item_list, view_item, add_to_cart, begin_checkout, and purchase
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Handling of multi-currency conversions, order discounts, shipping, and tax parameters
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Resolution of duplicate purchase tracking on thank-you page refreshes and order status re-visits
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Full order reconciliation between Shopify Admin orders and GA4/Ad platform recorded revenue
+                </li>
+              </ul>
+            </div>
+
+            <p style="font-size: var(--ds-text-sm); color: var(--ds-text-secondary); margin-bottom: 1.5rem;">
+              Having checkout drops or missing purchase events? Read our dedicated <a href="shopify-ga4-tracking.html" style="color: var(--ds-accent); font-weight: 600; text-decoration: underline;">Shopify GA4 Tracking Fix Guide</a>.
+              <br />
+              <span style="font-size: 11px; color: var(--ds-text-muted); display: block; margin-top: 4px;">
+                *Verified outcome: 100% order reconciliation achieved in the Packaging Discounter NL case study.
+              </span>
+            </p>
+
+            <div class="service-tags-row">
+              <span class="ds-badge ds-badge-neutral">Shopify</span>
+              <span class="ds-badge ds-badge-neutral">Web Pixels API</span>
+              <span class="ds-badge ds-badge-neutral">E-commerce Funnel</span>
+              <span class="ds-badge ds-badge-neutral">Order Reconciliation</span>
+              <span class="ds-badge ds-badge-neutral">WooCommerce</span>
+            </div>
+          </div>
+
+          <!-- Sidebar Card -->
+          <div>
+            <div class="service-sidebar-card">
+              <div class="sidebar-price-wrap">
+                <div>
+                  <span class="sidebar-price-label">Pricing</span>
+                  <div class="sidebar-price-val">EUR 400</div>
+                </div>
+                <span class="ds-badge ds-badge-green">One-time</span>
+              </div>
+
+              <div>
+                <h3 class="sidebar-section-title">Best Fit For</h3>
+                <ul class="fit-list">
+                  <li class="fit-item">Shopify and Shopify Plus merchants scaling ad spend</li>
+                  <li class="fit-item">Stores with post-purchase upsells or custom checkout flows</li>
+                  <li class="fit-item">Brands with substantial revenue gaps between store admin &amp; GA4</li>
+                </ul>
+              </div>
+
+              <div class="delivery-meta-grid">
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Turnaround</div>
+                  <div class="delivery-cell-val">3&ndash;5</div>
+                  <div class="delivery-cell-note">Business days from access</div>
+                </div>
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Platform</div>
+                  <div class="delivery-cell-val">Shopify / Woo</div>
+                  <div class="delivery-cell-note">Full Funnel QA</div>
+                </div>
+              </div>
+
+              <a href="audit.html" class="btn btn-primary" style="width: 100%;">
+                Book Shopify Tracking <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE 06: Tracking Audit -->
+    <section class="service-detail-section" id="audit">
+      <div class="ds-container">
+        <div class="service-detail-grid">
+          <div>
+            <div class="service-detail-header">
+              <div class="service-detail-num">Service 06</div>
+              <h2 class="service-detail-title">Diagnostic Tracking Audit</h2>
+            </div>
+            <p class="service-detail-intro">
+              If you are unsure where your data is breaking down or why reported ROAS does not match bank deposits, this audit is the fastest starting point. You receive a forensic diagnostic review with prioritized issues and an actionable roadmap to fix your tracking.
+            </p>
+
+            <div class="inclusions-card">
+              <div class="inclusions-header">What's Included in This Service</div>
+              <ul class="inclusions-list">
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  GTM container audit: identifying orphaned tags, redundant triggers, and dataLayer mismatches
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  GA4 property &amp; conversion integrity check: testing data retention, stream IDs, and event schemas
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Platform revenue reconciliation: comparing store backend orders against GA4 and ad channels
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Meta Pixel, CAPI, and Google Ads tag verification and Event Match Quality review
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Written remediation report with prioritized action items and clear implementation estimates
+                </li>
+              </ul>
+            </div>
+
+            <p style="font-size: var(--ds-text-sm); color: var(--ds-text-secondary); margin-bottom: 1.5rem;">
+              Ready to submit your website for review? Go directly to the <a href="audit.html" style="color: var(--ds-accent); font-weight: 600; text-decoration: underline;">Tracking Audit Request Page</a>.
+            </p>
+
+            <div class="service-tags-row">
+              <span class="ds-badge ds-badge-neutral">Forensic Audit</span>
+              <span class="ds-badge ds-badge-neutral">Issue Matrix</span>
+              <span class="ds-badge ds-badge-neutral">GTM Inspection</span>
+              <span class="ds-badge ds-badge-neutral">GA4 Diagnostics</span>
+              <span class="ds-badge ds-badge-neutral">Credited toward fixes</span>
+            </div>
+          </div>
+
+          <!-- Sidebar Card -->
+          <div>
+            <div class="service-sidebar-card">
+              <div class="sidebar-price-wrap">
+                <div>
+                  <span class="sidebar-price-label">Pricing</span>
+                  <div class="sidebar-price-val">EUR 199</div>
+                </div>
+                <span class="ds-badge ds-badge-green">Credited</span>
+              </div>
+
+              <div>
+                <h3 class="sidebar-section-title">Best Fit For</h3>
+                <ul class="fit-list">
+                  <li class="fit-item">Teams with inherited, cluttered GTM containers</li>
+                  <li class="fit-item">Brands preparing to scale paid ad budgets</li>
+                  <li class="fit-item">Anyone needing an unbiased technical second opinion</li>
+                </ul>
+              </div>
+
+              <div class="delivery-meta-grid">
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Turnaround</div>
+                  <div class="delivery-cell-val">2&ndash;3</div>
+                  <div class="delivery-cell-note">Business days from access</div>
+                </div>
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Bonus</div>
+                  <div class="delivery-cell-val">100%</div>
+                  <div class="delivery-cell-note">Credited if hired for fix</div>
+                </div>
+              </div>
+
+              <a href="audit.html" class="btn btn-primary" style="width: 100%;">
+                Request Tracking Audit <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE 07: Ongoing Retainer -->
+    <section class="service-detail-section" id="retainer">
+      <div class="ds-container">
+        <div class="service-detail-grid">
+          <div>
+            <div class="service-detail-header">
+              <div class="service-detail-num">Service 07</div>
+              <h2 class="service-detail-title">Ongoing Tracking Retainer</h2>
+            </div>
+            <p class="service-detail-intro">
+              Tracking systems break quietly when developers push code, CMS plugins update, or ad platform APIs change. My ongoing retainer provides continuous monitoring, monthly health checks, and rapid troubleshooting to ensure your analytics and attribution remain bulletproof.
+            </p>
+
+            <div class="inclusions-card">
+              <div class="inclusions-header">What's Included in This Service</div>
+              <ul class="inclusions-list">
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Monthly health checks across GA4, GTM, Meta CAPI, and server-side containers
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Post-deployment QA after theme changes, new app installs, or checkout updates
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Up to 5 hours of direct implementation updates and tag maintenance each month
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Priority response window (&lt;24h on business days via WhatsApp or email)
+                </li>
+                <li class="inclusion-item">
+                  <span class="inclusion-check" aria-hidden="true">✓</span>
+                  Monthly measurement summary and quarterly deep-dive strategy review
+                </li>
+              </ul>
+            </div>
+
+            <div class="service-tags-row">
+              <span class="ds-badge ds-badge-neutral">Monitoring</span>
+              <span class="ds-badge ds-badge-neutral">Maintenance</span>
+              <span class="ds-badge ds-badge-neutral">Priority SLA</span>
+              <span class="ds-badge ds-badge-neutral">5 hrs/month</span>
+              <span class="ds-badge ds-badge-neutral">Direct WhatsApp</span>
+            </div>
+          </div>
+
+          <!-- Sidebar Card -->
+          <div>
+            <div class="service-sidebar-card">
+              <div class="sidebar-price-wrap">
+                <div>
+                  <span class="sidebar-price-label">Pricing</span>
+                  <div class="sidebar-price-val">EUR 300<span style="font-size: 1rem; font-weight: 500; color: var(--ds-text-muted);">/mo</span></div>
+                </div>
+                <span class="ds-badge ds-badge-neutral">Min. 3 months</span>
+              </div>
+
+              <div>
+                <h3 class="sidebar-section-title">Best Fit For</h3>
+                <ul class="fit-list">
+                  <li class="fit-item">Active eCommerce stores running aggressive ad spend</li>
+                  <li class="fit-item">Agencies requiring white-label technical tracking support</li>
+                  <li class="fit-item">Businesses with frequent website updates and developer sprints</li>
+                </ul>
+              </div>
+
+              <div class="delivery-meta-grid">
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">SLA</div>
+                  <div class="delivery-cell-val">&lt;24h</div>
+                  <div class="delivery-cell-note">Priority support</div>
+                </div>
+                <div class="delivery-cell">
+                  <div class="delivery-cell-label">Included</div>
+                  <div class="delivery-cell-val">5 Hours</div>
+                  <div class="delivery-cell-note">Monthly implementation</div>
+                </div>
+              </div>
+
+              <a href="audit.html" class="btn btn-primary" style="width: 100%;">
+                Discuss Retainer Support <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. COMPARISON TABLE / MATRIX
+         ========================================================================= -->
+    <section class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <p class="ds-eyebrow">
+            <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+            At A Glance
+          </p>
+          <h2 class="ds-title">Which service matches your current challenge?</h2>
+          <p class="ds-desc" style="margin-top: 0.85rem;">
+            A quick reference matrix showing what each tracking package covers, expected timelines, and starting investments.
+          </p>
+        </div>
+
+        <div class="comparison-wrap">
+          <table class="ds-table">
+            <thead>
+              <tr>
+                <th style="min-width: 220px;">Service</th>
+                <th>GA4</th>
+                <th>sGTM</th>
+                <th>Meta CAPI</th>
+                <th>Enhanced Conv.</th>
+                <th>Server Cookies</th>
+                <th>Turnaround</th>
+                <th>Starting From</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="table-service-name">GA4 Setup &amp; Architecture</td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-dash">&mdash;</span></td>
+                <td><span class="table-dash">&mdash;</span></td>
+                <td><span class="table-dash">&mdash;</span></td>
+                <td><span class="table-dash">&mdash;</span></td>
+                <td>3&ndash;5 days</td>
+                <td>EUR 350</td>
+              </tr>
+              <tr>
+                <td class="table-service-name">Server-Side Tracking (sGTM)</td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-optional">Optional</span></td>
+                <td><span class="table-optional">Optional</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td>5&ndash;7 days</td>
+                <td>EUR 550</td>
+              </tr>
+              <tr>
+                <td class="table-service-name">Meta CAPI &amp; Attribution</td>
+                <td><span class="table-dash">&mdash;</span></td>
+                <td><span class="table-optional">Optional</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-dash">&mdash;</span></td>
+                <td><span class="table-dash">&mdash;</span></td>
+                <td>3&ndash;4 days</td>
+                <td>EUR 400</td>
+              </tr>
+              <tr>
+                <td class="table-service-name">Google Ads Measurement</td>
+                <td><span class="table-optional">Optional</span></td>
+                <td><span class="table-optional">Optional</span></td>
+                <td><span class="table-dash">&mdash;</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-dash">&mdash;</span></td>
+                <td>3&ndash;5 days</td>
+                <td>EUR 350</td>
+              </tr>
+              <tr>
+                <td class="table-service-name">Shopify &amp; E-commerce Tracking</td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-optional">Optional</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-optional">Optional</span></td>
+                <td>3&ndash;5 days</td>
+                <td>EUR 400</td>
+              </tr>
+              <tr>
+                <td class="table-service-name">Diagnostic Tracking Audit</td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td>2&ndash;3 days</td>
+                <td>EUR 199 <small>(Credited)</small></td>
+              </tr>
+              <tr>
+                <td class="table-service-name">Ongoing Retainer</td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td><span class="table-check">✓</span></td>
+                <td>Ongoing</td>
+                <td>EUR 300/mo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. PROBLEMS THIS SOLVES
+         ========================================================================= -->
+    <section class="ds-section ds-section-subtle">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <p class="ds-eyebrow">
+            <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+            Real Tracking Problems
+          </p>
+          <h2 class="ds-title">Common breakdowns I resolve for clients.</h2>
+        </div>
+
+        <div class="problems-grid">
+          <div class="problem-card">
+            <div class="problem-card-num">DIAGNOSTIC 01</div>
+            <h3 class="problem-card-title">Ads Show Conversions Analytics Misses</h3>
+            <p class="problem-card-desc">
+              Attribution mismatch between Meta Ads Manager, Google Ads, and GA4 leaves founders guessing which channel actually generated revenue.
+            </p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-card-num">DIAGNOSTIC 02</div>
+            <h3 class="problem-card-title">Duplicate Purchase Events</h3>
+            <p class="problem-card-desc">
+              Customers refreshing order confirmation pages or visiting order status links repeatedly trigger purchase tags, artificially inflating reported ROAS.
+            </p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-card-num">DIAGNOSTIC 03</div>
+            <h3 class="problem-card-title">Weak Meta Match Quality (EMQ)</h3>
+            <p class="problem-card-desc">
+              Low event quality scores in Meta Events Manager mean Meta's ad algorithm struggles to match conversions with real user profiles.
+            </p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-card-num">DIAGNOSTIC 04</div>
+            <h3 class="problem-card-title">Browser Tracking Drops 20&ndash;40% Data</h3>
+            <p class="problem-card-desc">
+              iOS privacy restrictions and ad-blockers prevent standard client-side JavaScript pixels from completing network requests.
+            </p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-card-num">DIAGNOSTIC 05</div>
+            <h3 class="problem-card-title">Incomplete Remarketing Audiences</h3>
+            <p class="problem-card-desc">
+              When conversion and pageview events drop off, warm audience retargeting pools shrink, increasing overall cost-per-acquisition.
+            </p>
+          </div>
+
+          <div class="problem-card">
+            <div class="problem-card-num">DIAGNOSTIC 06</div>
+            <h3 class="problem-card-title">Messy Inherited GTM Containers</h3>
+            <p class="problem-card-desc">
+              Years of agency handoffs leave dozens of orphaned, duplicate, or broken tags that slow down page loads and conflict with each other.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. PLATFORM EXPERTISE STRIP
+         ========================================================================= -->
+    <section class="trust-strip" aria-label="Supported Platforms">
+      <div class="ds-container">
+        <div class="trust-strip-inner">
+          <div>
+            <p class="trust-col-label">Supported Ad &amp; Analytics Platforms</p>
+            <div class="trust-logos-row">
+              <span class="trust-logo-item">Google Analytics 4</span>
+              <span class="trust-logo-item">Google Tag Manager</span>
+              <span class="trust-logo-item">Google Ads</span>
+              <span class="trust-logo-item">Meta CAPI</span>
+            </div>
+          </div>
+          <div class="trust-divider-vertical" aria-hidden="true"></div>
+          <div>
+            <p class="trust-col-label">E-commerce &amp; Infrastructure</p>
+            <div class="trust-logos-row">
+              <span class="trust-logo-item">Shopify</span>
+              <span class="trust-logo-item">WooCommerce</span>
+              <span class="trust-logo-item">Stape.io</span>
+              <span class="trust-logo-item">Google Cloud</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         8. PROOF & VERIFIED CASE STUDIES
+         ========================================================================= -->
+    <section class="ds-section" id="proof">
+      <div class="ds-container">
+        <div class="ds-section-header-split">
+          <div>
+            <p class="ds-eyebrow">
+              <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+              Documented Results
+            </p>
+            <h2 class="ds-title">Real setups. Documented outcomes.</h2>
+          </div>
+          <div>
+            <a href="case-studies.html" class="ds-header-link">
+              Explore all case studies <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="case-studies-grid">
+          <!-- Case 1: Slageronline.nl -->
+          <article class="case-study-card">
+            <div class="case-study-image-box">
+              <img src="assets/images/proof-1.png" alt="Slageronline.nl tracking proof" loading="lazy" />
+              <span class="case-study-badge-tag">E-commerce / NL</span>
+            </div>
+            <div class="case-study-body">
+              <h3 class="case-study-title">Slageronline.nl: +22% Event Match Quality Lift</h3>
+              <p class="case-study-desc">
+                Dutch butcher store was missing ~35% of purchase events due to browser ad-blocking. Deployed sGTM on Stape.io with Meta CAPI deduplication and GA4 e-commerce mapping.
+              </p>
+              <a href="case-studies.html" class="case-study-link">
+                View case details <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Case 2: NordSleeps -->
+          <article class="case-study-card">
+            <div class="case-study-image-box">
+              <img src="assets/images/proof-2.png" alt="NordSleeps GTM rebuild proof" loading="lazy" />
+              <span class="case-study-badge-tag">DTC / NL</span>
+            </div>
+            <div class="case-study-body">
+              <h3 class="case-study-title">NordSleeps: 400-Day Cookie Persistence &amp; Container Rebuild</h3>
+              <p class="case-study-desc">
+                Safari ITP capped cookies at 7 days, blinding returning attribution. Deployed server-side first-party cookies via Stape.io and eliminated 40+ conflicting agency tags.
+              </p>
+              <a href="case-studies.html" class="case-study-link">
+                View case details <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Case 3: Packaging Discounter -->
+          <article class="case-study-card">
+            <div class="case-study-image-box">
+              <img src="assets/images/proof-3.png" alt="Packaging Discounter order reconciliation proof" loading="lazy" />
+              <span class="case-study-badge-tag">B2B / NL</span>
+            </div>
+            <div class="case-study-body">
+              <h3 class="case-study-title">Packaging Discounter: +60% Data Recovered &amp; 100% Reconciliation</h3>
+              <p class="case-study-desc">
+                GA4 reported 60% fewer conversions than actual Shopify orders due to 3 duplicate tags. Rebuilt a single source-of-truth GTM container with 100% order reconciliation.
+              </p>
+              <a href="case-studies.html" class="case-study-link">
+                View case details <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         9. IMPLEMENTATION PROCESS (4 STEPS)
+         ========================================================================= -->
+    <section class="ds-section ds-section-subtle">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <p class="ds-eyebrow">
+            <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+            Implementation Framework
+          </p>
+          <h2 class="ds-title">How we work together.</h2>
+          <p class="ds-desc" style="margin-top: 0.85rem;">
+            A transparent, 4-step execution process from initial discovery to final data validation.
+          </p>
+        </div>
+
+        <div class="process-steps-bar">
+          <div class="process-step-card">
+            <div class="process-step-number">1</div>
+            <div class="process-step-arrow" aria-hidden="true">→</div>
+            <h3 class="process-step-title">Discover</h3>
+            <p class="process-step-desc">
+              We discuss your marketing tech stack, specific conversion discrepancies, and commercial goals.
+            </p>
+          </div>
+
+          <div class="process-step-card">
+            <div class="process-step-number">2</div>
+            <div class="process-step-arrow" aria-hidden="true">→</div>
+            <h3 class="process-step-title">Audit &amp; Plan</h3>
+            <p class="process-step-desc">
+              I audit your containers, dataLayer, and properties, delivering a written, prioritized remediation roadmap.
+            </p>
+          </div>
+
+          <div class="process-step-card">
+            <div class="process-step-number">3</div>
+            <div class="process-step-arrow" aria-hidden="true">→</div>
+            <h3 class="process-step-title">Implement</h3>
+            <p class="process-step-desc">
+              I configure GTM tags, server endpoints, CAPI parameters, and deduplication logic with clean naming standards.
+            </p>
+          </div>
+
+          <div class="process-step-card">
+            <div class="process-step-number">4</div>
+            <h3 class="process-step-title">Validate &amp; Improve</h3>
+            <p class="process-step-desc">
+              We test in DebugView, verify live order parity against ad platform numbers, and deliver complete handover documentation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         10. WHO THIS IS FOR
+         ========================================================================= -->
+    <section class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <p class="ds-eyebrow">
+            <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+            Client Fit
+          </p>
+          <h2 class="ds-title">Who these services are designed for.</h2>
+        </div>
+
+        <div class="audience-grid">
+          <div class="audience-card">
+            <div class="audience-icon" aria-hidden="true">🛍️</div>
+            <h3 class="audience-title">E-commerce &amp; Shopify Brands</h3>
+            <p class="audience-desc">
+              Stores spending $3k to $50k+/month on paid ads that need accurate ROAS calculations, full checkout funnel visibility, and order deduplication.
+            </p>
+          </div>
+
+          <div class="audience-card">
+            <div class="audience-icon" aria-hidden="true">🎯</div>
+            <h3 class="audience-title">Meta &amp; Google Advertisers</h3>
+            <p class="audience-desc">
+              Media buyers and growth teams who need high Event Match Quality (EMQ) and Enhanced Conversions to feed Smart Bidding algorithms with clean signals.
+            </p>
+          </div>
+
+          <div class="audience-card">
+            <div class="audience-icon" aria-hidden="true">📈</div>
+            <h3 class="audience-title">Lead Generation &amp; Agencies</h3>
+            <p class="audience-desc">
+              B2B companies, clinics, and digital marketing agencies needing white-label tracking architecture, qualified lead tracking, and reliable handover setups.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         11. DEEP DIVE GUIDES RACK
+         ========================================================================= -->
+    <section class="ds-section ds-section-subtle">
+      <div class="ds-container">
+        <div class="ds-section-header">
+          <p class="ds-eyebrow">
+            <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+            Technical Knowledge Base
+          </p>
+          <h2 class="ds-title">Deep-dive tracking guides.</h2>
+          <p class="ds-desc" style="margin-top: 0.85rem;">
+            Explore in-depth documentation on common tracking errors, architectural fixes, and best practices.
+          </p>
+        </div>
+
+        <div class="guides-rack-grid">
+          <a href="shopify-ga4-tracking.html" class="guide-rack-card">
+            <span class="guide-rack-tag">Shopify + GA4</span>
+            <h3 class="guide-rack-title">Shopify GA4 Tracking Fix</h3>
+            <p class="guide-rack-desc">Step-by-step diagnostic breakdown for resolving missing purchase events and checkout drops.</p>
+            <span class="guide-rack-cta">Read guide <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a href="server-side-tracking-setup.html" class="guide-rack-card">
+            <span class="guide-rack-tag">Server-Side GTM</span>
+            <h3 class="guide-rack-title">Server-Side Tracking Setup</h3>
+            <p class="guide-rack-desc">How sGTM with Stape.io bypasses browser blockers and extends cookie persistence.</p>
+            <span class="guide-rack-cta">Read guide <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a href="ga4-not-tracking-conversions.html" class="guide-rack-card">
+            <span class="guide-rack-tag">GA4 Diagnostics</span>
+            <h3 class="guide-rack-title">GA4 Not Tracking Conversions</h3>
+            <p class="guide-rack-desc">The 7 most frequent reasons GA4 underreports conversions and how to fix each one.</p>
+            <span class="guide-rack-cta">Read guide <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a href="meta-capi-setup.html" class="guide-rack-card">
+            <span class="guide-rack-tag">Meta CAPI</span>
+            <h3 class="guide-rack-title">Meta CAPI Setup Guide</h3>
+            <p class="guide-rack-desc">Fixing server deduplication, customer parameter hashing, and Event Match Quality.</p>
+            <span class="guide-rack-cta">Read guide <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         12. FAQ SECTION
+         ========================================================================= -->
+    <section class="ds-section" id="faq">
+      <div class="ds-container">
+        <div class="ds-section-header" style="text-align: center; max-width: 680px; margin-left: auto; margin-right: auto;">
+          <p class="ds-eyebrow" style="justify-content: center;">
+            <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+            Frequently Asked Questions
+          </p>
+          <h2 class="ds-title">Questions about services &amp; delivery.</h2>
+        </div>
+
+        <div class="ds-accordion-list">
+          <details class="ds-accordion-item" open>
+            <summary class="ds-accordion-summary">
+              What tracking platforms do you work with?
+              <span class="ds-accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="ds-accordion-body">
+              I specialize in Google Analytics 4 (GA4), Google Tag Manager (Web &amp; Server-Side containers), Meta Conversions API (CAPI), Google Ads conversion tracking, and Stape.io. On the store side, I work with Shopify, Shopify Plus, WooCommerce, Magento, custom web apps, and CMS platforms.
+            </div>
+          </details>
+
+          <details class="ds-accordion-item">
+            <summary class="ds-accordion-summary">
+              Can you fix an existing GA4 or GTM setup without starting over?
+              <span class="ds-accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="ds-accordion-body">
+              Yes. Many engagements involve auditing and refining existing containers. I clean up orphaned tags, resolve duplicate purchase firing triggers, align measurement IDs, and ensure proper dataLayer variables without disrupting existing historical reporting.
+            </div>
+          </details>
+
+          <details class="ds-accordion-item">
+            <summary class="ds-accordion-summary">
+              Do I need server-side tracking if I already have standard GA4 and Meta Pixel?
+              <span class="ds-accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="ds-accordion-body">
+              If your business spends meaningfully on paid advertising or receives substantial traffic from iOS / Safari devices, server-side tracking is highly recommended. Client-side pixels lose 20% to 40% of conversion data due to ad-blockers and Safari 7-day ITP caps. Server-side tagging (sGTM) recovers this lost data and extends cookie persistence up to 400 days.
+            </div>
+          </details>
+
+          <details class="ds-accordion-item">
+            <summary class="ds-accordion-summary">
+              What access is required to begin implementation?
+              <span class="ds-accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="ds-accordion-body">
+              Typically, I require Editor access to Google Tag Manager, Administrator/Editor access to GA4, Partner or Admin access to Meta Business Manager / Events Manager, and standard collaborator or staff access to your website CMS (e.g., Shopify Collaborator or WordPress Administrator).
+            </div>
+          </details>
+
+          <details class="ds-accordion-item">
+            <summary class="ds-accordion-summary">
+              Can you coordinate with our existing web developer or marketing agency?
+              <span class="ds-accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="ds-accordion-body">
+              Yes. I frequently collaborate with internal development teams, agency account managers, and freelance media buyers. I provide precise technical dataLayer specifications and handle all GTM/server configurations directly, minimizing the workload for your engineers.
+            </div>
+          </details>
+
+          <details class="ds-accordion-item">
+            <summary class="ds-accordion-summary">
+              How do you validate conversion accuracy before project completion?
+              <span class="ds-accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="ds-accordion-body">
+              I conduct end-to-end sandbox and live testing. Every conversion action is validated in GTM Preview mode, GA4 DebugView, and Meta Test Events. Following live release, I reconcile incoming analytics purchases directly against your store backend order numbers to confirm 100% parity.
+            </div>
+          </details>
+
+          <details class="ds-accordion-item">
+            <summary class="ds-accordion-summary">
+              Do I need to start with a diagnostic tracking audit?
+              <span class="ds-accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="ds-accordion-body">
+              If you have a clear, specific requirement (such as setting up a new server container or adding Meta CAPI), we can proceed directly to implementation. If you are experiencing unexplained discrepancies or inherited a broken setup, the tracking audit is the recommended starting point &mdash; and its fee is 100% credited toward your implementation.
+            </div>
+          </details>
+
+          <details class="ds-accordion-item">
+            <summary class="ds-accordion-summary">
+              Are listed prices fixed or scoped per project?
+              <span class="ds-accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="ds-accordion-body">
+              The listed prices are standard starting baselines for single-domain setups. Complex multi-domain environments, bespoke custom CMS platforms, or high-volume multi-brand stores are quoted transparently based on confirmed scope before any work begins.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         13. FINAL CTA SECTION
+         ========================================================================= -->
+    <section class="ds-section">
+      <div class="ds-container">
+        <div class="final-cta-card">
+          <div class="final-cta-content">
+            <p class="ds-eyebrow">
+              <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+              Get Started
+            </p>
+            <h2>Not sure what is broken in your tracking?</h2>
+            <p>
+              Start with a diagnostic tracking audit to pinpoint data leaks, attribution gaps, and priority fixes before making changes.
+            </p>
+          </div>
+          <div class="final-cta-actions">
+            <a href="audit.html" class="btn btn-primary" style="font-size: 1rem; padding: 0.9rem 1.8rem;">
+              Book a Tracking Audit <span class="btn-icon-arrow" aria-hidden="true">→</span>
+            </a>
+            <span class="final-cta-microcopy">Fee 100% credited toward implementation.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       14. SHARED FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="ds-container">
+      <div class="footer-top">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="/" class="site-logo">
+            rehan<span>.</span>asadi
+          </a>
+          <p>
+            Tracking today. Smarter decisions tomorrow. GA4, GTM, and Server-Side tracking specialist.
+          </p>
+        </div>
+
+        <!-- Navigation Column -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="services.html" style="font-weight: 600; color: var(--ds-accent);">Services</a></li>
+            <li><a href="case-studies.html">Work / Case Studies</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
+            <li><a href="audit.html">Contact / Audit</a></li>
+          </ul>
+        </div>
+
+        <!-- Technical Guides Column -->
+        <div class="footer-col">
+          <h4>Tracking Guides</h4>
+          <ul class="footer-links">
+            <li><a href="shopify-ga4-tracking.html">Shopify GA4 Fix</a></li>
+            <li><a href="server-side-tracking-setup.html">Server-Side Tracking</a></li>
+            <li><a href="ga4-not-tracking-conversions.html">GA4 Conversion Issues</a></li>
+            <li><a href="meta-capi-setup.html">Meta CAPI Setup</a></li>
+          </ul>
+        </div>
+
+        <!-- Connect Column -->
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul class="footer-links">
+            <li><a href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X (Twitter)</a></li>
+            <li><a href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="mailto:rehancopywriting@gmail.com">Email Rehan</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rehan Munawar &mdash; rehanasadi.com. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
+          <a href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
     </div>
-    <div class="right-col">
-      <div class="ideal-card"><p class="card-label">Best fit for</p><div class="ideal-item">Active e-commerce advertisers</div><div class="ideal-item">Agencies needing white-label tracking support</div><div class="ideal-item">Teams with frequent development updates</div></div>
-      <div class="timeline-card"><p class="card-label">Response time</p><div class="timeline-val">&lt;24h</div><div class="timeline-desc">On business days via WhatsApp or email</div></div>
-      <div class="deliverables-card"><p class="card-label">Monthly includes</p><span class="del-tag">Health Check</span><span class="del-tag">5hr Implementation</span><span class="del-tag">Priority Support</span></div>
-    </div>
-  </div>
-</section>
-<section class="comparison-section">
-  <div class="comparison-inner">
-    <div class="section-label-light">At a glance</div>
-    <h2 class="comparison-intro">Which service<br /><em>do you actually need?</em></h2>
-    <p class="comparison-sub">Quick reference across all five services, covering timeline and core scope.</p>
-    <table class="comp-table">
-      <thead>
-        <tr><th style="width:220px">Service</th><th>GA4</th><th>sGTM</th><th>CAPI</th><th>Server cookies</th><th>From</th><th>Timeline</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="comp-service-name">GA4 Setup and Architecture</td><td><span class="comp-yes">✓</span></td><td><span class="comp-no">—</span></td><td><span class="comp-no">—</span></td><td><span class="comp-no">—</span></td><td>EUR350</td><td>3-5 days</td></tr>
-        <tr><td class="comp-service-name">Server-Side Tracking (sGTM)</td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-partial">optional</span></td><td><span class="comp-yes">✓</span></td><td>EUR550</td><td>5-7 days</td></tr>
-        <tr><td class="comp-service-name">Meta CAPI and Attribution</td><td><span class="comp-no">—</span></td><td><span class="comp-partial">optional</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-no">—</span></td><td>EUR400</td><td>3-4 days</td></tr>
-        <tr><td class="comp-service-name">Tracking Audit</td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td>EUR199</td><td>2-3 days</td></tr>
-        <tr><td class="comp-service-name">Ongoing Retainer</td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td><span class="comp-yes">✓</span></td><td>EUR300/mo</td><td>Ongoing</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-<section class="faq-section">
-  <div class="section-label">Common questions</div>
-  <div class="faq-grid">
-    <div class="faq-item"><p class="faq-q">Do I need server-side tracking if I already have GA4?</p><p class="faq-a">Not always. If paid ads, iOS traffic, or ad-blocked audiences are important, server-side tracking often recovers meaningful conversion data.</p></div>
-    <div class="faq-item"><p class="faq-q">What access do you need to get started?</p><p class="faq-a">Usually GTM editor, GA4 editor, ad platform access where relevant, and platform admin access (Shopify, WooCommerce, or custom CMS).</p></div>
-    <div class="faq-item"><p class="faq-q">Can you work with my existing agency or developer?</p><p class="faq-a">Yes. I provide practical technical specs and coordinate implementation while keeping your team aligned.</p></div>
-    <div class="faq-item"><p class="faq-q">Do you support platforms beyond Shopify?</p><p class="faq-a">Yes, including WooCommerce, Magento, custom stores, SaaS apps, and lead-generation sites.</p></div>
-    <div class="faq-item"><p class="faq-q">What happens after project delivery?</p><p class="faq-a">One-time projects include a short support window. Ongoing retainer is available for continuous monitoring and updates.</p></div>
-    <div class="faq-item"><p class="faq-q">Are prices fixed?</p><p class="faq-a">Listed prices are starting points for standard scope. Final pricing depends on platform complexity and integration depth.</p></div>
-  </div>
-</section>
-<section class="faq-section">
-  <div class="section-label">Deep dive guides</div>
-  <div class="faq-grid">
-    <div class="faq-item"><p class="faq-q"><a href="shopify-ga4-tracking.html" style="color:inherit;text-decoration:none;">Shopify GA4 tracking fix</a></p><p class="faq-a">Step-by-step causes and fixes for missing purchase events in Shopify GA4 setups.</p></div>
-    <div class="faq-item"><p class="faq-q"><a href="server-side-tracking-setup.html" style="color:inherit;text-decoration:none;">Server-side tracking setup</a></p><p class="faq-a">What sGTM with Stape changes, what it recovers, and when it is worth implementing.</p></div>
-    <div class="faq-item"><p class="faq-q"><a href="ga4-not-tracking-conversions.html" style="color:inherit;text-decoration:none;">GA4 conversion tracking issues</a></p><p class="faq-a">The most common reasons GA4 underreports conversions and how to diagnose each one.</p></div>
-    <div class="faq-item"><p class="faq-q"><a href="meta-capi-setup.html" style="color:inherit;text-decoration:none;">Meta CAPI setup guide</a></p><p class="faq-a">Fix event deduplication, EMQ quality, and ROAS mismatch between Meta and store revenue.</p></div>
-    <div class="faq-item"><p class="faq-q"><a href="google-ads-for-doctors-guide.html" style="color:inherit;text-decoration:none;">Google Ads for doctors complete guide</a></p><p class="faq-a">Beginner-to-advanced setup framework for medical practices using paid search, local targeting, and conversion tracking.</p></div>
-  </div>
-</section>
-<div class="cta-strip">
-  <h2>Not sure which service<br /><em>you need?</em></h2>
-  <p>Send your current issue and I will tell you what is likely broken and which service is the fastest fix.</p>
-  <a href="mailto:rehancopywriting@gmail.com" class="cta-btn">Get in touch</a>
-  <div class="contact-socials center dark">
-    <a class="contact-social-link" href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
-    <a class="contact-social-link" href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a>
-    <a class="contact-social-link" href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
-    <a class="contact-social-link" href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
-  </div>
-</div>
-<footer>
-  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
-</footer>
-<a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
-  <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
-  <span>Free Tracking Audit</span>
-</a>
-<script src="assets/whatsapp-float.js"></script>
+  </footer>
+
+  <!-- =========================================================================
+       15. WHATSAPP FLOATING CTA & SCRIPTS
+       ========================================================================= -->
+  <a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
+    <span class="wa-icon" aria-hidden="true">
+      <svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg>
+    </span>
+    <span>Free Tracking Audit</span>
+  </a>
+
+  <!-- Mobile Nav & Interactive Script -->
+  <script>
+    (function () {
+      const toggle = document.getElementById('mobile-toggle');
+      const drawer = document.getElementById('mobile-drawer');
+
+      if (toggle && drawer) {
+        toggle.addEventListener('click', function () {
+          const isOpen = drawer.classList.contains('is-open');
+          drawer.classList.toggle('is-open', !isOpen);
+          drawer.hidden = isOpen;
+          toggle.setAttribute('aria-expanded', !isOpen);
+        });
+      }
+
+      // Close other accordions when one is opened for clean UX
+      const accordions = document.querySelectorAll('.ds-accordion-item');
+      accordions.forEach(function (acc) {
+        acc.addEventListener('toggle', function () {
+          if (acc.open) {
+            accordions.forEach(function (other) {
+              if (other !== acc && other.open) {
+                other.open = false;
+              }
+            });
+          }
+        });
+      });
+    })();
+  </script>
+  <script src="assets/whatsapp-float.js"></script>
 </body>
 </html>
