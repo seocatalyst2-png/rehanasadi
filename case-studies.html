@@ -3,587 +3,777 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Studies - Rehan Munawar | GA4 and Server-Side Tracking</title>
-  <meta name="description" content="Real tracking problems, real fixes, real results. GA4, GTM, server-side tracking and Meta CAPI case studies across e-commerce, regulated industries and more." />
+  <title>Case Studies &amp; Measurement Proof - Rehan Asadi | GA4, GTM &amp; Server-Side</title>
+  <meta name="description" content="Explore real-world case studies in GA4 setup, server-side tracking (sGTM), Meta CAPI, and conversion audits. Verified client outcomes and clean measurement data." />
+  <meta name="author" content="Rehan Munawar" />
+  <link rel="canonical" href="https://rehanasadi.com/case-studies" />
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rehanasadi.com/case-studies" />
+  <meta property="og:title" content="Case Studies &amp; Measurement Proof - Rehan Asadi" />
+  <meta property="og:description" content="Real tracking problems, real architecture, real results. GA4, GTM, server-side tracking, and Meta CAPI case studies." />
+
+  <!-- Fonts & Stylesheets -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/design-system.css" />
+  <link rel="stylesheet" href="assets/inner-pages.css" />
   <link rel="stylesheet" href="assets/contact-socials.css" />
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --ink: #0d0d0c;
-      --paper: #f5f2eb;
-      --accent: #c8441a;
-      --accent2: #1a5c8f;
-      --muted: #6b6760;
-      --rule: rgba(13,13,12,0.12);
-      --mono: "DM Mono", monospace;
-      --serif: "Fraunces", serif;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--mono);
-      overflow-x: hidden;
-    }
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.5rem 3rem;
-      border-bottom: 1px solid var(--rule);
-      position: sticky;
-      top: 0;
-      background: var(--paper);
-      z-index: 100;
-    }
-    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-size: 12px; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.15s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--ink); }
-    .nav-cta { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 20px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-family: var(--mono); transition: background 0.15s, color 0.15s; }
-    .nav-cta:hover { background: var(--ink); color: var(--paper); }
-    .page-hero {
-      padding: 4.5rem 3rem 4rem;
-      border-bottom: 1px solid var(--rule);
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: end;
-    }
-    .hero-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
-    .hero-h1 { font-family: var(--serif); font-size: 54px; font-weight: 700; line-height: 1.04; letter-spacing: -0.02em; }
-    .hero-h1 em { font-style: italic; font-weight: 300; color: var(--muted); }
-    .hero-sub { font-size: 13px; line-height: 1.85; color: var(--muted); margin-top: 1.25rem; max-width: 380px; }
-    .hero-meta { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--rule); background: var(--rule); }
-    .meta-row { display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 1.5rem; background: var(--paper); }
-    .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-    .meta-val { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); }
-    .filter-bar {
-      padding: 1.25rem 3rem;
-      border-bottom: 1px solid var(--rule);
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .filter-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-right: 0.5rem; }
-    .filter-btn {
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border: 1px solid var(--rule);
-      color: var(--muted);
-      background: transparent;
-      cursor: pointer;
-      font-family: var(--mono);
-      transition: all 0.12s;
-    }
-    .filter-btn:hover { border-color: rgba(13,13,12,0.3); color: var(--ink); }
-    .filter-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-    .cases-wrap { max-width: 1100px; margin: 0 auto; padding: 0 3rem 5rem; }
-    .case-block {
-      border-bottom: 1px solid var(--rule);
-      padding: 4.5rem 0;
-      transition: opacity 0.2s;
-    }
-    .case-block:last-child { border-bottom: none; }
-    .case-block.hidden { display: none; }
-    .case-header {
-      display: grid;
-      grid-template-columns: 56px 1fr auto;
-      gap: 2rem;
-      align-items: start;
-      margin-bottom: 2.5rem;
-    }
-    .case-num { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); padding-top: 6px; }
-    .case-title { font-family: var(--serif); font-size: 34px; font-weight: 700; line-height: 1.1; }
-    .case-title em { font-style: italic; font-weight: 300; color: var(--muted); }
-    .case-badges { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
-    .badge { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--rule); color: var(--muted); white-space: nowrap; }
-    .badge-accent { border-color: var(--accent); color: var(--accent); }
-    .badge-blue { border-color: var(--accent2); color: var(--accent2); }
-    .case-body {
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 3rem;
-      margin-left: calc(56px + 2rem);
-    }
-    .block-label {
-      font-size: 10px;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-    .label-problem { color: var(--accent); }
-    .label-solution { color: var(--accent2); }
-    .problem-text { font-size: 13px; line-height: 1.85; color: var(--muted); margin-bottom: 2rem; }
-    .steps { display: flex; flex-direction: column; border: 1px solid var(--rule); }
-    .step-row { display: flex; gap: 1rem; padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--rule); align-items: flex-start; }
-    .step-row:last-child { border-bottom: none; }
-    .step-n { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; min-width: 20px; padding-top: 2px; flex-shrink: 0; }
-    .step-txt { font-size: 12px; line-height: 1.75; color: var(--ink); }
-    .stack-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.75rem; }
-    .stk { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border: 1px solid var(--rule); color: var(--muted); }
-    .case-media-card {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2.5rem 3rem 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .case-media-inner {
-      border: 1px solid var(--rule);
-      background: var(--paper);
-      padding: 1rem;
-    }
-    .case-slider-window {
-      overflow: hidden;
-      border: 1px solid var(--rule);
-      background: #fff;
-    }
-    .case-slider-track {
-      display: flex;
-      transition: transform 0.35s ease;
-      touch-action: pan-y;
-    }
-    .case-slide { min-width: 100%; }
-    .case-slide img {
-      width: 100%;
-      display: block;
-      height: auto;
-    }
-    .case-slider-controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.75rem;
-      margin-top: 0.85rem;
-    }
-    .case-arrow {
-      width: 34px;
-      height: 34px;
-      border: 1px solid var(--rule);
-      background: var(--paper);
-      color: var(--muted);
-      cursor: pointer;
-      font-family: var(--mono);
-    }
-    .case-dots { display: flex; gap: 0.4rem; }
-    .case-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      border: 0;
-      background: rgba(13,13,12,0.18);
-      cursor: pointer;
-    }
-    .case-dot.active { background: var(--accent); }
-    .results-col {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
-      align-self: start;
-    }
-    .result-cell { background: var(--paper); padding: 1.5rem; }
-    .result-num { font-family: var(--serif); font-size: 40px; font-weight: 700; color: var(--ink); line-height: 1; }
-    .result-num.a1 { color: var(--accent); }
-    .result-num.a2 { color: var(--accent2); }
-    .result-desc { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 6px; line-height: 1.5; }
-    .quote-block {
-      margin: 2.5rem 0 0 calc(56px + 2rem);
-      padding: 1.5rem 2rem;
-      border-left: 3px solid var(--accent);
-      background: rgba(200,68,26,0.03);
-    }
-    .quote-text { font-family: var(--serif); font-size: 17px; font-style: italic; font-weight: 300; line-height: 1.65; color: var(--ink); }
-    .quote-attr { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 0.85rem; }
-    .guide-strip {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 3rem 4rem;
-    }
-    .guide-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
-    }
-    .guide-card {
-      background: var(--paper);
-      padding: 1.25rem;
-      text-decoration: none;
-      color: var(--ink);
-    }
-    .guide-card:hover { background: rgba(13,13,12,0.03); }
-    .guide-tag {
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-    }
-    .guide-title {
-      font-family: var(--serif);
-      font-size: 24px;
-      line-height: 1.1;
-    }
-    .cta-strip {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 5rem 3rem;
-      text-align: center;
-    }
-    .cta-strip h2 { font-family: var(--serif); font-size: 44px; font-weight: 700; line-height: 1.08; margin-bottom: 1.25rem; }
-    .cta-strip h2 em { font-style: italic; font-weight: 300; color: rgba(245,242,235,0.4); }
-    .cta-strip p { font-size: 13px; color: rgba(245,242,235,0.45); max-width: 400px; margin: 0 auto 2.5rem; line-height: 1.85; }
-    .cta-btn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 14px 32px; border: 1px solid rgba(245,242,235,0.25); color: var(--paper); text-decoration: none; display: inline-block; transition: background 0.15s, border-color 0.15s; }
-    .cta-btn:hover { background: var(--accent); border-color: var(--accent); }
-    footer { padding: 1.5rem 3rem; display: flex; justify-content: center; align-items: center; background: var(--ink); border-top: 1px solid rgba(245,242,235,0.07); }
-    footer p { font-size: 11px; color: rgba(245,242,235,0.28); letter-spacing: 0.06em; text-align: center; }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-size: 11px; color: rgba(245,242,235,0.28); text-decoration: none; letter-spacing: 0.06em; transition: color 0.12s; }
-    .footer-links a:hover { color: var(--paper); }
-    @media (max-width: 860px) {
-      nav { padding: 1.25rem 1.5rem; }
-      .nav-links { display: none; }
-      .page-hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2.5rem; }
-      .hero-h1 { font-size: 38px; }
-      .case-media-card { padding: 2rem 1.5rem 0; }
-      .filter-bar { padding: 1rem 1.5rem; }
-      .cases-wrap { padding: 0 1.5rem 4rem; }
-      .guide-strip { padding: 0 1.5rem 3rem; }
-      .guide-grid { grid-template-columns: 1fr; }
-      .case-header { grid-template-columns: 36px 1fr; }
-      .case-badges { display: none; }
-      .case-body { grid-template-columns: 1fr; margin-left: calc(36px + 1.5rem); }
-      .case-title { font-size: 24px; }
-      .quote-block { margin-left: calc(36px + 1.5rem); }
-      .cta-strip { padding: 3.5rem 1.5rem; }
-      .cta-strip h2 { font-size: 30px; }
-      footer { padding: 1.25rem 1.5rem; flex-direction: column; gap: 0.75rem; text-align: center; }
-    }
-  </style>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rehanasadi.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Case Studies",
+            "item": "https://rehanasadi.com/case-studies"
+          }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "name": "Case Studies - Rehan Asadi Tracking Specialist",
+        "url": "https://rehanasadi.com/case-studies",
+        "description": "Verified case studies showing how proper analytics setup, server-side tracking, and conversion measurement help businesses make data-driven decisions.",
+        "publisher": {
+          "@type": "Person",
+          "name": "Rehan Munawar",
+          "jobTitle": "Tracking & Measurement Specialist"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <nav>
-    <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
-    <ul class="nav-links">
-      <li><a href="services.html">Services</a></li>
-      <li><a href="case-studies.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
-    </ul>
-    <a href="audit.html" class="nav-cta">Contact Us</a>
-  </nav>
 
-  <div style="border-bottom: 1px solid var(--rule);">
-    <div class="page-hero">
-      <div>
-        <p class="hero-eyebrow">Case studies</p>
-        <h1 class="hero-h1">Real setups.<br /><em>Real numbers.</em></h1>
-        <p class="hero-sub">Every engagement here started with broken or incomplete tracking. Here is what I found, what I built, and what changed.</p>
-      </div>
-      <div class="hero-meta">
-        <div class="meta-row"><span class="meta-label">Clients served</span><span class="meta-val">50+</span></div>
-        <div class="meta-row"><span class="meta-label">Avg. conversion recovery</span><span class="meta-val">~30%</span></div>
-        <div class="meta-row"><span class="meta-label">Match rate improvement</span><span class="meta-val">+22%</span></div>
-        <div class="meta-row"><span class="meta-label">Industries covered</span><span class="meta-val">8+</span></div>
-      </div>
-    </div>
-  </div>
+  <!-- =========================================================================
+       1. SHARED SITE HEADER
+       ========================================================================= -->
+  <header class="site-header">
+    <div class="ds-container">
+      <div class="site-header-inner">
+        <a href="/" class="site-logo" aria-label="Rehan Asadi Home">
+          rehan<span>.</span>asadi
+        </a>
 
-  <div class="filter-bar">
-    <span class="filter-label">Filter by:</span>
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
-    <button class="filter-btn" data-filter="capi">Meta CAPI</button>
-    <button class="filter-btn" data-filter="sgtm">Server-side</button>
-    <button class="filter-btn" data-filter="regulated">Regulated niche</button>
-  </div>
+        <nav class="site-nav" aria-label="Main Navigation">
+          <a href="services.html">Services</a>
+          <a href="case-studies.html" class="active">Work</a>
+          <a href="about.html">About</a>
+          <a href="google-ads-for-doctors-guide.html">Doctors Guide</a>
+          <a href="audit.html">Contact</a>
+        </nav>
 
-  <section class="case-media-card">
-    <div class="case-media-inner">
-      <div class="case-slider-window">
-        <div class="case-slider-track" data-case-track>
-          <div class="case-slide"><img src="assets/images/proof-1.png" alt="" loading="lazy" /></div>
-          <div class="case-slide"><img src="assets/images/proof-2.png" alt="" loading="lazy" /></div>
-          <div class="case-slide"><img src="assets/images/proof-3.png" alt="" loading="lazy" /></div>
-          <div class="case-slide"><img src="assets/images/proof-4.png" alt="" loading="lazy" /></div>
-          <div class="case-slide"><img src="assets/images/proof-5.png" alt="" loading="lazy" /></div>
-        </div>
-      </div>
-      <div class="case-slider-controls">
-        <button class="case-arrow" type="button" data-case-prev>&larr;</button>
-        <div class="case-dots" data-case-dots></div>
-        <button class="case-arrow" type="button" data-case-next>&rarr;</button>
-      </div>
-    </div>
-  </section>
-
-  <div class="cases-wrap">
-    <div class="case-block" data-tags="ecommerce capi sgtm">
-      <div class="case-header">
-        <div class="case-num">01</div>
-        <h2 class="case-title">Slageronline.nl &mdash; <em>Dutch e-commerce butcher</em></h2>
-        <div class="case-badges">
-          <span class="badge badge-accent">Meta CAPI</span>
-          <span class="badge">E-commerce / NL</span>
-          <span class="badge">sGTM</span>
-        </div>
-      </div>
-      <div class="case-body">
-        <div>
-          <p class="block-label label-problem">The problem</p>
-          <p class="problem-text">Client was running Meta Ads essentially blind. Browser-only pixel was blocked by iOS tracking prevention and Dutch ad blockers. Roughly 35% of purchase events were never reaching Meta. ROAS calculations were built on fiction, and campaign optimization was targeting the wrong audience signals.</p>
-          <p class="block-label label-solution">What I built</p>
-          <div class="steps">
-            <div class="step-row"><span class="step-n">01</span><span class="step-txt">Deployed GTM server container via Stape.io with custom subdomain for first-party cookie persistence</span></div>
-            <div class="step-row"><span class="step-n">02</span><span class="step-txt">Configured Meta Conversions API (CAPI) with server-side event deduplication against the browser pixel</span></div>
-            <div class="step-row"><span class="step-n">03</span><span class="step-txt">Mapped full e-commerce event schema: ViewContent to AddToCart to InitiateCheckout to Purchase with correct value and currency parameters</span></div>
-            <div class="step-row"><span class="step-n">04</span><span class="step-txt">Set up GA4 with enhanced e-commerce and Looker Studio dashboard for weekly reporting</span></div>
-            <div class="step-row"><span class="step-n">05</span><span class="step-txt">Managed Meta Ads campaigns (~EUR100/day) post-implementation with improved audience signals feeding optimization</span></div>
-          </div>
-          <div class="stack-row">
-            <span class="stk">GA4</span><span class="stk">sGTM</span><span class="stk">Meta CAPI</span><span class="stk">Stape.io</span><span class="stk">Looker Studio</span><span class="stk">Meta Ads</span>
-          </div>
-        </div>
-        <div class="results-col">
-          <div class="result-cell"><div class="result-num a1">+22%</div><div class="result-desc">Event match quality score lift</div></div>
-          <div class="result-cell"><div class="result-num">35%</div><div class="result-desc">Previously untracked purchases now recovered</div></div>
-          <div class="result-cell"><div class="result-num a2">ROAS</div><div class="result-desc">Better signals improved campaign performance</div></div>
-          <div class="result-cell"><div class="result-num">EUR100</div><div class="result-desc">Daily ad budget managed post-implementation</div></div>
+        <div class="nav-actions">
+          <a href="audit.html" class="btn btn-primary">
+            Book an Audit <span class="btn-icon-arrow" aria-hidden="true">→</span>
+          </a>
+          <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
 
-    <div class="case-block" data-tags="ecommerce sgtm">
-      <div class="case-header">
-        <div class="case-num">02</div>
-        <h2 class="case-title">NordSleeps &mdash; <em>DTC sleep brand, Netherlands</em></h2>
-        <div class="case-badges">
-          <span class="badge badge-accent">Server-side</span>
-          <span class="badge">DTC / NL</span>
-          <span class="badge">GA4</span>
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer" hidden>
+      <ul class="mobile-nav-list">
+        <li><a href="services.html">Services</a></li>
+        <li><a href="case-studies.html" style="font-weight: 700; color: var(--ds-accent);">Work / Case Studies</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
+        <li><a href="audit.html">Contact</a></li>
+      </ul>
+      <a href="audit.html" class="btn btn-primary" style="width: 100%; text-align: center;">
+        Book an Audit →
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================================
+         2. HERO SECTION (APPROVED CASE STUDIES DIRECTION)
+         ========================================================================= -->
+    <section class="case-hero-section">
+      <div class="ds-container">
+        <div class="case-hero-grid">
+          <!-- Left Column: Copy & Actions -->
+          <div class="case-hero-content">
+            <p class="ds-eyebrow">
+              <span class="ds-eyebrow-dot" aria-hidden="true"></span>
+              CASE STUDIES
+            </p>
+            <h1 class="case-hero-h1">
+              From Tracking Problems to<br />
+              <span style="color: var(--ds-accent);">Real Business Results.</span>
+            </h1>
+            <p class="case-hero-lead">
+              Explore real-world case studies showing how proper analytics setup, server-side tracking, and conversion measurement help businesses make data-driven decisions and grow.
+            </p>
+            <div class="case-hero-actions">
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20would%20like%20to%20get%20a%20quote%20for%20tracking%20services." class="btn btn-primary" target="_blank" rel="noopener">
+                Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="services.html" class="btn btn-secondary">
+                View Services <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Dashboard Visual (from approved asset sheet) -->
+          <div class="case-hero-visual-wrap">
+            <div class="case-hero-visual">
+              <img src="assets/images/case-hero-dashboard.png" alt="Illustrative analytics and measurement workflow overview" width="1024" height="218" loading="eager" />
+            </div>
+          </div>
         </div>
       </div>
-      <div class="case-body">
-        <div>
-          <p class="block-label label-problem">The problem</p>
-          <p class="problem-text">GA4 was installed client-side with no server container. Cookie lifetime was capped at 7 days by Safari ITP, making returning customer attribution difficult. The existing GTM container had 40+ orphaned tags from a previous agency, causing duplicate events and inflated session counts.</p>
-          <p class="block-label label-solution">What I built</p>
-          <div class="steps">
-            <div class="step-row"><span class="step-n">01</span><span class="step-txt">Full GTM container audit, removed 40+ dead tags, rebuilt with clear naming conventions</span></div>
-            <div class="step-row"><span class="step-n">02</span><span class="step-txt">Deployed sGTM via Stape.io and set first-party cookies server-side to bypass ITP (7-day to 400-day persistence)</span></div>
-            <div class="step-row"><span class="step-n">03</span><span class="step-txt">Rebuilt GA4 e-commerce implementation with correct item-scoped parameters for Shopify checkout flow</span></div>
-            <div class="step-row"><span class="step-n">04</span><span class="step-txt">Routed Meta Pixel through server container to reduce client-side load and improve data quality</span></div>
+    </section>
+
+    <!-- =========================================================================
+         3. PLATFORM STRIP (OFFICIAL BRAND LOGOS SITE-WIDE)
+         ========================================================================= -->
+    <section class="case-platform-section">
+      <div class="ds-container">
+        <div class="case-platform-bar" aria-label="Platforms and Technologies Used">
+          <!-- 1. GA4 -->
+          <a href="services.html#ga4" class="case-platform-item">
+            <div class="case-platform-icon">
+              <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(-174.95 -339.18)scale(3.54856)">
+                  <path d="M149.3 112.8V221c0 12.1 8.4 18.9 17.2 18.9 8.2 0 17.2-5.7 17.2-18.9V113.6c0-11.1-8.2-18-17.2-18s-17.2 7.6-17.2 17.2" fill="#F9AB00"/>
+                  <path d="M104.2 167.7V221c0 12.1 8.4 18.9 17.2 18.9 8.2 0 17.2-5.7 17.2-18.9v-52.5c0-11.1-8.2-18-17.2-18s-17.2 7.7-17.2 17.2" fill="#E37400"/>
+                  <path d="M93.6 222.7c0 9.5-7.7 17.2-17.2 17.2s-17.2-7.7-17.2-17.2 7.7-17.2 17.2-17.2 17.2 7.6 17.2 17.2" fill="#E37400"/>
+                </g>
+              </svg>
+            </div>
+            <span>Google Analytics</span>
+          </a>
+
+          <!-- 2. GTM -->
+          <a href="services.html#gtm" class="case-platform-item">
+            <div class="case-platform-icon">
+              <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="m300.5 491-88.8-86.6 190.8-194.9 92 90.1z" fill="#8AB4F8"/>
+                <path d="m300.9 107.9-88.6-90.4L18.7 209.3c-25 25-25 65.4 0 90.4l190.7 192 90.2-84.4-145.3-152.8z" fill="#4285F4"/>
+                <path d="m493.3 210.7-192-192c-25-25-65.5-25-90.5 0s-25 65.5 0 90.5l192 192c25 25 65.5 25 90.5 0 24.9-24.9 24.9-65.5 0-90.5" fill="#8AB4F8"/>
+                <circle cx="254.5" cy="449.5" r="62.5" fill="#246FDB"/>
+              </svg>
+            </div>
+            <span>Google Tag Manager</span>
+          </a>
+
+          <!-- 3. Meta CAPI -->
+          <a href="services.html#capi" class="case-platform-item">
+            <div class="case-platform-icon">
+              <svg viewBox="0 0 1567 1041" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="metaGradCase" x1="332.6" x2="1411" y1="637.7" y2="692.2" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#0064e1"/>
+                    <stop offset=".4" stop-color="#0064e1"/>
+                    <stop offset=".8" stop-color="#0073ee"/>
+                    <stop offset="1" stop-color="#0082fb"/>
+                  </linearGradient>
+                </defs>
+                <path d="M169.5 686.5c0 59.9 13.1 105.8 30.3 133.6 22.5 36.4 56 51.8 90.2 51.8 44.2 0 84.5-10.9 162.3-118.6C514.6 667.1 588 546 637.4 470l83.7-128.6c58.1-89.3 125.3-188.6 202.5-255.9C986.5 30.5 1054.5 0 1122.8 0c114.8 0 224.1 66.5 307.7 191.4 91.6 136.7 136 308.8 136 486.5 0 105.6-20.8 183.2-56.2 244.6-34.2 59.3-100.8 118.5-213 118.5V871.9c96 0 120-88.3 120-189.3 0-144-33.6-303.8-107.5-418-52.4-81-120.4-130.5-195.2-130.5-80.8 0-145.9 61.1-219.1 169.9-38.9 57.8-78.8 128.3-123.6 207.8l-49.4 87.5c-99.1 175.9-124.2 216-173.8 282.1C461.9 997.1 387.7 1041 290 1041c-115.8 0-189.1-50.2-234.4-125.8C18.5 853.5.3 772.6.3 680.5z" fill="#0081FB"/>
+                <path d="M133.7 203.3C211.3 83.7 323.2 0 451.6 0 525.9 0 599.8 22 677 85.1c84.4 68.9 174.4 182.5 286.7 369.6l40.2 67.1c97.2 162 152.5 245.3 184.8 284.6 41.6 50.5 70.8 65.5 108.6 65.5 96 0 120-88.3 120-189.3l149.2-4.7c0 105.6-20.8 183.2-56.2 244.6-34.2 59.3-100.8 118.5-213 118.5-69.7 0-131.5-15.2-199.8-79.6C1045 911.9 983.6 824 936.4 744.9L796 510.1c-70.5-117.8-135.2-205.6-172.6-245.4-40.2-42.8-92-94.5-174.5-94.5-66.9 0-123.6 46.9-171.1 118.7z" fill="url(#metaGradCase)"/>
+              </svg>
+            </div>
+            <span>Meta CAPI</span>
+          </a>
+
+          <!-- 4. Google Ads -->
+          <a href="services.html#gads" class="case-platform-item">
+            <div class="case-platform-icon">
+              <svg viewBox="0 0 256 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.888 166.405L90.88 20.9C101.676 27.256 156.116 57.384 164.908 63.114L79.916 208.627C70.62 220.907-5.888 185.04 5.888 166.396v.009Z" fill="#FBBC04"/>
+                <path d="M250.084 166.402L165.092 20.906C153.21 1.132 127.619-6.054 106.6 5.625c-21.018 11.679-27.418 36.837-15.536 57.494l84.992 145.514c11.882 19.765 37.473 26.95 58.492 15.272 20.1-11.679 27.418-37.73 15.536-57.503Z" fill="#4285F4"/>
+                <ellipse cx="42.664" cy="187.924" rx="42.664" ry="41.604" fill="#34A853"/>
+              </svg>
+            </div>
+            <span>Google Ads</span>
+          </a>
+
+          <!-- 5. Shopify -->
+          <a href="services.html#shopify" class="case-platform-item">
+            <div class="case-platform-icon">
+              <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M425.9 98.7c-.3-2.7-2.7-3.9-4.5-4.2s-38.1-.6-38.1-.6-30.6-29.7-33.6-32.7-8.8-2.1-11.2-1.5c0 0-5.8 1.8-15.4 4.8-1.5-5.1-3.9-11.5-7.3-17.9-10.9-20.9-26.6-31.8-46-31.8-1.2 0-2.7 0-3.9.3-.6-.6-1.2-1.2-1.8-2.1-8.7-9-19.3-13.3-32-13-24.8.6-49.4 18.5-69.6 50.6-14.2 22.4-24.8 50.6-27.9 72.4-28.5 8.8-48.4 14.8-48.7 15.1-14.2 4.5-14.8 4.8-16.7 18.5-1.5 10-39.1 301-39.1 301L345.3 512l136.5-33.9c.1 0-55.6-377-55.9-379.4M307.2 69.3c-7.3 2.1-15.4 4.8-24.5 7.6-.3-12.4-1.8-30-7.6-45.1 19 3.6 28.1 24.8 32.1 37.5m-40.9 12.8c-16.7 5.1-34.5 10.6-52.7 16.3 5.1-19.4 14.8-38.8 26.6-51.5 4.5-4.8 10.6-10 17.9-13 7 14.3 8.2 34.5 8.2 48.2m-33.9-65.4c5.8 0 10.6 1.2 14.8 3.9-6.7 3.3-13.3 8.5-19.4 15.1-15.7 17-27.9 43-32.7 68.4-15.1 4.5-29.7 9.1-43.3 13.3 9.1-39.9 42.4-99.5 80.6-100.7" fill="#95BF47"/>
+                <path d="M421.3 94.5c-1.8-.3-38.1-.6-38.1-.6s-30.6-29.7-33.6-32.7c-1.2-1.2-2.7-1.8-4.2-1.8V512l136.5-33.9s-55.7-376.6-56-379.4c-.7-2.7-2.8-3.9-4.6-4.2" fill="#5E8E3E"/>
+                <path d="M269.6 164.7 253.9 224s-17.6-8.2-38.8-6.7c-30.9 1.8-31.2 21.2-30.9 26.3 1.8 26.6 71.5 32.4 75.4 94.5 3 49-26 82.4-67.8 85.1-50.3 3-77.8-26.3-77.8-26.3l10.6-45.1s27.9 20.9 50 19.7c14.5-.9 19.7-12.7 19.1-21.2-2.1-34.5-59-32.7-62.7-89.3-3-47.8 28.5-96.3 97.8-100.8 27.2-2.4 40.8 4.5 40.8 4.5" fill="#FFFFFF"/>
+              </svg>
+            </div>
+            <span>Shopify</span>
+          </a>
+
+          <!-- 6. Stape / Server-Side -->
+          <a href="services.html#sgtm" class="case-platform-item">
+            <div class="case-platform-icon">
+              <svg viewBox="0 2 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M26 7L17 22L26 28V38H3V34L11 20L3 14V5H26V7Z" fill="#FF5C35"/>
+                <path d="M32.6989 13.1104L29.838 14.8057C29.3032 13.8773 28.7936 13.2718 28.3092 12.9893C27.8046 12.6663 27.1538 12.5049 26.3566 12.5049C25.3777 12.5049 24.5654 12.7824 23.9196 13.3374C23.2737 13.8823 22.9508 14.5685 22.9508 15.396C22.9508 16.5363 23.7985 17.4546 25.4938 18.1509L27.8248 19.1045C29.722 19.8714 31.1095 20.8099 31.9874 21.9199C32.8654 23.0199 33.3043 24.3721 33.3043 25.9766C33.3043 28.126 32.5878 29.902 31.1549 31.3047C29.7119 32.7174 27.9207 33.4238 25.7814 33.4238C23.7531 33.4238 22.0779 32.8234 20.756 31.6226C19.4542 30.4217 18.6419 28.7314 18.319 26.5518L21.8912 25.7646C22.0527 27.137 22.3352 28.0856 22.7389 28.6104C23.4655 29.6195 24.525 30.124 25.9176 30.124C27.0175 30.124 27.9308 29.7557 28.6573 29.019C29.3839 28.2824 29.7472 27.349 29.7472 26.2188C29.7472 25.7646 29.6816 25.3509 29.5504 24.9775C29.4293 24.5941 29.2325 24.2459 28.9601 23.9331C28.6977 23.6102 28.3546 23.3125 27.9308 23.04C27.507 22.7575 27.0024 22.4901 26.4171 22.2378L24.1617 21.2993C20.9628 19.9471 19.3634 17.9692 19.3634 15.3657C19.3634 13.6099 20.0345 12.1416 21.3766 10.9609C22.7187 9.77018 24.3888 9.1748 26.3868 9.1748C29.0812 9.1748 31.1852 10.4867 32.6989 13.1104Z" fill="#111827"/>
+              </svg>
+            </div>
+            <span>Stape.io</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. FEATURED CASE STUDIES & FILTER PILLS
+         ========================================================================= -->
+    <section class="case-main-section" id="case-studies">
+      <div class="ds-container">
+        <!-- Section Header -->
+        <div class="case-section-header">
+          <h2 class="case-section-title">Featured Case Studies</h2>
+          <p class="case-section-subtitle">Real projects. Real challenges. Real solutions.</p>
+        </div>
+
+        <!-- Filter Pills Bar -->
+        <div class="case-filter-pills" role="tablist" aria-label="Filter case studies by platform">
+          <button class="case-filter-pill active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="case-filter-pill" data-filter="ga4" role="tab" aria-selected="false">GA4</button>
+          <button class="case-filter-pill" data-filter="sgtm" role="tab" aria-selected="false">Server-Side</button>
+          <button class="case-filter-pill" data-filter="capi" role="tab" aria-selected="false">Meta CAPI</button>
+          <button class="case-filter-pill" data-filter="gads" role="tab" aria-selected="false">Google Ads</button>
+          <button class="case-filter-pill" data-filter="shopify" role="tab" aria-selected="false">Shopify</button>
+        </div>
+
+        <!-- Cards List -->
+        <div class="case-cards-list">
+
+          <!-- =================================================================
+               CARD 1: Slageronline.nl (Meta CAPI + sGTM + GA4)
+               ================================================================= -->
+          <article class="case-study-card" data-tags="all ga4 sgtm capi">
+            <!-- Left Column: Visual -->
+            <div class="case-card-visual">
+              <img src="assets/images/case-slageronline.png" alt="Slageronline.nl eCommerce butcher project representation" width="341" height="205" loading="lazy" />
+            </div>
+
+            <!-- Right Column: Content -->
+            <div class="case-card-content">
+              <div class="case-card-top-meta">
+                <span class="case-card-category">
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: #16A34A; display: inline-block;"></span>
+                  E-COMMERCE
+                </span>
+                <span class="case-card-location">Netherlands</span>
+              </div>
+
+              <h3 class="case-card-title">Slageronline.nl</h3>
+              <p class="case-card-subtitle">Dutch online butcher &amp; gourmet meat delivery</p>
+
+              <div class="case-card-tags">
+                <span class="case-tag">GA4</span>
+                <span class="case-tag">Server-Side (sGTM)</span>
+                <span class="case-tag">Meta CAPI</span>
+                <span class="case-tag">Stape.io</span>
+                <span class="case-tag">Looker Studio</span>
+              </div>
+
+              <p class="case-card-desc">
+                Client was running Meta Ads with a browser-only pixel. Approximately 35% of purchase events were lost to Safari ITP and Dutch ad blockers, skewing attribution and starving ad algorithms of critical conversion signals.
+              </p>
+
+              <!-- Proof Indicators (3 Key Outcomes) -->
+              <div class="case-proof-list">
+                <div class="case-proof-item">
+                  <div class="case-proof-item-header">
+                    <span class="case-proof-icon">✓</span>
+                    <span class="case-proof-metric">+22%</span>
+                  </div>
+                  <span class="case-proof-label">Event Match Quality (EMQ) lift on Meta CAPI</span>
+                </div>
+                <div class="case-proof-item">
+                  <div class="case-proof-item-header">
+                    <span class="case-proof-icon">✓</span>
+                    <span class="case-proof-metric">~35%</span>
+                  </div>
+                  <span class="case-proof-label">Missing purchase conversions recovered</span>
+                </div>
+                <div class="case-proof-item">
+                  <div class="case-proof-item-header">
+                    <span class="case-proof-icon">✓</span>
+                    <span class="case-proof-metric">1st-Party</span>
+                  </div>
+                  <span class="case-proof-label">sGTM container with deduplication logic</span>
+                </div>
+              </div>
+
+              <!-- Action Row -->
+              <div class="case-card-actions">
+                <button type="button" class="case-btn-drawer" data-drawer-toggle="drawer-slageronline" aria-expanded="false">
+                  <span>View Case Study Details</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20saw%20the%20Slageronline%20case%20study%20and%20want%20a%20quote%20for%20Meta%20CAPI%20and%20server-side%20tracking." class="btn btn-secondary" target="_blank" rel="noopener">
+                  Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Expandable Technical Drawer -->
+            <div class="case-drawer" id="drawer-slageronline" hidden>
+              <div class="case-drawer-grid">
+                <div class="case-drawer-col">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    The Problem
+                  </h4>
+                  <p>
+                    The client ran Meta Ads (~€100/day) relying entirely on standard browser tracking. Due to strict iOS Safari ITP caps and prevalent privacy extensions across the Netherlands, roughly 35% of orders never reached Meta's Events Manager. Ad delivery algorithms optimized on distorted conversion signals, inflating apparent acquisition costs.
+                  </p>
+                </div>
+
+                <div class="case-drawer-col">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    What I Built
+                  </h4>
+                  <ol>
+                    <li>Deployed a server-side GTM container via Stape.io on a custom first-party subdomain (<code>sgtm.slageronline.nl</code>).</li>
+                    <li>Engineered Meta Conversions API (CAPI) with full event deduplication using matched <code>event_id</code> parameters.</li>
+                    <li>Mapped full eCommerce event schema: <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code>, and <code>purchase</code>.</li>
+                    <li>Connected enhanced GA4 eCommerce measurement to automated weekly Looker Studio dashboards.</li>
+                  </ol>
+                </div>
+
+                <div class="case-drawer-col">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Business Impact
+                  </h4>
+                  <p>
+                    Event Match Quality (EMQ) jumped by +22%, bypassing ad-blocker drop-offs and restoring true attribution. With clean purchase values feeding Meta's smart bidding algorithms, campaign ROAS stabilized, enabling confident ad spend scaling.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- =================================================================
+               CARD 2: NordSleeps (Server-Side + GA4 + Shopify)
+               ================================================================= -->
+          <article class="case-study-card" data-tags="all ga4 sgtm shopify">
+            <!-- Left Column: Visual -->
+            <div class="case-card-visual">
+              <img src="assets/images/case-nordsleeps.png" alt="NordSleeps Scandinavian DTC sleep brand project representation" width="340" height="205" loading="lazy" />
+            </div>
+
+            <!-- Right Column: Content -->
+            <div class="case-card-content">
+              <div class="case-card-top-meta">
+                <span class="case-card-category">
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: #16A34A; display: inline-block;"></span>
+                  DTC E-COMMERCE
+                </span>
+                <span class="case-card-location">Netherlands &amp; Nordics</span>
+              </div>
+
+              <h3 class="case-card-title">NordSleeps</h3>
+              <p class="case-card-subtitle">Scandinavian DTC premium mattress &amp; sleep brand</p>
+
+              <div class="case-card-tags">
+                <span class="case-tag">GA4 Rebuild</span>
+                <span class="case-tag">Server-Side (sGTM)</span>
+                <span class="case-tag">Shopify</span>
+                <span class="case-tag">Stape.io</span>
+                <span class="case-tag">ITP Resilience</span>
+              </div>
+
+              <p class="case-card-desc">
+                High-AOV sleep products have extended consideration cycles. Safari ITP capped tracking cookies at 7 days, severing return-visitor attribution. Meanwhile, 40+ orphaned legacy tags in GTM caused severe event inflation and duplicate purchases.
+              </p>
+
+              <!-- Proof Indicators (3 Key Outcomes) -->
+              <div class="case-proof-list">
+                <div class="case-proof-item">
+                  <div class="case-proof-item-header">
+                    <span class="case-proof-icon">✓</span>
+                    <span class="case-proof-metric">400 Days</span>
+                  </div>
+                  <span class="case-proof-label">Up to 400-day first-party cookie persistence in the documented setup</span>
+                </div>
+                <div class="case-proof-item">
+                  <div class="case-proof-item-header">
+                    <span class="case-proof-icon">✓</span>
+                    <span class="case-proof-metric">40+ Tags</span>
+                  </div>
+                  <span class="case-proof-label">Orphaned tags purged in full GTM consolidation</span>
+                </div>
+                <div class="case-proof-item">
+                  <div class="case-proof-item-header">
+                    <span class="case-proof-icon">✓</span>
+                    <span class="case-proof-metric">Zero Dupes</span>
+                  </div>
+                  <span class="case-proof-label">Duplicate purchase triggers were removed and validated</span>
+                </div>
+              </div>
+
+              <!-- Action Row -->
+              <div class="case-card-actions">
+                <button type="button" class="case-btn-drawer" data-drawer-toggle="drawer-nordsleeps" aria-expanded="false">
+                  <span>View Case Study Details</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20saw%20the%20NordSleeps%20case%20study%20and%20want%20a%20quote%20for%20cookie%20persistence%20and%20sGTM." class="btn btn-secondary" target="_blank" rel="noopener">
+                  Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Expandable Technical Drawer -->
+            <div class="case-drawer" id="drawer-nordsleeps" hidden>
+              <div class="case-drawer-grid">
+                <div class="case-drawer-col">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    The Problem
+                  </h4>
+                  <p>
+                    NordSleeps mattresses involve high-consideration purchases with buyers taking 14 to 30 days to purchase. Safari's 7-day cookie limit affected returning user attribution across long consideration cycles. In addition, an inherited GTM container with 40+ orphaned agency tags caused duplicate event triggers.
+                  </p>
+                </div>
+
+                <div class="case-drawer-col">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    What I Built
+                  </h4>
+                  <ol>
+                    <li>Audited the entire container, deleted 40+ obsolete tags, and implemented strict tag-firing governance.</li>
+                    <li>Deployed server-side GTM on Stape.io with <code>Set-Cookie</code> HTTP headers, establishing up to 400-day first-party cookie persistence in the documented setup.</li>
+                    <li>Re-architected GA4 eCommerce tracking with item-scoped parameters for the Shopify checkout funnel.</li>
+                    <li>Relocated client-side marketing tags into the server container to improve page speed and ensure duplicate purchase triggers were removed and validated.</li>
+                  </ol>
+                </div>
+
+                <div class="case-drawer-col">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Business Impact
+                  </h4>
+                  <p>
+                    First-touch discovery attribution was fully restored across 30-day buying cycles. Duplicate orders dropped to zero, providing the leadership team with dependable acquisition metrics for their multi-market scaling campaigns.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- =================================================================
+               CARD 3: Packaging Discounter (GA4 Audit + Shopify + Google Ads)
+               ================================================================= -->
+          <article class="case-study-card" data-tags="all ga4 gads shopify">
+            <!-- Left Column: Visual -->
+            <div class="case-card-visual">
+              <img src="assets/images/case-packaging-discounter.png" alt="Packaging Discounter B2B packaging supplies project representation" width="343" height="205" loading="lazy" />
+            </div>
+
+            <!-- Right Column: Content -->
+            <div class="case-card-content">
+              <div class="case-card-top-meta">
+                <span class="case-card-category">
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: #16A34A; display: inline-block;"></span>
+                  B2B E-COMMERCE
+                </span>
+                <span class="case-card-location">Netherlands</span>
+              </div>
+
+              <h3 class="case-card-title">Packaging Discounter</h3>
+              <p class="case-card-subtitle">B2B industrial packaging &amp; shipping supplies</p>
+
+              <div class="case-card-tags">
+                <span class="case-tag">GA4 Audit</span>
+                <span class="case-tag">Shopify Web Pixels</span>
+                <span class="case-tag">Google Ads</span>
+                <span class="case-tag">Enhanced Conversions</span>
+                <span class="case-tag">DebugView QA</span>
+              </div>
+
+              <p class="case-card-desc">
+                GA4 was reporting roughly 60% fewer conversions than actual Shopify orders. Conflicting purchase scripts across theme liquid and third-party apps were misfiring, while Google Ads Smart Bidding was operating on incomplete revenue data.
+              </p>
+
+              <!-- Proof Indicators (3 Key Outcomes) -->
+              <div class="case-proof-list">
+                <div class="case-proof-item">
+                  <div class="case-proof-item-header">
+                    <span class="case-proof-icon">✓</span>
+                    <span class="case-proof-metric">100%</span>
+                  </div>
+                  <span class="case-proof-label">Exact order reconciliation between Shopify and GA4</span>
+                </div>
+                <div class="case-proof-item">
+                  <div class="case-proof-item-header">
+                    <span class="case-proof-icon">✓</span>
+                    <span class="case-proof-metric">3 Tags</span>
+                  </div>
+                  <span class="case-proof-label">Conflicting purchase implementations unified</span>
+                </div>
+                <div class="case-proof-item">
+                  <div class="case-proof-item-header">
+                    <span class="case-proof-icon">✓</span>
+                    <span class="case-proof-metric">+60%</span>
+                  </div>
+                  <span class="case-proof-label">Conversion data recovered for Google Ads bidding</span>
+                </div>
+              </div>
+
+              <!-- Action Row -->
+              <div class="case-card-actions">
+                <button type="button" class="case-btn-drawer" data-drawer-toggle="drawer-packaging" aria-expanded="false">
+                  <span>View Case Study Details</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20saw%20the%20Packaging%20Discounter%20case%20study%20and%20want%20a%20quote%20for%20Shopify%20and%20GA4%20order%20reconciliation." class="btn btn-secondary" target="_blank" rel="noopener">
+                  Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Expandable Technical Drawer -->
+            <div class="case-drawer" id="drawer-packaging" hidden>
+              <div class="case-drawer-grid">
+                <div class="case-drawer-col">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    The Problem
+                  </h4>
+                  <p>
+                    Packaging Discounter's GA4 reports showed a 60% deficit against actual Shopify back-office sales. Three overlapping purchase scripts fired on conflicting thank-you page triggers, while staging measurement IDs contaminated production analytics streams.
+                  </p>
+                </div>
+
+                <div class="case-drawer-col">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    What I Built
+                  </h4>
+                  <ol>
+                    <li>Conducted a forensic tracking audit, identifying 3 conflicting purchase tags and legacy script injections.</li>
+                    <li>Rebuilt GTM container from scratch with a single authoritative purchase trigger utilizing Shopify Web Pixels API.</li>
+                    <li>Corrected GA4 measurement ID routing and verified end-to-end data integrity in GA4 DebugView.</li>
+                    <li>Implemented Google Ads Enhanced Conversions with customer parameter hashing for automated bidding accuracy.</li>
+                  </ol>
+                </div>
+
+                <div class="case-drawer-col">
+                  <h4>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Business Impact
+                  </h4>
+                  <p>
+                    Delivered 100% order reconciliation between Shopify backend sales and GA4 analytics. Google Ads Smart Bidding regained full visibility into real order values, eliminating bidding blindness and stabilizing B2B acquisition costs.
+                  </p>
+                  <blockquote style="margin-top: 1rem; padding: 0.85rem; background: #FFFFFF; border-left: 3px solid #16A34A; border-radius: 4px; font-size: 11px; font-style: italic; color: var(--ds-text);">
+                    &ldquo;Rehan found issues we did not know existed and documented everything clearly so we could understand exactly what had changed.&rdquo;
+                    <cite style="display: block; margin-top: 0.35rem; font-style: normal; font-weight: 700; color: #15803D;">&mdash; Client, Packaging Discounter NL</cite>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Illustrative Mockup Disclaimer -->
+        <p class="case-disclaimer-note" style="font-size: 11px; color: var(--ds-text-light); text-align: center; margin-top: 2.5rem; line-height: 1.6;">
+          * Device mockups and interface graphics are illustrative design assets representing client industry contexts. All technical implementations, numeric outcomes, and case facts reflect verified project engagements.
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. FINAL CTA BANNER (APPROVED DIRECTION WITH LAPTOP VISUAL)
+         ========================================================================= -->
+    <section class="case-cta-section">
+      <div class="ds-container">
+        <div class="case-cta-banner">
+          <!-- Left Column: Copy & Actions -->
+          <div class="case-cta-banner-content">
+            <div class="case-cta-eyebrow">
+              <span class="case-cta-eyebrow-dot" aria-hidden="true"></span>
+              READY TO IMPROVE YOUR TRACKING?
+            </div>
+            <h2 class="case-cta-title">
+              Let's Talk About Your Project
+            </h2>
+            <p class="case-cta-desc">
+              Get accurate data, better insights, and stronger growth. Schedule a quick diagnostic review of your tracking setup today.
+            </p>
+            <div class="case-cta-btn-group">
+              <a href="audit.html" class="case-cta-btn-white">
+                Book a Free Audit <span aria-hidden="true">→</span>
+              </a>
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20to%20discuss%20my%20tracking%20project." class="case-cta-btn-wa" target="_blank" rel="noopener">
+                Chat on WhatsApp <span aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
-          <div class="stack-row">
-            <span class="stk">GA4</span><span class="stk">sGTM</span><span class="stk">Stape.io</span><span class="stk">Shopify</span><span class="stk">Meta Pixel</span>
+
+          <!-- Right Column: Visual (laptop graphic from approved asset sheet) -->
+          <div class="case-cta-banner-visual">
+            <img src="assets/images/case-cta-laptop.png" alt="Illustrative tracking architecture preview on laptop" width="564" height="207" loading="lazy" />
           </div>
         </div>
-        <div class="results-col">
-          <div class="result-cell"><div class="result-num a1">400d</div><div class="result-desc">Cookie lifetime up from 7-day Safari cap</div></div>
-          <div class="result-cell"><div class="result-num">40+</div><div class="result-desc">Dead tags removed, clean container rebuilt</div></div>
-          <div class="result-cell"><div class="result-num a2">Zero</div><div class="result-desc">Duplicate purchase events after rebuild</div></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       6. SHARED SITE FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="ds-container">
+      <div class="footer-top">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="/" class="site-logo">
+            rehan<span>.</span>asadi
+          </a>
+          <p>
+            Tracking today. Smarter decisions tomorrow. GA4, GTM, and Server-Side tracking specialist.
+          </p>
+        </div>
+
+        <!-- Navigation Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="audit.html">Contact &amp; Audit</a></li>
+          </ul>
+        </div>
+
+        <!-- Services Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html#ga4">GA4 Architecture</a></li>
+            <li><a href="services.html#sgtm">Server-Side Tracking</a></li>
+            <li><a href="services.html#capi">Meta CAPI Setup</a></li>
+            <li><a href="services.html#gads">Google Ads Tracking</a></li>
+            <li><a href="services.html#shopify">Shopify Tracking</a></li>
+            <li><a href="services.html#retainer">Retainer Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Technical Resources Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Guides</div>
+          <ul class="footer-links">
+            <li><a href="shopify-ga4-tracking.html">Shopify GA4 Fix</a></li>
+            <li><a href="server-side-tracking-setup.html">Server-Side GTM</a></li>
+            <li><a href="ga4-not-tracking-conversions.html">GA4 Troubleshooting</a></li>
+            <li><a href="meta-capi-setup.html">Meta CAPI Setup</a></li>
+            <li><a href="google-ads-for-doctors-guide.html">Doctors Ads Guide</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rehan Asadi. All rights reserved. Clean data. Confident scaling.</p>
+        <div class="footer-meta-links">
+          <a href="services.html">Services</a>
+          <a href="case-studies.html">Proof</a>
+          <a href="audit.html">Get Quote</a>
         </div>
       </div>
     </div>
-
-    <div class="case-block" data-tags="ecommerce">
-      <div class="case-header">
-        <div class="case-num">03</div>
-        <h2 class="case-title">Packaging Discounter &mdash; <em>B2B packaging, Netherlands</em></h2>
-        <div class="case-badges">
-          <span class="badge badge-accent">GA4 Audit</span>
-          <span class="badge">B2B / NL</span>
-          <span class="badge">GTM Rebuild</span>
-        </div>
-      </div>
-      <div class="case-body">
-        <div>
-          <p class="block-label label-problem">The problem</p>
-          <p class="problem-text">GA4 reports were showing roughly 60% fewer conversions than actual Shopify orders. A previous developer had set up duplicate purchase tags firing on different triggers, and the GA4 data stream had measurement ID mismatches across environments.</p>
-          <p class="block-label label-solution">What I built</p>
-          <div class="steps">
-            <div class="step-row"><span class="step-n">01</span><span class="step-txt">Full tracking audit and identification of 3 conflicting purchase implementations</span></div>
-            <div class="step-row"><span class="step-n">02</span><span class="step-txt">Rebuilt GTM container from scratch with a single source-of-truth purchase event and deduplication logic</span></div>
-            <div class="step-row"><span class="step-n">03</span><span class="step-txt">Corrected GA4 measurement ID routing across dev/staging/production and verified via DebugView</span></div>
-            <div class="step-row"><span class="step-n">04</span><span class="step-txt">Delivered full QA documentation before go-live</span></div>
-          </div>
-          <div class="stack-row">
-            <span class="stk">GA4</span><span class="stk">GTM</span><span class="stk">Shopify</span><span class="stk">DebugView</span>
-          </div>
-        </div>
-        <div class="results-col">
-          <div class="result-cell"><div class="result-num a1">+60%</div><div class="result-desc">Conversion data recovered vs previous setup</div></div>
-          <div class="result-cell"><div class="result-num">3</div><div class="result-desc">Conflicting purchase tags removed and consolidated</div></div>
-          <div class="result-cell"><div class="result-num a2">100%</div><div class="result-desc">GA4 to Shopify order reconciliation after fix</div></div>
-        </div>
-      </div>
-      <div class="quote-block">
-        <p class="quote-text">"We did not realize our analytics were that broken. Rehan found issues we did not know existed and documented everything clearly so we could understand exactly what had changed."</p>
-        <p class="quote-attr">&mdash; Client, Packaging Discounter NL</p>
-      </div>
-    </div>
-
-    <div class="case-block" data-tags="regulated capi sgtm">
-      <div class="case-header">
-        <div class="case-num">04</div>
-        <h2 class="case-title">Hempire Innovations &mdash; <em>Cannabis e-commerce, US</em></h2>
-        <div class="case-badges">
-          <span class="badge badge-accent">Regulated</span>
-          <span class="badge">Cannabis / US</span>
-          <span class="badge">3+ yr ongoing</span>
-        </div>
-      </div>
-      <div class="case-body">
-        <div>
-          <p class="block-label label-problem">The problem</p>
-          <p class="problem-text">Operating in a regulated industry means standard pixel implementations are frequently restricted by platforms. The client needed accurate conversion tracking despite policy constraints and separate reporting infrastructure requirements.</p>
-          <p class="block-label label-solution">What I built</p>
-          <div class="steps">
-            <div class="step-row"><span class="step-n">01</span><span class="step-txt">Architected compliant server-side tracking that routes conversion data safely</span></div>
-            <div class="step-row"><span class="step-n">02</span><span class="step-txt">Separated GA4 analytics from paid tracking infrastructure for clean reporting</span></div>
-            <div class="step-row"><span class="step-n">03</span><span class="step-txt">Developed and managed ongoing SEO strategy for Wilmington NC hemp keywords</span></div>
-            <div class="step-row"><span class="step-n">04</span><span class="step-txt">Managed content operations and backlink strategy</span></div>
-            <div class="step-row"><span class="step-n">05</span><span class="step-txt">Supported brand migration tracking continuity across domain transition</span></div>
-          </div>
-          <div class="stack-row">
-            <span class="stk">sGTM</span><span class="stk">GA4</span><span class="stk">Meta CAPI</span><span class="stk">GTM</span><span class="stk">Analytics QA</span><span class="stk">Technical SEO</span>
-          </div>
-        </div>
-        <div class="results-col">
-          <div class="result-cell"><div class="result-num a1">3+</div><div class="result-desc">Years as ongoing tracking and SEO partner</div></div>
-          <div class="result-cell"><div class="result-num">100%</div><div class="result-desc">Compliant operation in restricted category</div></div>
-          <div class="result-cell"><div class="result-num a2">Local</div><div class="result-desc">Ranking for Wilmington NC hemp search terms</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-block" data-tags="ecommerce capi">
-      <div class="case-header">
-        <div class="case-num">05</div>
-        <h2 class="case-title">WIJDAN Stores &mdash; <em>Shopify fashion, Pakistan</em></h2>
-        <div class="case-badges">
-          <span class="badge badge-accent">Meta CAPI</span>
-          <span class="badge">Fashion / PK</span>
-          <span class="badge">Shopify</span>
-        </div>
-      </div>
-      <div class="case-body">
-        <div>
-          <p class="block-label label-problem">The problem</p>
-          <p class="problem-text">Meta Ads were running with no CAPI, so the pixel was the only conversion signal. iOS privacy changes reduced event visibility, and attribution did not match Shopify orders, making ROAS hard to trust.</p>
-          <p class="block-label label-solution">What I built</p>
-          <div class="steps">
-            <div class="step-row"><span class="step-n">01</span><span class="step-txt">Complete GA4 setup with custom funnel tracking across PDP to Cart to Checkout to Purchase</span></div>
-            <div class="step-row"><span class="step-n">02</span><span class="step-txt">Configured Meta Pixel plus CAPI via Shopify integration with server-side enrichment</span></div>
-            <div class="step-row"><span class="step-n">03</span><span class="step-txt">Set up Aggregated Event Measurement to maintain optimization signals</span></div>
-            <div class="step-row"><span class="step-n">04</span><span class="step-txt">Reconciled Shopify orders vs Meta attribution for a reliable baseline</span></div>
-          </div>
-          <div class="stack-row">
-            <span class="stk">GA4</span><span class="stk">GTM</span><span class="stk">Meta Pixel</span><span class="stk">CAPI</span><span class="stk">Shopify</span><span class="stk">AEM</span>
-          </div>
-        </div>
-        <div class="results-col">
-          <div class="result-cell"><div class="result-num a1">Closed</div><div class="result-desc">Attribution gap reconciled</div></div>
-          <div class="result-cell"><div class="result-num">iOS</div><div class="result-desc">AEM compliant and mobile tracking restored</div></div>
-          <div class="result-cell"><div class="result-num a2">4-step</div><div class="result-desc">Custom funnel tracked end to end</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="guide-strip">
-    <div class="guide-grid">
-      <a class="guide-card" href="shopify-ga4-tracking.html"><div class="guide-tag">Shopify + GA4</div><div class="guide-title">Shopify GA4 tracking fix</div></a>
-      <a class="guide-card" href="server-side-tracking-setup.html"><div class="guide-tag">sGTM</div><div class="guide-title">Server-side tracking setup</div></a>
-      <a class="guide-card" href="ga4-not-tracking-conversions.html"><div class="guide-tag">GA4</div><div class="guide-title">GA4 conversion tracking issues</div></a>
-      <a class="guide-card" href="meta-capi-setup.html"><div class="guide-tag">Meta CAPI</div><div class="guide-title">Meta CAPI setup guide</div></a>
-    </div>
-  </div>
-
-  <div class="cta-strip">
-    <h2>Your tracking is<br /><em>probably broken too.</em></h2>
-    <p>Most setups I review have at least one critical issue. Send me a message and I will tell you exactly what yours is.</p>
-    <a href="mailto:rehancopywriting@gmail.com" class="cta-btn">Start with a free audit</a>
-    <div class="contact-socials center dark">
-      <a class="contact-social-link" href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
-      <a class="contact-social-link" href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a>
-      <a class="contact-social-link" href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
-      <a class="contact-social-link" href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </div>
-
-  <footer>
-    <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
   </footer>
 
-  <script>
-    (function () {
-      const track = document.querySelector("[data-case-track]");
-      const dotsWrap = document.querySelector("[data-case-dots]");
-      const prevBtn = document.querySelector("[data-case-prev]");
-      const nextBtn = document.querySelector("[data-case-next]");
-      if (!track || !dotsWrap || !prevBtn || !nextBtn) return;
-      const slides = Array.from(track.children);
-      let i = 0;
-      let startX = 0;
-      let endX = 0;
-      const go = (n) => {
-        i = (n + slides.length) % slides.length;
-        track.style.transform = "translateX(-" + (i * 100) + "%)";
-        dotsWrap.querySelectorAll(".case-dot").forEach((d, idx) => d.classList.toggle("active", idx === i));
-      };
-      slides.forEach((_, idx) => {
-        const dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = "case-dot" + (idx === 0 ? " active" : "");
-        dot.addEventListener("click", () => go(idx));
-        dotsWrap.appendChild(dot);
-      });
-      prevBtn.addEventListener("click", () => go(i - 1));
-      nextBtn.addEventListener("click", () => go(i + 1));
-      track.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
-      track.addEventListener("touchend", (e) => {
-        endX = e.changedTouches[0].clientX;
-        const dx = endX - startX;
-        if (Math.abs(dx) < 35) return;
-        if (dx < 0) go(i + 1);
-        else go(i - 1);
-      }, { passive: true });
-    })();
+  <!-- Floating WhatsApp CTA Button -->
+  <a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
+    <span class="wa-icon" aria-hidden="true">
+      <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg>
+    </span>
+    <span class="wa-text">Chat on WhatsApp</span>
+  </a>
 
-    const btns = document.querySelectorAll(".filter-btn");
-    const blocks = document.querySelectorAll(".case-block");
-    btns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        btns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        const f = btn.dataset.filter;
-        blocks.forEach((block) => {
-          if (f === "all" || block.dataset.tags.includes(f)) {
-            block.classList.remove("hidden");
-          } else {
-            block.classList.add("hidden");
+  <!-- =========================================================================
+       7. SCRIPTS (MOBILE DRAWER, FILTERS, & DRAWER ACCORDIONS)
+       ========================================================================= -->
+  <script>
+    (function() {
+      // 1. Mobile Drawer Toggle
+      var toggle = document.getElementById('mobile-toggle');
+      var drawer = document.getElementById('mobile-drawer');
+      if (toggle && drawer) {
+        toggle.addEventListener('click', function() {
+          var expanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', !expanded);
+          drawer.hidden = expanded;
+        });
+      }
+
+      // 2. Interactive Filter Pills
+      var filterPills = document.querySelectorAll('.case-filter-pill');
+      var cards = document.querySelectorAll('.case-study-card');
+      filterPills.forEach(function(pill) {
+        pill.addEventListener('click', function() {
+          filterPills.forEach(function(p) {
+            p.classList.remove('active');
+            p.setAttribute('aria-selected', 'false');
+          });
+          pill.classList.add('active');
+          pill.setAttribute('aria-selected', 'true');
+
+          var selectedFilter = pill.getAttribute('data-filter');
+          cards.forEach(function(card) {
+            var tags = card.getAttribute('data-tags') || '';
+            if (selectedFilter === 'all' || tags.indexOf(selectedFilter) !== -1) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // 3. Expandable Technical Drawers
+      var drawerButtons = document.querySelectorAll('[data-drawer-toggle]');
+      drawerButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var targetId = btn.getAttribute('data-drawer-toggle');
+          var drawerEl = document.getElementById(targetId);
+          if (!drawerEl) return;
+
+          var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', !isExpanded);
+          drawerEl.hidden = isExpanded;
+
+          var labelSpan = btn.querySelector('span');
+          if (labelSpan) {
+            labelSpan.textContent = !isExpanded ? 'Hide Technical Details' : 'View Case Study Details';
           }
         });
       });
-    });
+    })();
   </script>
-  <a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
-    <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
-    <span>Free Tracking Audit</span>
-  </a>
-  <script src="assets/whatsapp-float.js"></script>
 </body>
 </html>
