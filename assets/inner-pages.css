@@ -2911,7 +2911,7 @@
 
 .about-specialize-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -3200,6 +3200,211 @@
   color: var(--ds-text-secondary);
 }
 
+/* Real-World Experience Section */
+.about-experience-section {
+  padding: 4rem 0;
+  background-color: var(--ds-surface-subtle);
+  border-bottom: 1px solid var(--ds-border);
+}
+
+/* Why Work With Me Section */
+.about-why-section {
+  padding: 5rem 0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.about-why-section .about-pillars-grid {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   9. Connect With Me Section (Premium Social Connection Card)
+   ========================================================================== */
+.about-connect-section {
+  padding: 5rem 0;
+  background-color: var(--ds-surface-subtle);
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.about-connect-card {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 24px;
+  padding: 3.5rem 3rem;
+  box-shadow: var(--ds-shadow-sm);
+}
+
+.about-connect-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+}
+
+.about-connect-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--ds-text);
+  margin-bottom: 0.75rem;
+}
+
+.about-connect-lead {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ds-text-secondary);
+}
+
+.about-connect-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.about-social-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 1rem;
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  text-decoration: none;
+  color: var(--ds-text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  min-height: 62px;
+  position: relative;
+}
+
+.about-social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ds-shadow-md);
+  border-color: var(--ds-accent);
+}
+
+.about-social-btn:active {
+  transform: scale(0.98);
+}
+
+.about-social-btn:focus-visible {
+  outline: 2px solid var(--ds-accent);
+  outline-offset: 2px;
+}
+
+/* LinkedIn Primary Distinction */
+.about-social-linkedin {
+  background: #F8FAFD;
+  border-color: #BFDBFE;
+}
+
+.about-social-linkedin:hover {
+  background: #EFF6FF;
+  border-color: #0A66C2;
+  box-shadow: 0 8px 20px -4px rgba(10, 102, 194, 0.2);
+}
+
+.about-social-linkedin .about-social-name {
+  color: #0A66C2;
+}
+
+.about-social-instagram:hover {
+  border-color: #E1306C;
+  box-shadow: 0 8px 20px -4px rgba(225, 48, 108, 0.2);
+}
+
+.about-social-facebook:hover {
+  border-color: #1877F2;
+  box-shadow: 0 8px 20px -4px rgba(24, 119, 242, 0.2);
+}
+
+.about-social-x:hover {
+  border-color: #0F172A;
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.15);
+}
+
+.about-social-threads:hover {
+  border-color: #0F172A;
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.15);
+}
+
+.about-social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: var(--ds-surface-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+.about-icon-linkedin {
+  background-color: #E8F0FE;
+  color: #0A66C2;
+}
+
+.about-icon-instagram {
+  background-color: #FDF2F8;
+  color: #E1306C;
+}
+
+.about-icon-facebook {
+  background-color: #EFF6FF;
+  color: #1877F2;
+}
+
+.about-icon-x {
+  background-color: #F1F5F9;
+  color: #0F172A;
+}
+
+.about-icon-threads {
+  background-color: #F1F5F9;
+  color: #0F172A;
+}
+
+.about-social-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.about-social-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  line-height: 1.2;
+}
+
+.about-social-meta {
+  font-size: 0.72rem;
+  color: var(--ds-text-secondary);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.about-social-arrow {
+  font-size: 0.85rem;
+  color: var(--ds-text-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.about-social-btn:hover .about-social-arrow {
+  transform: translate(2px, -2px);
+  color: var(--ds-accent);
+}
+
+.about-social-linkedin:hover .about-social-arrow {
+  color: #0A66C2;
+}
+
 /* About CTA Banner */
 .about-cta-section {
   padding: 5rem 0;
@@ -3308,6 +3513,9 @@
   .about-pillars-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .about-connect-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .about-cta-banner {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -3362,6 +3570,16 @@
     gap: 1.5rem;
     padding: 1.75rem 1.25rem;
   }
+  .about-connect-card {
+    padding: 2.25rem 1.5rem;
+  }
+  .about-connect-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .about-social-linkedin {
+    grid-column: span 2;
+  }
 }
 
 @media (max-width: 480px) {
@@ -3397,6 +3615,15 @@
   .about-projects-container {
     padding: 2rem 1.25rem;
   }
+  .about-connect-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-social-linkedin {
+    grid-column: auto;
+  }
+  .about-connect-card {
+    padding: 1.75rem 1.25rem;
+  }
   .about-cta-actions {
     flex-direction: column;
     width: 100%;
@@ -3405,6 +3632,18 @@
   .about-cta-btn-outline {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-social-btn,
+  .about-social-arrow,
+  .about-social-btn:hover,
+  .about-social-btn:hover .about-social-arrow,
+  .about-project-card:hover,
+  .about-project-card:hover .about-project-thumb img {
+    transform: none !important;
+    transition: none !important;
   }
 }
 
