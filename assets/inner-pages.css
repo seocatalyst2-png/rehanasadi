@@ -6784,3 +6784,697 @@
   }
 }
 
+/* ==========================================================================
+   GA4 NOT TRACKING CONVERSIONS — OPTION B SCOPED STYLES
+   ========================================================================== */
+
+.ga4-fix-hero-section {
+  padding: 4.5rem 0 3.5rem;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.ga4-fix-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.ga4-fix-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ds-accent);
+  margin-bottom: 1.25rem;
+}
+
+.ga4-fix-eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--ds-accent);
+}
+
+.ga4-fix-hero-h1 {
+  font-size: clamp(2.35rem, 4vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--ds-text);
+  margin-bottom: 1.25rem;
+}
+
+.ga4-fix-hero-h1 .hero-highlight {
+  color: var(--ds-accent);
+}
+
+.ga4-fix-hero-lead {
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--ds-text-secondary);
+  margin-bottom: 2rem;
+  max-width: 580px;
+}
+
+.ga4-fix-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ga4-fix-hero-visual-wrap {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.ga4-fix-hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Platform Strip */
+.ga4-fix-platforms-strip {
+  background-color: var(--ds-surface-subtle);
+  border-bottom: 1px solid var(--ds-border);
+  padding: 1.25rem 0;
+}
+
+.ga4-fix-platforms-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.ga4-fix-platforms-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ds-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.ga4-fix-platforms-list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.ga4-fix-platform-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  text-decoration: none;
+}
+
+.ga4-fix-platform-item svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* What's Included Section */
+.ga4-fix-included-section {
+  padding: 5rem 0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.ga4-fix-sec-header {
+  margin-bottom: 2.5rem;
+}
+
+.ga4-fix-sec-h2 {
+  font-size: clamp(1.85rem, 3.2vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ds-text);
+  line-height: 1.2;
+}
+
+.ga4-fix-sec-sub {
+  font-size: 1rem;
+  color: var(--ds-text-secondary);
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+.ga4-fix-two-col-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.ga4-fix-cards-subgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.ga4-fix-card {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 14px;
+  padding: 1.4rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.ga4-fix-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: var(--ds-accent-border);
+}
+
+.ga4-fix-card-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #ECFDF5;
+  color: var(--ds-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ga4-fix-card-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  letter-spacing: -0.01em;
+}
+
+.ga4-fix-card-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ds-text-secondary);
+}
+
+/* Mint Benefits Card */
+.ga4-fix-mint-card {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 14px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ga4-fix-mint-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #064E3B;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.ga4-fix-mint-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ga4-fix-mint-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #166534;
+  line-height: 1.4;
+}
+
+.ga4-fix-mint-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ds-accent);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* How I Fix GA4 Conversion Tracking (Left) + Issues Panel (Right) */
+.ga4-fix-workflow-section {
+  padding: 5rem 0;
+  background-color: var(--ds-surface-subtle);
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.ga4-fix-workflow-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.ga4-fix-workflow-box {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 16px;
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.03);
+  height: 100%;
+}
+
+.ga4-fix-workflow-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--ds-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.ga4-fix-workflow-sub {
+  font-size: 0.92rem;
+  color: var(--ds-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.ga4-fix-diagram-steps {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 1rem 0;
+}
+
+.ga4-fix-diagram-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ga4-fix-step-circle-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #F0FDF4;
+  border: 1.5px solid #BBF7D0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.ga4-fix-step-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--ds-accent);
+  color: #FFFFFF;
+  font-size: 0.68rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #FFFFFF;
+}
+
+.ga4-fix-flow-arrow {
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ga4-fix-step-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--ds-text);
+  margin-bottom: 0.35rem;
+  line-height: 1.25;
+}
+
+.ga4-fix-step-desc {
+  font-size: 0.76rem;
+  color: var(--ds-text-secondary);
+  line-height: 1.4;
+  max-width: 140px;
+}
+
+/* Dark Forest Green Issues Panel */
+.ga4-fix-issues-panel {
+  background: #062319;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(6, 35, 25, 0.4);
+  height: 100%;
+}
+
+.ga4-fix-issues-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.ga4-fix-issues-sub {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.ga4-fix-issues-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ga4-fix-issue-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ga4-fix-issue-bullet {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #EF4444;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.ga4-fix-issue-text {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+/* Real Client Examples Section */
+.ga4-fix-projects-section {
+  padding: 5rem 0;
+  background-color: var(--ds-surface-subtle);
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.ga4-fix-projects-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.ga4-fix-projects-h2 {
+  font-size: clamp(1.85rem, 3.2vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ds-text);
+}
+
+.ga4-fix-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.ga4-fix-project-card {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.ga4-fix-project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  border-color: var(--ds-accent-border);
+}
+
+.ga4-fix-project-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0D1B1E;
+  overflow: hidden;
+}
+
+.ga4-fix-project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.ga4-fix-project-card:hover .ga4-fix-project-thumb img {
+  transform: scale(1.03);
+}
+
+.ga4-fix-project-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.ga4-fix-project-title {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--ds-text);
+  letter-spacing: -0.01em;
+}
+
+.ga4-fix-project-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ds-text-secondary);
+}
+
+/* FAQ Section */
+.ga4-fix-faq-section {
+  padding: 5rem 0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.ga4-fix-faq-header {
+  margin-bottom: 2.5rem;
+}
+
+.ga4-fix-faq-h2 {
+  font-size: clamp(1.85rem, 3.2vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ds-text);
+}
+
+.ga4-fix-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 2rem;
+  align-items: start;
+}
+
+.ga4-fix-faq-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ga4-fix-faq-details {
+  border: 1px solid var(--ds-border);
+  border-radius: 12px;
+  background: #FFFFFF;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.ga4-fix-faq-details[open] {
+  border-color: var(--ds-accent-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.ga4-fix-faq-summary {
+  padding: 1.15rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+
+.ga4-fix-faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.ga4-fix-faq-summary:hover {
+  color: var(--ds-accent);
+}
+
+.ga4-fix-faq-plus {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--ds-accent);
+  transition: transform 0.2s ease;
+  line-height: 1;
+}
+
+.ga4-fix-faq-details[open] .ga4-fix-faq-plus {
+  transform: rotate(45deg);
+}
+
+.ga4-fix-faq-answer {
+  padding: 0 1.25rem 1.25rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--ds-text-secondary);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .ga4-fix-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .ga4-fix-two-col-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .ga4-fix-workflow-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .ga4-fix-faq-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ga4-fix-hero-section {
+    padding: 3rem 0 2.5rem;
+  }
+  .ga4-fix-hero-h1 {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+  .ga4-fix-platforms-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .ga4-fix-platforms-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem 0.75rem;
+    width: 100%;
+  }
+  .ga4-fix-cards-subgrid {
+    grid-template-columns: 1fr;
+  }
+  .ga4-fix-diagram-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .ga4-fix-flow-arrow {
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
+  }
+  .ga4-fix-projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .ga4-fix-hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .ga4-fix-hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .ga4-fix-platforms-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ga4-fix-issues-panel {
+    padding: 1.75rem 1.25rem;
+  }
+  .ga4-fix-workflow-box {
+    padding: 1.75rem 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ga4-fix-card:hover,
+  .ga4-fix-project-card:hover,
+  .ga4-fix-project-card:hover .ga4-fix-project-thumb img {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+

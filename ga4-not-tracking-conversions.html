@@ -3,267 +3,1131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GA4 Not Tracking Conversions? Here's What's Actually Wrong — Rehan Munawar</title>
-  <meta name="description" content="GA4 showing fewer conversions than Shopify or your CRM? 7 specific reasons why — and what fixing each one actually involves. Free audit available." />
+  <title>GA4 Not Tracking Conversions? Fix GA4 Tracking | Rehan Asadi</title>
+  <meta name="description" content="Professional GA4 conversion tracking audit and fix. Diagnose missing conversions, duplicate purchase events, GTM triggers, key events, and cross-domain tracking drops." />
   <link rel="canonical" href="https://rehanasadi.com/ga4-not-tracking-conversions" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rehanasadi.com/ga4-not-tracking-conversions" />
+  <meta property="og:title" content="GA4 Not Tracking Conversions? Fix GA4 Tracking | Rehan Asadi" />
+  <meta property="og:description" content="Professional GA4 conversion tracking audit and fix. Diagnose missing conversions, duplicate purchase events, GTM triggers, key events, and cross-domain tracking drops." />
+  <meta property="og:image" content="https://rehanasadi.com/assets/images/ga4-not-tracking-hero-laptop.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://rehanasadi.com/ga4-not-tracking-conversions" />
+  <meta name="twitter:title" content="GA4 Not Tracking Conversions? Fix GA4 Tracking | Rehan Asadi" />
+  <meta name="twitter:description" content="Professional GA4 conversion tracking audit and fix. Diagnose missing conversions, duplicate purchase events, GTM triggers, key events, and cross-domain tracking drops." />
+  <meta name="twitter:image" content="https://rehanasadi.com/assets/images/ga4-not-tracking-hero-laptop.png" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/contact-socials.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- ══════════════════════════════════════════
-       SHARED STYLES — used across all 5 pages
-  ══════════════════════════════════════════ -->
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --ink: #0d0d0c; --paper: #f5f2eb; --accent: #c8441a; --accent2: #1a5c8f;
-      --muted: #6b6760; --rule: rgba(13,13,12,0.12);
-      --mono: 'DM Mono', monospace; --serif: 'Fraunces', serif;
+  <!-- Core Design System & Scoped Styles -->
+  <link rel="stylesheet" href="assets/design-system.css" />
+  <link rel="stylesheet" href="assets/inner-pages.css" />
+
+  <!-- JSON-LD Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://rehanasadi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://rehanasadi.com/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "GA4 Not Tracking Conversions",
+        "item": "https://rehanasadi.com/ga4-not-tracking-conversions"
+      }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "GA4 Conversion Tracking Fix & Audit",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Rehan Asadi - Analytics & Tracking Specialist",
+      "url": "https://rehanasadi.com",
+      "image": "https://rehanasadi.com/assets/images/rehan-asadi-portrait.jpg"
+    },
+    "description": "Professional Google Analytics 4 conversion tracking diagnosis and remediation. Audits missing conversions, duplicate purchase events, broken GTM triggers, key events configuration, and cross-domain tracking.",
+    "serviceType": "Analytics Troubleshooting & Conversion Setup",
+    "areaServed": "Global",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "GA4 Troubleshooting Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "GA4 Tracking Audit & Diagnostics"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "GA4 Key Event & Conversion Remediation"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Ecommerce & Purchase Deduplication"
+          }
+        }
+      ]
     }
-    html { scroll-behavior: smooth; }
-    body { background: var(--paper); color: var(--ink); font-family: var(--mono); overflow-x: hidden; }
+  }
+  </script>
 
-    nav { display:flex; align-items:center; justify-content:space-between; padding:1.5rem 3rem; border-bottom:1px solid var(--rule); background:var(--paper); position:sticky; top:0; z-index:100; }
-    .nav-logo { font-size:13px; letter-spacing:0.08em; color:var(--ink); text-decoration:none; }
-    .nav-logo span { color:var(--accent); }
-    .nav-links { display:flex; gap:2.5rem; list-style:none; }
-    .nav-links a { font-size:12px; letter-spacing:0.06em; color:var(--muted); text-decoration:none; text-transform:uppercase; }
-    .nav-links a:hover { color:var(--ink); }
-    .nav-cta { font-size:12px; letter-spacing:0.06em; text-transform:uppercase; padding:9px 20px; border:1px solid var(--ink); color:var(--ink); text-decoration:none; transition:background 0.15s,color 0.15s; }
-    .nav-cta:hover { background:var(--ink); color:var(--paper); }
-
-    /* HERO */
-    .lp-hero { max-width:1100px; margin:0 auto; padding:5rem 3rem 4rem; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:1fr 340px; gap:5rem; align-items:start; }
-    .lp-eyebrow { font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:1.25rem; }
-    .lp-h1 { font-family:var(--serif); font-size:52px; font-weight:700; line-height:1.04; letter-spacing:-0.02em; margin-bottom:1.5rem; }
-    .lp-h1 em { font-style:italic; font-weight:300; color:var(--accent); }
-    .lp-intro { font-size:13px; line-height:1.9; color:var(--muted); max-width:540px; }
-    .lp-intro strong { color:var(--ink); font-weight:500; }
-
-    /* STICKY AUDIT CARD */
-    .audit-card { border:1px solid var(--rule); position:sticky; top:90px; }
-    .audit-card-head { padding:1.25rem 1.5rem; border-bottom:1px solid var(--rule); display:flex; justify-content:space-between; align-items:center; }
-    .audit-card-title { font-family:var(--serif); font-size:17px; font-weight:700; }
-    .free-tag { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border:1px solid var(--accent); color:var(--accent); }
-    .audit-card-body { padding:1.5rem; display:flex; flex-direction:column; gap:1rem; }
-    .audit-card-body p { font-size:12px; line-height:1.75; color:var(--muted); }
-    .audit-btn { display:block; font-family:var(--mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase; padding:13px; background:var(--ink); color:var(--paper); text-decoration:none; text-align:center; border:1px solid var(--ink); transition:background 0.15s,border-color 0.15s; }
-    .audit-btn:hover { background:var(--accent); border-color:var(--accent); }
-    .audit-card-note { font-size:11px; color:var(--muted); text-align:center; }
-
-    /* SECTION LABEL */
-    .sec-label { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:2.5rem; display:flex; align-items:center; gap:1rem; }
-    .sec-label::after { content:''; flex:1; height:1px; background:var(--rule); }
-
-    /* CONTENT BODY */
-    .lp-body { max-width:1100px; margin:0 auto; padding:4rem 3rem; }
-
-    /* numbered issue / reason cards */
-    .issue-list { display:flex; flex-direction:column; gap:1px; border:1px solid var(--rule); background:var(--rule); margin-bottom:3rem; }
-    .issue-item { background:var(--paper); padding:2rem 2rem 2rem 2rem; display:grid; grid-template-columns:52px 1fr; gap:1.5rem; }
-    .issue-num { font-family:var(--serif); font-size:28px; font-weight:700; color:var(--muted); line-height:1; padding-top:4px; }
-    .issue-title { font-family:var(--serif); font-size:20px; font-weight:700; margin-bottom:0.6rem; }
-    .issue-body { font-size:13px; line-height:1.85; color:var(--muted); }
-    .issue-body strong { color:var(--ink); font-weight:500; }
-    .issue-fix { margin-top:1rem; padding:1rem; border:1px solid var(--accent2); background:rgba(26,92,143,0.04); font-size:12px; line-height:1.75; color:var(--ink); }
-    .fix-label { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent2); margin-bottom:5px; }
-
-    /* signal strip */
-    .signal-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); margin-bottom:4rem; }
-    .signal-cell { background:var(--paper); padding:1.5rem; }
-    .signal-num { font-family:var(--serif); font-size:36px; font-weight:700; color:var(--accent); line-height:1; }
-    .signal-desc { font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin-top:5px; line-height:1.5; }
-
-    /* dark CTA */
-    .dark-cta { background:var(--ink); color:var(--paper); padding:4rem 3rem; text-align:center; }
-    .dark-cta h2 { font-family:var(--serif); font-size:38px; font-weight:700; line-height:1.08; margin-bottom:1rem; }
-    .dark-cta h2 em { font-style:italic; font-weight:300; color:rgba(245,242,235,0.4); }
-    .dark-cta p { font-size:13px; color:rgba(245,242,235,0.45); max-width:380px; margin:0 auto 2rem; line-height:1.85; }
-    .dark-cta-btn { font-family:var(--mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase; padding:13px 30px; border:1px solid rgba(245,242,235,0.25); color:var(--paper); text-decoration:none; display:inline-block; transition:background 0.15s,border-color 0.15s; }
-    .dark-cta-btn:hover { background:var(--accent); border-color:var(--accent); }
-
-    /* breadcrumb */
-    .breadcrumb { max-width:1100px; margin:0 auto; padding:1rem 3rem; font-size:11px; color:var(--muted); }
-    .breadcrumb a { color:var(--muted); text-decoration:none; }
-    .breadcrumb a:hover { color:var(--ink); }
-    .breadcrumb span { margin:0 0.5rem; }
-
-    /* related pages strip */
-    .related { max-width:1100px; margin:0 auto; padding:3rem; border-top:1px solid var(--rule); }
-    .related-title { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:1.5rem; }
-    .related-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); }
-    .related-item { background:var(--paper); padding:1.25rem; text-decoration:none; color:var(--ink); transition:background 0.12s; }
-    .related-item:hover { background:rgba(13,13,12,0.03); }
-    .related-tag { font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
-    .related-label { font-size:13px; line-height:1.4; }
-
-    footer { padding:1.5rem 3rem; display:flex; justify-content:center; align-items:center; background:var(--ink); border-top:1px solid rgba(245,242,235,0.07); }
-    footer p { font-size:11px; color:rgba(245,242,235,0.28); letter-spacing:0.06em; text-align:center; }
-    .footer-links { display:flex; gap:1.5rem; }
-    .footer-links a { font-size:11px; color:rgba(245,242,235,0.28); text-decoration:none; letter-spacing:0.06em; }
-    .footer-links a:hover { color:var(--paper); }
-
-    @media(max-width:860px){
-      nav { padding:1.25rem 1.5rem; }
-      .nav-links { display:none; }
-      .lp-hero { grid-template-columns:1fr; padding:3rem 1.5rem; gap:2.5rem; }
-      .audit-card { position:static; }
-      .lp-h1 { font-size:36px; }
-      .lp-body { padding:3rem 1.5rem; }
-      .signal-strip { grid-template-columns:1fr 1fr; }
-      .related-grid { grid-template-columns:1fr 1fr; }
-      .dark-cta { padding:3rem 1.5rem; }
-      .dark-cta h2 { font-size:28px; }
-      footer { flex-direction:column; gap:0.75rem; padding:1.25rem 1.5rem; }
-    }
-  </style>
+  <!-- JSON-LD Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why aren't my conversions showing in GA4?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Conversions or key events may not appear in GA4 for several reasons: the event tag is not firing in Google Tag Manager, the event name does not match the registered trigger, the event has not been marked as a key event in GA4 admin, data processing latency (standard GA4 reports take 24–48 hours to fully populate), Google Signals thresholds, or consent management blocks before user acceptance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between a GA4 event and a key event?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In GA4, every interaction is tracked as an event (e.g., page_view, click, scroll). In early 2024, Google rebranded conversions within GA4 to 'key events' to distinguish them from Google Ads conversions. Marking an event as a key event flags it as important for attribution and reporting without altering how the underlying event data is collected."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I still need Google Tag Manager?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google Tag Manager (GTM) is not strictly mandatory if you use direct gtag.js code or dedicated CMS native pixels, but it is strongly recommended. GTM provides centralized tag management, precise trigger control, custom data layer variables, and live preview debugging without requiring direct theme code edits for every tracking change."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you fix an existing GA4 setup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Most engagements involve auditing and fixing broken or incomplete existing implementations—such as missing lead submissions, zero-value ecommerce purchases, incorrect event parameters, duplicate transactions, or broken cross-domain tracking."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you set up new events or key events?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. I configure both standard recommended events (such as generate_lead, view_item, add_to_cart, begin_checkout, and purchase) and custom business events with tailored parameters, registering them properly as key events in GA4."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you fix purchase and revenue tracking problems?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Common purchase tracking issues include missing order values, zero revenue, currency discrepancies, and missing transaction IDs. I inspect your data layer and server payloads to ensure every purchase event transmits clean, standardized ecommerce item arrays and monetary values."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are my GA4 purchase numbers duplicated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Duplicate purchases usually happen when customers reload their order confirmation page, reopen old order confirmation emails, or when multiple tracking mechanisms (such as a CMS native app and GTM) fire simultaneously. I implement unique transaction ID deduplication and robust firing triggers to eliminate duplicate counting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will this recover my past data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. If events were never sent to or recorded by GA4, Google Analytics cannot retroactively reconstruct or recover that missing historical event data. The fix ensures that moving forward, all events and key conversions are recorded accurately and reliably. If you have separate historical records in your CRM or ecommerce store database, those can be used externally for business reconciliation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will this work with Google Ads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. GA4 key events can be imported into Google Ads as conversion actions. However, direct Google Ads conversion tracking via the Google tag or GTM is often preferable for smart bidding due to real-time attribution and enhanced conversions support. I review how your GA4 events align with your Google Ads conversion actions to prevent double-counting or attribution gaps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this fix Meta tracking too?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google Analytics 4 and Meta (Facebook) are completely separate tracking platforms with different event structures, APIs, and attribution logic. A GA4 repair addresses Google Analytics. If you also need Meta Conversions API or Meta Pixel setup, that is handled as a dedicated CAPI implementation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work with Shopify?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Shopify has unique tracking considerations, especially around checkout extensibility, customer events web pixels, and post-purchase thank-you pages. I fix both standard and Shopify Plus ecommerce tracking implementations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you test whether GA4 is working correctly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Validation is conducted using GA4 DebugView, Google Tag Manager Preview mode, Google Tag Assistant, and browser network request analysis. Each event is triggered and verified in real time to ensure parameter integrity and trigger accuracy before deploying tags live."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to fix?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The turnaround time depends on the complexity of your site, the number of missing or broken events, your CMS platform, and your consent management configuration. After an initial technical inspection, I provide a clear estimated timeline tailored to your scope."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a fixed price?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because every tracking setup varies—from single lead form repairs to complex multi-domain ecommerce funnels—pricing is customized to the specific technical requirements of your site. Contact me via WhatsApp for a direct, upfront quote."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
-  <ul class="nav-links">
-    <li><a href="services.html">Services</a></li>
-    <li><a href="case-studies.html">Work</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
-  </ul>
-  <a href="audit.html" class="nav-cta">Contact Us</a>
-</nav>
+  <!-- =========================================================================
+       1. GLOBAL SITE HEADER
+       ========================================================================= -->
+  <header class="site-header" id="site-header">
+    <div class="ds-container">
+      <div class="site-header-inner">
+        <a href="/" class="site-logo" aria-label="Rehan Asadi Home">
+          rehan<span>.</span>asadi
+        </a>
 
-<div style="border-bottom:1px solid var(--rule)">
-  <div class="breadcrumb">
-    <a href="index.html">Home</a><span>/</span>
-    <a href="services.html">Services</a><span>/</span>
-    GA4 Not Tracking Conversions
-  </div>
-</div>
+        <nav class="site-nav" aria-label="Main Navigation">
+          <a href="services.html" class="active">Services</a>
+          <a href="case-studies.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="google-ads-for-doctors-guide.html">Doctors Guide</a>
+          <a href="audit.html">Audit</a>
+        </nav>
 
-<!-- PAGE 1: GA4 NOT TRACKING CONVERSIONS -->
-<div class="lp-hero">
-  <div>
-    <p class="lp-eyebrow">Problem diagnosis · GA4</p>
-    <h1 class="lp-h1">GA4 isn't tracking<br>your conversions.<br><em>Here's why.</em></h1>
-    <p class="lp-intro">Your Shopify dashboard shows 200 orders this month. GA4 shows 120 purchases. You're not imagining it — <strong>the gap is real, it's common, and it has specific causes.</strong> Here are the seven most likely reasons, in order of how often I see them.</p>
-  </div>
-  <div class="audit-card">
-    <div class="audit-card-head">
-      <span class="audit-card-title">Not sure which one applies?</span>
-      <span class="free-tag">Free</span>
+        <div class="nav-actions">
+          <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20to%20diagnose%20and%20fix%20my%20GA4%20conversion%20tracking." class="btn btn-primary" target="_blank" rel="noopener">
+            Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+          </a>
+          <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="audit-card-body">
-      <p>Tell me your website and what you're seeing. I'll check your setup and come back with a plain-English breakdown of what's broken — within 24 hours, no charge.</p>
-      <a href="audit.html" class="audit-btn">Get a free audit →</a>
-      <p class="audit-card-note">50+ setups audited · &lt;24h response</p>
-    </div>
-  </div>
-</div>
+  </header>
 
-<div class="lp-body">
-  <div class="signal-strip">
-    <div class="signal-cell"><div class="signal-num">20–40%</div><div class="signal-desc">Conversions lost in typical browser-only setup</div></div>
-    <div class="signal-cell"><div class="signal-num">7</div><div class="signal-desc">Most common root causes — all fixable</div></div>
-    <div class="signal-cell"><div class="signal-num">3–5d</div><div class="signal-desc">Typical fix time once diagnosed</div></div>
-    <div class="signal-cell"><div class="signal-num">100%</div><div class="signal-desc">GA4 ↔ Shopify reconciliation — achievable</div></div>
-  </div>
-
-  <div class="sec-label">7 reasons GA4 isn't tracking your conversions</div>
-
-  <div class="issue-list">
-    <div class="issue-item">
-      <div class="issue-num">01</div>
-      <div>
-        <div class="issue-title">Events aren't marked as conversions (key events)</div>
-        <p class="issue-body">GA4 tracks events but doesn't automatically treat them as conversions. If you haven't gone into <strong>Admin → Events</strong> and toggled "Mark as key event" for your purchase or form submission events, GA4's conversion count will show zero — even though the events are firing correctly.</p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Navigate to GA4 Admin → Events. Find your purchase event. Toggle "Mark as key event." Data will start appearing within 24–48 hours. Previous conversions won't be backfilled.</div>
-      </div>
-    </div>
-    <div class="issue-item">
-      <div class="issue-num">02</div>
-      <div>
-        <div class="issue-title">Duplicate purchase tags causing inflated then suppressed counts</div>
-        <p class="issue-body">The most destructive scenario: a previous developer left an old purchase tag in GTM alongside your new one. Both fire on checkout — GA4 deduplicates by transaction_id, so it looks like half your orders vanished. In reality they're there, just cancelled out. <strong>I've seen this in 30%+ of audits I run.</strong></p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Open GTM Preview mode and complete a test purchase. If you see two GA4 purchase events firing, you have duplicate tags. Remove the older one and verify only one fires per transaction.</div>
-      </div>
-    </div>
-    <div class="issue-item">
-      <div class="issue-num">03</div>
-      <div>
-        <div class="issue-title">The GTM container was saved but never published</div>
-        <p class="issue-body">GTM changes only go live when you click Submit and publish a new version. A saved draft does nothing. If your tracking broke after someone "updated" GTM, check the Versions tab — there's almost certainly a draft sitting there with changes that never went live.</p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Go to GTM → Versions. If there are unpublished changes, review them in Preview mode first, then click Submit to publish.</div>
-      </div>
-    </div>
-    <div class="issue-item">
-      <div class="issue-num">04</div>
-      <div>
-        <div class="issue-title">Ad blockers and iOS stripping browser events</div>
-        <p class="issue-body">This isn't a configuration error — it's structural. Browser-based GA4 tracking gets blocked by uBlock Origin, Brave, Firefox ETP, and Safari's ITP before the event ever reaches Google's servers. In markets like the Netherlands, Germany, or with a tech-savvy audience, <strong>ad blocker rates can exceed 40%</strong>. These visitors are invisible to client-side GA4.</p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>This requires server-side GTM (sGTM) via Stape.io with a custom first-party subdomain. Events are sent from your server, bypassing browser-level blocking entirely. This typically recovers 20–40% of lost conversions.</div>
-      </div>
-    </div>
-    <div class="issue-item">
-      <div class="issue-num">05</div>
-      <div>
-        <div class="issue-title">Wrong Measurement ID on the production environment</div>
-        <p class="issue-body">It's common to have separate GA4 properties for dev/staging and production. If the GTM container on your live site is pointing to the staging Measurement ID, all production purchase data is being sent to a property nobody is looking at.</p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Check your GA4 Configuration tag in GTM. Verify the Measurement ID (G-XXXXXXXX) matches your production GA4 property. Use GA4 DebugView to confirm events are landing in the right property.</div>
-      </div>
-    </div>
-    <div class="issue-item">
-      <div class="issue-num">06</div>
-      <div>
-        <div class="issue-title">Shopify checkout extensibility broke your dataLayer</div>
-        <p class="issue-body">Shopify's 2024 checkout extensibility migration removed access to the order confirmation page for many themes, breaking custom purchase event implementations that relied on the <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">thank_you</code> page trigger. If your GA4 purchase tracking stopped working around mid-2024, this is almost certainly why.</p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Migrate to Shopify's Web Pixels API or implement purchase tracking via the Shopify checkout.liquid extension points. Requires rebuilding the dataLayer push for the purchase event.</div>
-      </div>
-    </div>
-    <div class="issue-item">
-      <div class="issue-num">07</div>
-      <div>
-        <div class="issue-title">Internal traffic inflating session counts and diluting conversion rate</div>
-        <p class="issue-body">Your team visits your own site constantly — product checks, QA, link testing. Without an internal traffic filter, every visit from your office IP or VPN is counted in GA4. This doesn't reduce conversion <em>count</em> but inflates session numbers, making conversion <em>rate</em> look worse than it is and skewing funnel data.</p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>GA4 Admin → Data Streams → Configure Tag → Define Internal Traffic. Add your office IP ranges. Then activate the filter under Admin → Data Filters.</div>
+  <!-- Mobile Drawer Navigation -->
+  <div class="mobile-nav-drawer" id="mobile-drawer" hidden>
+    <div class="mobile-nav-inner">
+      <nav class="mobile-nav-links" aria-label="Mobile Navigation">
+        <a href="services.html" class="active">Services</a>
+        <a href="case-studies.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="google-ads-for-doctors-guide.html">Doctors Guide</a>
+        <a href="audit.html">Audit</a>
+      </nav>
+      <div class="mobile-nav-cta">
+        <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20to%20diagnose%20and%20fix%20my%20GA4%20conversion%20tracking." class="btn btn-primary" target="_blank" rel="noopener" style="width: 100%; justify-content: center;">
+          Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </div>
 
-  <div class="sec-label">Still not sure which one you have?</div>
-  <p style="font-size:13px;line-height:1.9;color:var(--muted);max-width:600px;margin-bottom:2rem;">Most setups have more than one issue running simultaneously — which is why diagnosing from the outside is hard. A proper audit goes through your actual GTM container, GA4 property, and dataLayer to identify every problem, not just the obvious one.</p>
-</div>
+  <main>
+    <!-- =========================================================================
+         2. HERO SECTION (OPTION B ARCHITECTURE)
+         ========================================================================= -->
+    <section class="ga4-fix-hero-section">
+      <div class="ds-container">
+        <div class="ga4-fix-hero-grid">
+          <div class="ga4-fix-hero-content">
+            <div class="ga4-fix-eyebrow">
+              <span class="ga4-fix-eyebrow-dot" aria-hidden="true"></span>
+              GA4 NOT TRACKING CONVERSIONS
+            </div>
+            <h1 class="ga4-fix-hero-h1">
+              GA4 Not Tracking Conversions? Get Accurate Data and <span class="hero-highlight">Fix the Tracking.</span>
+            </h1>
+            <p class="ga4-fix-hero-lead">
+              I’ll audit your GA4 and GTM setup, identify why important events or key events are missing, duplicated, or inaccurate, and correct the implementation so you can make decisions with cleaner measurement data.
+            </p>
+            <div class="ga4-fix-hero-actions">
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20to%20diagnose%20and%20fix%20my%20GA4%20conversion%20tracking." class="btn btn-primary" target="_blank" rel="noopener">
+                Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="case-studies.html" class="btn btn-secondary">
+                View Case Studies <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+          <div class="ga4-fix-hero-visual-wrap">
+            <img
+              src="assets/images/ga4-not-tracking-hero-laptop.png"
+              alt="GA4 conversion tracking troubleshooting showing laptop with Google Analytics 4 report, conversion error notification, and resolution workflow cards"
+              class="ga4-fix-hero-img"
+              width="664"
+              height="436"
+              priority
+            />
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="related">
-  <div class="related-title">Related problems</div>
-  <div class="related-grid">
-    <a href="meta-capi-setup.html" class="related-item"><div class="related-tag">Meta CAPI</div><div class="related-label">Meta ROAS doesn't match Shopify orders</div></a>
-    <a href="server-side-tracking-setup.html" class="related-item"><div class="related-tag">sGTM</div><div class="related-label">Set up server-side tracking with Stape</div></a>
-    <a href="services.html" class="related-item"><div class="related-tag">Services</div><div class="related-label">GTM container is a mess — fix it</div></a>
-    <a href="shopify-ga4-tracking.html" class="related-item"><div class="related-tag">Shopify</div><div class="related-label">Shopify GA4 purchase tracking broken</div></a>
-  </div>
-</div>
+    <!-- =========================================================================
+         3. PLATFORMS STRIP (OFFICIAL BRAND MARKS)
+         ========================================================================= -->
+    <section class="ga4-fix-platforms-strip" aria-label="Supported Analytics and Ad Platforms">
+      <div class="ds-container">
+        <div class="ga4-fix-platforms-inner">
+          <div class="ga4-fix-platforms-label">Platforms I Work With</div>
+          <div class="ga4-fix-platforms-list">
+            <!-- Google Analytics -->
+            <div class="ga4-fix-platform-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M21.36 10.05h-9.36v3.9h5.36c-.23 1.25-.94 2.31-2 3.02v2.51h3.24c1.89-1.74 2.98-4.3 2.98-7.43 0-.67-.07-1.35-.22-2z" fill="#4285F4"/>
+                <path d="M12 21.6c2.7 0 4.96-.9 6.61-2.43l-3.24-2.51c-.9.6-2.04.96-3.37.96-2.6 0-4.8-1.76-5.59-4.12H3.07v2.6C4.73 19.38 8.09 21.6 12 21.6z" fill="#34A853"/>
+                <path d="M6.41 13.5A5.85 5.85 0 0 1 6.1 12c0-.52.1-1.03.31-1.5V7.9H3.07A9.6 9.6 0 0 0 2 12c0 1.55.37 3.03 1.07 4.1l3.34-2.6z" fill="#FBBC05"/>
+                <path d="M12 6.38c1.47 0 2.78.51 3.82 1.5l2.86-2.86C16.95 3.36 14.7 2.4 12 2.4 8.09 2.4 4.73 4.62 3.07 7.9l3.34 2.6c.79-2.36 2.99-4.12 5.59-4.12z" fill="#EA4335"/>
+              </svg>
+              <span>Google Analytics</span>
+            </div>
 
-<div class="dark-cta">
-  <h2>I'll tell you exactly<br><em>what's broken in yours.</em></h2>
-  <p>Send me your website URL and what you're seeing. Free written summary within 24 hours.</p>
-  <a href="audit.html" class="dark-cta-btn">Request free audit</a>
-  <div class="contact-socials center dark">
-    <a class="contact-social-link" href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
-    <a class="contact-social-link" href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a>
-    <a class="contact-social-link" href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
-    <a class="contact-social-link" href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
-  </div>
-</div>
+            <!-- Google Tag Manager -->
+            <div class="ga4-fix-platform-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2L2 12l10 10 10-10L12 2z" fill="#246FDB"/>
+                <path d="M12 6L6 12l6 6 6-6-6-6z" fill="#FFFFFF"/>
+                <circle cx="12" cy="12" r="2.5" fill="#246FDB"/>
+              </svg>
+              <span>Google Tag Manager</span>
+            </div>
 
-<footer>
-  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
-</footer>
+            <!-- Google Ads -->
+            <div class="ga4-fix-platform-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4.3 15.6l5.7-9.9c.7-1.2 2.2-1.6 3.4-.9l.1.1c1.2.7 1.6 2.2.9 3.4l-5.7 9.9c-.7 1.2-2.2 1.6-3.4.9l-.1-.1c-1.1-.7-1.6-2.2-.9-3.4z" fill="#FBBC04"/>
+                <path d="M19.7 15.6l-5.7-9.9c-.7-1.2-2.2-1.6-3.4-.9l-.1.1c-1.2.7-1.6 2.2-.9 3.4l5.7 9.9c.7 1.2 2.2 1.6 3.4.9l.1-.1c1.1-.7 1.6-2.2.9-3.4z" fill="#4285F4"/>
+                <circle cx="6.5" cy="18.5" r="2.5" fill="#34A853"/>
+              </svg>
+              <span>Google Ads</span>
+            </div>
 
-<a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
-  <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
-  <span>Free Tracking Audit</span>
-</a>
-<script src="assets/whatsapp-float.js"></script>
+            <!-- Meta -->
+            <div class="ga4-fix-platform-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 6.5C8.8 6.5 6.3 8.8 5.1 11.7 4 14.4 4.8 17.5 7.1 19.3c1.7 1.3 4 1.7 6.1 1 2-.7 3.5-2.3 4.4-4.2l1.6-3.3c.7-1.5 1.7-2.8 3.1-3.6-1.5-1.7-3.8-2.7-6.1-2.7h-4.2zm0-2.5h4.2c3.2 0 6.2 1.4 8.3 3.8 1.4 1.6 2.2 3.6 2.4 5.7.2 2.1-.4 4.3-1.6 6-1.5 2.2-3.8 3.7-6.4 4.3-2.6.6-5.4.1-7.6-1.4-2.8-2-4-5.4-3.1-8.7C9 10.6 10.3 8.3 12 4z" fill="#0081FB"/>
+                <path d="M16.5 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.5 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="#0081FB"/>
+              </svg>
+              <span>Meta</span>
+            </div>
 
+            <!-- Shopify -->
+            <div class="ga4-fix-platform-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M18.8 6.2c-.1-.4-.4-.6-.8-.6h-2.1c-.2-.9-.7-1.8-1.4-2.4-.9-.8-2-1.2-3.2-1.2-1.2 0-2.3.4-3.2 1.2-.7.6-1.2 1.5-1.4 2.4H4.6c-.4 0-.7.2-.8.6L2 21.2c0 .4.2.8.6.8h18.8c.4 0 .6-.4.6-.8L18.8 6.2zM11.3 4.5c.5-.4 1.1-.6 1.7-.6.6 0 1.2.2 1.7.6.4.4.7 1 .8 1.5h-5c.1-.5.4-1.1.8-1.5z" fill="#95BF47"/>
+              </svg>
+              <span>Shopify</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. WHAT'S INCLUDED IN MY GA4 TRACKING FIX (6 CARDS + MINT BENEFITS)
+         ========================================================================= -->
+    <section class="ga4-fix-included-section" id="whats-included">
+      <div class="ds-container">
+        <div class="ga4-fix-sec-header">
+          <h2 class="ga4-fix-sec-h2">What’s Included in My GA4 Tracking Fix</h2>
+          <p class="ga4-fix-sec-sub">Comprehensive audit and precision remediation across your analytics stack to restore reliable key event measurement.</p>
+        </div>
+
+        <div class="ga4-fix-two-col-layout">
+          <!-- 6 Service Cards Grid (Left) -->
+          <div class="ga4-fix-cards-subgrid">
+            <!-- Card 1 -->
+            <div class="ga4-fix-card">
+              <div class="ga4-fix-card-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </div>
+              <div class="ga4-fix-card-title">Complete Tracking Audit</div>
+              <div class="ga4-fix-card-desc">Review GA4, GTM and relevant measurement configuration to identify the root cause of conversion drops and tracking anomalies.</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="ga4-fix-card">
+              <div class="ga4-fix-card-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+              </div>
+              <div class="ga4-fix-card-title">Data Accuracy Check</div>
+              <div class="ga4-fix-card-desc">Identify duplicate, missing, or inaccurate event and parameter data across standard reports and real-time streams.</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="ga4-fix-card">
+              <div class="ga4-fix-card-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+              </div>
+              <div class="ga4-fix-card-title">Event &amp; Key Event Fixes</div>
+              <div class="ga4-fix-card-desc">Correct important events, parameters and GA4 key-event configuration where necessary to align with reporting requirements.</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="ga4-fix-card">
+              <div class="ga4-fix-card-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 11l3 3L22 4"></path>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+              </div>
+              <div class="ga4-fix-card-title">Testing &amp; Validation</div>
+              <div class="ga4-fix-card-desc">Test implementation with appropriate GA4/GTM debugging tools including DebugView, Tag Assistant, and browser console inspection.</div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="ga4-fix-card">
+              <div class="ga4-fix-card-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+              </div>
+              <div class="ga4-fix-card-title">Cross-Platform Alignment</div>
+              <div class="ga4-fix-card-desc">Review how relevant conversion events relate to Google Ads, Meta CAPI, or ecommerce measurement without conflating distinct definitions.</div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="ga4-fix-card">
+              <div class="ga4-fix-card-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="ga4-fix-card-title">Implementation Guidance</div>
+              <div class="ga4-fix-card-desc">Clear documentation, verification checklist, and recommended next steps to maintain tracking integrity over time.</div>
+            </div>
+          </div>
+
+          <!-- Mint Benefits Panel (Right) -->
+          <div class="ga4-fix-mint-card">
+            <div class="ga4-fix-mint-title">Why Fix GA4 Conversion Tracking?</div>
+            <ul class="ga4-fix-mint-list">
+              <li class="ga4-fix-mint-item">
+                <span class="ga4-fix-mint-check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>More reliable conversion and key event data</span>
+              </li>
+              <li class="ga4-fix-mint-item">
+                <span class="ga4-fix-mint-check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>Better visibility into customer journeys</span>
+              </li>
+              <li class="ga4-fix-mint-item">
+                <span class="ga4-fix-mint-check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>Cleaner event parameters and transaction records</span>
+              </li>
+              <li class="ga4-fix-mint-item">
+                <span class="ga4-fix-mint-check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>Accurate revenue reporting for ecommerce stores</span>
+              </li>
+              <li class="ga4-fix-mint-item">
+                <span class="ga4-fix-mint-check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>Stronger measurement inputs for ad platforms</span>
+              </li>
+              <li class="ga4-fix-mint-item">
+                <span class="ga4-fix-mint-check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>A stronger measurement foundation for scaling</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. HOW I FIX GA4 CONVERSION TRACKING (4-STAGE WORKFLOW + ISSUES PANEL)
+         ========================================================================= -->
+    <section class="ga4-fix-workflow-section" id="how-it-works">
+      <div class="ds-container">
+        <div class="ga4-fix-workflow-grid">
+          <!-- 4-Stage Workflow Box (Left) -->
+          <div class="ga4-fix-workflow-box">
+            <div class="ga4-fix-workflow-title">How I Fix GA4 Conversion Tracking</div>
+            <div class="ga4-fix-workflow-sub">A structured, end-to-end technical diagnostic and implementation process:</div>
+
+            <div class="ga4-fix-diagram-steps">
+              <!-- Step 1 -->
+              <div class="ga4-fix-diagram-step">
+                <div class="ga4-fix-step-circle-wrap">
+                  <span class="ga4-fix-step-badge">1</span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ds-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
+                <div class="ga4-fix-step-title">Audit &amp; Diagnose</div>
+                <div class="ga4-fix-step-desc">Find the root cause in your analytics setup.</div>
+              </div>
+
+              <!-- Flow Arrow -->
+              <div class="ga4-fix-flow-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="ga4-fix-diagram-step">
+                <div class="ga4-fix-step-circle-wrap">
+                  <span class="ga4-fix-step-badge">2</span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ds-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+                <div class="ga4-fix-step-title">Fix Implementation</div>
+                <div class="ga4-fix-step-desc">Correct tags, events, and parameters.</div>
+              </div>
+
+              <!-- Flow Arrow -->
+              <div class="ga4-fix-flow-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="ga4-fix-diagram-step">
+                <div class="ga4-fix-step-circle-wrap">
+                  <span class="ga4-fix-step-badge">3</span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ds-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <div class="ga4-fix-step-title">Test &amp; Validate</div>
+                <div class="ga4-fix-step-desc">Real-time testing and GA4 verification.</div>
+              </div>
+
+              <!-- Flow Arrow -->
+              <div class="ga4-fix-flow-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="ga4-fix-diagram-step">
+                <div class="ga4-fix-step-circle-wrap">
+                  <span class="ga4-fix-step-badge">4</span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ds-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                </div>
+                <div class="ga4-fix-step-title">Validated Data Flow</div>
+                <div class="ga4-fix-step-desc">Reliable reporting and cleaner insights.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dark Forest Green Issues Panel (Right) -->
+          <div class="ga4-fix-issues-panel">
+            <div class="ga4-fix-issues-title">Common Tracking Issues I Fix</div>
+            <div class="ga4-fix-issues-sub">Diagnostic targets resolved during audit and remediation:</div>
+
+            <ul class="ga4-fix-issues-list">
+              <li class="ga4-fix-issue-item">
+                <span class="ga4-fix-issue-bullet" aria-hidden="true">!</span>
+                <span class="ga4-fix-issue-text">Missing or untracked conversions &amp; key events</span>
+              </li>
+              <li class="ga4-fix-issue-item">
+                <span class="ga4-fix-issue-bullet" aria-hidden="true">!</span>
+                <span class="ga4-fix-issue-text">Duplicate purchase events and inflated revenue</span>
+              </li>
+              <li class="ga4-fix-issue-item">
+                <span class="ga4-fix-issue-bullet" aria-hidden="true">!</span>
+                <span class="ga4-fix-issue-text">Incorrect event parameters and missing values</span>
+              </li>
+              <li class="ga4-fix-issue-item">
+                <span class="ga4-fix-issue-bullet" aria-hidden="true">!</span>
+                <span class="ga4-fix-issue-text">Tags not firing properly in Google Tag Manager</span>
+              </li>
+              <li class="ga4-fix-issue-item">
+                <span class="ga4-fix-issue-bullet" aria-hidden="true">!</span>
+                <span class="ga4-fix-issue-text">Consent and tracking restriction misconfigurations</span>
+              </li>
+              <li class="ga4-fix-issue-item">
+                <span class="ga4-fix-issue-bullet" aria-hidden="true">!</span>
+                <span class="ga4-fix-issue-text">Cross-domain and payment gateway tracking issues</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. REAL CLIENT EXAMPLES (3 VERIFIED PROJECT CARDS)
+         ========================================================================= -->
+    <section class="ga4-fix-projects-section" id="case-studies">
+      <div class="ds-container">
+        <div class="ga4-fix-projects-header">
+          <h2 class="ga4-fix-projects-h2">Real Client Examples</h2>
+          <a href="case-studies.html" class="btn btn-secondary">
+            View All Case Studies <span class="btn-icon-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="ga4-fix-projects-grid">
+          <!-- Card 1: Slageronline.nl -->
+          <div class="ga4-fix-project-card">
+            <div class="ga4-fix-project-thumb">
+              <img
+                src="assets/images/case-slageronline.png"
+                alt="Slageronline.nl tracking and measurement improvements"
+                loading="eager"
+                width="400"
+                height="225"
+              />
+            </div>
+            <div class="ga4-fix-project-content">
+              <div class="ga4-fix-project-title">Slageronline.nl</div>
+              <div class="ga4-fix-project-desc">Tracking and measurement improvements</div>
+            </div>
+          </div>
+
+          <!-- Card 2: NordSleeps -->
+          <div class="ga4-fix-project-card">
+            <div class="ga4-fix-project-thumb">
+              <img
+                src="assets/images/case-nordsleeps.png"
+                alt="NordSleeps improved eCommerce tracking"
+                loading="eager"
+                width="400"
+                height="225"
+              />
+            </div>
+            <div class="ga4-fix-project-content">
+              <div class="ga4-fix-project-title">NordSleeps</div>
+              <div class="ga4-fix-project-desc">Improved eCommerce tracking</div>
+            </div>
+          </div>
+
+          <!-- Card 3: Packaging Discounter -->
+          <div class="ga4-fix-project-card">
+            <div class="ga4-fix-project-thumb">
+              <img
+                src="assets/images/case-packaging-discounter.png"
+                alt="Packaging Discounter improved conversion measurement"
+                loading="eager"
+                width="400"
+                height="225"
+              />
+            </div>
+            <div class="ga4-fix-project-content">
+              <div class="ga4-fix-project-title">Packaging Discounter</div>
+              <div class="ga4-fix-project-desc">Better conversion measurement</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. FREQUENTLY ASKED QUESTIONS (2-COLUMN ACCORDION)
+         ========================================================================= -->
+    <section class="ga4-fix-faq-section" id="faq">
+      <div class="ds-container">
+        <div class="ga4-fix-faq-header">
+          <h2 class="ga4-fix-faq-h2">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="ga4-fix-faq-grid">
+          <!-- Column 1 -->
+          <div class="ga4-fix-faq-col">
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Why aren’t my conversions showing in GA4?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Conversions or key events may not appear in GA4 for several reasons: the event tag is not firing in Google Tag Manager, the event name does not match the registered trigger, the event has not been marked as a key event in GA4 admin, data processing latency (standard GA4 reports take 24–48 hours to fully populate), Google Signals thresholds, or consent management blocks before user acceptance.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>What is the difference between a GA4 event and a key event?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                In GA4, every interaction is tracked as an event (e.g., page_view, click, scroll). In early 2024, Google rebranded conversions within GA4 to "key events" to distinguish them from Google Ads conversions. Marking an event as a key event flags it as important for attribution and reporting without altering how the underlying event data is collected.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Do I still need Google Tag Manager?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Google Tag Manager (GTM) is not strictly mandatory if you use direct gtag.js code or dedicated CMS native pixels, but it is strongly recommended. GTM provides centralized tag management, precise trigger control, custom data layer variables, and live preview debugging without requiring direct theme code edits for every tracking change.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Can you fix an existing GA4 setup?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Yes. Most engagements involve auditing and fixing broken or incomplete existing implementations—such as missing lead submissions, zero-value ecommerce purchases, incorrect event parameters, duplicate transactions, or broken cross-domain tracking.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Can you set up new events or key events?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Yes. I configure both standard recommended events (such as generate_lead, view_item, add_to_cart, begin_checkout, and purchase) and custom business events with tailored parameters, registering them properly as key events in GA4.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Can you fix purchase and revenue tracking problems?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Yes. Common purchase tracking issues include missing order values, zero revenue, currency discrepancies, and missing transaction IDs. I inspect your data layer and server payloads to ensure every purchase event transmits clean, standardized ecommerce item arrays and monetary values.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Why are my GA4 purchase numbers duplicated?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Duplicate purchases usually happen when customers reload their order confirmation page, reopen old order confirmation emails, or when multiple tracking mechanisms (such as a CMS native app and GTM) fire simultaneously. I implement unique transaction ID deduplication and robust firing triggers to eliminate duplicate counting.
+              </div>
+            </details>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="ga4-fix-faq-col">
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Will this recover my past data?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                No. If events were never sent to or recorded by GA4, Google Analytics cannot retroactively reconstruct or recover that missing historical event data. The fix ensures that moving forward, all events and key conversions are recorded accurately and reliably. If you have separate historical records in your CRM or ecommerce store database, those can be used externally for business reconciliation.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Will this work with Google Ads?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Yes. GA4 key events can be imported into Google Ads as conversion actions. However, direct Google Ads conversion tracking via the Google tag or GTM is often preferable for smart bidding due to real-time attribution and enhanced conversions support. I review how your GA4 events align with your Google Ads conversion actions to prevent double-counting or attribution gaps.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Does this fix Meta tracking too?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Google Analytics 4 and Meta (Facebook) are completely separate tracking platforms with different event structures, APIs, and attribution logic. A GA4 repair addresses Google Analytics. If you also need Meta Conversions API or Meta Pixel setup, that is handled as a dedicated <a href="meta-capi-setup.html" style="color: var(--ds-accent); font-weight: 600; text-decoration: underline;">Meta CAPI setup</a>.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Do you work with Shopify?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Yes. Shopify has unique tracking considerations, especially around checkout extensibility, customer events web pixels, and post-purchase thank-you pages. I fix both standard and Shopify Plus ecommerce tracking implementations. Learn more on my dedicated <a href="shopify-ga4-tracking.html" style="color: var(--ds-accent); font-weight: 600; text-decoration: underline;">Shopify GA4 tracking page</a>.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>How do you test whether GA4 is working correctly?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Validation is conducted using GA4 DebugView, Google Tag Manager Preview mode, Google Tag Assistant, and browser network request analysis. Each event is triggered and verified in real time to ensure parameter integrity and trigger accuracy before deploying tags live.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>How long does it take to fix?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                The turnaround time depends on the complexity of your site, the number of missing or broken events, your CMS platform, and your consent management configuration. After an initial technical inspection, I provide a clear estimated timeline tailored to your scope.
+              </div>
+            </details>
+
+            <details class="ga4-fix-faq-details">
+              <summary class="ga4-fix-faq-summary">
+                <span>Is there a fixed price?</span>
+                <span class="ga4-fix-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="ga4-fix-faq-answer">
+                Because every tracking setup varies—from single lead form repairs to complex multi-domain ecommerce funnels—pricing is customized to the specific technical requirements of your site. Contact me via WhatsApp for a direct, upfront quote.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         8. CONNECT WITH ME (EXACT COMPONENT MATCHING ABOUT.HTML)
+         ========================================================================= -->
+    <section class="about-connect-section" id="connect">
+      <div class="ds-container">
+        <div class="about-connect-content">
+          <div class="about-connect-eyebrow">
+            <span class="about-eyebrow-dot" aria-hidden="true"></span>
+            CONNECT WITH ME
+          </div>
+          <h2 class="about-connect-title">Let's stay connected.</h2>
+          <p class="about-connect-lead">
+            Follow my work, tracking insights, and updates across the platforms I use.
+          </p>
+          <div class="about-connect-grid" role="list">
+            <!-- 1. LinkedIn -->
+            <a
+              href="https://www.linkedin.com/in/rehanasadi"
+              target="_blank"
+              rel="noopener"
+              class="about-social-btn about-social-linkedin"
+              aria-label="Connect on LinkedIn"
+              role="listitem"
+            >
+              <div class="about-social-icon about-icon-linkedin" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </div>
+              <div class="about-social-text">
+                <span class="about-social-name">LinkedIn</span>
+                <span class="about-social-meta">Professional updates</span>
+              </div>
+              <span class="about-social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <!-- 2. Instagram -->
+            <a
+              href="https://instagram.com/rehanasadi_"
+              target="_blank"
+              rel="noopener"
+              class="about-social-btn about-social-instagram"
+              aria-label="Follow on Instagram"
+              role="listitem"
+            >
+              <div class="about-social-icon about-icon-instagram" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </div>
+              <div class="about-social-text">
+                <span class="about-social-name">Instagram</span>
+                <span class="about-social-meta">Behind the scenes</span>
+              </div>
+              <span class="about-social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <!-- 3. Facebook -->
+            <a
+              href="https://www.facebook.com/rehanasadiofficial"
+              target="_blank"
+              rel="noopener"
+              class="about-social-btn about-social-facebook"
+              aria-label="Connect on Facebook"
+              role="listitem"
+            >
+              <div class="about-social-icon about-icon-facebook" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                </svg>
+              </div>
+              <div class="about-social-text">
+                <span class="about-social-name">Facebook</span>
+                <span class="about-social-meta">News &amp; posts</span>
+              </div>
+              <span class="about-social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <!-- 4. X (Twitter) -->
+            <a
+              href="https://x.com/rehanasadi_"
+              target="_blank"
+              rel="noopener"
+              class="about-social-btn about-social-x"
+              aria-label="Follow on X"
+              role="listitem"
+            >
+              <div class="about-social-icon about-icon-x" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </div>
+              <div class="about-social-text">
+                <span class="about-social-name">X</span>
+                <span class="about-social-meta">Thoughts &amp; notes</span>
+              </div>
+              <span class="about-social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <!-- 5. Threads (Non-clickable / Coming Soon) -->
+            <div
+              class="about-social-btn about-social-threads about-social-disabled"
+              aria-disabled="true"
+              aria-label="Threads (Coming soon)"
+              role="listitem"
+            >
+              <div class="about-social-icon about-icon-threads" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 192 192" fill="currentColor">
+                  <path d="M141.537 88.9883C140.71 88.5919 139.87 88.2109 139.019 87.8456C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.6881 72.8275C81.3323 64.2494 89.9654 60.8358 97.2248 60.8358C97.3021 60.8358 97.3794 60.8358 97.4566 60.8365C108.971 60.9103 118.847 67.8744 122.753 82.5936C115.111 80.8988 106.88 80.2078 98.1384 80.5342C67.3377 81.6841 49.3361 97.8016 49.7719 121.722C50.2198 146.337 70.8258 160.852 93.3087 160.852C108.775 160.852 122.257 153.256 128.845 140.917C133.447 153.078 144.981 160.852 160.106 160.852C178.694 160.852 192 147.24 192 126.966C192 90.0706 163.543 71.9701 141.537 88.9883ZM93.7073 144.761C81.4429 144.761 67.3377 137.07 67.0425 120.911C66.7571 105.291 79.167 96.6433 98.7188 95.912C106.491 95.6212 113.882 96.3888 120.672 98.1408C117.472 131.782 105.659 144.761 93.7073 144.761Z"/>
+                </svg>
+              </div>
+              <div class="about-social-text">
+                <span class="about-social-name">Threads</span>
+                <span class="about-social-meta">Coming soon</span>
+              </div>
+              <span class="about-social-arrow" aria-hidden="true" style="opacity: 0.35;">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         9. FINAL CTA BANNER (DARK FOREST GREEN WITH LAPTOP VISUAL)
+         ========================================================================= -->
+    <section class="audit-cta-section">
+      <div class="ds-container">
+        <div class="audit-cta-banner">
+          <div class="audit-cta-content">
+            <div class="audit-cta-eyebrow">
+              <span class="audit-eyebrow-dot" aria-hidden="true"></span>
+              READY TO FIX YOUR GA4 TRACKING?
+            </div>
+            <h2 class="audit-cta-title">Get Your GA4 Conversion Tracking Fixed</h2>
+            <p class="audit-cta-desc">
+              Accurate data. Better insights. Smarter decisions.
+            </p>
+            <div class="audit-cta-actions">
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20to%20diagnose%20and%20fix%20my%20GA4%20conversion%20tracking." class="audit-cta-btn-white" target="_blank" rel="noopener">
+                Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20to%20diagnose%20and%20fix%20my%20GA4%20conversion%20tracking." class="audit-cta-btn-outline" target="_blank" rel="noopener">
+                Chat on WhatsApp <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+          <div class="audit-cta-visual">
+            <img
+              src="assets/images/case-cta-laptop.png"
+              alt="Google Analytics 4 conversion audit preview on laptop"
+              width="540"
+              height="320"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       10. GLOBAL SITE FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="ds-container">
+      <div class="footer-top">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="/" class="site-logo">
+            rehan<span>.</span>asadi
+          </a>
+          <p>
+            Tracking today. Smarter decisions tomorrow. GA4, GTM, and Server-Side tracking specialist.
+          </p>
+          <div class="footer-badge" style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; color: var(--ds-accent);">
+            <span class="status-indicator" style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--ds-success); display: inline-block;"></span> Available for New Projects
+          </div>
+        </div>
+
+        <!-- Navigation Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="audit.html">Contact &amp; Audit</a></li>
+          </ul>
+        </div>
+
+        <!-- Services Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html#ga4">GA4 Architecture</a></li>
+            <li><a href="server-side-tracking-setup.html">Server-Side Tracking</a></li>
+            <li><a href="meta-capi-setup.html">Meta CAPI Setup</a></li>
+            <li><a href="services.html#gads">Google Ads Tracking</a></li>
+            <li><a href="shopify-ga4-tracking.html">Shopify Tracking</a></li>
+            <li><a href="services.html#retainer">Retainer Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Guides Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Guides</div>
+          <ul class="footer-links">
+            <li><a href="shopify-ga4-tracking.html">Shopify GA4 Fix</a></li>
+            <li><a href="server-side-tracking-setup.html">Server-Side GTM</a></li>
+            <li><a href="ga4-not-tracking-conversions.html">GA4 Troubleshooting</a></li>
+            <li><a href="meta-capi-setup.html">Meta CAPI Setup</a></li>
+            <li><a href="google-ads-for-doctors-guide.html">Doctors Ads Guide</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rehan Asadi. All rights reserved. Clean data. Confident scaling.</p>
+        <div class="footer-meta-links" style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+          <a href="services.html">Services</a>
+          <a href="case-studies.html">Proof</a>
+          <a href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
+          <a href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp CTA Button -->
+  <a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20to%20diagnose%20and%20fix%20my%20GA4%20conversion%20tracking." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+    <span class="wa-icon" aria-hidden="true">
+      <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg>
+    </span>
+    <span class="wa-text">Chat on WhatsApp</span>
+  </a>
+
+  <!-- Mobile Drawer Toggle Script & Accordion -->
+  <script>
+    (function() {
+      var toggle = document.getElementById('mobile-toggle');
+      var drawer = document.getElementById('mobile-drawer');
+      if (toggle && drawer) {
+        toggle.addEventListener('click', function() {
+          var expanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', !expanded);
+          drawer.hidden = expanded;
+        });
+      }
+    })();
+
+    // Accordion Mutual Exclusivity
+    (function() {
+      const details = document.querySelectorAll('.ga4-fix-faq-details');
+      details.forEach((targetDetail) => {
+        targetDetail.addEventListener('toggle', () => {
+          if (targetDetail.open) {
+            details.forEach((detail) => {
+              if (detail !== targetDetail && detail.open) {
+                detail.open = false;
+              }
+            });
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
