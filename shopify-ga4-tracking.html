@@ -3,178 +3,1249 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shopify GA4 Purchase Tracking Not Working — Fix It | Rehan Munawar</title>
-  <meta name="description" content="Shopify purchase events not showing in GA4? Checkout extensibility, missing dataLayer, duplicate tags — here's every reason it breaks and how to fix it." />
+  <title>Shopify GA4 Tracking Setup | Ecommerce Measurement | Rehan Asadi</title>
+  <meta name="description" content="Professional Shopify GA4 ecommerce tracking setup. Track products, carts, checkouts, and purchases with accurate transaction IDs, event validation, and revenue reconciliation." />
   <link rel="canonical" href="https://rehanasadi.com/shopify-ga4-tracking" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rehanasadi.com/shopify-ga4-tracking" />
+  <meta property="og:title" content="Shopify GA4 Tracking Setup | Ecommerce Measurement | Rehan Asadi" />
+  <meta property="og:description" content="Professional Shopify GA4 ecommerce tracking setup. Track products, carts, checkouts, and purchases with accurate transaction IDs and revenue reconciliation." />
+  <meta property="og:image" content="https://rehanasadi.com/assets/images/shopify-ga4-hero-laptop.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://rehanasadi.com/shopify-ga4-tracking" />
+  <meta name="twitter:title" content="Shopify GA4 Tracking Setup | Ecommerce Measurement | Rehan Asadi" />
+  <meta name="twitter:description" content="Professional Shopify GA4 ecommerce tracking setup. Track products, carts, checkouts, and purchases with accurate transaction IDs and revenue reconciliation." />
+  <meta name="twitter:image" content="https://rehanasadi.com/assets/images/shopify-ga4-hero-laptop.png" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/contact-socials.css" />
-  <style>
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    :root{--ink:#0d0d0c;--paper:#f5f2eb;--accent:#c8441a;--accent2:#1a5c8f;--muted:#6b6760;--rule:rgba(13,13,12,0.12);--mono:'DM Mono',monospace;--serif:'Fraunces',serif}
-    html{scroll-behavior:smooth}body{background:var(--paper);color:var(--ink);font-family:var(--mono);overflow-x:hidden}
-    nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;border-bottom:1px solid var(--rule);background:var(--paper);position:sticky;top:0;z-index:100}
-    .nav-logo{font-size:13px;letter-spacing:0.08em;color:var(--ink);text-decoration:none}.nav-logo span{color:var(--accent)}
-    .nav-links{display:flex;gap:2.5rem;list-style:none}.nav-links a{font-size:12px;letter-spacing:0.06em;color:var(--muted);text-decoration:none;text-transform:uppercase}.nav-links a:hover{color:var(--ink)}
-    .nav-cta{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:9px 20px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;transition:background 0.15s,color 0.15s}.nav-cta:hover{background:var(--ink);color:var(--paper)}
-    .breadcrumb{max-width:1100px;margin:0 auto;padding:1rem 3rem;font-size:11px;color:var(--muted)}.breadcrumb a{color:var(--muted);text-decoration:none}.breadcrumb a:hover{color:var(--ink)}.breadcrumb span{margin:0 0.5rem}
-    .lp-hero{max-width:1100px;margin:0 auto;padding:5rem 3rem 4rem;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:1fr 340px;gap:5rem;align-items:start}
-    .lp-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
-    .lp-h1{font-family:var(--serif);font-size:52px;font-weight:700;line-height:1.04;letter-spacing:-0.02em;margin-bottom:1.5rem}.lp-h1 em{font-style:italic;font-weight:300;color:var(--accent)}
-    .lp-intro{font-size:13px;line-height:1.9;color:var(--muted);max-width:540px}.lp-intro strong{color:var(--ink);font-weight:500}
-    .audit-card{border:1px solid var(--rule);position:sticky;top:90px}.audit-card-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
-    .audit-card-title{font-family:var(--serif);font-size:17px;font-weight:700}.free-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--accent);color:var(--accent)}
-    .audit-card-body{padding:1.5rem;display:flex;flex-direction:column;gap:1rem}.audit-card-body p{font-size:12px;line-height:1.75;color:var(--muted)}
-    .audit-btn{display:block;font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:13px;background:var(--ink);color:var(--paper);text-decoration:none;text-align:center;border:1px solid var(--ink);transition:background 0.15s,border-color 0.15s}.audit-btn:hover{background:var(--accent);border-color:var(--accent)}
-    .audit-card-note{font-size:11px;color:var(--muted);text-align:center}
-    .sec-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}.sec-label::after{content:'';flex:1;height:1px;background:var(--rule)}
-    .lp-body{max-width:1100px;margin:0 auto;padding:4rem 3rem}
-    .signal-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:3rem}
-    .signal-cell{background:var(--paper);padding:1.5rem}.signal-num{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--accent);line-height:1}.signal-desc{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-top:5px;line-height:1.5}
-    .issue-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--rule);background:var(--rule);margin-bottom:3rem}
-    .issue-item{background:var(--paper);padding:2rem;display:grid;grid-template-columns:52px 1fr;gap:1.5rem}
-    .issue-num{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--muted);line-height:1;padding-top:4px}
-    .issue-title{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:0.6rem}
-    .issue-body{font-size:13px;line-height:1.85;color:var(--muted)}.issue-body strong{color:var(--ink);font-weight:500}
-    .issue-fix{margin-top:1rem;padding:1rem;border:1px solid var(--accent2);background:rgba(26,92,143,0.04);font-size:12px;line-height:1.75;color:var(--ink)}
-    .fix-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:5px}
-    .dark-cta{background:var(--ink);color:var(--paper);padding:4rem 3rem;text-align:center}
-    .dark-cta h2{font-family:var(--serif);font-size:38px;font-weight:700;line-height:1.08;margin-bottom:1rem}.dark-cta h2 em{font-style:italic;font-weight:300;color:rgba(245,242,235,0.4)}
-    .dark-cta p{font-size:13px;color:rgba(245,242,235,0.45);max-width:380px;margin:0 auto 2rem;line-height:1.85}
-    .dark-cta-btn{font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:13px 30px;border:1px solid rgba(245,242,235,0.25);color:var(--paper);text-decoration:none;display:inline-block;transition:background 0.15s,border-color 0.15s}.dark-cta-btn:hover{background:var(--accent);border-color:var(--accent)}
-    .related{max-width:1100px;margin:0 auto;padding:3rem;border-top:1px solid var(--rule)}
-    .related-title{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
-    .related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
-    .related-item{background:var(--paper);padding:1.25rem;text-decoration:none;color:var(--ink)}.related-item:hover{background:rgba(13,13,12,0.03)}
-    .related-tag{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}.related-label{font-size:13px;line-height:1.4}
-    footer{padding:1.5rem 3rem;display:flex;justify-content:center;align-items:center;background:var(--ink);border-top:1px solid rgba(245,242,235,0.07)}
-    footer p{font-size:11px;color:rgba(245,242,235,0.28);letter-spacing:0.06em;text-align:center}
-    .footer-links{display:flex;gap:1.5rem}.footer-links a{font-size:11px;color:rgba(245,242,235,0.28);text-decoration:none;letter-spacing:0.06em}.footer-links a:hover{color:var(--paper)}
-    @media(max-width:860px){nav{padding:1.25rem 1.5rem}.nav-links{display:none}.lp-hero{grid-template-columns:1fr;padding:3rem 1.5rem;gap:2.5rem}.audit-card{position:static}.lp-h1{font-size:36px}.lp-body{padding:3rem 1.5rem}.signal-strip{grid-template-columns:1fr 1fr}.related-grid{grid-template-columns:1fr 1fr}.dark-cta{padding:3rem 1.5rem}.dark-cta h2{font-size:28px}footer{flex-direction:column;gap:0.75rem;padding:1.25rem 1.5rem}}
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Core Design System & Scoped Styles -->
+  <link rel="stylesheet" href="assets/design-system.css" />
+  <link rel="stylesheet" href="assets/inner-pages.css" />
+
+  <!-- JSON-LD Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://rehanasadi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://rehanasadi.com/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Shopify GA4 Tracking",
+        "item": "https://rehanasadi.com/shopify-ga4-tracking"
+      }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Shopify GA4 Tracking Setup",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Rehan Asadi - Analytics & Tracking Specialist",
+      "url": "https://rehanasadi.com",
+      "image": "https://rehanasadi.com/assets/images/rehan-asadi-portrait.jpg"
+    },
+    "description": "Professional Google Analytics 4 ecommerce setup for Shopify and Shopify Plus stores. Configures full-funnel ecommerce events, items arrays, transaction deduplication, and accurate revenue reporting.",
+    "serviceType": "Shopify Ecommerce Analytics Setup",
+    "areaServed": "Global",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Shopify Analytics Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Shopify GA4 Ecommerce Setup"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Shopify Purchase Tracking & Deduplication"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Shopify Server-Side Measurement"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Shopify GA4 tracking?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Shopify GA4 tracking is the specialized implementation of Google Analytics 4 for Shopify stores. It captures the entire customer journey—from product views and cart interactions to checkout progress and completed purchases—with structured ecommerce parameters and verified transaction data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which ecommerce events do you set up?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I implement standard GA4 ecommerce events based on your store's supported architecture, including view_item_list, select_item, view_item, add_to_cart, remove_from_cart, view_cart, begin_checkout, add_shipping_info, add_payment_info, and purchase."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you track purchase revenue and transaction IDs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every purchase event is configured to transmit the unique transaction_id, total purchase value, currency code, tax, shipping, and individual item parameters (item_id, item_name, price, quantity) to ensure GA4 revenue reconciles accurately with Shopify."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you fix duplicate purchase events?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Duplicate purchases typically occur when customers refresh the order confirmation page, return via bookmark, or when multiple tracking apps fire tags simultaneously. I configure unique transaction IDs, event deduplication logic, and robust firing triggers to eliminate duplicate conversion counts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I still need Shopify's default analytics?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Shopify's native analytics and GA4 serve complementary roles. Shopify provides operational reporting on orders, fulfillment, and inventory, while GA4 delivers deep attribution and cross-channel marketing insights. The setup preserves native Shopify analytics while ensuring GA4 runs cleanly without script conflicts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you fix an existing GA4 setup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. I frequently audit and troubleshoot existing setups suffering from missing revenue, zero-value purchases, checkout extensibility breaks, or inconsistent event parameters, rebuilding the measurement architecture to ensure data integrity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will Shopify tracking improve ad performance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Accurate conversion and ecommerce data provide high-quality measurement inputs for advertising platforms like Google Ads and Meta. While ad campaign performance depends on creative, audience targeting, budget, and offer quality, reliable conversion signals allow ad bidding algorithms to optimize on actual purchase data rather than incomplete browser drops."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you set up enhanced ecommerce tracking?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. In GA4, ecommerce tracking captures granular item-scoped dimensions such as product IDs, variants, categories, brands, discounts, and position data, enabling comprehensive funnel analysis and monetization reporting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can server-side tracking be added for Shopify?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. For Shopify merchants requiring advanced measurement, I configure server-side tracking using server-side Google Tag Manager (sGTM) and Stape or Google Cloud, forwarding clean web and purchase events directly to GA4, Meta CAPI, and Google Ads."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you set up custom ecommerce events?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. When your store features unique interactive elements—such as drawer carts, bundle selectors, sticky add-to-cart buttons, currency switchers, or post-purchase upsells—I configure custom event triggers and parameters tailored to your store theme."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work with Shopify Plus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. I implement tracking for both standard Shopify stores (via Custom Web Pixels and Customer Events API) and Shopify Plus stores (including checkout extensibility customizations and dedicated checkout branding)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does setup take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Setup time depends on your current Shopify configuration, tracking architecture, number of custom events, third-party apps, and existing issues. The expected timeline is confirmed after an initial technical review of your store."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a fixed price?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because Shopify store configurations, theme implementations, custom event requirements, and marketing integrations vary in scope, pricing is customized to your exact store setup. Reach out via WhatsApp for a fast, transparent quote."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What information do you need to get started?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To begin, I will need collaborator access to your Shopify admin, access to your Google Tag Manager container (if using GTM), and edit access to your GA4 property, along with a brief description of any current tracking discrepancies you are experiencing."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
-  <ul class="nav-links"><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Work</a></li><li><a href="about.html">About</a></li><li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li></ul>
-  <a href="audit.html" class="nav-cta">Contact Us</a>
-</nav>
+  <!-- =========================================================================
+       1. GLOBAL SITE HEADER
+       ========================================================================= -->
+  <header class="site-header" id="site-header">
+    <div class="ds-container">
+      <div class="site-header-inner">
+        <a href="/" class="site-logo" aria-label="Rehan Asadi Home">
+          rehan<span>.</span>asadi
+        </a>
 
-<div style="border-bottom:1px solid var(--rule)">
-  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="services.html">Services</a><span>/</span>Shopify GA4 Tracking</div>
-</div>
+        <nav class="site-nav" aria-label="Main Navigation">
+          <a href="services.html" class="active">Services</a>
+          <a href="case-studies.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="google-ads-for-doctors-guide.html">Doctors Guide</a>
+          <a href="audit.html">Audit</a>
+        </nav>
 
-<div class="lp-hero">
-  <div>
-    <p class="lp-eyebrow">Shopify · GA4 · purchase tracking</p>
-    <h1 class="lp-h1">Shopify GA4 purchase<br>tracking is <em>broken.</em><br>Here's why.</h1>
-    <p class="lp-intro">Shopify's relationship with GA4 tracking has been unstable since the checkout extensibility migration. <strong>If your purchase events stopped working in 2024 or your numbers don't match your Shopify orders — you're not alone.</strong> Here are the specific causes and what fixing each one actually involves.</p>
-  </div>
-  <div class="audit-card">
-    <div class="audit-card-head"><span class="audit-card-title">Shopify GA4 audit</span><span class="free-tag">Free</span></div>
-    <div class="audit-card-body">
-      <p>Tell me your Shopify plan, GA4 setup, and what you're seeing. I'll diagnose whether it's a dataLayer issue, a GTM trigger problem, or a checkout extensibility break — and tell you the fix.</p>
-      <a href="audit.html" class="audit-btn">Get a free Shopify audit →</a>
-      <p class="audit-card-note">Shopify specialist · 4+ years · 50+ clients</p>
-    </div>
-  </div>
-</div>
-
-<div class="lp-body">
-  <div class="signal-strip">
-    <div class="signal-cell"><div class="signal-num">2024</div><div class="signal-desc">When Shopify checkout extensibility broke most custom setups</div></div>
-    <div class="signal-cell"><div class="signal-num">60%</div><div class="signal-desc">Conversion undercount in worst-case broken setups</div></div>
-    <div class="signal-cell"><div class="signal-num">3–5d</div><div class="signal-desc">Typical full rebuild and validation time</div></div>
-    <div class="signal-cell"><div class="signal-num">100%</div><div class="signal-desc">Shopify orders ↔ GA4 reconciliation — target</div></div>
-  </div>
-
-  <div class="sec-label">6 reasons Shopify GA4 tracking breaks</div>
-
-  <div class="issue-list">
-    <div class="issue-item">
-      <div class="issue-num">01</div>
-      <div>
-        <div class="issue-title">Checkout extensibility removed access to the thank-you page</div>
-        <p class="issue-body">Before 2024, most Shopify GA4 setups fired purchase events on the <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">/thank_you</code> page trigger in GTM. Shopify's checkout extensibility migration restricted access to the checkout and order confirmation pages for non-Plus merchants. <strong>If your tracking broke sometime in 2024, this is almost certainly why.</strong></p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Migrate to Shopify's Web Pixels API or implement purchase tracking using Shopify's Customer Events API, which provides checkout and purchase events in a compliant way without requiring thank-you page access.</div>
+        <div class="nav-actions">
+          <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20for%20Shopify%20GA4%20tracking%20setup." class="btn btn-primary" target="_blank" rel="noopener">
+            Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+          </a>
+          <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
-    <div class="issue-item">
-      <div class="issue-num">02</div>
-      <div>
-        <div class="issue-title">DataLayer not firing on Shopify checkout</div>
-        <p class="issue-body">GTM depends on Shopify pushing order data (revenue, product IDs, quantity) into the <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">dataLayer</code> on the confirmation page. Many Shopify implementations — especially those migrated from a plugin or built manually — have gaps in the dataLayer push. <strong>GTM receives the page view but no purchase data, so the purchase event fires with zero revenue.</strong></p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Audit the dataLayer in browser DevTools on a test order confirmation. Verify purchase, revenue, tax, shipping, and item-level parameters are present. Rebuild the dataLayer push in Shopify's Additional Scripts or via Web Pixels if missing.</div>
-      </div>
-    </div>
-    <div class="issue-item">
-      <div class="issue-num">03</div>
-      <div>
-        <div class="issue-title">GA4 e-commerce events missing item-scoped parameters</div>
-        <p class="issue-body">GA4's e-commerce reporting requires item-scoped parameters: <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">item_id</code>, <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">item_name</code>, <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">price</code>, <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">quantity</code>, <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">item_category</code>. Without these, your GA4 purchase events register revenue correctly but your product performance reports are completely empty. <strong>You can't see which products drive revenue or where the funnel drops off.</strong></p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Update the dataLayer push to include the full items array with all required item-scoped parameters. Map Shopify's product data (handle, title, variant, price) to GA4's expected schema.</div>
-      </div>
-    </div>
-    <div class="issue-item">
-      <div class="issue-num">04</div>
-      <div>
-        <div class="issue-title">Theme update removed GTM script from the layout</div>
-        <p class="issue-body">Shopify theme updates frequently overwrite customisations to <code style="font-family:var(--mono);font-size:11px;background:rgba(13,13,12,0.06);padding:2px 5px;">theme.liquid</code> — including the GTM container snippet. If tracking suddenly stopped after a theme update, your GTM snippet was likely removed from the site header. GA4 receives no events at all from that point forward.</p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Verify GTM is loading on all pages using Google Tag Assistant. If missing, re-add the GTM snippet to theme.liquid head and body sections. Use Shopify's native GTM integration to make it update-resistant.</div>
-      </div>
-    </div>
-    <div class="issue-item">
-      <div class="issue-num">05</div>
-      <div>
-        <div class="issue-title">Shopify's native GA4 integration creating duplicate events</div>
-        <p class="issue-body">Shopify's built-in GA4 integration (via Google &amp; YouTube channel) fires purchase events automatically. If you also have a GTM-based purchase tag, both fire — and GA4 deduplicates using transaction_id. <strong>The result looks like missing conversions, but it's actually GA4 correctly discarding what it sees as duplicate orders.</strong></p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Choose one implementation and disable the other. If using GTM for custom dataLayer, disable the native Shopify GA4 purchase event. If using the native channel, remove the GTM purchase tag entirely.</div>
-      </div>
-    </div>
-    <div class="issue-item">
-      <div class="issue-num">06</div>
-      <div>
-        <div class="issue-title">Currency not set — revenue showing as $0</div>
-        <p class="issue-body">GA4 e-commerce requires the currency parameter on every purchase event. Unlike Universal Analytics, it's mandatory. <strong>If your currency is missing or mismatched with your GA4 property settings, revenue shows as $0</strong> in all e-commerce reports — even when events fire correctly.</p>
-        <div class="issue-fix"><div class="fix-label">The fix</div>Verify the currency parameter is included in your purchase dataLayer push and matches your GA4 property's default currency setting (Admin → Property Settings → Currency).</div>
+  </header>
+
+  <!-- Mobile Drawer Navigation -->
+  <div class="mobile-nav-drawer" id="mobile-drawer" hidden>
+    <div class="mobile-nav-inner">
+      <nav class="mobile-nav-links" aria-label="Mobile Navigation">
+        <a href="services.html" class="active">Services</a>
+        <a href="case-studies.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="google-ads-for-doctors-guide.html">Doctors Guide</a>
+        <a href="audit.html">Audit</a>
+      </nav>
+      <div class="mobile-nav-cta">
+        <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20for%20Shopify%20GA4%20tracking%20setup." class="btn btn-primary" target="_blank" rel="noopener" style="width: 100%; justify-content: center;">
+          Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </div>
-</div>
 
-<div class="related">
-  <div class="related-title">Related problems</div>
-  <div class="related-grid">
-    <a href="ga4-not-tracking-conversions.html" class="related-item"><div class="related-tag">GA4</div><div class="related-label">GA4 shows fewer conversions than Shopify</div></a>
-    <a href="meta-capi-setup.html" class="related-item"><div class="related-tag">Meta CAPI</div><div class="related-label">Meta ROAS doesn't match actual revenue</div></a>
-    <a href="server-side-tracking-setup.html" class="related-item"><div class="related-tag">sGTM</div><div class="related-label">Set up server-side tracking with Stape</div></a>
-    <a href="services.html" class="related-item"><div class="related-tag">Services</div><div class="related-label">GTM container audit and rebuild</div></a>
-  </div>
-</div>
+  <main>
+    <!-- =========================================================================
+         2. HERO SECTION (OPTION B ARCHITECTURE)
+         ========================================================================= -->
+    <section class="shop-hero-section">
+      <div class="ds-container">
+        <div class="shop-hero-grid">
+          <div class="shop-hero-content">
+            <div class="shop-eyebrow">
+              <span class="shop-eyebrow-dot" aria-hidden="true"></span>
+              SHOPIFY GA4 TRACKING
+            </div>
+            <h1 class="shop-hero-h1">
+              Shopify GA4 Tracking Setup for Accurate Ecommerce Data, Better Insights and <span class="hero-highlight">Smarter Decisions.</span>
+            </h1>
+            <p class="shop-hero-lead">
+              Set up reliable GA4 ecommerce measurement for your Shopify store with structured ecommerce events, transaction data, validation, and platform-specific implementation designed to improve the quality of your analytics data.
+            </p>
+            <div class="shop-hero-actions">
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20for%20Shopify%20GA4%20tracking%20setup." class="btn btn-primary" target="_blank" rel="noopener">
+                Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="case-studies.html" class="btn btn-secondary">
+                View Case Studies <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+          <div class="shop-hero-visual-wrap">
+            <img
+              src="assets/images/shopify-ga4-hero-laptop.png"
+              alt="Shopify GA4 tracking setup illustration with ecommerce dashboard, Shopify branding, and accurate measurement cards"
+              class="shop-hero-img"
+              width="650"
+              height="412"
+              priority
+            />
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="dark-cta">
-  <h2>Which one is breaking<br><em>your Shopify tracking?</em></h2>
-  <p>Most Shopify GA4 setups have more than one issue. Tell me what you're seeing and I'll diagnose it — free, in writing, within 24 hours.</p>
-  <a href="audit.html" class="dark-cta-btn">Get a free Shopify audit</a>
-  <div class="contact-socials center dark">
-    <a class="contact-social-link" href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
-    <a class="contact-social-link" href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener">Facebook</a>
-    <a class="contact-social-link" href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
-    <a class="contact-social-link" href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
-  </div>
-</div>
+    <!-- =========================================================================
+         3. PLATFORMS WE WORK WITH STRIP
+         ========================================================================= -->
+    <section class="shop-platforms-strip" aria-label="Platforms We Work With">
+      <div class="ds-container">
+        <div class="shop-platforms-inner">
+          <span class="shop-platforms-label">Platforms We Work With</span>
+          <div class="shop-platforms-list">
+            <!-- Shopify -->
+            <div class="shop-platform-item" title="Shopify">
+              <svg width="20" height="20" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M425.9 98.7c-.3-2.7-2.7-3.9-4.5-4.2s-38.1-.6-38.1-.6-30.6-29.7-33.6-32.7-8.8-2.1-11.2-1.5c0 0-5.8 1.8-15.4 4.8-1.5-5.1-3.9-11.5-7.3-17.9-10.9-20.9-26.6-31.8-46-31.8-1.2 0-2.7 0-3.9.3-.6-.6-1.2-1.2-1.8-2.1-8.7-9-19.3-13.3-32-13-24.8.6-49.4 18.5-69.6 50.6-14.2 22.4-24.8 50.6-27.9 72.4-28.5 8.8-48.4 14.8-48.7 15.1-14.2 4.5-14.8 4.8-16.7 18.5-1.5 10-39.1 301-39.1 301L345.3 512l136.5-33.9c.1 0-55.6-377-55.9-379.4M307.2 69.3c-7.3 2.1-15.4 4.8-24.5 7.6-.3-12.4-1.8-30-7.6-45.1 19 3.6 28.1 24.8 32.1 37.5m-40.9 12.8c-16.7 5.1-34.5 10.6-52.7 16.3 5.1-19.4 14.8-38.8 26.6-51.5 4.5-4.8 10.6-10 17.9-13 7 14.3 8.2 34.5 8.2 48.2m-33.9-65.4c5.8 0 10.6 1.2 14.8 3.9-6.7 3.3-13.3 8.5-19.4 15.1-15.7 17-27.9 43-32.7 68.4-15.1 4.5-29.7 9.1-43.3 13.3 9.1-39.9 42.4-99.5 80.6-100.7" fill="#95BF47"/>
+                <path d="M421.3 94.5c-1.8-.3-38.1-.6-38.1-.6s-30.6-29.7-33.6-32.7c-1.2-1.2-2.7-1.8-4.2-1.8V512l136.5-33.9s-55.7-376.6-56-379.4c-.7-2.7-2.8-3.9-4.6-4.2" fill="#5E8E3E"/>
+                <path d="M269.6 164.7 253.9 224s-17.6-8.2-38.8-6.7c-30.9 1.8-31.2 21.2-30.9 26.3 1.8 26.6 71.5 32.4 75.4 94.5 3 49-26 82.4-67.8 85.1-50.3 3-77.8-26.3-77.8-26.3l10.6-45.1s27.9 20.9 50 19.7c14.5-.9 19.7-12.7 19.1-21.2-2.1-34.5-59-32.7-62.7-89.3-3-47.8 28.5-96.3 97.8-100.8 27.2-2.4 40.8 4.5 40.8 4.5" fill="#FFFFFF"/>
+              </svg>
+              <span>Shopify</span>
+            </div>
 
-<footer>
-  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
-</footer>
+            <!-- Google Tag Manager -->
+            <div class="shop-platform-item" title="Google Tag Manager">
+              <svg width="20" height="20" viewBox="0 0 513 513" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M256.5 0C114.8 0 0 114.8 0 256.5s114.8 256.5 256.5 256.5c41.3 0 80.1-9.8 114.5-27.2l-65.7-113.8c-14.7 6.4-31 10-48.8 10-69.3 0-125.5-56.2-125.5-125.5s56.2-125.5 125.5-125.5 125.5 56.2 125.5 125.5c0 15.3-2.7 29.9-7.8 43.4l111.4 64.3C501.2 334.8 513 297 513 256.5 513 114.8 398.2 0 256.5 0z" fill="#8AB4F8"/>
+                <circle cx="256.5" cy="256.5" r="70" fill="#4285F4"/>
+                <circle cx="254.5" cy="449.5" r="62.5" fill="#246FDB"/>
+              </svg>
+              <span>Google Tag Manager</span>
+            </div>
 
-<a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
-  <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
-  <span>Free Tracking Audit</span>
-</a>
-<script src="assets/whatsapp-float.js"></script>
+            <!-- Google Analytics -->
+            <div class="shop-platform-item" title="Google Analytics">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M22.5 19.5h-3a1.5 1.5 0 0 1-1.5-1.5v-12a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 24 6v12a1.5 1.5 0 0 1-1.5 1.5Z" fill="#F9AB00"/>
+                <path d="M13.5 19.5h-3a1.5 1.5 0 0 1-1.5-1.5v-6a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5Z" fill="#E37400"/>
+                <circle cx="3" cy="18" r="3" fill="#E37400"/>
+              </svg>
+              <span>Google Analytics</span>
+            </div>
 
+            <!-- Google Ads -->
+            <div class="shop-platform-item" title="Google Ads">
+              <svg width="20" height="18" viewBox="0 0 256 230" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5.888 166.405L90.88 20.9C101.676 27.256 156.116 57.384 164.908 63.114L79.916 208.627C70.62 220.907-5.888 185.04 5.888 166.396v.009Z" fill="#FBBC04"/>
+                <path d="M250.084 166.402L165.092 20.906C153.21 1.132 127.619-6.054 106.6 5.625c-21.018 11.679-27.418 36.837-15.536 57.494l84.992 145.514c11.882 19.765 37.473 26.95 58.492 15.272 20.1-11.679 27.418-37.73 15.536-57.503Z" fill="#4285F4"/>
+                <ellipse cx="42.664" cy="187.924" rx="42.664" ry="41.604" fill="#34A853"/>
+              </svg>
+              <span>Google Ads</span>
+            </div>
+
+            <!-- Meta -->
+            <div class="shop-platform-item" title="Meta">
+              <svg width="24" height="18" viewBox="0 0 1567 1041" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M169.5 686.5c0 59.9 13.1 105.8 30.3 133.6 22.5 36.4 56 51.8 90.2 51.8 44.2 0 84.5-10.9 162.3-118.6C514.6 667.1 588 546 637.4 470l83.7-128.6c58.1-89.3 125.3-188.6 202.5-255.9C986.5 30.5 1054.5 0 1122.8 0c114.8 0 224.1 66.5 307.7 191.4 91.6 136.7 136 308.8 136 486.5 0 105.6-20.8 183.2-56.2 244.6-34.2 59.3-100.8 118.5-213 118.5V871.9c96 0 120-88.3 120-189.3 0-144-33.6-303.8-107.5-418-52.4-81-120.4-130.5-195.2-130.5-80.8 0-145.9 61.1-219.1 169.9-38.9 57.8-78.8 128.3-123.6 207.8l-49.4 87.5c-99.1 175.9-124.2 216-173.8 282.1C461.9 997.1 387.7 1041 290 1041c-115.8 0-189.1-50.2-234.4-125.8C18.5 853.5.3 772.6.3 680.5z" fill="#0081FB"/>
+                <path d="M133.7 203.3C211.3 83.7 323.2 0 451.6 0 525.9 0 599.8 22 677 85.1c84.4 68.9 174.4 182.5 286.7 369.6l40.2 67.1c97.2 162 152.5 245.3 184.8 284.6 41.6 50.5 70.8 65.5 108.6 65.5 96 0 120-88.3 120-189.3l149.2-4.7c0 105.6-20.8 183.2-56.2 244.6-34.2 59.3-100.8 118.5-213 118.5-69.7 0-131.5-15.2-199.8-79.6C1045 911.9 983.6 824 936.4 744.9L796 510.1c-70.5-117.8-135.2-205.6-172.6-245.4-40.2-42.8-92-94.5-174.5-94.5-66.9 0-123.6 46.9-171.1 118.7z" fill="#0081FB"/>
+              </svg>
+              <span>Meta</span>
+            </div>
+
+            <!-- Stape -->
+            <div class="shop-platform-item" title="Stape">
+              <svg width="20" height="20" viewBox="0 2 36 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M26 7L17 22L26 28V38H3V34L11 20L3 14V5H26V7Z" fill="#FF5C35"/>
+                <path d="M32.6989 13.1104L29.838 14.8057C29.3032 13.8773 28.7936 13.2718 28.3092 12.9893C27.8046 12.6663 27.1538 12.5049 26.3566 12.5049C25.3777 12.5049 24.5654 12.7824 23.9196 13.3374C23.2737 13.8823 22.9508 14.5685 22.9508 15.396C22.9508 16.5363 23.7985 17.4546 25.4938 18.1509L27.8248 19.1045C29.722 19.8714 31.1095 20.8099 31.9874 21.9199C32.8654 23.0199 33.3043 24.3721 33.3043 25.9766C33.3043 28.126 32.5878 29.902 31.1549 31.3047C29.7119 32.7174 27.9207 33.4238 25.7814 33.4238C23.7531 33.4238 22.0779 32.8234 20.756 31.6226C19.4542 30.4217 18.6419 28.7314 18.319 26.5518L21.8912 25.7646C22.0527 27.137 22.3352 28.0856 22.7389 28.6104C23.4655 29.6195 24.525 30.124 25.9176 30.124C27.0175 30.124 27.9308 29.7557 28.6573 29.019C29.3839 28.2824 29.7472 27.349 29.7472 26.2188C29.7472 25.7646 29.6816 25.3509 29.5504 24.9775C29.4293 24.5941 29.2325 24.2459 28.9601 23.9331C28.6977 23.6102 28.3546 23.3125 27.9308 23.04C27.507 22.7575 27.0024 22.4901 26.4171 22.2378L24.1617 21.2993C20.9628 19.9471 19.3634 17.9692 19.3634 15.3657C19.3634 13.6099 20.0345 12.1416 21.3766 10.9609C22.7187 9.77018 24.3888 9.1748 26.3868 9.1748C29.0812 9.1748 31.1852 10.4867 32.6989 13.1104Z" fill="#111827"/>
+              </svg>
+              <span>Stape</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. WHAT'S INCLUDED (LEFT) + WHY USE SHOPIFY GA4 TRACKING? (RIGHT)
+         ========================================================================= -->
+    <section class="shop-included-section">
+      <div class="ds-container">
+        <div class="shop-two-col-layout">
+          <!-- Left Column: What's Included 6 Cards -->
+          <div>
+            <div class="shop-sec-header">
+              <h2 class="shop-sec-h2">What's Included in My Shopify GA4 Tracking Setup</h2>
+            </div>
+            <div class="shop-cards-subgrid">
+              <!-- Card 1: Complete GA4 Setup -->
+              <div class="shop-card">
+                <div class="shop-card-icon-wrap" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                </div>
+                <h3 class="shop-card-title">Complete GA4 Setup</h3>
+                <p class="shop-card-desc">
+                  Set up or refine GA4 ecommerce measurement for Shopify using the appropriate current architecture.
+                </p>
+              </div>
+
+              <!-- Card 2: Product & Purchase Events -->
+              <div class="shop-card">
+                <div class="shop-card-icon-wrap" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                  </svg>
+                </div>
+                <h3 class="shop-card-title">Product &amp; Purchase Events</h3>
+                <p class="shop-card-desc">
+                  Track key ecommerce events across the customer journey from item view to cart, checkout, and purchase.
+                </p>
+              </div>
+
+              <!-- Card 3: Custom Event Tracking -->
+              <div class="shop-card">
+                <div class="shop-card-icon-wrap" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                </div>
+                <h3 class="shop-card-title">Custom Event Tracking</h3>
+                <p class="shop-card-desc">
+                  Configure additional meaningful events when required by your business and platform architecture.
+                </p>
+              </div>
+
+              <!-- Card 4: Testing & Validation -->
+              <div class="shop-card">
+                <div class="shop-card-icon-wrap" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                    <polyline points="9 14 11 16 15 11"></polyline>
+                  </svg>
+                </div>
+                <h3 class="shop-card-title">Testing &amp; Validation</h3>
+                <p class="shop-card-desc">
+                  Debug and validate ecommerce events, parameters, transactions and GA4 reporting in real time.
+                </p>
+              </div>
+
+              <!-- Card 5: DataLayer Optimization -->
+              <div class="shop-card">
+                <div class="shop-card-icon-wrap" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                  </svg>
+                </div>
+                <h3 class="shop-card-title">DataLayer Optimization</h3>
+                <p class="shop-card-desc">
+                  Implement structured event data and dataLayer logic where technically appropriate for accurate tracking.
+                </p>
+              </div>
+
+              <!-- Card 6: Implementation Guidance -->
+              <div class="shop-card">
+                <div class="shop-card-icon-wrap" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                </div>
+                <h3 class="shop-card-title">Implementation Guidance</h3>
+                <p class="shop-card-desc">
+                  Clear documentation, handover, and guidance on maintaining your measurement setup.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Mint Benefits Card -->
+          <div>
+            <div class="shop-mint-card">
+              <h3 class="shop-mint-title">Why Use Shopify GA4 Tracking?</h3>
+              <ul class="shop-mint-list">
+                <li class="shop-mint-item">
+                  <span class="shop-mint-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  <span>More accurate ecommerce data</span>
+                </li>
+                <li class="shop-mint-item">
+                  <span class="shop-mint-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  <span>Better customer insights</span>
+                </li>
+                <li class="shop-mint-item">
+                  <span class="shop-mint-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  <span>Reliable revenue tracking</span>
+                </li>
+                <li class="shop-mint-item">
+                  <span class="shop-mint-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  <span>Better data for attribution analysis</span>
+                </li>
+                <li class="shop-mint-item">
+                  <span class="shop-mint-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  <span>Works with Meta and Google Ads</span>
+                </li>
+                <li class="shop-mint-item">
+                  <span class="shop-mint-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  <span>A stronger measurement foundation</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. HOW SHOPIFY GA4 TRACKING WORKS (LEFT) + COMMON ISSUES I FIX (RIGHT)
+         ========================================================================= -->
+    <section class="shop-workflow-section">
+      <div class="ds-container">
+        <div class="shop-workflow-grid">
+          <!-- Left Box: 4-Stage Diagram -->
+          <div class="shop-workflow-box">
+            <h2 class="shop-workflow-title">How Shopify GA4 Tracking Works</h2>
+            <div class="shop-diagram-steps">
+              <!-- Step 1: Shopify Store -->
+              <div class="shop-diagram-step">
+                <div class="shop-step-circle-wrap">
+                  <span class="shop-step-badge">1</span>
+                  <svg width="28" height="28" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M425.9 98.7c-.3-2.7-2.7-3.9-4.5-4.2s-38.1-.6-38.1-.6-30.6-29.7-33.6-32.7-8.8-2.1-11.2-1.5c0 0-5.8 1.8-15.4 4.8-1.5-5.1-3.9-11.5-7.3-17.9-10.9-20.9-26.6-31.8-46-31.8-1.2 0-2.7 0-3.9.3-.6-.6-1.2-1.2-1.8-2.1-8.7-9-19.3-13.3-32-13-24.8.6-49.4 18.5-69.6 50.6-14.2 22.4-24.8 50.6-27.9 72.4-28.5 8.8-48.4 14.8-48.7 15.1-14.2 4.5-14.8 4.8-16.7 18.5-1.5 10-39.1 301-39.1 301L345.3 512l136.5-33.9c.1 0-55.6-377-55.9-379.4M307.2 69.3c-7.3 2.1-15.4 4.8-24.5 7.6-.3-12.4-1.8-30-7.6-45.1 19 3.6 28.1 24.8 32.1 37.5m-40.9 12.8c-16.7 5.1-34.5 10.6-52.7 16.3 5.1-19.4 14.8-38.8 26.6-51.5 4.5-4.8 10.6-10 17.9-13 7 14.3 8.2 34.5 8.2 48.2m-33.9-65.4c5.8 0 10.6 1.2 14.8 3.9-6.7 3.3-13.3 8.5-19.4 15.1-15.7 17-27.9 43-32.7 68.4-15.1 4.5-29.7 9.1-43.3 13.3 9.1-39.9 42.4-99.5 80.6-100.7" fill="#95BF47"/>
+                    <path d="M421.3 94.5c-1.8-.3-38.1-.6-38.1-.6s-30.6-29.7-33.6-32.7c-1.2-1.2-2.7-1.8-4.2-1.8V512l136.5-33.9s-55.7-376.6-56-379.4c-.7-2.7-2.8-3.9-4.6-4.2" fill="#5E8E3E"/>
+                    <path d="M269.6 164.7 253.9 224s-17.6-8.2-38.8-6.7c-30.9 1.8-31.2 21.2-30.9 26.3 1.8 26.6 71.5 32.4 75.4 94.5 3 49-26 82.4-67.8 85.1-50.3 3-77.8-26.3-77.8-26.3l10.6-45.1s27.9 20.9 50 19.7c14.5-.9 19.7-12.7 19.1-21.2-2.1-34.5-59-32.7-62.7-89.3-3-47.8 28.5-96.3 97.8-100.8 27.2-2.4 40.8 4.5 40.8 4.5" fill="#FFFFFF"/>
+                  </svg>
+                </div>
+                <h3 class="shop-step-title">Shopify Store</h3>
+                <p class="shop-step-desc">Customer action on your store (e.g. view, add to cart, purchase).</p>
+              </div>
+
+              <!-- Flow Arrow 1 -->
+              <div class="shop-flow-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+
+              <!-- Step 2: Google Tag Manager -->
+              <div class="shop-diagram-step">
+                <div class="shop-step-circle-wrap">
+                  <span class="shop-step-badge">2</span>
+                  <svg width="28" height="28" viewBox="0 0 513 513" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M256.5 0C114.8 0 0 114.8 0 256.5s114.8 256.5 256.5 256.5c41.3 0 80.1-9.8 114.5-27.2l-65.7-113.8c-14.7 6.4-31 10-48.8 10-69.3 0-125.5-56.2-125.5-125.5s56.2-125.5 125.5-125.5 125.5 56.2 125.5 125.5c0 15.3-2.7 29.9-7.8 43.4l111.4 64.3C501.2 334.8 513 297 513 256.5 513 114.8 398.2 0 256.5 0z" fill="#8AB4F8"/>
+                    <circle cx="256.5" cy="256.5" r="70" fill="#4285F4"/>
+                    <circle cx="254.5" cy="449.5" r="62.5" fill="#246FDB"/>
+                  </svg>
+                </div>
+                <h3 class="shop-step-title">Google Tag Manager</h3>
+                <p class="shop-step-desc">Captures and structures ecommerce events.</p>
+              </div>
+
+              <!-- Flow Arrow 2 -->
+              <div class="shop-flow-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+
+              <!-- Step 3: Google Analytics 4 -->
+              <div class="shop-diagram-step">
+                <div class="shop-step-circle-wrap">
+                  <span class="shop-step-badge">3</span>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M22.5 19.5h-3a1.5 1.5 0 0 1-1.5-1.5v-12a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 24 6v12a1.5 1.5 0 0 1-1.5 1.5Z" fill="#F9AB00"/>
+                    <path d="M13.5 19.5h-3a1.5 1.5 0 0 1-1.5-1.5v-6a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5Z" fill="#E37400"/>
+                    <circle cx="3" cy="18" r="3" fill="#E37400"/>
+                  </svg>
+                </div>
+                <h3 class="shop-step-title">Google Analytics 4</h3>
+                <p class="shop-step-desc">Receives clean event data with enhanced ecommerce parameters.</p>
+              </div>
+
+              <!-- Flow Arrow 3 -->
+              <div class="shop-flow-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+
+              <!-- Step 4: Reports & Insights -->
+              <div class="shop-diagram-step">
+                <div class="shop-step-circle-wrap">
+                  <span class="shop-step-badge">4</span>
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="9" y1="17" x2="9" y2="13"></line>
+                    <line x1="15" y1="17" x2="15" y2="9"></line>
+                  </svg>
+                </div>
+                <h3 class="shop-step-title">Reports &amp; Insights</h3>
+                <p class="shop-step-desc">Accurate data for better decisions and marketing analysis.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Box: Dark Forest Green Issues Panel -->
+          <div class="shop-issues-panel">
+            <h3 class="shop-issues-title">Common Tracking Issues I Fix</h3>
+            <ul class="shop-issues-list">
+              <li class="shop-issue-item">
+                <span class="shop-issue-bullet" aria-hidden="true">!</span>
+                <span class="shop-issue-text">Missing purchase events</span>
+              </li>
+              <li class="shop-issue-item">
+                <span class="shop-issue-bullet" aria-hidden="true">!</span>
+                <span class="shop-issue-text">Duplicate transactions</span>
+              </li>
+              <li class="shop-issue-item">
+                <span class="shop-issue-bullet" aria-hidden="true">!</span>
+                <span class="shop-issue-text">Incorrect event parameters</span>
+              </li>
+              <li class="shop-issue-item">
+                <span class="shop-issue-bullet" aria-hidden="true">!</span>
+                <span class="shop-issue-text">Incomplete dataLayer</span>
+              </li>
+              <li class="shop-issue-item">
+                <span class="shop-issue-bullet" aria-hidden="true">!</span>
+                <span class="shop-issue-text">Checkout tracking issues</span>
+              </li>
+              <li class="shop-issue-item">
+                <span class="shop-issue-bullet" aria-hidden="true">!</span>
+                <span class="shop-issue-text">Misconfigured GA4 setup</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. PLATFORMS & INTEGRATIONS SECTION
+         ========================================================================= -->
+    <section class="shop-integrations-section">
+      <div class="ds-container">
+        <div class="shop-integrations-header">
+          <h2 class="shop-integrations-h2">Platforms &amp; Integrations</h2>
+          <p class="shop-integrations-lead">
+            Seamless setup across major eCommerce platforms, custom stacks, and tracking infrastructure.
+          </p>
+        </div>
+        <div class="shop-integrations-grid">
+          <!-- 1. Shopify -->
+          <div class="shop-integration-card">
+            <svg width="34" height="34" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M425.9 98.7c-.3-2.7-2.7-3.9-4.5-4.2s-38.1-.6-38.1-.6-30.6-29.7-33.6-32.7-8.8-2.1-11.2-1.5c0 0-5.8 1.8-15.4 4.8-1.5-5.1-3.9-11.5-7.3-17.9-10.9-20.9-26.6-31.8-46-31.8-1.2 0-2.7 0-3.9.3-.6-.6-1.2-1.2-1.8-2.1-8.7-9-19.3-13.3-32-13-24.8.6-49.4 18.5-69.6 50.6-14.2 22.4-24.8 50.6-27.9 72.4-28.5 8.8-48.4 14.8-48.7 15.1-14.2 4.5-14.8 4.8-16.7 18.5-1.5 10-39.1 301-39.1 301L345.3 512l136.5-33.9c.1 0-55.6-377-55.9-379.4M307.2 69.3c-7.3 2.1-15.4 4.8-24.5 7.6-.3-12.4-1.8-30-7.6-45.1 19 3.6 28.1 24.8 32.1 37.5m-40.9 12.8c-16.7 5.1-34.5 10.6-52.7 16.3 5.1-19.4 14.8-38.8 26.6-51.5 4.5-4.8 10.6-10 17.9-13 7 14.3 8.2 34.5 8.2 48.2m-33.9-65.4c5.8 0 10.6 1.2 14.8 3.9-6.7 3.3-13.3 8.5-19.4 15.1-15.7 17-27.9 43-32.7 68.4-15.1 4.5-29.7 9.1-43.3 13.3 9.1-39.9 42.4-99.5 80.6-100.7" fill="#95BF47"/>
+              <path d="M421.3 94.5c-1.8-.3-38.1-.6-38.1-.6s-30.6-29.7-33.6-32.7c-1.2-1.2-2.7-1.8-4.2-1.8V512l136.5-33.9s-55.7-376.6-56-379.4c-.7-2.7-2.8-3.9-4.6-4.2" fill="#5E8E3E"/>
+              <path d="M269.6 164.7 253.9 224s-17.6-8.2-38.8-6.7c-30.9 1.8-31.2 21.2-30.9 26.3 1.8 26.6 71.5 32.4 75.4 94.5 3 49-26 82.4-67.8 85.1-50.3 3-77.8-26.3-77.8-26.3l10.6-45.1s27.9 20.9 50 19.7c14.5-.9 19.7-12.7 19.1-21.2-2.1-34.5-59-32.7-62.7-89.3-3-47.8 28.5-96.3 97.8-100.8 27.2-2.4 40.8 4.5 40.8 4.5" fill="#FFFFFF"/>
+            </svg>
+            <span class="shop-integration-name">Shopify</span>
+          </div>
+
+          <!-- 2. Google Tag Manager -->
+          <div class="shop-integration-card">
+            <svg width="34" height="34" viewBox="0 0 513 513" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M256.5 0C114.8 0 0 114.8 0 256.5s114.8 256.5 256.5 256.5c41.3 0 80.1-9.8 114.5-27.2l-65.7-113.8c-14.7 6.4-31 10-48.8 10-69.3 0-125.5-56.2-125.5-125.5s56.2-125.5 125.5-125.5 125.5 56.2 125.5 125.5c0 15.3-2.7 29.9-7.8 43.4l111.4 64.3C501.2 334.8 513 297 513 256.5 513 114.8 398.2 0 256.5 0z" fill="#8AB4F8"/>
+              <circle cx="256.5" cy="256.5" r="70" fill="#4285F4"/>
+              <circle cx="254.5" cy="449.5" r="62.5" fill="#246FDB"/>
+            </svg>
+            <span class="shop-integration-name">Google Tag Manager</span>
+          </div>
+
+          <!-- 3. Google Analytics -->
+          <div class="shop-integration-card">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M22.5 19.5h-3a1.5 1.5 0 0 1-1.5-1.5v-12a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 24 6v12a1.5 1.5 0 0 1-1.5 1.5Z" fill="#F9AB00"/>
+              <path d="M13.5 19.5h-3a1.5 1.5 0 0 1-1.5-1.5v-6a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5Z" fill="#E37400"/>
+              <circle cx="3" cy="18" r="3" fill="#E37400"/>
+            </svg>
+            <span class="shop-integration-name">Google Analytics</span>
+          </div>
+
+          <!-- 4. Google Ads -->
+          <div class="shop-integration-card">
+            <svg width="34" height="30" viewBox="0 0 256 230" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M5.888 166.405L90.88 20.9C101.676 27.256 156.116 57.384 164.908 63.114L79.916 208.627C70.62 220.907-5.888 185.04 5.888 166.396v.009Z" fill="#FBBC04"/>
+              <path d="M250.084 166.402L165.092 20.906C153.21 1.132 127.619-6.054 106.6 5.625c-21.018 11.679-27.418 36.837-15.536 57.494l84.992 145.514c11.882 19.765 37.473 26.95 58.492 15.272 20.1-11.679 27.418-37.73 15.536-57.503Z" fill="#4285F4"/>
+              <ellipse cx="42.664" cy="187.924" rx="42.664" ry="41.604" fill="#34A853"/>
+            </svg>
+            <span class="shop-integration-name">Google Ads</span>
+          </div>
+
+          <!-- 5. Meta -->
+          <div class="shop-integration-card">
+            <svg width="40" height="30" viewBox="0 0 1567 1041" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M169.5 686.5c0 59.9 13.1 105.8 30.3 133.6 22.5 36.4 56 51.8 90.2 51.8 44.2 0 84.5-10.9 162.3-118.6C514.6 667.1 588 546 637.4 470l83.7-128.6c58.1-89.3 125.3-188.6 202.5-255.9C986.5 30.5 1054.5 0 1122.8 0c114.8 0 224.1 66.5 307.7 191.4 91.6 136.7 136 308.8 136 486.5 0 105.6-20.8 183.2-56.2 244.6-34.2 59.3-100.8 118.5-213 118.5V871.9c96 0 120-88.3 120-189.3 0-144-33.6-303.8-107.5-418-52.4-81-120.4-130.5-195.2-130.5-80.8 0-145.9 61.1-219.1 169.9-38.9 57.8-78.8 128.3-123.6 207.8l-49.4 87.5c-99.1 175.9-124.2 216-173.8 282.1C461.9 997.1 387.7 1041 290 1041c-115.8 0-189.1-50.2-234.4-125.8C18.5 853.5.3 772.6.3 680.5z" fill="#0081FB"/>
+              <path d="M133.7 203.3C211.3 83.7 323.2 0 451.6 0 525.9 0 599.8 22 677 85.1c84.4 68.9 174.4 182.5 286.7 369.6l40.2 67.1c97.2 162 152.5 245.3 184.8 284.6 41.6 50.5 70.8 65.5 108.6 65.5 96 0 120-88.3 120-189.3l149.2-4.7c0 105.6-20.8 183.2-56.2 244.6-34.2 59.3-100.8 118.5-213 118.5-69.7 0-131.5-15.2-199.8-79.6C1045 911.9 983.6 824 936.4 744.9L796 510.1c-70.5-117.8-135.2-205.6-172.6-245.4-40.2-42.8-92-94.5-174.5-94.5-66.9 0-123.6 46.9-171.1 118.7z" fill="#0081FB"/>
+            </svg>
+            <span class="shop-integration-name">Meta</span>
+          </div>
+
+          <!-- 6. Stape -->
+          <div class="shop-integration-card">
+            <svg width="34" height="34" viewBox="0 2 36 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M26 7L17 22L26 28V38H3V34L11 20L3 14V5H26V7Z" fill="#FF5C35"/>
+              <path d="M32.6989 13.1104L29.838 14.8057C29.3032 13.8773 28.7936 13.2718 28.3092 12.9893C27.8046 12.6663 27.1538 12.5049 26.3566 12.5049C25.3777 12.5049 24.5654 12.7824 23.9196 13.3374C23.2737 13.8823 22.9508 14.5685 22.9508 15.396C22.9508 16.5363 23.7985 17.4546 25.4938 18.1509L27.8248 19.1045C29.722 19.8714 31.1095 20.8099 31.9874 21.9199C32.8654 23.0199 33.3043 24.3721 33.3043 25.9766C33.3043 28.126 32.5878 29.902 31.1549 31.3047C29.7119 32.7174 27.9207 33.4238 25.7814 33.4238C23.7531 33.4238 22.0779 32.8234 20.756 31.6226C19.4542 30.4217 18.6419 28.7314 18.319 26.5518L21.8912 25.7646C22.0527 27.137 22.3352 28.0856 22.7389 28.6104C23.4655 29.6195 24.525 30.124 25.9176 30.124C27.0175 30.124 27.9308 29.7557 28.6573 29.019C29.3839 28.2824 29.7472 27.349 29.7472 26.2188C29.7472 25.7646 29.6816 25.3509 29.5504 24.9775C29.4293 24.5941 29.2325 24.2459 28.9601 23.9331C28.6977 23.6102 28.3546 23.3125 27.9308 23.04C27.507 22.7575 27.0024 22.4901 26.4171 22.2378L24.1617 21.2993C20.9628 19.9471 19.3634 17.9692 19.3634 15.3657C19.3634 13.6099 20.0345 12.1416 21.3766 10.9609C22.7187 9.77018 24.3888 9.1748 26.3868 9.1748C29.0812 9.1748 31.1852 10.4867 32.6989 13.1104Z" fill="#111827"/>
+            </svg>
+            <span class="shop-integration-name">Stape</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. REAL CLIENT EXAMPLES SECTION
+         ========================================================================= -->
+    <section class="shop-projects-section">
+      <div class="ds-container">
+        <div class="shop-projects-header">
+          <div>
+            <h2 class="shop-projects-h2">Real Client Examples</h2>
+          </div>
+          <a href="case-studies.html" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.6rem 1.15rem;">
+            View All Case Studies <span class="btn-icon-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="shop-projects-grid">
+          <!-- Project 1: Slageronline.nl -->
+          <article class="shop-project-card">
+            <div class="shop-project-thumb">
+              <img
+                src="assets/images/case-slageronline.png"
+                alt="Slageronline.nl eCommerce case study representation"
+                loading="eager"
+                width="600"
+                height="338"
+              />
+            </div>
+            <div class="shop-project-content">
+              <h3 class="shop-project-title">Slageronline.nl</h3>
+              <p class="shop-project-desc">Tracking and measurement improvements</p>
+            </div>
+          </article>
+
+          <!-- Project 2: NordSleeps -->
+          <article class="shop-project-card">
+            <div class="shop-project-thumb">
+              <img
+                src="assets/images/case-nordsleeps.png"
+                alt="NordSleeps eCommerce tracking case study representation"
+                loading="eager"
+                width="600"
+                height="338"
+              />
+            </div>
+            <div class="shop-project-content">
+              <h3 class="shop-project-title">NordSleeps</h3>
+              <p class="shop-project-desc">Improved eCommerce tracking</p>
+            </div>
+          </article>
+
+          <!-- Project 3: Packaging Discounter -->
+          <article class="shop-project-card">
+            <div class="shop-project-thumb">
+              <img
+                src="assets/images/case-packaging-discounter.png"
+                alt="Packaging Discounter conversion measurement case study representation"
+                loading="eager"
+                width="600"
+                height="338"
+              />
+            </div>
+            <div class="shop-project-content">
+              <h3 class="shop-project-title">Packaging Discounter</h3>
+              <p class="shop-project-desc">Improved conversion measurement</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         8. FREQUENTLY ASKED QUESTIONS SECTION (2 COLUMNS)
+         ========================================================================= -->
+    <section class="shop-faq-section" id="faq">
+      <div class="ds-container">
+        <div class="shop-faq-header">
+          <h2 class="shop-faq-h2">Frequently Asked Questions</h2>
+        </div>
+        <div class="shop-faq-grid">
+          <!-- Column 1 -->
+          <div class="shop-faq-col">
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>What is Shopify GA4 tracking?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Shopify GA4 tracking is the specialized implementation of Google Analytics 4 for Shopify stores. It captures the entire customer journey—from product impressions and cart updates to checkout steps and confirmed purchases—with structured ecommerce parameters and verified transaction data.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Which events do you set up?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                I configure standard GA4 ecommerce events supported by your store architecture, including <code>view_item_list</code>, <code>select_item</code>, <code>view_item</code>, <code>add_to_cart</code>, <code>remove_from_cart</code>, <code>view_cart</code>, <code>begin_checkout</code>, <code>add_shipping_info</code>, <code>add_payment_info</code>, and <code>purchase</code>.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Do you track purchase value correctly?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Yes. Every purchase event is configured to transmit the exact order ID, currency code, purchase revenue, tax, shipping, and item-scoped details. This ensures GA4 monetization reports align directly with Shopify's actual order totals.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Do I still need the default Shopify tracking?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Yes. Shopify's native analytics and GA4 serve distinct, complementary purposes. Shopify provides built-in sales, customer, and inventory dashboards, while GA4 enables deep cross-channel attribution and user journey exploration. The implementation avoids duplicate tags while preserving Shopify's built-in metrics.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Can you fix my existing setup?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Yes. Many stores suffer from tracking breaks caused by Shopify's checkout extensibility update, theme changes, or duplicate app tags. I audit your store, identify why events or revenue are missing, and resolve the underlying configuration issues.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Will this work with Meta and Google Ads?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Yes. While GA4, Meta, and Google Ads use separate conversion tags, a clean ecommerce measurement setup provides structured data that supports all downstream advertising pixels. For advanced setups, I also implement <a href="meta-capi-setup.html" style="color: var(--ds-accent); font-weight: 600;">Meta Conversions API (CAPI)</a> and Google Ads enhanced conversions.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>How long does setup take?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Setup duration depends on your current Shopify store plan, theme architecture, custom event requirements, third-party apps, and existing issues. The timeline is confirmed after an initial technical inspection of your store.
+              </div>
+            </details>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="shop-faq-col">
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Do you set up enhanced ecommerce?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Yes. GA4 ecommerce tracking includes item-scoped parameters such as item ID, item name, price, quantity, brand, and item category. This allows you to evaluate product performance, cart abandonment, and conversion rates across different merchandise lines.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Do you use server-side tracking?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                When required, yes. For merchants who want greater data control, reduced reliance on browser tags, and higher event match quality, I set up <a href="server-side-tracking-setup.html" style="color: var(--ds-accent); font-weight: 600;">Server-Side Tracking</a> using server-side Google Tag Manager and Stape.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Can you set up custom events?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Yes. If your store has custom interactive elements—such as bundle builders, drawer cart interactions, size guides, newsletter popups, or currency selectors—I configure dedicated custom events and parameters tailored to your store.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Do you support multiple stores?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Yes. If your business operates multiple regional or localized Shopify stores (e.g. US, UK, EU stores), I can configure multi-store tracking architecture with dedicated or roll-up GA4 data streams to maintain clean regional reporting.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Do you work with Shopify Plus?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Yes. I implement tracking for both standard Shopify stores (using Custom Web Pixels and Customer Events API) and Shopify Plus stores (including checkout extensibility customizations and dedicated checkout branding).
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>Is there a fixed price?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                Because Shopify store architectures, theme implementations, custom event requirements, and marketing integrations vary in scope, pricing is customized to your exact requirements. Reach out via WhatsApp with your store details for a transparent quote.
+              </div>
+            </details>
+
+            <details class="shop-faq-details">
+              <summary class="shop-faq-summary">
+                <span>What information do you need to get started?</span>
+                <span class="shop-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="shop-faq-answer">
+                To begin, I will need collaborator access to your Shopify store admin, access to your Google Tag Manager container (if using GTM), and edit access to your GA4 property, along with notes on any specific tracking discrepancies you have identified.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         9. CONNECT WITH ME (SOCIAL CARDS)
+         ========================================================================= -->
+    <section class="about-connect-section" id="connect">
+      <div class="ds-container">
+        <div class="about-connect-content">
+          <div class="about-connect-eyebrow">
+            <span class="about-eyebrow-dot" aria-hidden="true"></span>
+            CONNECT WITH ME
+          </div>
+          <h2 class="about-connect-title">Let's stay connected.</h2>
+          <p class="about-connect-lead">
+            Follow my work, tracking insights, and updates across the platforms I use.
+          </p>
+          <div class="about-connect-grid" role="list">
+            <!-- 1. LinkedIn -->
+            <a
+              href="https://www.linkedin.com/in/rehanasadi"
+              target="_blank"
+              rel="noopener"
+              class="about-social-btn about-social-linkedin"
+              aria-label="Connect on LinkedIn"
+              role="listitem"
+            >
+              <div class="about-social-icon about-icon-linkedin" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </div>
+              <div class="about-social-text">
+                <span class="about-social-name">LinkedIn</span>
+                <span class="about-social-meta">Professional updates</span>
+              </div>
+              <span class="about-social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <!-- 2. Instagram -->
+            <a
+              href="https://instagram.com/rehanasadi_"
+              target="_blank"
+              rel="noopener"
+              class="about-social-btn about-social-instagram"
+              aria-label="Follow on Instagram"
+              role="listitem"
+            >
+              <div class="about-social-icon about-icon-instagram" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </div>
+              <div class="about-social-text">
+                <span class="about-social-name">Instagram</span>
+                <span class="about-social-meta">Behind the scenes</span>
+              </div>
+              <span class="about-social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <!-- 3. Facebook -->
+            <a
+              href="https://www.facebook.com/rehanasadiofficial"
+              target="_blank"
+              rel="noopener"
+              class="about-social-btn about-social-facebook"
+              aria-label="Connect on Facebook"
+              role="listitem"
+            >
+              <div class="about-social-icon about-icon-facebook" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                </svg>
+              </div>
+              <div class="about-social-text">
+                <span class="about-social-name">Facebook</span>
+                <span class="about-social-meta">News &amp; posts</span>
+              </div>
+              <span class="about-social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <!-- 4. X (Twitter) -->
+            <a
+              href="https://x.com/rehanasadi_"
+              target="_blank"
+              rel="noopener"
+              class="about-social-btn about-social-x"
+              aria-label="Follow on X"
+              role="listitem"
+            >
+              <div class="about-social-icon about-icon-x" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </div>
+              <div class="about-social-text">
+                <span class="about-social-name">X</span>
+                <span class="about-social-meta">Thoughts &amp; notes</span>
+              </div>
+              <span class="about-social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <!-- 5. Threads (Non-clickable / Coming Soon) -->
+            <div
+              class="about-social-btn about-social-threads about-social-disabled"
+              aria-disabled="true"
+              aria-label="Threads (Coming soon)"
+              role="listitem"
+            >
+              <div class="about-social-icon about-icon-threads" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 192 192" fill="currentColor">
+                  <path d="M141.537 88.9883C140.71 88.5919 139.87 88.2109 139.019 87.8456C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.6881 72.8275C81.3323 64.2494 89.9654 60.8358 97.2248 60.8358C97.3021 60.8358 97.3794 60.8358 97.4566 60.8365C108.971 60.9103 118.847 67.8744 122.753 82.5936C115.111 80.8988 106.88 80.2078 98.1384 80.5342C67.3377 81.6841 49.3361 97.8016 49.7719 121.722C50.2198 146.337 70.8258 160.852 93.3087 160.852C108.775 160.852 122.257 153.256 128.845 140.917C133.447 153.078 144.981 160.852 160.106 160.852C178.694 160.852 192 147.24 192 126.966C192 90.0706 163.543 71.9701 141.537 88.9883ZM93.7073 144.761C81.4429 144.761 67.3377 137.07 67.0425 120.911C66.7571 105.291 79.167 96.6433 98.7188 95.912C106.491 95.6212 113.882 96.3888 120.672 98.1408C117.472 131.782 105.659 144.761 93.7073 144.761Z"/>
+                </svg>
+              </div>
+              <div class="about-social-text">
+                <span class="about-social-name">Threads</span>
+                <span class="about-social-meta">Coming soon</span>
+              </div>
+              <span class="about-social-arrow" aria-hidden="true" style="opacity: 0.35;">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         10. FINAL CTA BANNER (DARK FOREST GREEN WITH LAPTOP VISUAL)
+         ========================================================================= -->
+    <section class="audit-cta-section">
+      <div class="ds-container">
+        <div class="audit-cta-banner">
+          <div class="audit-cta-content">
+            <div class="audit-cta-eyebrow">
+              <span class="audit-eyebrow-dot" aria-hidden="true"></span>
+              READY TO IMPROVE YOUR SHOPIFY DATA?
+            </div>
+            <h2 class="audit-cta-title">Get Your Shopify GA4 Tracking Setup</h2>
+            <p class="audit-cta-desc">
+              Build cleaner ecommerce measurement with reliable events, transaction data, validation and reporting.
+            </p>
+            <div class="audit-cta-actions">
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20for%20Shopify%20GA4%20tracking%20setup." class="audit-cta-btn-white" target="_blank" rel="noopener">
+                Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20for%20Shopify%20GA4%20tracking%20setup." class="audit-cta-btn-outline" target="_blank" rel="noopener">
+                Chat on WhatsApp <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+          <div class="audit-cta-visual">
+            <img
+              src="assets/images/case-cta-laptop.png"
+              alt="Shopify GA4 tracking setup and ecommerce analytics dashboard preview"
+              width="540"
+              height="320"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       11. SHARED SITE FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="ds-container">
+      <div class="footer-top">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="/" class="site-logo">
+            rehan<span>.</span>asadi
+          </a>
+          <p>
+            Tracking today. Smarter decisions tomorrow. GA4, GTM, and Server-Side tracking specialist.
+          </p>
+          <div class="footer-badge" style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; color: var(--ds-accent);">
+            <span class="status-indicator" style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--ds-success); display: inline-block;"></span> Available for New Projects
+          </div>
+        </div>
+
+        <!-- Navigation Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="audit.html">Contact &amp; Audit</a></li>
+          </ul>
+        </div>
+
+        <!-- Services Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html#ga4">GA4 Architecture</a></li>
+            <li><a href="server-side-tracking-setup.html">Server-Side Tracking</a></li>
+            <li><a href="meta-capi-setup.html">Meta CAPI Setup</a></li>
+            <li><a href="services.html#gads">Google Ads Tracking</a></li>
+            <li><a href="shopify-ga4-tracking.html">Shopify Tracking</a></li>
+            <li><a href="services.html#retainer">Retainer Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Guides Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Guides</div>
+          <ul class="footer-links">
+            <li><a href="shopify-ga4-tracking.html">Shopify GA4 Fix</a></li>
+            <li><a href="server-side-tracking-setup.html">Server-Side GTM</a></li>
+            <li><a href="ga4-not-tracking-conversions.html">GA4 Troubleshooting</a></li>
+            <li><a href="meta-capi-setup.html">Meta CAPI Setup</a></li>
+            <li><a href="google-ads-for-doctors-guide.html">Doctors Ads Guide</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rehan Asadi. All rights reserved. Clean data. Confident scaling.</p>
+        <div class="footer-meta-links" style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+          <a href="services.html">Services</a>
+          <a href="case-studies.html">Proof</a>
+          <a href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://x.com/Iamrehan__" target="_blank" rel="noopener">X</a>
+          <a href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp CTA Button -->
+  <a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I'd%20like%20a%20quote%20for%20Shopify%20GA4%20tracking%20setup." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+    <span class="wa-icon" aria-hidden="true">
+      <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg>
+    </span>
+    <span class="wa-text">Chat on WhatsApp</span>
+  </a>
+
+  <!-- Mobile Drawer Toggle Script & Accordion -->
+  <script>
+    (function() {
+      var toggle = document.getElementById('mobile-toggle');
+      var drawer = document.getElementById('mobile-drawer');
+      if (toggle && drawer) {
+        toggle.addEventListener('click', function() {
+          var expanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', !expanded);
+          drawer.hidden = expanded;
+        });
+      }
+    })();
+
+    // Accordion Mutual Exclusivity
+    (function() {
+      const details = document.querySelectorAll('.shop-faq-details');
+      details.forEach((targetDetail) => {
+        targetDetail.addEventListener('toggle', () => {
+          if (targetDetail.open) {
+            details.forEach((detail) => {
+              if (detail !== targetDetail && detail.open) {
+                detail.open = false;
+              }
+            });
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
