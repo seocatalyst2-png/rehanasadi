@@ -3,567 +3,911 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free Tracking Audit - Rehan Munawar | GA4 and Server-Side Tracking</title>
-  <meta name="description" content="Get a free tracking audit. Tell me what you're seeing - numbers that don't add up, ROAS you can't trust - and I'll tell you exactly what's broken." />
+  <title>Tracking Audit - GA4, GTM &amp; eCommerce Measurement | Rehan Asadi</title>
+  <meta name="description" content="Identify missing, duplicated, or misconfigured tracking across GA4, Google Tag Manager, Meta CAPI, Google Ads, and server-side containers with an expert audit." />
+  <meta name="author" content="Rehan Munawar" />
+  <link rel="canonical" href="https://rehanasadi.com/audit" />
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rehanasadi.com/audit" />
+  <meta property="og:title" content="Tracking Audit - GA4, GTM &amp; eCommerce Measurement | Rehan Asadi" />
+  <meta property="og:description" content="Identify missing, duplicated, or misconfigured tracking across GA4, Google Tag Manager, Meta CAPI, Google Ads, and server-side containers with an expert audit." />
+  <meta property="og:image" content="https://rehanasadi.com/assets/images/case-hero-dashboard.png" />
+
+  <!-- Fonts & Stylesheets -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  <link rel="stylesheet" href="assets/design-system.css" />
+  <link rel="stylesheet" href="assets/inner-pages.css" />
 
-    :root {
-      --ink: #0d0d0c;
-      --paper: #f5f2eb;
-      --accent: #c8441a;
-      --accent2: #1a5c8f;
-      --muted: #6b6760;
-      --rule: rgba(13,13,12,0.12);
-      --mono: "DM Mono", monospace;
-      --serif: "Fraunces", serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--mono);
-      overflow-x: hidden;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.5rem 3rem;
-      border-bottom: 1px solid var(--rule);
-      position: sticky;
-      top: 0;
-      background: var(--paper);
-      z-index: 100;
-    }
-    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-size: 12px; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.15s; }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-links a.active { color: var(--ink); }
-    .nav-cta { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 20px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-family: var(--mono); transition: background 0.15s, color 0.15s; }
-    .nav-cta:hover { background: var(--ink); color: var(--paper); }
-
-    .main-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 5rem 3rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
-    }
-
-    .intro-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
-    .intro-h1 { font-family: var(--serif); font-size: 52px; font-weight: 700; line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-    .intro-h1 em { font-style: italic; font-weight: 300; color: var(--muted); }
-    .intro-sub { font-size: 13px; line-height: 1.9; color: var(--muted); margin-bottom: 2.5rem; max-width: 400px; }
-
-    .steps-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1rem; }
-    .next-steps { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--rule); background: var(--rule); margin-bottom: 2.5rem; }
-    .next-step { background: var(--paper); padding: 1.1rem 1.25rem; display: flex; gap: 1.25rem; align-items: flex-start; }
-    .step-dot { width: 22px; height: 22px; border: 1px solid var(--accent2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: 0.06em; color: var(--accent2); margin-top: 1px; }
-    .step-copy { font-size: 12px; line-height: 1.75; color: var(--muted); }
-    .step-copy strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 2px; font-size: 12px; }
-
-    .trust-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border: 1px solid var(--rule); background: var(--rule); }
-    .trust-cell { background: var(--paper); padding: 1.25rem; }
-    .trust-num { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--ink); }
-    .trust-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
-
-    .form-wrap { position: sticky; top: 100px; }
-    .form-card { border: 1px solid var(--rule); background: var(--paper); }
-    .form-header {
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid var(--rule);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .form-title { font-family: var(--serif); font-size: 20px; font-weight: 700; }
-    .form-free-badge { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border: 1px solid var(--accent); color: var(--accent); }
-    .form-body { padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
-    .field-group { display: flex; flex-direction: column; gap: 6px; }
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    label {
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="url"],
-    select,
-    textarea {
-      width: 100%;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--ink);
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      padding: 10px 12px;
-      outline: none;
-      appearance: none;
-      transition: border-color 0.15s;
-      border-radius: 0;
-    }
-    input:focus, select:focus, textarea:focus { border-color: var(--accent2); }
-    input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.6; }
-    select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b6760'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-      padding-right: 32px;
-      cursor: pointer;
-    }
-    textarea { resize: vertical; min-height: 90px; line-height: 1.7; }
-    .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
-    .checkbox-item { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
-    .checkbox-item input[type="checkbox"] {
-      width: 15px;
-      height: 15px;
-      border: 1px solid var(--rule);
-      background: var(--paper);
-      appearance: none;
-      flex-shrink: 0;
-      margin-top: 2px;
-      cursor: pointer;
-      position: relative;
-      padding: 0;
-    }
-    .checkbox-item input[type="checkbox"]:checked {
-      background: var(--accent2);
-      border-color: var(--accent2);
-    }
-    .checkbox-item input[type="checkbox"]:checked::after {
-      content: "";
-      position: absolute;
-      left: 3px; top: 1px;
-      width: 5px; height: 8px;
-      border-right: 2px solid #fff;
-      border-bottom: 2px solid #fff;
-      transform: rotate(35deg);
-    }
-    .checkbox-label { font-size: 12px; line-height: 1.5; color: var(--ink); }
-    .divider { height: 1px; background: var(--rule); margin: 0.25rem 0; }
-    .submit-btn {
-      width: 100%;
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 14px;
-      background: var(--ink);
-      color: var(--paper);
-      border: 1px solid var(--ink);
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s;
-      margin-top: 0.25rem;
-    }
-    .submit-btn:hover { background: var(--accent); border-color: var(--accent); }
-    .form-note { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.6; padding: 0 2rem 1.5rem; }
-
-    .thankyou {
-      display: none;
-      padding: 3rem 2rem;
-      text-align: center;
-      border: 1px solid var(--rule);
-    }
-    .ty-icon { font-size: 32px; margin-bottom: 1.25rem; color: var(--accent2); font-family: var(--serif); font-weight: 700; }
-    .ty-title { font-family: var(--serif); font-size: 26px; font-weight: 700; margin-bottom: 0.75rem; }
-    .ty-sub { font-size: 13px; color: var(--muted); line-height: 1.8; }
-
-    .or-strip {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 3rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    .or-line { flex: 1; height: 1px; background: var(--rule); }
-    .or-text { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-
-    .calendly-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3rem 3rem 5rem;
-    }
-    .cal-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2rem; }
-    .cal-title { font-family: var(--serif); font-size: 32px; font-weight: 700; }
-    .cal-title em { font-style: italic; font-weight: 300; color: var(--muted); }
-    .cal-sub { font-size: 12px; color: var(--muted); line-height: 1.7; max-width: 380px; margin-top: 6px; }
-    .calendly-placeholder {
-      border: 1px solid var(--rule);
-      background: var(--paper);
-      min-height: 620px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 3rem;
-      text-align: center;
-    }
-    .cal-placeholder-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-    .cal-placeholder-title { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--ink); max-width: 360px; line-height: 1.3; }
-    .cal-placeholder-note { font-size: 12px; color: var(--muted); max-width: 380px; line-height: 1.75; }
-    .cal-placeholder-link {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 10px 22px;
-      border: 1px solid var(--rule);
-      color: var(--muted);
-      text-decoration: none;
-      background: transparent;
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-    .cal-placeholder-link:hover { border-color: var(--ink); color: var(--ink); }
-    .calendly-embed {
-      border: 1px solid var(--rule);
-      overflow: hidden;
-    }
-    .calendly-inline-widget {
-      min-width: 320px;
-      height: 700px;
-    }
-
-    .mini-guides {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 3rem 4rem;
-    }
-    .mini-guides-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
-    }
-    .mini-guide {
-      background: var(--paper);
-      padding: 1.15rem;
-      text-decoration: none;
-      color: var(--ink);
-      transition: background 0.12s;
-    }
-    .mini-guide:hover { background: rgba(13,13,12,0.03); }
-    .mini-guide small {
-      display: block;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 0.35rem;
-    }
-    .mini-guide span {
-      font-family: var(--serif);
-      font-size: 24px;
-      line-height: 1.1;
-    }
-
-    .alt-section {
-      border-top: 1px solid var(--rule);
-      padding: 4rem 3rem;
-      background: var(--ink);
-      color: var(--paper);
-    }
-    .alt-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(245,242,235,0.08); }
-    .alt-cell { background: var(--ink); padding: 2rem 2rem; }
-    .alt-label { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(245,242,235,0.35); margin-bottom: 0.75rem; }
-    .alt-val { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--paper); margin-bottom: 0.4rem; word-break: break-all; }
-    .alt-desc { font-size: 12px; color: rgba(245,242,235,0.4); line-height: 1.65; }
-    .alt-link { color: var(--paper); text-decoration: none; }
-    .alt-link:hover { color: rgba(200,68,26,0.9); }
-
-    footer { padding: 1.5rem 3rem; display: flex; justify-content: center; align-items: center; background: var(--ink); border-top: 1px solid rgba(245,242,235,0.07); }
-    footer p { font-size: 11px; color: rgba(245,242,235,0.28); letter-spacing: 0.06em; text-align: center; }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-size: 11px; color: rgba(245,242,235,0.28); text-decoration: none; letter-spacing: 0.06em; transition: color 0.12s; }
-    .footer-links a:hover { color: var(--paper); }
-
-    @media (max-width: 860px) {
-      nav { padding: 1.25rem 1.5rem; }
-      .nav-links { display: none; }
-      .main-grid { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
-      .form-wrap { position: static; }
-      .intro-h1 { font-size: 36px; }
-      .field-row { grid-template-columns: 1fr; }
-      .or-strip { padding: 0 1.5rem; }
-      .calendly-section { padding: 2.5rem 1.5rem 4rem; }
-      .mini-guides { padding: 0 1.5rem 3rem; }
-      .mini-guides-grid { grid-template-columns: 1fr; }
-      .cal-header { flex-direction: column; gap: 0.5rem; }
-      .alt-inner { grid-template-columns: 1fr; }
-      .alt-section { padding: 3rem 1.5rem; }
-      footer { flex-direction: column; gap: 0.75rem; padding: 1.25rem 1.5rem; }
-    }
-  </style>
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rehanasadi.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tracking Audit",
+            "item": "https://rehanasadi.com/audit"
+          }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://rehanasadi.com/audit#service",
+        "name": "Conversion Tracking & Measurement Audit",
+        "serviceType": "Analytics & Conversion Tracking Audit",
+        "provider": {
+          "@type": "Person",
+          "name": "Rehan Munawar",
+          "alternateName": "Rehan Asadi",
+          "url": "https://rehanasadi.com/about"
+        },
+        "description": "Comprehensive audit of GA4, Google Tag Manager, Meta CAPI, Google Ads, and server-side tracking setups to detect missing events, duplicate conversions, and data discrepancies.",
+        "areaServed": "Global"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does the tracking audit include?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The audit comprehensively reviews your GA4 configuration, Google Tag Manager tags and triggers, data layer schemas, ad platform pixels (Meta CAPI, Google Ads), server-side containers, and ecommerce checkout events. You receive an itemized diagnostic report with prioritized technical fixes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a fixed price for the audit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Audit scope varies based on your platform stack, store architecture (Shopify, WooCommerce, or custom), and whether server-side containers are involved. Reach out via WhatsApp with your store details to receive an upfront scope and quote."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Turnaround times depend on the scope and complexity of your tracking setup. Once platform view access is provided, audits are typically completed and delivered within a few business days."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which platforms do you audit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "I audit tracking architectures across Google Analytics 4, Google Tag Manager (web & server), Meta Pixel & Conversions API (CAPI), Google Ads Conversion Tracking, Shopify, WooCommerce, and custom web applications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you also implement the fixes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Beyond delivering actionable audit documentation, I provide direct hands-on implementation and technical remediation across GA4, GTM, Meta CAPI, and server-side containers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who is the audit for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The audit is designed for eCommerce store owners, marketing managers, and performance media buyers scaling paid ad spend who need 100% confidence in their conversion data, attribution, and revenue reporting."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">rehan<span>.</span>asadi</a>
-  <ul class="nav-links">
-    <li><a href="services.html">Services</a></li>
-    <li><a href="case-studies.html">Work</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
-  </ul>
-  <a href="audit.html" class="nav-cta">Contact Us</a>
-</nav>
+  <!-- =========================================================================
+       1. SHARED SITE HEADER
+       ========================================================================= -->
+  <header class="site-header">
+    <div class="ds-container">
+      <div class="site-header-inner">
+        <a href="/" class="site-logo" aria-label="Rehan Asadi Home">
+          rehan<span>.</span>asadi
+        </a>
 
-<div class="main-grid">
-  <div>
-    <p class="intro-eyebrow">Free tracking audit</p>
-    <h1 class="intro-h1">Tell me what's<br /><em>not adding up.</em></h1>
-    <p class="intro-sub">Fill in the form - takes 3 minutes. I will review your setup and come back with a plain-English breakdown of what is broken and what it is costing you. No pitch, no obligation.</p>
+        <nav class="site-nav" aria-label="Main Navigation">
+          <a href="services.html">Services</a>
+          <a href="case-studies.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="google-ads-for-doctors-guide.html">Doctors Guide</a>
+          <a href="audit.html" class="active">Audit</a>
+        </nav>
 
-    <p class="steps-label">What happens next</p>
-    <div class="next-steps">
-      <div class="next-step">
-        <div class="step-dot">01</div>
-        <div class="step-copy">
-          <strong>You submit the form</strong>
-          Describe your current setup and the problem you are seeing. The more specific, the better.
-        </div>
-      </div>
-      <div class="next-step">
-        <div class="step-dot">02</div>
-        <div class="step-copy">
-          <strong>I review within 24 hours</strong>
-          I check what I can from your URL, GTM setup, and the context you provide before we speak.
-        </div>
-      </div>
-      <div class="next-step">
-        <div class="step-dot">03</div>
-        <div class="step-copy">
-          <strong>You get a written summary</strong>
-          A short email: what is likely broken, why it matters, and what fixing it would involve.
-        </div>
-      </div>
-      <div class="next-step">
-        <div class="step-dot">04</div>
-        <div class="step-copy">
-          <strong>We talk if it makes sense</strong>
-          If the problem is worth solving together, we scope it. If not, you still get the summary for free.
+        <div class="nav-actions">
+          <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20would%20like%20to%20get%20a%20quote%20for%20a%20tracking%20audit." class="btn btn-primary" target="_blank" rel="noopener">
+            Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+          </a>
+          <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
 
-    <div class="trust-row">
-      <div class="trust-cell"><div class="trust-num">50+</div><div class="trust-label">Setups audited</div></div>
-      <div class="trust-cell"><div class="trust-num">&lt;24h</div><div class="trust-label">Response time</div></div>
-      <div class="trust-cell"><div class="trust-num">EUR0</div><div class="trust-label">Cost to start</div></div>
-      <div class="trust-cell"><div class="trust-num">4 yr</div><div class="trust-label">Tracking experience</div></div>
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer" hidden>
+      <ul class="mobile-nav-list">
+        <li><a href="services.html">Services</a></li>
+        <li><a href="case-studies.html">Work / Case Studies</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="google-ads-for-doctors-guide.html">Doctors Guide</a></li>
+        <li><a href="audit.html" style="font-weight: 700; color: var(--ds-accent);">Audit</a></li>
+      </ul>
+      <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20would%20like%20to%20get%20a%20quote%20for%20a%20tracking%20audit." class="btn btn-primary" target="_blank" rel="noopener" style="width: 100%; text-align: center;">
+        Get Quote →
+      </a>
     </div>
-  </div>
+  </header>
 
-  <div class="form-wrap">
-    <div class="form-card" id="form-card">
-      <div class="form-header">
-        <span class="form-title">Request your free audit</span>
-        <span class="form-free-badge">Free</span>
-      </div>
-
-      <form class="form-body" id="audit-form" novalidate>
-        <div class="field-row">
-          <div class="field-group">
-            <label for="name">Your name *</label>
-            <input type="text" id="name" name="name" placeholder="Jan de Vries" required />
+  <main id="main-content">
+    <!-- =========================================================================
+         2. HERO SECTION (OPTION B HERO COMPOSITION & VISUAL CALLOUTS)
+         ========================================================================= -->
+    <section class="audit-hero-section">
+      <div class="ds-container">
+        <div class="audit-hero-grid">
+          <!-- Left Column: Copy & Actions -->
+          <div class="audit-hero-content">
+            <div class="audit-eyebrow">
+              <span class="audit-eyebrow-dot" aria-hidden="true"></span>
+              TRACKING AUDIT
+            </div>
+            <h1 class="audit-hero-h1">
+              Know Exactly What’s<br>
+              Missing, Duplicated or<br>
+              Misconfigured in <span class="audit-hero-accent">Your Tracking.</span>
+            </h1>
+            <p class="audit-hero-lead">
+              A comprehensive audit of your GA4, GTM, ad platforms and eCommerce tracking to help you get accurate data, fix issues and make better marketing decisions.
+            </p>
+            <div class="audit-hero-actions">
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20to%20request%20a%20tracking%20audit." class="btn btn-primary audit-hero-wa-btn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg>
+                Get Audit <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="case-studies.html" class="btn btn-secondary">
+                View Case Studies <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
-          <div class="field-group">
-            <label for="email">Email address *</label>
-            <input type="email" id="email" name="email" placeholder="jan@company.com" required />
+
+          <!-- Right Column: Dashboard Visual & Floating Callouts -->
+          <div class="audit-hero-visual">
+            <div class="audit-hero-img-wrap">
+              <img
+                src="assets/images/case-hero-dashboard.png"
+                alt="Analytics tracking audit report and measurement setup overview"
+                class="audit-hero-img"
+                width="1200"
+                height="508"
+                loading="eager"
+              />
+            </div>
+            <div class="audit-hero-callouts">
+              <div class="audit-callout-card">
+                <div class="audit-callout-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M5 9.2h3V19H5zM10.6 5h2.8v14.2h-2.8zM16.2 13h2.8v6.2h-2.8z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="audit-callout-title">Detailed Audit Report</div>
+                  <div class="audit-callout-sub">Clear Action Steps</div>
+                </div>
+              </div>
+
+              <div class="audit-callout-card">
+                <div class="audit-callout-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="6"/>
+                    <circle cx="12" cy="12" r="2"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="audit-callout-title">Find Tracking Issues</div>
+                  <div class="audit-callout-sub">Before They Cost You</div>
+                </div>
+              </div>
+
+              <div class="audit-callout-card">
+                <div class="audit-callout-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div class="audit-callout-title">Improve Data Accuracy</div>
+                  <div class="audit-callout-sub">Make Better Decisions</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. PLATFORMS WE AUDIT STRIP (OFFICIAL BRAND LOGOS)
+         ========================================================================= -->
+    <section class="audit-platforms-section" aria-label="Platforms We Audit">
+      <div class="ds-container">
+        <div class="audit-platforms-bar">
+          <span class="audit-platforms-label">Platforms We Audit</span>
+          <div class="audit-platforms-list">
+            <!-- Google Analytics -->
+            <a href="services.html#ga4" class="audit-platform-item" title="Google Analytics 4">
+              <div class="audit-platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g transform="translate(-174.95 -339.18)scale(3.54856)">
+                    <path d="M149.3 112.8V221c0 12.1 8.4 18.9 17.2 18.9 8.2 0 17.2-5.7 17.2-18.9V113.6c0-11.1-8.2-18-17.2-18s-17.2 7.6-17.2 17.2" fill="#F9AB00"/>
+                    <path d="M104.2 167.7V221c0 12.1 8.4 18.9 17.2 18.9 8.2 0 17.2-5.7 17.2-18.9v-52.5c0-11.1-8.2-18-17.2-18s-17.2 7.7-17.2 17.2" fill="#E37400"/>
+                    <path d="M93.6 222.7c0 9.5-7.7 17.2-17.2 17.2s-17.2-7.7-17.2-17.2 7.7-17.2 17.2-17.2 17.2 7.6 17.2 17.2" fill="#E37400"/>
+                  </g>
+                </svg>
+              </div>
+              <span>Google Analytics</span>
+            </a>
+
+            <!-- Google Tag Manager -->
+            <a href="services.html#gtm" class="audit-platform-item" title="Google Tag Manager">
+              <div class="audit-platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="m300.5 491-88.8-86.6 190.8-194.9 92 90.1z" fill="#8AB4F8"/>
+                  <path d="m300.9 107.9-88.6-90.4L18.7 209.3c-25 25-25 65.4 0 90.4l190.7 192 90.2-84.4-145.3-152.8z" fill="#4285F4"/>
+                  <path d="m493.3 210.7-192-192c-25-25-65.5-25-90.5 0s-25 65.5 0 90.5l192 192c25 25 65.5 25 90.5 0 24.9-24.9 24.9-65.5 0-90.5" fill="#8AB4F8"/>
+                  <circle cx="254.5" cy="449.5" r="62.5" fill="#246FDB"/>
+                </svg>
+              </div>
+              <span>Google Tag Manager</span>
+            </a>
+
+            <!-- Meta -->
+            <a href="services.html#capi" class="audit-platform-item" title="Meta &amp; CAPI">
+              <div class="audit-platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 1567 1041" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M169.5 686.5c0 59.9 13.1 105.8 30.3 133.6 22.5 36.4 56 51.8 90.2 51.8 44.2 0 84.5-10.9 162.3-118.6C514.6 667.1 588 546 637.4 470l83.7-128.6c58.1-89.3 125.3-188.6 202.5-255.9C986.5 30.5 1054.5 0 1122.8 0c114.8 0 224.1 66.5 307.7 191.4 91.6 136.7 136 308.8 136 486.5 0 105.6-20.8 183.2-56.2 244.6-34.2 59.3-100.8 118.5-213 118.5V871.9c96 0 120-88.3 120-189.3 0-144-33.6-303.8-107.5-418-52.4-81-120.4-130.5-195.2-130.5-80.8 0-145.9 61.1-219.1 169.9-38.9 57.8-78.8 128.3-123.6 207.8l-49.4 87.5c-99.1 175.9-124.2 216-173.8 282.1C461.9 997.1 387.7 1041 290 1041c-115.8 0-189.1-50.2-234.4-125.8C18.5 853.5.3 772.6.3 680.5z" fill="#0081FB"/>
+                  <path d="M133.7 203.3C211.3 83.7 323.2 0 451.6 0 525.9 0 599.8 22 677 85.1c84.4 68.9 174.4 182.5 286.7 369.6l40.2 67.1c97.2 162 152.5 245.3 184.8 284.6 41.6 50.5 70.8 65.5 108.6 65.5 96 0 120-88.3 120-189.3l149.2-4.7c0 105.6-20.8 183.2-56.2 244.6-34.2 59.3-100.8 118.5-213 118.5-69.7 0-131.5-15.2-199.8-79.6C1045 911.9 983.6 824 936.4 744.9L796 510.1c-70.5-117.8-135.2-205.6-172.6-245.4-40.2-42.8-92-94.5-174.5-94.5-66.9 0-123.6 46.9-171.1 118.7z" fill="#0081FB"/>
+                </svg>
+              </div>
+              <span>Meta</span>
+            </a>
+
+            <!-- Google Ads -->
+            <a href="services.html#gads" class="audit-platform-item" title="Google Ads">
+              <div class="audit-platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 256 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.888 166.405L90.88 20.9C101.676 27.256 156.116 57.384 164.908 63.114L79.916 208.627C70.62 220.907-5.888 185.04 5.888 166.396v.009Z" fill="#FBBC04"/>
+                  <path d="M250.084 166.402L165.092 20.906C153.21 1.132 127.619-6.054 106.6 5.625c-21.018 11.679-27.418 36.837-15.536 57.494l84.992 145.514c11.882 19.765 37.473 26.95 58.492 15.272 20.1-11.679 27.418-37.73 15.536-57.503Z" fill="#4285F4"/>
+                  <ellipse cx="42.664" cy="187.924" rx="42.664" ry="41.604" fill="#34A853"/>
+                </svg>
+              </div>
+              <span>Google Ads</span>
+            </a>
+
+            <!-- Shopify -->
+            <a href="services.html#shopify" class="audit-platform-item" title="Shopify">
+              <div class="audit-platform-icon" aria-hidden="true">
+                <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M425.9 98.7c-.3-2.7-2.7-3.9-4.5-4.2s-38.1-.6-38.1-.6-30.6-29.7-33.6-32.7-8.8-2.1-11.2-1.5c0 0-5.8 1.8-15.4 4.8-1.5-5.1-3.9-11.5-7.3-17.9-10.9-20.9-26.6-31.8-46-31.8-1.2 0-2.7 0-3.9.3-.6-.6-1.2-1.2-1.8-2.1-8.7-9-19.3-13.3-32-13-24.8.6-49.4 18.5-69.6 50.6-14.2 22.4-24.8 50.6-27.9 72.4-28.5 8.8-48.4 14.8-48.7 15.1-14.2 4.5-14.8 4.8-16.7 18.5-1.5 10-39.1 301-39.1 301L345.3 512l136.5-33.9c.1 0-55.6-377-55.9-379.4M307.2 69.3c-7.3 2.1-15.4 4.8-24.5 7.6-.3-12.4-1.8-30-7.6-45.1 19 3.6 28.1 24.8 32.1 37.5m-40.9 12.8c-16.7 5.1-34.5 10.6-52.7 16.3 5.1-19.4 14.8-38.8 26.6-51.5 4.5-4.8 10.6-10 17.9-13 7 14.3 8.2 34.5 8.2 48.2m-33.9-65.4c5.8 0 10.6 1.2 14.8 3.9-6.7 3.3-13.3 8.5-19.4 15.1-15.7 17-27.9 43-32.7 68.4-15.1 4.5-29.7 9.1-43.3 13.3 9.1-39.9 42.4-99.5 80.6-100.7" fill="#95BF47"/>
+                  <path d="M421.3 94.5c-1.8-.3-38.1-.6-38.1-.6s-30.6-29.7-33.6-32.7c-1.2-1.2-2.7-1.8-4.2-1.8V512l136.5-33.9s-55.7-376.6-56-379.4c-.7-2.7-2.8-3.9-4.6-4.2" fill="#5E8E3E"/>
+                  <path d="M269.6 164.7 253.9 224s-17.6-8.2-38.8-6.7c-30.9 1.8-31.2 21.2-30.9 26.3 1.8 26.6 71.5 32.4 75.4 94.5 3 49-26 82.4-67.8 85.1-50.3 3-77.8-26.3-77.8-26.3l10.6-45.1s27.9 20.9 50 19.7c14.5-.9 19.7-12.7 19.1-21.2-2.1-34.5-59-32.7-62.7-89.3-3-47.8 28.5-96.3 97.8-100.8 27.2-2.4 40.8 4.5 40.8 4.5" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span>Shopify</span>
+            </a>
+
+            <!-- Stape -->
+            <a href="services.html#sgtm" class="audit-platform-item" title="Stape / sGTM">
+              <div class="audit-platform-icon" aria-hidden="true">
+                <svg viewBox="0 2 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M26 7L17 22L26 28V38H3V34L11 20L3 14V5H26V7Z" fill="#FF5C35"/>
+                  <path d="M32.6989 13.1104L29.838 14.8057C29.3032 13.8773 28.7936 13.2718 28.3092 12.9893C27.8046 12.6663 27.1538 12.5049 26.3566 12.5049C25.3777 12.5049 24.5654 12.7824 23.9196 13.3374C23.2737 13.8823 22.9508 14.5685 22.9508 15.396C22.9508 16.5363 23.7985 17.4546 25.4938 18.1509L27.8248 19.1045C29.722 19.8714 31.1095 20.8099 31.9874 21.9199C32.8654 23.0199 33.3043 24.3721 33.3043 25.9766C33.3043 28.126 32.5878 29.902 31.1549 31.3047C29.7119 32.7174 27.9207 33.4238 25.7814 33.4238C23.7531 33.4238 22.0779 32.8234 20.756 31.6226C19.4542 30.4217 18.6419 28.7314 18.319 26.5518L21.8912 25.7646C22.0527 27.137 22.3352 28.0856 22.7389 28.6104C23.4655 29.6195 24.525 30.124 25.9176 30.124C27.0175 30.124 27.9308 29.7557 28.6573 29.019C29.3839 28.2824 29.7472 27.349 29.7472 26.2188C29.7472 25.7646 29.6816 25.3509 29.5504 24.9775C29.4293 24.5941 29.2325 24.2459 28.9601 23.9331C28.6977 23.6102 28.3546 23.3125 27.9308 23.04C27.507 22.7575 27.0024 22.4901 26.4171 22.2378L24.1617 21.2993C20.9628 19.9471 19.3634 17.9692 19.3634 15.3657C19.3634 13.6099 20.0345 12.1416 21.3766 10.9609C22.7187 9.77018 24.3888 9.1748 26.3868 9.1748C29.0812 9.1748 31.1852 10.4867 32.6989 13.1104Z" fill="#111827"/>
+                </svg>
+              </div>
+              <span>Stape</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. WHAT MY AUDIT CHECKS (6-CARD GRID)
+         ========================================================================= -->
+    <section class="audit-checks-section">
+      <div class="ds-container">
+        <div class="audit-checks-header">
+          <h2 class="audit-section-h2">What My Audit Checks</h2>
+        </div>
+
+        <div class="audit-checks-grid">
+          <!-- Check 1: Tracking Setup & Configuration -->
+          <div class="audit-check-card">
+            <div class="audit-check-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
+            <h3 class="audit-check-title">Tracking Setup &amp; Configuration</h3>
+            <p class="audit-check-desc">
+              Review GA4, GTM and platform settings for missing or incorrect configurations.
+            </p>
+          </div>
+
+          <!-- Check 2: Event Tracking & Data Accuracy -->
+          <div class="audit-check-card">
+            <div class="audit-check-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="4"/>
+                <line x1="12" y1="2" x2="12" y2="4"/>
+                <line x1="12" y1="20" x2="12" y2="22"/>
+                <line x1="20" y1="12" x2="22" y2="12"/>
+                <line x1="2" y1="12" x2="4" y2="12"/>
+              </svg>
+            </div>
+            <h3 class="audit-check-title">Event Tracking &amp; Data Accuracy</h3>
+            <p class="audit-check-desc">
+              Validate key events, parameters and measurement accuracy across your funnel.
+            </p>
+          </div>
+
+          <!-- Check 3: eCommerce Tracking -->
+          <div class="audit-check-card">
+            <div class="audit-check-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+            </div>
+            <h3 class="audit-check-title">eCommerce Tracking</h3>
+            <p class="audit-check-desc">
+              Purchase, checkout steps, currency, item arrays and revenue tracking integrity.
+            </p>
+          </div>
+
+          <!-- Check 4: Server-Side Tracking (sGTM) -->
+          <div class="audit-check-card">
+            <div class="audit-check-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+              </svg>
+            </div>
+            <h3 class="audit-check-title">Server-Side Tracking (sGTM)</h3>
+            <p class="audit-check-desc">
+              Review server container setup, client requests, cookie longevity and data flow.
+            </p>
+          </div>
+
+          <!-- Check 5: Ad Platform Tracking -->
+          <div class="audit-check-card">
+            <div class="audit-check-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+            </div>
+            <h3 class="audit-check-title">Ad Platform Tracking</h3>
+            <p class="audit-check-desc">
+              Audit Meta CAPI, Google Ads enhanced conversions and multi-platform deduplication.
+            </p>
+          </div>
+
+          <!-- Check 6: Data Layer & Implementation -->
+          <div class="audit-check-card">
+            <div class="audit-check-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+            <h3 class="audit-check-title">Data Layer &amp; Implementation</h3>
+            <p class="audit-check-desc">
+              Review data layer schemas, custom event triggers, script conflicts and duplicate tags.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. TWO-COLUMN: COMMON ISSUES & DELIVERABLES (OPTION C CONTRAST)
+         ========================================================================= -->
+    <section class="audit-two-col-section">
+      <div class="ds-container">
+        <div class="audit-two-col-grid">
+          <!-- Left Card: Common Tracking Issues I Find -->
+          <div class="audit-issues-card">
+            <h2 class="audit-card-title">
+              Common Tracking Issues I Find
+            </h2>
+            <ul class="audit-card-list">
+              <li class="audit-list-item">
+                <div class="audit-issue-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                </div>
+                <span>Missing or untracked events</span>
+              </li>
+              <li class="audit-list-item">
+                <div class="audit-issue-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                </div>
+                <span>Duplicate or inflated conversions</span>
+              </li>
+              <li class="audit-list-item">
+                <div class="audit-issue-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                </div>
+                <span>Incorrect revenue tracking</span>
+              </li>
+              <li class="audit-list-item">
+                <div class="audit-issue-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                </div>
+                <span>Broken tags or triggers</span>
+              </li>
+              <li class="audit-list-item">
+                <div class="audit-issue-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                </div>
+                <span>Attribution discrepancies</span>
+              </li>
+              <li class="audit-list-item">
+                <div class="audit-issue-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                </div>
+                <span>Data inconsistencies across platforms</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right Card: What You'll Receive -->
+          <div class="audit-deliverables-card">
+            <h2 class="audit-card-title">
+              What You’ll Receive
+            </h2>
+            <ul class="audit-card-list">
+              <li class="audit-list-item">
+                <div class="audit-check-item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <span>Detailed audit report with clear findings</span>
+              </li>
+              <li class="audit-list-item">
+                <div class="audit-check-item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <span>Clear list of critical and non-critical issues</span>
+              </li>
+              <li class="audit-list-item">
+                <div class="audit-check-item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <span>Practical recommendations</span>
+              </li>
+              <li class="audit-list-item">
+                <div class="audit-check-item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <span>Technical insights and fix guidance</span>
+              </li>
+              <li class="audit-list-item">
+                <div class="audit-check-item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <span>Opportunity areas for improvement</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. MY AUDIT PROCESS (4-STEP HORIZONTAL FLOW)
+         ========================================================================= -->
+    <section class="audit-process-section">
+      <div class="ds-container">
+        <div class="audit-process-header">
+          <h2 class="audit-section-h2">My Audit Process</h2>
+        </div>
+
+        <div class="audit-process-grid">
+          <!-- Step 1: Review -->
+          <div class="audit-step-card">
+            <div class="audit-step-top">
+              <div class="audit-step-num">01</div>
+              <span class="audit-step-arrow" aria-hidden="true">→</span>
+            </div>
+            <h3 class="audit-step-title">Review</h3>
+            <p class="audit-step-desc">
+              Analyse your current tracking setup.
+            </p>
+          </div>
+
+          <!-- Step 2: Identify -->
+          <div class="audit-step-card">
+            <div class="audit-step-top">
+              <div class="audit-step-num">02</div>
+              <span class="audit-step-arrow" aria-hidden="true">→</span>
+            </div>
+            <h3 class="audit-step-title">Identify</h3>
+            <p class="audit-step-desc">
+              Find issues, gaps and improvement opportunities.
+            </p>
+          </div>
+
+          <!-- Step 3: Report -->
+          <div class="audit-step-card">
+            <div class="audit-step-top">
+              <div class="audit-step-num">03</div>
+              <span class="audit-step-arrow" aria-hidden="true">→</span>
+            </div>
+            <h3 class="audit-step-title">Report</h3>
+            <p class="audit-step-desc">
+              You receive a clear, actionable audit report.
+            </p>
+          </div>
+
+          <!-- Step 4: Next Steps -->
+          <div class="audit-step-card">
+            <div class="audit-step-top">
+              <div class="audit-step-num">04</div>
+            </div>
+            <h3 class="audit-step-title">Next Steps</h3>
+            <p class="audit-step-desc">
+              Discuss findings and implementation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. SELECTED AUDIT & TRACKING PROJECTS (REAL CLIENT EXAMPLES)
+         ========================================================================= -->
+    <section class="audit-projects-section">
+      <div class="ds-container">
+        <div class="audit-projects-top">
+          <h2 class="audit-section-h2">Selected Audit &amp; Tracking Projects</h2>
+          <a href="case-studies.html" class="audit-projects-link">
+            View All Case Studies <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="audit-projects-grid">
+          <!-- Project 1: Slageronline.nl -->
+          <a href="case-studies.html#slageronline" class="audit-project-card">
+            <div class="audit-project-thumb">
+              <img
+                src="assets/images/case-slageronline.png"
+                alt="Slageronline.nl ecommerce tracking project representation"
+                width="480"
+                height="270"
+                loading="lazy"
+              />
+            </div>
+            <div class="audit-project-body">
+              <h3 class="audit-project-name">Slageronline.nl</h3>
+              <div class="audit-project-tag">Fixed tracking issues</div>
+              <span class="audit-project-cat">Food &amp; eCommerce</span>
+            </div>
+          </a>
+
+          <!-- Project 2: NordSleeps -->
+          <a href="case-studies.html#nordsleeps" class="audit-project-card">
+            <div class="audit-project-thumb">
+              <img
+                src="assets/images/case-nordsleeps.png"
+                alt="NordSleeps ecommerce tracking project representation"
+                width="480"
+                height="270"
+                loading="lazy"
+              />
+            </div>
+            <div class="audit-project-body">
+              <h3 class="audit-project-name">NordSleeps</h3>
+              <div class="audit-project-tag">Improved eCommerce tracking</div>
+              <span class="audit-project-cat">Home &amp; eCommerce</span>
+            </div>
+          </a>
+
+          <!-- Project 3: Packaging Discounter -->
+          <a href="case-studies.html#packaging-discounter" class="audit-project-card">
+            <div class="audit-project-thumb">
+              <img
+                src="assets/images/case-packaging-discounter.png"
+                alt="Packaging Discounter ecommerce tracking project representation"
+                width="480"
+                height="270"
+                loading="lazy"
+              />
+            </div>
+            <div class="audit-project-body">
+              <h3 class="audit-project-name">Packaging Discounter</h3>
+              <div class="audit-project-tag">Better conversion data</div>
+              <span class="audit-project-cat">B2B &amp; eCommerce</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         8. FREQUENTLY ASKED QUESTIONS (2-COLUMN ACCORDION)
+         ========================================================================= -->
+    <section class="audit-faq-section" id="faq">
+      <div class="ds-container">
+        <div class="audit-faq-header">
+          <h2 class="audit-section-h2">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="audit-faq-grid">
+          <!-- Left FAQ Column -->
+          <div class="audit-faq-col">
+            <details class="audit-faq-item">
+              <summary class="audit-faq-question">
+                <span>What does the audit include?</span>
+                <span class="audit-faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="audit-faq-answer">
+                The audit comprehensively reviews your GA4 configuration, Google Tag Manager tags and triggers, data layer schemas, ad platform pixels (Meta CAPI, Google Ads), server-side containers, and ecommerce checkout events. You receive an itemized diagnostic report with prioritized technical fixes.
+              </div>
+            </details>
+
+            <details class="audit-faq-item">
+              <summary class="audit-faq-question">
+                <span>How long does it take?</span>
+                <span class="audit-faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="audit-faq-answer">
+                Turnaround times depend on the scope and complexity of your tracking setup. Once platform view access is provided, audits are typically completed and delivered within a few business days.
+              </div>
+            </details>
+
+            <details class="audit-faq-item">
+              <summary class="audit-faq-question">
+                <span>Do you also implement the fixes?</span>
+                <span class="audit-faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="audit-faq-answer">
+                Yes. Beyond delivering actionable audit documentation, I provide direct hands-on implementation and technical remediation across GA4, GTM, Meta CAPI, and server-side containers.
+              </div>
+            </details>
+          </div>
+
+          <!-- Right FAQ Column -->
+          <div class="audit-faq-col">
+            <details class="audit-faq-item">
+              <summary class="audit-faq-question">
+                <span>Is there a fixed price for the audit?</span>
+                <span class="audit-faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="audit-faq-answer">
+                Audit scope varies based on your platform stack, store architecture (Shopify, WooCommerce, or custom), and whether server-side containers are involved. Reach out via WhatsApp with your store details to receive an upfront scope and quote.
+              </div>
+            </details>
+
+            <details class="audit-faq-item">
+              <summary class="audit-faq-question">
+                <span>Which platforms do you audit?</span>
+                <span class="audit-faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="audit-faq-answer">
+                I audit tracking architectures across Google Analytics 4, Google Tag Manager (web &amp; server), Meta Pixel &amp; Conversions API (CAPI), Google Ads Conversion Tracking, Shopify, WooCommerce, and custom web applications.
+              </div>
+            </details>
+
+            <details class="audit-faq-item">
+              <summary class="audit-faq-question">
+                <span>Who is the audit for?</span>
+                <span class="audit-faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="audit-faq-answer">
+                The audit is designed for eCommerce store owners, marketing managers, and performance media buyers scaling paid ad spend who need 100% confidence in their conversion data, attribution, and revenue reporting.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         9. FINAL CTA BANNER (DARK FOREST GREEN WITH LAPTOP DASHBOARD VISUAL)
+         ========================================================================= -->
+    <section class="audit-cta-section">
+      <div class="ds-container">
+        <div class="audit-cta-banner">
+          <div class="audit-cta-content">
+            <div class="audit-cta-eyebrow">
+              <span class="audit-eyebrow-dot" aria-hidden="true"></span>
+              READY TO GET CLARITY?
+            </div>
+            <h2 class="audit-cta-title">Get Your Tracking Audit</h2>
+            <p class="audit-cta-desc">
+              Find and fix tracking issues, get accurate data and make better decisions.
+            </p>
+            <div class="audit-cta-actions">
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20to%20get%20a%20tracking%20audit." class="audit-cta-btn-white" target="_blank" rel="noopener">
+                Get Quote <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20have%20questions%20about%20a%20tracking%20audit." class="audit-cta-btn-outline" target="_blank" rel="noopener">
+                Chat on WhatsApp <span class="btn-icon-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+          <div class="audit-cta-visual">
+            <img
+              src="assets/images/case-cta-laptop.png"
+              alt="Analytics tracking audit report and measurement accuracy dashboard preview"
+              width="540"
+              height="320"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       10. SHARED SITE FOOTER (100% MATCHING SITE-WIDE DESIGN SYSTEM)
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="ds-container">
+      <div class="footer-top">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="/" class="site-logo">
+            rehan<span>.</span>asadi
+          </a>
+          <p>
+            Tracking today. Smarter decisions tomorrow. GA4, GTM, and Server-Side tracking specialist.
+          </p>
+          <div class="footer-badge" style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; color: var(--ds-accent);">
+            <span class="status-indicator" style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--ds-success); display: inline-block;"></span> Available for New Projects
           </div>
         </div>
 
-        <div class="field-group">
-          <label for="website">Website URL *</label>
-          <input type="url" id="website" name="website" placeholder="https://yourstore.com" required />
+        <!-- Navigation Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="audit.html">Contact &amp; Audit</a></li>
+          </ul>
         </div>
 
-        <div class="field-group">
-          <label for="platform">Platform / CMS</label>
-          <select id="platform" name="platform">
-            <option value="" disabled selected>Select your platform</option>
-            <option value="shopify">Shopify</option>
-            <option value="woocommerce">WooCommerce</option>
-            <option value="magento">Magento / Adobe Commerce</option>
-            <option value="custom">Custom-built store</option>
-            <option value="squarespace">Squarespace</option>
-            <option value="webflow">Webflow</option>
-            <option value="other">Other</option>
-          </select>
+        <!-- Services Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html#ga4">GA4 Architecture</a></li>
+            <li><a href="services.html#sgtm">Server-Side Tracking</a></li>
+            <li><a href="services.html#capi">Meta CAPI Setup</a></li>
+            <li><a href="services.html#gads">Google Ads Tracking</a></li>
+            <li><a href="services.html#shopify">Shopify Tracking</a></li>
+            <li><a href="services.html#retainer">Retainer Support</a></li>
+          </ul>
         </div>
 
-        <div class="field-group">
-          <label for="monthly-spend">Monthly ad spend (approx.)</label>
-          <select id="monthly-spend" name="monthly_spend">
-            <option value="" disabled selected>Select range</option>
-            <option value="under-500">Under EUR500/mo</option>
-            <option value="500-2000">EUR500 - EUR2,000/mo</option>
-            <option value="2000-5000">EUR2,000 - EUR5,000/mo</option>
-            <option value="5000-plus">EUR5,000+/mo</option>
-            <option value="none">Not running paid ads</option>
-          </select>
+        <!-- Guides Column -->
+        <div class="footer-col">
+          <div class="footer-col-title">Guides</div>
+          <ul class="footer-links">
+            <li><a href="shopify-ga4-tracking.html">Shopify GA4 Fix</a></li>
+            <li><a href="server-side-tracking-setup.html">Server-Side GTM</a></li>
+            <li><a href="ga4-not-tracking-conversions.html">GA4 Troubleshooting</a></li>
+            <li><a href="meta-capi-setup.html">Meta CAPI Setup</a></li>
+            <li><a href="google-ads-for-doctors-guide.html">Doctors Ads Guide</a></li>
+          </ul>
         </div>
+      </div>
 
-        <div class="field-group">
-          <label>Current tracking setup (check all that apply)</label>
-          <div class="checkbox-group">
-            <label class="checkbox-item"><input type="checkbox" name="setup" value="ga4" /><span class="checkbox-label">GA4 installed</span></label>
-            <label class="checkbox-item"><input type="checkbox" name="setup" value="gtm" /><span class="checkbox-label">Google Tag Manager</span></label>
-            <label class="checkbox-item"><input type="checkbox" name="setup" value="meta-pixel" /><span class="checkbox-label">Meta Pixel (browser)</span></label>
-            <label class="checkbox-item"><input type="checkbox" name="setup" value="capi" /><span class="checkbox-label">Meta Conversions API (CAPI)</span></label>
-            <label class="checkbox-item"><input type="checkbox" name="setup" value="sgtm" /><span class="checkbox-label">Server-side GTM</span></label>
-            <label class="checkbox-item"><input type="checkbox" name="setup" value="not-sure" /><span class="checkbox-label">Not sure what's installed</span></label>
-          </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rehan Asadi. All rights reserved. Clean data. Confident scaling.</p>
+        <div class="footer-meta-links" style="display: flex; gap: 1.5rem;">
+          <a href="services.html">Services</a>
+          <a href="case-studies.html">Proof</a>
+          <a href="audit.html">Get Quote</a>
         </div>
-
-        <div class="field-group">
-          <label for="problem">Biggest tracking problem you're seeing *</label>
-          <textarea id="problem" name="problem" placeholder="e.g. GA4 shows 60% fewer purchases than Shopify. Meta ROAS looks good but sales are flat. Not sure if CAPI is working..." required></textarea>
-        </div>
-
-        <div class="divider"></div>
-        <button type="submit" class="submit-btn" id="submit-btn">Send - get my free audit -&gt;</button>
-      </form>
-
-      <p class="form-note">No spam. No sales pitch. Just a straight answer about your tracking.</p>
+      </div>
     </div>
+  </footer>
 
-    <div class="thankyou" id="thankyou">
-      <div class="ty-icon">✓</div>
-      <h2 class="ty-title">Got it - I will be in touch.</h2>
-      <p class="ty-sub">I will review your setup and send you a written summary within 24 hours. Check your inbox, including spam just in case.<br /><br />If you would also like to book a call, scroll down to pick a time directly in my calendar.</p>
-    </div>
-  </div>
-</div>
+  <!-- Floating WhatsApp CTA Button -->
+  <a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20to%20discuss%20a%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+    <span class="wa-icon" aria-hidden="true">
+      <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg>
+    </span>
+    <span class="wa-text">Chat on WhatsApp</span>
+  </a>
 
-<div class="or-strip" style="padding-bottom: 3rem; border-bottom: 1px solid var(--rule);">
-  <div class="or-line"></div>
-  <span class="or-text">Or skip the form - book a call directly</span>
-  <div class="or-line"></div>
-</div>
-
-<div class="calendly-section" id="book-call">
-  <div class="cal-header">
-    <div>
-      <h2 class="cal-title">Book a <em>30-minute call</em></h2>
-      <p class="cal-sub">Prefer to talk first? Pick a time and we will go through your tracking setup together on a quick call.</p>
-    </div>
-  </div>
-
-  <div class="calendly-placeholder" id="cal-placeholder">
-    <div class="cal-placeholder-label">Calendar embed</div>
-    <div class="cal-placeholder-title">Connect your Calendly to enable booking here</div>
-    <p class="cal-placeholder-note">
-      Create a free Calendly account, set up a 30-minute event type, then replace
-      <code style="font-family: var(--mono); font-size: 11px; background: rgba(13,13,12,0.06); padding: 2px 6px;">YOUR_CALENDLY_URL</code>
-      in the HTML with your link to activate the calendar embed.
-    </p>
-    <a href="https://calendly.com" target="_blank" rel="noopener" class="cal-placeholder-link">Set up Calendly -&gt;</a>
-  </div>
-</div>
-
-<section class="mini-guides">
-  <div class="mini-guides-grid">
-    <a class="mini-guide" href="shopify-ga4-tracking.html"><small>Shopify + GA4</small><span>Shopify GA4 tracking fix</span></a>
-    <a class="mini-guide" href="server-side-tracking-setup.html"><small>sGTM</small><span>Server-side tracking setup</span></a>
-    <a class="mini-guide" href="ga4-not-tracking-conversions.html"><small>GA4</small><span>GA4 conversion tracking issues</span></a>
-    <a class="mini-guide" href="meta-capi-setup.html"><small>Meta CAPI</small><span>Meta CAPI setup guide</span></a>
-    <a class="mini-guide" href="google-ads-for-doctors-guide.html"><small>Healthcare Ads</small><span>Google Ads for doctors complete guide</span></a>
-  </div>
-</section>
-
-<div class="alt-section">
-  <div class="alt-inner">
-    <div class="alt-cell">
-      <div class="alt-label">Email</div>
-      <div class="alt-val"><a href="mailto:rehancopywriting@gmail.com" class="alt-link">Contact Us</a></div>
-      <div class="alt-desc">For longer questions or if you would rather skip the form entirely. I reply within 24h on business days.</div>
-    </div>
-    <div class="alt-cell">
-      <div class="alt-label">Instagram</div>
-      <div class="alt-val"><a href="https://www.instagram.com/measurewithrehan" target="_blank" rel="noopener" class="alt-link">instagram.com/measurewithrehan</a></div>
-      <div class="alt-desc">See tracking insights and updates, or send a direct message for a quick reply.</div>
-    </div>
-    <div class="alt-cell">
-      <div class="alt-label">Facebook</div>
-      <div class="alt-val"><a href="https://www.facebook.com/share/173K18iNuX/" target="_blank" rel="noopener" class="alt-link">facebook.com/share/173K18iNuX</a></div>
-      <div class="alt-desc">Reach out on Facebook if that is your preferred platform.</div>
-    </div>
-    <div class="alt-cell">
-      <div class="alt-label">X</div>
-      <div class="alt-val"><a href="https://x.com/Iamrehan__" target="_blank" rel="noopener" class="alt-link">x.com/Iamrehan__</a></div>
-      <div class="alt-desc">Follow or message on X for analytics and performance marketing updates.</div>
-    </div>
-    <div class="alt-cell">
-      <div class="alt-label">LinkedIn</div>
-      <div class="alt-val"><a href="https://linkedin.com/in/rehanasadi" target="_blank" rel="noopener" class="alt-link">linkedin.com/in/rehanasadi</a></div>
-      <div class="alt-desc">DM me on LinkedIn if that is where you found me. Same response time, same outcome.</div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <p>Copyright 2026 Rehan Munawar - rehanasadi.com</p>
-</footer>
-
-<script>
-  const form = document.getElementById("audit-form");
-  const formCard = document.getElementById("form-card");
-  const thankyou = document.getElementById("thankyou");
-  const submitBtn = document.getElementById("submit-btn");
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const website = document.getElementById("website").value.trim();
-    const problem = document.getElementById("problem").value.trim();
-
-    if (!name || !email || !website || !problem) {
-      [["name", name], ["email", email], ["website", website], ["problem", problem]].forEach(([id, val]) => {
-        const el = document.getElementById(id);
-        if (!val) {
-          el.style.borderColor = "#c8441a";
-          el.addEventListener("input", () => el.style.borderColor = "", { once: true });
-        }
-      });
-      return;
-    }
-
-    submitBtn.textContent = "Sending...";
-    submitBtn.disabled = true;
-
-    setTimeout(() => {
-      formCard.querySelector(".form-header").style.display = "none";
-      formCard.querySelector(".form-body").style.display = "none";
-      formCard.querySelector(".form-note").style.display = "none";
-      thankyou.style.display = "block";
-      thankyou.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 900);
-  });
-</script>
-
-<a class="whatsapp-float-cta" href="https://wa.me/13025603106?text=Hi%20Rehan%2C%20I%20want%20a%20free%20tracking%20audit." target="_blank" rel="noopener" aria-label="Chat on WhatsApp for a free tracking audit" title="Free Tracking Audit">
-  <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M13.601 2.326A7.854 7.854 0 0 0 6.546 14.8L6 16.8l2.048-.537a7.854 7.854 0 1 0 5.553-13.937zm4.423 11.36c-.186.523-.996.978-1.39 1.043-.36.058-.821.082-1.325-.08-.306-.099-.699-.229-1.206-.447-2.123-.918-3.509-3.061-3.616-3.205-.106-.143-.864-1.15-.864-2.194 0-1.044.548-1.558.743-1.77.194-.212.424-.266.566-.266.142 0 .283.001.407.007.131.006.306-.05.478.363.186.449.63 1.551.686 1.664.056.114.093.247.018.39-.074.143-.111.231-.222.354-.112.123-.236.274-.337.368-.112.111-.228.231-.099.453.13.223.576.949 1.235 1.537.848.757 1.563.991 1.785 1.102.223.111.353.093.484-.056.13-.149.557-.649.706-.871.149-.223.298-.186.502-.112.205.075 1.299.612 1.522.723.223.112.372.168.427.261.056.093.056.539-.13 1.062z"></path></svg></span>
-  <span>Free Tracking Audit</span>
-</a>
-<script src="assets/whatsapp-float.js"></script>
-
+  <!-- Mobile Drawer Toggle Script -->
+  <script>
+    (function() {
+      var toggle = document.getElementById('mobile-toggle');
+      var drawer = document.getElementById('mobile-drawer');
+      if (toggle && drawer) {
+        toggle.addEventListener('click', function() {
+          var expanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', !expanded);
+          drawer.hidden = expanded;
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
