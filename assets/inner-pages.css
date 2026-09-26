@@ -4539,6 +4539,747 @@
   }
 }
 
+/* ==========================================================================
+   META CAPI SETUP PAGE STYLES (.capi-*)
+   Scoped styles matching approved Option B architecture and design system
+   ========================================================================== */
+
+.capi-hero-section {
+  padding: 4.5rem 0 3.5rem;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--ds-border);
+  position: relative;
+}
+
+.capi-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.capi-hero-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.capi-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ds-accent);
+  margin-bottom: 1.25rem;
+}
+
+.capi-eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--ds-accent);
+}
+
+.capi-hero-h1 {
+  font-size: clamp(2.35rem, 4vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--ds-text);
+  margin-bottom: 1.25rem;
+}
+
+.capi-hero-h1 .hero-highlight {
+  color: var(--ds-accent);
+}
+
+.capi-hero-lead {
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--ds-text-secondary);
+  margin-bottom: 2rem;
+  max-width: 560px;
+}
+
+.capi-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.capi-hero-visual-wrap {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.capi-hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Platform Strip */
+.capi-platforms-strip {
+  background-color: var(--ds-surface-subtle);
+  border-bottom: 1px solid var(--ds-border);
+  padding: 1.25rem 0;
+}
+
+.capi-platforms-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.capi-platforms-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ds-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.capi-platforms-list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.capi-platform-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  text-decoration: none;
+}
+
+.capi-platform-item svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* What's Included Section */
+.capi-included-section {
+  padding: 5rem 0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.capi-sec-header {
+  margin-bottom: 2.5rem;
+}
+
+.capi-sec-h2 {
+  font-size: clamp(1.85rem, 3.2vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ds-text);
+  line-height: 1.2;
+}
+
+.capi-sec-sub {
+  font-size: 1rem;
+  color: var(--ds-text-secondary);
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+.capi-two-col-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.capi-cards-subgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.capi-card {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 14px;
+  padding: 1.4rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.capi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: var(--ds-accent-border);
+}
+
+.capi-card-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #ECFDF5;
+  color: var(--ds-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.capi-card-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  letter-spacing: -0.01em;
+}
+
+.capi-card-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ds-text-secondary);
+}
+
+/* Issues Panel (Dark Forest Green) */
+.capi-issues-panel {
+  background-color: #062E20;
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 12px 36px rgba(6, 46, 32, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.capi-issues-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.capi-issues-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.capi-issue-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.4;
+}
+
+.capi-issue-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #EF4444;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* How Meta CAPI Works Section */
+.capi-workflow-section {
+  padding: 5rem 0;
+  background-color: var(--ds-surface-subtle);
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.capi-workflow-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+.capi-workflow-box {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 16px;
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.03);
+}
+
+.capi-workflow-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--ds-text);
+  margin-bottom: 2.25rem;
+  letter-spacing: -0.02em;
+}
+
+.capi-diagram-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.capi-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.capi-step-bubble {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #EFF6FF;
+  border: 2px solid #BFDBFE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: #2563EB;
+}
+
+.capi-step-num {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--ds-accent);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.capi-step-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  margin-bottom: 0.4rem;
+}
+
+.capi-step-desc {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--ds-text-secondary);
+  max-width: 170px;
+}
+
+.capi-flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94A3B8;
+  margin-top: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Benefits Grid (Why Use Meta CAPI? & What You'll Get) */
+.capi-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.capi-mint-card {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 14px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.capi-mint-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #064E3B;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.capi-mint-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.capi-mint-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #166534;
+  line-height: 1.4;
+}
+
+.capi-mint-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ds-accent);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Platforms & Integrations Section */
+.capi-integrations-section {
+  padding: 4.5rem 0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.capi-integrations-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.capi-integration-card {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 12px;
+  padding: 1.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.capi-integration-card:hover {
+  border-color: var(--ds-accent-border);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.capi-integration-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+
+.capi-integration-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ds-text);
+}
+
+/* Real Client Examples Section */
+.capi-projects-section {
+  padding: 5rem 0;
+  background-color: var(--ds-surface-subtle);
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.capi-projects-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.capi-projects-link {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ds-accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.15s ease;
+}
+
+.capi-projects-link:hover {
+  color: var(--ds-accent-hover);
+  text-decoration: underline;
+}
+
+.capi-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.capi-project-card {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.capi-project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  border-color: var(--ds-accent-border);
+}
+
+.capi-project-thumb {
+  height: 180px;
+  overflow: hidden;
+  background: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.capi-project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.capi-project-card:hover .capi-project-thumb img {
+  transform: scale(1.03);
+}
+
+.capi-project-body {
+  padding: 1.25rem 1.4rem;
+}
+
+.capi-project-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ds-text);
+  margin-bottom: 0.25rem;
+}
+
+.capi-project-desc {
+  font-size: 0.85rem;
+  color: var(--ds-text-secondary);
+}
+
+/* Frequently Asked Questions Section */
+.capi-faq-section {
+  padding: 5rem 0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.capi-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.capi-faq-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.capi-faq-details {
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.capi-faq-details[open] {
+  border-color: var(--ds-accent-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.capi-faq-summary {
+  padding: 1.15rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.capi-faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.capi-faq-plus {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ds-accent);
+  transition: transform 0.2s ease;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.capi-faq-details[open] .capi-faq-plus {
+  transform: rotate(45deg);
+}
+
+.capi-faq-answer {
+  padding: 0 1.25rem 1.25rem;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--ds-text-secondary);
+  border-top: 1px solid var(--ds-border-subtle);
+  margin-top: 0.25rem;
+  padding-top: 0.85rem;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .capi-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .capi-two-col-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .capi-workflow-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .capi-integrations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .capi-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .capi-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .capi-hero-section {
+    padding: 3.5rem 0 2.5rem;
+  }
+  .capi-hero-h1 {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+  .capi-platforms-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .capi-platforms-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem 0.75rem;
+    width: 100%;
+  }
+  .capi-cards-subgrid {
+    grid-template-columns: 1fr;
+  }
+  .capi-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  .capi-diagram-steps {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .capi-flow-arrow {
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
+  }
+  .capi-projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .capi-integrations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .capi-hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .capi-hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .capi-platforms-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .capi-integrations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .capi-issues-panel {
+    padding: 1.75rem 1.25rem;
+  }
+  .capi-workflow-box {
+    padding: 1.75rem 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capi-card:hover,
+  .capi-project-card:hover,
+  .capi-project-card:hover .capi-project-thumb img,
+  .capi-integration-card:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 
 
 
